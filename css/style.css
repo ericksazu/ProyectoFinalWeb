@@ -1,28 +1,26 @@
 html, body {
   height: 100%;
 }
-
 #wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+  margin: 0 auto -50px;
+  /* the bottom margin is the negative value of the footer's height */
 }
-
 /*************************************************** LOGIN ***************************************************/
-html, body{
+
+html, body {
   height: 100%;
   text-align: center;
 }
-
-.altura{
+.altura {
   height: 100vh;
-  text-align: center;
+  /*  text-align: center;*/
 }
-
 @media (max-width: 400px) {
-.altura{
-  height: 100%;
+  .altura {
+    height: 100%;
   }
 }
 #login {
@@ -55,10 +53,10 @@ html, body{
   color: #000000;
   font-size: 0.750em;
 }
-#olvido{
+#olvido {
   color: #00b8ab;
 }
-#olvido:hover{
+#olvido:hover {
   color: #793982;
 }
 .altura {
@@ -78,19 +76,19 @@ html, body{
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3{
+small.error1, .error2, .error3 {
   position: absolute;
   right: 260px;
 }
-small.error1{
+small.error1 {
   top: 26em;
   width: 31%;
 }
-small.error2{
+small.error2 {
   top: 32.5em;
   width: 31%;
 }
-small.error3{
+small.error3 {
   top: 9.5em;
 }
 .button-login:hover {
@@ -186,7 +184,6 @@ a:focus {
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
   margin: 0;
   margin-right: 50px;
-
 }
 .navbar-default .navbar-menu > .active > a, .navbar-default .navbar-menu > .active > a:hover {
   background-color: rgba(231, 231, 231, 0.23);
@@ -238,7 +235,7 @@ a:focus {
   }
 }
 @media (max-width: 990px) {
-  .secciones{
+  .secciones {
     max-width: 100%;
   }
 }
@@ -533,7 +530,7 @@ h4 {
 }
 /*************************************************** SECCIONES ***************************************************/
 
-#header{
+#header {
   width: 100%;
 }
 .secciones {
@@ -589,12 +586,13 @@ h4 {
   border-color: #793982;
   width: 70px;
 }
-#in{
+#in {
   margin-top: 3em;
 }
 /*#seccionBtn{
   margin-bottom: 12em;
 }*/
+
 #in:hover {
   background-color: #00b8ab;
   border-color: #00b8ab;
@@ -604,6 +602,14 @@ h4 {
   color: #ffffff;
   text-decoration: none;
 }
+
+/*PROBANDO GIT*/
+/*PROBANDO GIT*/
+/*PROBANDO GIT*/
+/*PROBANDO GIT*/
+
+
+
 /*************************************************** INFO USUARIO ***************************************************/
 
 .popover-title {
@@ -729,7 +735,6 @@ div.foroHeader {
   height: 130px;
   margin-bottom: 20px;
 }
-
 .imgForoHeader {
   background: url('../img/icons.png') no-repeat -96px 0;
   width: 43px;
@@ -1005,20 +1010,20 @@ a.purple:hover {
 }
 /*************************************************** FOOTER ***************************************************/
 
-#footer{
+#footer {
   background-color: #712d7b;
   width: 100%;
-  height: 50px; /* .push must be the same height as .footer */
+  height: 50px;
+  /* .push must be the same height as .footer */
   clear: both;
   position: absolute;
   z-index: 1000;
 }
-
-.push{
-  height: 50px; /* .push must be the same height as .footer */
+.push {
+  height: 50px;
+  /* .push must be the same height as .footer */
   clear: both;
 }
-
 #footer p {
   color: #FFFFFF;
   text-align: center;
