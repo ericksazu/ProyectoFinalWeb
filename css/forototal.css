@@ -1,0 +1,383 @@
+/********************************************************* FORO HEADER ********************************************************/
+/* line 3, ../sass/style.scss */
+.forototal {
+  /********************************************************* FORO TEMAS CONTAINER ********************************************************/
+  /********************************************************* FORO TEMA CONTAINER ********************************************************/
+  /********************************************************* PAGINATION ********************************************************/
+  /********************************************************* MODAL EDIT TEMA FORO ********************************************************/
+  /********************************************************* TRENDING TOPIC FORO ********************************************************/
+}
+
+.forototal .imgForoHeader {
+  width:200px;
+}
+/* line 4, ../sass/style.scss */
+.forototal .foroHeader {
+  background-color: #f2f2f2;
+  height: 130px;
+  margin-bottom: 20px;
+}
+/* line 10, ../sass/style.scss */
+.forototal .imgForoHeader {
+  background: url("../img/icons.png") no-repeat -96px 0;
+  width: 43px;
+  height: 43px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  float: left;
+  margin-right: 10px;
+}
+/* line 22, ../sass/style.scss */
+.forototal div.divImg {
+  margin: 0 auto;
+  display: block;
+  width: 103px;
+}
+/* line 28, ../sass/style.scss */
+.forototal .foroHeader #searchGlyph {
+  color: #cccccc;
+}
+/* line 32, ../sass/style.scss */
+.forototal .foroHeader #searchGlyph:hover {
+  color: #7C7C7C;
+}
+/* line 36, ../sass/style.scss */
+.forototal div.divImg h3 {
+  float: left;
+  color: #712d7b;
+  font-weight: normal;
+}
+/* line 42, ../sass/style.scss */
+.forototal .foroHeader .navbar-form {
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  /* line 48, ../sass/style.scss */
+  .forototal .foroHeader .navbar-form {
+    padding: 0px 15px;
+    margin-top: 4px;
+  }
+  /* line 52, ../sass/style.scss */
+  .forototal .imgForoHeader {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+}
+/* line 58, ../sass/style.scss */
+.forototal .navbar-form .inputForoHeader {
+  width: 340px;
+}
+/* line 65, ../sass/style.scss */
+.forototal .foro-container-header {
+  margin-bottom: 20px;
+}
+/* line 70, ../sass/style.scss */
+.forototal button.nuevo-tema,
+.forototal .pink {
+  color: #b91767;
+}
+/* line 74, ../sass/style.scss */
+.forototal .foro-container-header h3 {
+  margin: 0;
+  float: left;
+  margin-right: 10px;
+  color: #712d7b;
+  font-weight: normal;
+}
+/* line 82, ../sass/style.scss */
+.forototal .text-center {
+  text-align: center;
+  padding-top: 5px;
+}
+/* line 87, ../sass/style.scss */
+.forototal .tema-foro > tbody > tr > td {
+  vertical-align: middle;
+}
+/* line 91, ../sass/style.scss */
+.forototal .tema-foro h3 {
+  margin: 0;
+  font-size: 35px;
+  color: #bbbbbb;
+}
+/* line 97, ../sass/style.scss */
+.forototal .tema-foro h4 {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #712d7b;
+}
+/* line 105, ../sass/style.scss */
+.forototal .tema-foro span {
+  font-size: 12px;
+  color: #bbbbbb;
+  clear: both;
+  display: block;
+}
+/* line 110, ../sass/style.scss */
+.forototal .last-message {
+  float: left;
+}
+/* line 114, ../sass/style.scss */
+.forototal .tema-foro a {
+  color: #712d7b;
+  font-size: 12px;
+}
+/* line 119, ../sass/style.scss */
+.forototal a.delete {
+  display: block;
+  float: right;
+
+  margin-left: 5px;
+}
+/* line 125, ../sass/style.scss */
+.forototal a.edit {
+  display: block;
+  float: right;
+}
+/* line 130, ../sass/style.scss */
+.forototal .tema-foro .popover-title h3 {
+  font-size: 14px;
+  color: #712d7b;
+}
+/* line 135, ../sass/style.scss */
+.forototal .popoverForo {
+  cursor: pointer;
+}
+/* line 139, ../sass/style.scss */
+.forototal .divBtnEliminarTemaForo {
+  text-align: center;
+  padding: 20px;
+}
+/* line 145, ../sass/style.scss */
+.forototal .img-foro {
+  width: 60px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #712d7b;
+  margin: 0 auto;
+}
+/* line 153, ../sass/style.scss */
+.forototal .tema-foro > tbody > tr > td.comment-content {
+  vertical-align: top;
+}
+/* line 157, ../sass/style.scss */
+.forototal .comment-content p {
+  color: #bbbbbb;
+}
+/* line 161, ../sass/style.scss */
+.forototal .btnPuntuar {
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  /* line 168, ../sass/style.scss */
+  .forototal .stars-rating,
+  .forototal ul.rating,
+  .forototal .btnPuntuar {
+    float: left;
+  }
+}
+/* line 173, ../sass/style.scss */
+.forototal .rating {
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+/* line 179, ../sass/style.scss */
+.forototal ul.rating {
+  display: inline-block;
+}
+/* line 183, ../sass/style.scss */
+.forototal .rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* line 192, ../sass/style.scss */
+.forototal .rating .filled {
+  color: #ffe754;
+}
+/* line 196, ../sass/style.scss */
+.forototal .buttons-comment {
+  float: right;
+}
+@media (max-width: 768px) {
+  /* line 201, ../sass/style.scss */
+  .forototal .stars-comment {
+    float: none;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  /* line 207, ../sass/style.scss */
+  .forototal .buttons-comment {
+    float: none;
+    text-align: center;
+  }
+}
+/* line 218, ../sass/style.scss */
+.forototal .pagination {
+  text-align: center;
+}
+/* line 222, ../sass/style.scss */
+.forototal .pagination > li > a {
+  color: #712d7b;
+}
+/* line 228, ../sass/style.scss */
+.forototal .form-horizontal .control-label {
+  text-align: left;
+  margin-bottom: 5px;
+}
+/* line 233, ../sass/style.scss */
+.forototal .modal-header h4 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #712d7b;
+}
+/* line 239, ../sass/style.scss */
+.forototal .modal-izq label {
+  font-weight: normal;
+}
+/* line 243, ../sass/style.scss */
+.forototal .modal-der table.table th {
+  font-weight: normal;
+}
+/* line 247, ../sass/style.scss */
+.forototal .divBtnAgregar {
+  float: left;
+  padding-left: 15px;
+}
+/* line 252, ../sass/style.scss */
+.forototal .divBtnAceptar {
+  float: right;
+}
+/* line 256, ../sass/style.scss */
+.forototal .modal-der table thead th {
+  color: #712d7b;
+  text-align: center;
+}
+/* line 261, ../sass/style.scss */
+.forototal .modal-der table td {
+  text-align: center;
+}
+/* line 267, ../sass/style.scss */
+.forototal .trending-header {
+  background-color: #f08b23;
+  height: 35px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* line 274, ../sass/style.scss */
+.forototal .trending-topic {
+  margin-bottom: 10px;
+}
+/* line 278, ../sass/style.scss */
+.forototal .trending-header h3 {
+  font-weight: normal;
+  color: #FFFFFF;
+  font-size: 22px;
+  margin: 0;
+  line-height: 35px;
+}
+/* line 286, ../sass/style.scss */
+.forototal .trending-number {
+  text-align: center;
+  padding: 5px;
+}
+/* line 291, ../sass/style.scss */
+.forototal .trending-name {
+  padding: 5px;
+  float: left;
+}
+/* line 296, ../sass/style.scss */
+.forototal .trending-stars {
+  float: right;
+  padding: 5px 10px;
+}
+/* line 301, ../sass/style.scss */
+.forototal .trending-number h3 {
+  margin: 0;
+  font-size: 35px;
+  color: #ffe754;
+}
+/* line 308, ../sass/style.scss */
+.forototal .trending-name span,
+.forototal .trending-content p {
+  font-size: 12px;
+  color: #bbbbbb;
+}
+/* line 313, ../sass/style.scss */
+.forototal .trending-content p {
+  margin: 0;
+  float: left;
+}
+/* line 319, ../sass/style.scss */
+.forototal .trending-content,
+.forototal .trending-footer {
+  padding: 0px 10px;
+}
+/* line 323, ../sass/style.scss */
+.forototal span.yellow {
+  color: #ffe754;
+}
+/* line 327, ../sass/style.scss */
+.forototal .glyphicon-star {
+  color: #bbbbbb;
+}
+/* line 331, ../sass/style.scss */
+.forototal a.purple {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #712d7b;
+}
+/* line 339, ../sass/style.scss */
+.forototal a.gray {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #bbbbbb;
+  padding-bottom: 5px;
+  float: right;
+}
+/* line 349, ../sass/style.scss */
+.forototal a.purple:hover {
+  text-decoration: underline;
+  color: #712d7b;
+}
+
+.forototal .comment-content h4 {
+  clear: both;
+}
+
+.forototal .comment-content p {
+  clear:both;
+  display: block;
+}
+
+.forototal .buttons-comment {
+  display: block;
+  width:150px;
+}
+
+.forototal .buttons-comment .pink {
+  display: block;
+  float: left;
+}
+
+.forototal .btn-xs {
+  padding: 1px;
+}
+
+.forototal .glyphicon-star {
+  display: inline !important;
+}
+
+

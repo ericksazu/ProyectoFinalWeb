@@ -1,0 +1,170 @@
+<div class="container">
+    <div class ="row" id="principal">
+      <div class="col-md-4" id="ingresar">
+        <h3 class="general">Agregar Usuario</h3>
+          
+          <form class="form-horizontal" id ="myform">
+          
+          <div class="form-group">
+            <label for ="firstname"class="col-xs-4 control-label" id="label">Nombre</label>
+            <div class="col-xs-8">
+              <input id="nombre" name="nombre" type="text" class ="form-control"required/>
+              
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="lastname"class="col-xs-4 control-label" id="label">Apellidos</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" name="apellido" id="apellido"required/>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-xs-4 control-label" id="label">Correo</label>
+            <div class="col-xs-8">
+              <input type="email" class="form-control" id="email" name="email"required/>
+            </div>
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="Carrera" id="label" class="col-xs-4 control-label">Carrera Principal</label>
+            <div class="col-xs-8">
+              <div class="input-group">
+                <select class="form-control" id="carrera1"  name="carerra1">
+                  <option>Seleccione una carera</option>
+                  <option value ="Diseño Web">Diseño Web</option>
+                  <option value ="Desarrollo Sofware ">Desarrollo Sofware </option>
+                  <option value ="Telematica ">Telematica </option>
+                  <option value ="Integracion de Tecnologias ">Integracion de Tecnologias </option>
+                  <option value ="Ciberseguridad ">Ciberseguridad </option>
+                  <option value ="Tecnologia de Base de Datos">Tecnologia de Base de Datos </option>
+                  <option value ="Ingles">Ingles</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for ="curso1"class="col-xs-4 control-label" id="label">Curso</label>
+            <div class="col-xs-7">
+              <input class ="form-control" type="text" id ="curso1"required/>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for = "rol"class="col-xs-4 control-label" id="label">Rol</label>
+            <div class="col-xs-8">
+              <div class="input-group">
+                <select class="form-control" id="rol"  name="rol" required>
+                  <option>Seleccione el Rol</option>
+                  <option value ="Rector">Rector</option>
+                  <option value ="Director de Carrera">Director de Carrera</option>
+                  <option value ="Profesor ">Profesor </option>
+                  <option value ="Estiduante">Estiduante </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="nivel" class="col-xs-4 control-label" id="label"> Nivel </label>
+            <div class="col-xs-8">
+              <div class="input-group">
+                <select class="form-control" id="nivel" name="nivel" required>
+                  <option>Nivel</option>
+                  <option value ="Tenico">Tecnico</option>
+                  <option value ="Diplomado">Diplomado</option>
+                  <option value ="Bachillerato">Bachillerato</option>
+                  <option value ="Licenciatura">Licenciatura</option>
+                  <option value ="Maestria">Mestria</option>
+                </select>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Carrera2" class="col-xs-4 control-label" id="label">Carrera 2</label>
+            <div class="col-xs-8">
+              <div class="input-group">
+                <select class="form-control" id="carrera2"  name="carerra2">
+                  <option value="N/A">N/A</option>
+                  <option value ="Diseño Web">Diseño Web</option>
+                  <option value ="Desarrollo Sofware ">Desarrollo Sofware </option>
+                  <option value ="Telematica ">Telematica </option>
+                  <option value ="Integracion de Tecnologias ">Integracion de Tecnologias </option>
+                  <option value ="Ciberseguridad ">Ciberseguridad </option>
+                  <option value ="Tecnologia de Base de Datos">Tecnologia de Base de Datos </option>
+                  <option value ="Ingles">Ingles</option>
+                </select>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for ="curso2"class="col-xs-4 control-label" id="label">Curso</label>
+            <div class="col-xs-7">
+              <input class ="form-control" type="text" id ="curso2"name="curso2"required/>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default pull-right" value ="enviar" id="agregar">Agregar</button>
+        </form>
+        
+      </div>
+      <div class="col-md-4 col-md-offset-1">
+     
+      <form class="form-horizontal" id ="formulario2"role="form">
+          <div class="form-group">
+          <h3 class="general">Carrera</h3>
+
+          <div class="form-group col-xs-4" >
+            <select class="form-control" id="editarCarrera" name="editar" required>
+                  <option value = "Opcion">Opcion</option>
+                  <option value ="Agregar">Agregar</option>
+                  <option value ="Eliminar">Eliminar</option>
+                  <option value ="Editar">Editar</option>
+              </select>
+          </div>
+          <div class="col-xs-6" id="cambiar">
+          <input id="carreraopcional" name="carerraopcional" type="text"class ="form-control">
+          </div>
+          </div>
+          <div class="form-group">
+          <h3 class="general">Curso</h3>
+
+          <div class="form-group col-xs-4" >
+            <select class="form-control" id="editarCurso" name="editar" required>
+                  <option>Opcion</option>
+                   <option value ="Agregar">Agregar</option>
+                  <option value ="Eliminar">Eliminar</option>
+                  <option value ="Editar">Editar</option>
+              </select>
+          </div>
+          <div class="col-xs-6" id="cambiar">
+          <input id="carreraopcional" name="carerraopcional" type="text"class ="form-control">
+          </div>
+          </div>
+          <div class="form-group">
+          <h3 class="general">Editar Usuario</h3>
+
+          <div class="form-group col-xs-4" >
+            <select class="form-control" id="editarUsuario" name="editar" required>
+                  <option>Opcion</option>
+                   <option value ="Agregar">Agregar</option>
+                  <option value ="Eliminar">Eliminar</option>
+                  <option value ="Editar">Editar</option>
+              </select>
+          </div>
+          <div class="col-xs-6" id="cambiar">
+          <input id="carreraopcional" name="carerraopcional" type="text"class ="form-control">
+          </div>
+          </div>
+          
+      </form>
+        </div>
+    </div>
+  </div>

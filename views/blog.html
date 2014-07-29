@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 well borde-perfil">
+
+      <div class="datosPerfil" ng-repeat="usuario in datos">
+        <a href="#" class="enlace">
+          <img src="{{usuario.img}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
+        </a>
+        <p class="name text-center enlace">{{usuario.nombre}}</p> 
+        <p class="data text-center enlace">Datos Personales</p>
+      </div>
+
+      <div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-6 distancia-blog-header">
+
+      <div id="foroHeader">
+
+        <div class="row">
+          <div class="foroHeader col-md-12 col-centered-no-margin">
+            <div class="divImg clearfix">
+              <div class="imgForoHeader"><h1>Blog Personal</h1></div>
+              
+            </div>
+            <form class="navbar-form navbar-left centered" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control inputForoHeader center-block" placeholder="Buscar">
+              </div>
+              <span type="button" id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row margen-new"  ng-repeat="usuario in datos1">
+
+        <div class="col-md-3">
+          <div class="noticias">
+            <strong class="date">{{usuario.fecha}}</strong>
+          </div>
+
+        </div>
+        <div class="col-md-9">{{usuario.postted}}</div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-5">
+      <div class="distancia-publicacion-blog">
+        <div ><!-- Button trigger modal -->
+          <button class="btn btn-default btn-publicacion col-md-offset-4"data-toggle="modal" data-target="#myModal">Nueva publicación</button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header margen-modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Ingrese Una Nueva Publicaci&oacute;n</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="body">
+                    <label for="tittle">Tema<input type="text" id="title" placeholder="Tema" class="form-control"></label>
+                    <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese Su Comentario"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer margen-modal-footer">
+                  <button type="button" class="btn">Aceptar</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-repeat="usuario in datos2">
+          <div class="table-bordered clearfix trending-content margen" data-dismiss="modal">
+            <div class="nav">
+              <button type="button" class="close"><span aria-hidden="false">&times;</span><span class="sr-only">Close</span></button>
+              <h4>{{usuario.title}}</h4>
+              <div class="ordenar-links margen-info">
+                <span class="links-blog">Autor /</span>
+                <span class="links-blog">Fecha</span>
+              </div>
+            </div>
+            <div class="contenido-blog">
+              <p>{{usuario.published}}</p> 
+              <div class="ordenar-links distancia-links-blog margen-nav">
+                <ul class="navigator">
+                  <li><a href="#" class="links-blog links-blog-color">Comentar</a></li>    
+                  <li><a href="#" class="links-blog links-blog-color">Ver comentarios</a></li>
+                  <li><a href="#" class="ir sprite" id="facebook">Facebook</a></li>
+                  <li><a href="#" class="ir sprite" id="googleplus">Google+</a></li>
+                  <li><a href="#" class="ir sprite" id="twitter">Twitter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="col-md-4">
+        <div class="foro-trending col-md-12 col-md-offset-1 margen-trending"> <!-- Foro trending topic -->
+          <div class="trending-header distancia-topic">
+              <img src="img/estrella-doc.png" class="estrella-doc">
+              <h3>Documentos más votados</h3>
+              <img src="img/estrella-doc.png" class="estrella-doc2">
+          </div>
+          <div class="trending-topic table-bordered clearfix" ng-repeat="documento in documentos | orderBy:'-votos'">
+            <div class="trending-content-header">
+              <div class="trending-number col-md-2">
+                <h3>{{$index+1}}</h3>
+            </div>
+            <div class="trending-name">
+                <a href="#" class="purple">{{documento.titulo}}</a></br>
+                <span>{{documento.autor}} /</span>
+                <span>{{documento.fecha}} /</span>
+                <span>{{documento.peso}}</span>
+
+            </div>
+            <div class="trending-stars">
+                <a href="#" ng-class="marca(1, documento.votos)"></a>
+                <a href="#" ng-class="marca(2, documento.votos)"></a>
+                <a href="#" ng-class="marca(3, documento.votos)"></a>
+                <a href="#" ng-class="marca(4, documento.votos)"></a>
+                <a href="#" ng-class="marca(5, documento.votos)"></a>
+            </div>
+
+        </div>
+        <div class="trending-content">
+          <p>{{documento.descripcion}}</p>
+      </div>
+      <div class="trending-footer">
+          <a href="#" class="gray" ng-click="visualizarDoc($index)">Ver documento</a>
+      </div>
+  </div>
+  </div>
+</div>

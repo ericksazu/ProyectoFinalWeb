@@ -1,0 +1,59 @@
+<div class="container altura">
+  <div class="register row-centered altura">
+    <div class="col-md-8 col-centered altura">
+      <div id="errorcontrasena">
+        <div class="alert alert-danger" role="alert">
+          <label>Favor ingrese correctamente sus datos</label>
+        </div>
+      </div>
+      <div id="success">
+        <div class="alert alert-success" role="alert">
+          <label>Su contraseña fue enviada</label>
+        </div>
+      </div>
+      <figure class="logo">
+        <img class="img-responsive" src="img/logo-color.png" alt="Logo de LoginNet" />
+      </figure>
+      <form class="login form-signin size" id="form-login" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController">
+        <div class="form-group">
+          <input type="email" class="form-control input-login" placeholder="acordero@ucenfotec.ac.cr" name="email" ng-model="signup.email" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email.$dirty && signup_form.email.$invalid}" required />
+          <div class="error-container" ng-show="signup_form.email.$dirty && signup_form.email.$invalid">
+            <small class="error1" ng-show="signup_form.email.$error.required">Su correo es requerido.</small>
+            <small class="error1" ng-show="signup_form.email.$error.minlength">Su correo debe tener al menos 3 caracteres</small>
+            <small class="error1" ng-show="signup_form.email.$error.email">Por favor ingrese un correo valido.</small>
+            <small class="error1" ng-show="signup_form.email.$error.maxlength">Su correo no puede tener mas de 30 caracteres</small>
+          </div>
+        </div>
+        <input type="password" class="form-control input-login" placeholder="Contraseña" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 ng-class="{error: signup_form.contrasena.$dirty && signup_form.contrasena.$invalid}" ensure-unique="contrasena" required />
+        <div class="error-container" ng-show="signup_form.contrasena.$dirty && signup_form.contrasena.$invalid">
+          <small class="error2" ng-show="signup_form.contrasena.$error.required">Por favor ingrese una contraseña</small>
+          <small class="error2" ng-show="signup_form.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
+          <small class="error2" ng-show="signup_form.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
+        </div>
+        <span class="span-login"><a class="center-block" id="olvido" href="" data-toggle="modal" data-target=".bs-example-modal-sm">¿Ha olvidado la contraseña?</a>
+        </span>
+        <button class="btn-block btn center-block btn-success log-in" id="in" type="submit" pb-role="submit">Ingresar</button>
+      </form>
+      <div class="modal fade bs-example-modal-sm" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content olvido">
+            <form class="login form-signin size" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController">
+              <p>Por favor ingresar su correo electrónico</p>
+              <input type="email" class="form-control input-login" placeholder="acordero@ucenfotec.ac.cr" name="email2" autocomplete="on" ng-model="signup.email2" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email2.$dirty && signup_form.email2.$invalid}" required />
+              <div class="error-container " ng-show="signup_form.email2.$dirty && signup_form.email2.$invalid">
+                <small class="error3" ng-show="signup_form.email2.$error.required">Su correo es requerido.</small>
+                <small class="error3" ng-show="signup_form.email2.$error.minlength">Su correo debe tener al menos 3 caracteres</small>
+                <small class="error3" ng-show="signup_form.email2.$error.email">Por favor ingrese un correo valido.</small>
+                <small class="error3" ng-show="signup_form.email2.$error.maxlength">Su correo no puede tener mas de 30 caracteres</small>
+              </div>
+              <input type="submit" class="btn btn-success btn-xs input-login boton-ingresar" value="Enviar" pb-role="submit">
+          </div>
+        </div>
+      </div>
+      </form>
+      <figure class="logocenfo">
+        <img class="img-responsive center-block" src="img/logocenfo.png" alt="Logo Cenfotec" />
+      </figure>
+    </div>
+  </div>
+</div>
