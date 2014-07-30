@@ -54,23 +54,30 @@ angular.module('module').controller('EditarTema', function($scope) {
 
 		$scope.topics[index].estudiantes.push({
 			estudiante : $scope.nombreEstudiante,
-			eliminado: false
+			eliminado: false,
+			asistente: false
 		});
 
 		$scope.nombreEstudiante = null;
+
 	}
 
-	$scope.deseleccionar = function (topicIndex, index) {
+	$scope.deseleccionarEliminado = function (topicIndex, index) {
 		//$scope.topicCurrentIndex = index;
 		$scope.topics[topicIndex].estudiantes[index].eliminado = !$scope.topics[topicIndex].estudiantes[index].eliminado;
 	}
 
-	$scope.asignarIndex = function(index) {
+	$scope.deseleccionarAsistente = function (topicIndex, index) {
+		//$scope.topicCurrentIndex = index;
+		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
+	}
 
+	$scope.asignarIndex = function(index) {
 		$scope.topicCurrentIndex = index;
 	}
 
 	$scope.eliminarEstudiante = function (index) {
+		console.log($scope.topics[index].estudiantes);
 		var kill = [];
 
 		for (var i = 0; i < $scope.topics[index].estudiantes.length; i++) {
