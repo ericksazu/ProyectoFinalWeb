@@ -1,6 +1,6 @@
 <div class="container altura">
   <div class="register row-centered altura">
-    <div class="col-md-8 col-centered altura">
+    <div class="col-md-8 col-centered altura" id="login">
       <div id="errorcontrasena">
         <div class="alert alert-danger" role="alert">
           <label>Favor ingrese correctamente sus datos</label>
@@ -36,9 +36,9 @@
       </form>
       <div class="modal fade bs-example-modal-sm" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
-          <div class="modal-content olvido">
+          <div class="modal-content">
             <form class="login form-signin size" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController">
-              <p>Por favor ingresar su correo electrónico</p>
+              <p>Por favor ingresar su correo electronico</p>
               <input type="email" class="form-control input-login" placeholder="acordero@ucenfotec.ac.cr" name="email2" autocomplete="on" ng-model="signup.email2" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email2.$dirty && signup_form.email2.$invalid}" required />
               <div class="error-container " ng-show="signup_form.email2.$dirty && signup_form.email2.$invalid">
                 <small class="error3" ng-show="signup_form.email2.$error.required">Su correo es requerido.</small>
@@ -46,7 +46,7 @@
                 <small class="error3" ng-show="signup_form.email2.$error.email">Por favor ingrese un correo valido.</small>
                 <small class="error3" ng-show="signup_form.email2.$error.maxlength">Su correo no puede tener mas de 30 caracteres</small>
               </div>
-              <input type="submit" class="btn btn-success btn-xs input-login boton-ingresar" value="Enviar" pb-role="submit">
+              <input type="submit" class="btn btn-success btn-xs input-login" value="Enviar" pb-role="submit">
           </div>
         </div>
       </div>

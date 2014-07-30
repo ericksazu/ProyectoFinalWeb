@@ -76,19 +76,18 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3 {
+small.error1, .error2, .error3{
   position: absolute;
-  right: 260px;
 }
-small.error1 {
+small.error1{
   top: 26em;
-  width: 31%;
+  width: 100%;
 }
-small.error2 {
+small.error2{
   top: 32.5em;
-  width: 31%;
+  width: 100%;
 }
-small.error3 {
+small.error3{
   top: 9.5em;
 }
 .button-login:hover {
@@ -1033,7 +1032,7 @@ a.purple:hover {
   letter-spacing: .75px;
   font-weight: lighter;
   padding-top: 10px;
-  /*padding-bottom: 10px;*/
+  padding-bottom: 10px;
 }
 @media (max-width: 768px) {
   #footer p {
