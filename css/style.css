@@ -526,6 +526,55 @@ h4 {
 .distancia-treding {
   margin-top: -70px;
 }
+/*************************************************** CONFIGURACION ***************************************************/
+
+
+.nav-tabs>li a{
+  color: #712d7b;
+  border-radius: 4px 4px 0 0;
+}
+
+.nav-tabs>li.active>a{
+  background-color: #712d7b;
+  color: #fff;
+  
+}
+.nav-tabs>li.active>a:hover{
+  background-color: #712d7b;
+  color: #fff;
+  border-radius: 4px 4px 0 0;
+}
+h3{
+  color: #712d7b;
+}
+.nav-tabs {
+border-bottom: 1px solid #712d7b;
+}
+label{
+  font-weight: normal;
+}
+.pristine.true, .dirty.true, .invalid.true {
+  background: red;
+}
+.valid.false {
+  background: red;
+}
+.valid.true {
+  background: green; 
+}
+#color{
+  color:#E6E6E6; 
+}
+#conf{
+  margin-top: 60px;
+  margin-bottom: 80px;
+}
+#cambiar{
+  margin: 0;
+} 
+#footerConfiguracion button{
+  margin-top: 20px;
+}
 /*************************************************** SECCIONES ***************************************************/
 
 #header {
