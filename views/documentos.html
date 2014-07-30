@@ -1,18 +1,18 @@
 <div id="foroHeader">
   <div class="container">
     <div class="row row-centered">
-      <div class="foroHeader col-md-6 col-centered">
+      <div class="foroHeader col-md-6 col-centered foroHeader-doc">
         <div class="divImg clearfix">
-          <div class="imgForoHeader"><h1>Documentos</h1></div>
+          <div class="imgForoHeader imgForoHeader-margin"><h1>Documentos</h1></div>
           
         </div>
         <form class="navbar-form navbar-left centered" role="search">
           <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar" ng-model="query">
+            <input type="text" class="form-control inputForoHeader inputForoHeader-margin" placeholder="Buscar" ng-model="query">
           </div>
-          <span type="button" id="searchGlyph" class="glyphicon glyphicon-search"></span>
+          <span type="button" id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
           <div class="btn">
-            <button type="button" class="btn btn-default boton" ng-show="visible" data-toggle="modal" data-target="#myModal">Agregar</button>
+            <button type="button" class="btn btn-default boton btn-margin" ng-show="visible" data-toggle="modal" data-target="#myModal">Agregar</button>
           </div>
 
         </form>
@@ -30,7 +30,9 @@
         <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
       </div>
       <div class="modal-body">
-        <select id="select-documentos"><option>Carrera</option></select>
+        <select id="select-documentos" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera">
+          <option>Carrera</option>
+        </select>
         <select id="select-documentos"><option>Curso</option></select>
         <input type="text" class="form-control distancia_input_modal" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
         <input type="text" class="form-control distancia_input_modal" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
@@ -55,10 +57,10 @@
     <div class="col-md-7">
       <div class="row">
       
-      <div><h4>Documentos por calificar</h4></div>
-      <div class="col-md-12 borde-doc" ng-repeat="calificar in documentosCalificar">
+      <div><h4 class="subtitulo-doc">Documentos por calificar</h4></div>
+      <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="calificar in documentosCalificar">
         <div class="stars-comment puntuar-box" >
-          <h5>{{calificar.titulo}}</h5>
+          <h5 class="sub-puntuar">{{calificar.titulo}}</h5>
           <div ng-init="rating = star.rating + 1"></div>
           <div class="star-rating rating-estrellas rating-documentos" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
           <button ng-click="guardarPuntuacion()" ng-disabled="isDisabled" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
@@ -67,12 +69,12 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-            <div class="clearfix documentos-disponibles"><h4>Documentos disponibles</h4></div>
+            <div class="clearfix documentos-disponibles"><h4 class="subtitulo-doc">Documentos disponibles</h4></div>
               <div class="row borde-doc" ng-repeat="documento in documentos | filter:query">
                 <div class="col-md-5">
                   <h2 class="titulo">{{documento.titulo}}</h2>
                 </div>
-                <div class="col-md-7 col-estrellas">
+                <div class="col-md-7 col-estrellas col-estrellas-font">
                   <a href="#" ng-class="marca(1, documento.votos)"></a>
                   <a href="#" ng-class="marca(2, documento.votos)"></a>
                   <a href="#" ng-class="marca(3, documento.votos)"></a>
@@ -116,9 +118,9 @@
         <h3>Documentos más votados</h3>
         <img src="img/estrella-doc.png" class="estrella-doc2">
       </div>
-      <div class="trending-topic table-bordered clearfix" ng-repeat="documento in documentos | orderBy:'-votos'">
+      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentos | orderBy:'-votos'">
         <div class="trending-content-header">
-          <div class="trending-number col-md-2">
+          <div class="trending-number col-md-2 trending-number-izquierda">
             <h3>{{$index+1}}</h3>
           </div>
           <div class="trending-name">
@@ -137,11 +139,11 @@
           </div>
 
         </div>
-        <div class="trending-content">
+        <div class="trending-content trending-content-margin">
           <p>{{documento.descripcion}}</p>
         </div>
         <div class="trending-footer">
-          <a href="#" class="gray" ng-click="visualizarDoc($index)">Ver documento</a>
+          <a href="#" class="gray gray-margin" ng-click="visualizarDoc($index)">Ver documento</a>
         </div>
       </div>
     </div> <!-- Foro trending topic -->
@@ -150,13 +152,13 @@
 </div>
 <div class="col-md-12">
   <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
+    <li><a href="">&laquo;</a></li>
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+    <li><a href="">4</a></li>
+    <li><a href="">5</a></li>
+    <li><a href="">&raquo;</a></li>
   </ul>
 </div>
 

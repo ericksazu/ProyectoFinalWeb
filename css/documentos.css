@@ -81,7 +81,6 @@ h1.documentos{
 
 .borde-doc{
 	border: 1px solid #cccccc;
-	margin-bottom: 2em;
 }
 
 .documentos-disponibles {
@@ -425,4 +424,171 @@ float: left;
 	margin-bottom: 10px;
 }
 
+/**otros nuevos documentos***/
+.subtitulo-doc{
+	margin-top: 10px;
+	margin-bottom: -15px;
+}
 
+.sub-puntuar{
+	color: #712d7b;
+
+}
+
+@media (max-width: 1200px) {
+  .foroHeader-doc{
+  	height: 150px !important;
+  }
+
+  .subtitulo-doc{
+	float: none !important;
+	}
+
+  .visible{
+  	display: none;
+  }
+
+  .imgForoHeader-margin{
+  	margin-left: 30px;
+  }
+
+  .col-estrellas-font, .col-estrellas-font a, .trending-stars a{
+  	font-size: 12px;
+  }
+
+  .trending-header h3{
+  	font-size: 16px;
+  }
+
+  .trending-content p{
+	width: 220px;
+  }
+}
+
+@media (max-width: 990px) {
+  .foroHeader-doc{
+  	width: 60%;
+  	height: 160px !important;
+  }
+
+  .caja-puntuar{
+  	height: 80px;
+  }
+
+  .trending-content-margin p{
+  	margin-left: 20px;
+	margin-top: 10px;
+  }
+
+  .trending-number-izquierda h3{
+  	float: left;
+  }
+
+  .gray-margin{
+  	margin-top: 8px !important;
+  }
+
+}
+
+@media (max-width: 770px) {
+	
+  .foroHeader-doc{
+  	height: 165px !important;
+  }
+
+  .caja-puntuar{
+  	height: 100px;
+  }
+
+ .inputForoHeader-margin{
+ 	margin-left: 45px;
+ }
+
+ .btn-margin{
+ 	margin-left: 30px;
+ }
+
+ .trending-content-margin p{
+  	height: 30px;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+
+ .inputForoHeader-margin{
+ 	width: 300px !important;
+ }
+
+ 
+
+}
+
+@media (max-width: 660px) {
+
+
+ .inputForoHeader-margin{
+ 	margin-left: 25px;
+ }
+
+ .trending-content p{
+	width: 200px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+
+ .inputForoHeader-margin{
+ 	width: 275px !important;
+ }
+
+ @media (max-width: 540px) {
+
+
+ .inputForoHeader-margin{
+ 	width: 225px !important;
+ }
+
+ .btn-margin{
+ 	margin-left: 15px;
+ }
+
+
+
+}
+
+@media (max-width: 550px) {
+	.trending-topic-height{
+	height: 130px;
+}
+
+.btn-margin{
+ 	margin-left: 35px;
+ }
+
+}
+
+@media (max-width: 480px) {
+
+	.inputForoHeader-margin{
+ 	width: 200px !important;
+ }
+}
+
+@media (max-width: 440px) {
+
+	.inputForoHeader-margin{
+ 	margin-left: 5px;
+ 	}
+
+ 	.trending-topic-height{
+	height: 170px;
+	}
+
+	.imgForoHeader-margin{
+		margin-left: 40px;
+	}
+}

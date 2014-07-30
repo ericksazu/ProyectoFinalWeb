@@ -2,6 +2,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$scope.documentos = [];
 	$scope.documentosCalificar = [];
+	$scope.carreras = [];
 
 	$http.get('data/documentos.json').success(function (data) {
 		$scope.documentos = data;
@@ -9,6 +10,10 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;
+	});
+
+	$http.get('data/carreras.json').success(function (data) {
+		$scope.carreras = data;
 	});
 
 	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
