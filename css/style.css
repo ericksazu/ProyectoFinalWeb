@@ -76,19 +76,18 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3 {
+small.error1, .error2, .error3{
   position: absolute;
-  right: 260px;
 }
-small.error1 {
+small.error1{
   top: 26em;
-  width: 31%;
+  width: 100%;
 }
-small.error2 {
+small.error2{
   top: 32.5em;
-  width: 31%;
+  width: 100%;
 }
-small.error3 {
+small.error3{
   top: 9.5em;
 }
 .button-login:hover {
@@ -137,7 +136,7 @@ a:focus {
 }
 @media (max-width: 768px) {
   #errorcontrasena > .visible, #success > .visible {
-    width: 96%;
+  width: 96%;
   }
 }
 /*************************************************** NAVBAR ***************************************************/
