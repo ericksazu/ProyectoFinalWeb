@@ -559,32 +559,20 @@ label {
 .valid.true {
   background: green;
 }
-<<<<<<< HEAD
 
 #color {
   color: #E6E6E6;
 }
 
-=======
-#color {
-  color: #E6E6E6;
-}
->>>>>>> FETCH_HEAD
 #conf {
   margin-top: 60px;
   margin-bottom: 80px;
 }
-<<<<<<< HEAD
 
 #cambiar {
   margin: 0;
 }
 
-=======
-#cambiar {
-  margin: 0;
-}
->>>>>>> FETCH_HEAD
 #footerConfiguracion button {
   margin-top: 20px;
 }
