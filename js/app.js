@@ -32,7 +32,7 @@
 		});
 	}
 
-	var app = angular.module('module',['ngRoute']).config(confApp);
+	var app = angular.module('module',['ngRoute','mgcrea.ngStrap','ui.bootstrap']).config(confApp);
 
 	app.run(function ($rootScope, $location) {
 
