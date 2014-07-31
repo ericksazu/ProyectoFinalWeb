@@ -36,10 +36,10 @@
       </form>
       <div class="modal fade bs-example-modal-sm" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
-          <div class="modal-content">
+          <div class="modal-content olvido">
             <form class="login form-signin size" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController">
               <p>Por favor ingresar su correo electronico</p>
-              <input type="email" class="form-control input-login" placeholder="acordero@ucenfotec.ac.cr" name="email2" autocomplete="on" ng-model="signup.email2" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email2.$dirty && signup_form.email2.$invalid}" required />
+              <input type="email" class="form-control input-login olvidocontrasena" placeholder="acordero@ucenfotec.ac.cr" name="email2" autocomplete="on" ng-model="signup.email2" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email2.$dirty && signup_form.email2.$invalid}" required />
               <div class="error-container " ng-show="signup_form.email2.$dirty && signup_form.email2.$invalid">
                 <small class="error3" ng-show="signup_form.email2.$error.required">Su correo es requerido.</small>
                 <small class="error3" ng-show="signup_form.email2.$error.minlength">Su correo debe tener al menos 3 caracteres</small>

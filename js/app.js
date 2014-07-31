@@ -1,31 +1,34 @@
 (function () {
-	
+
 	var confApp = function($routeProvider){
-		
+
 		$routeProvider.when("/",{
 			controller: "signupController",
 			templateUrl: "views/login.html"
 		}).when("/documentos",{
 			controller: "documentosController",
-			templateUrl: "views/documentos.html" 
+			templateUrl: "views/documentos.html"
 		}).when("/visualizarDocumentos",{
 			controller: "visualizarDocumentosController",
-			templateUrl: "views/visualizarDocumentos.html" 
+			templateUrl: "views/visualizarDocumentos.html"
 		}).when("/blog",{
 			controller: "blogController",
-			templateUrl: "views/blog.html" 
+			templateUrl: "views/blog.html"
 		}).when("/secciones",{
 			controller: "seccionesController",
-			templateUrl: "views/secciones.html" 
+			templateUrl: "views/secciones.html"
 		}).when("/configuracion",{
-			controller: "configuracionController",
-			templateUrl: "views/configuracion.html" 
+			controller: "FormCtrl",
+			templateUrl: "views/configuracion.html"
 		}).when("/foro",{
 			controller: "foroController",
-			templateUrl: "views/foros.html" 
-		}).when("/foro-topic", {
+			templateUrl: "views/foros.html"
+		}).when("/foro-topic",{
 			controller: "foroController",
 			templateUrl: "views/foro-topic.html"
+		}).when("/editar",{
+			controller: "editarController",
+			templateUrl: "views/editar.html"
 		});
 	}
 
@@ -85,11 +88,11 @@
 				}
 
 			}
-			
+
 		});
 		$rootScope.usuarioLogueado = null;
-		
-		
+
+
 	});
 
 app.directive('moduleHeader', function ($route) {

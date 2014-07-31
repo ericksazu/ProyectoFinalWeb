@@ -75,18 +75,18 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3{
+small.error1, .error2, .error3 {
   position: absolute;
 }
-small.error1{
+small.error1 {
   top: 26em;
   width: 100%;
 }
-small.error2{
+small.error2 {
   top: 32.5em;
   width: 100%;
 }
-small.error3{
+small.error3 {
   top: 9.5em;
 }
 .button-login:hover {
@@ -96,7 +96,7 @@ small.error3{
   border-color: #00b8ab;
 }
 .logocenfo {
-  padding: 3.125em 0 2.813em 0;
+  padding: 3.125em 0 15em 0;
 }
 /*************************************************** OLVIDO CONTRASENA ***************************************************/
 
@@ -528,29 +528,26 @@ h4 {
 }
 /*************************************************** CONFIGURACION ***************************************************/
 
-
-.nav-tabs>li a{
+.nav-tabs>li a {
   color: #712d7b;
   border-radius: 4px 4px 0 0;
 }
-
-.nav-tabs>li.active>a{
+.nav-tabs>li.active>a {
   background-color: #712d7b;
   color: #fff;
-  
 }
-.nav-tabs>li.active>a:hover{
+.nav-tabs>li.active>a:hover {
   background-color: #712d7b;
   color: #fff;
   border-radius: 4px 4px 0 0;
 }
-h3{
+h3 {
   color: #712d7b;
 }
 .nav-tabs {
-border-bottom: 1px solid #712d7b;
+  border-bottom: 1px solid #712d7b;
 }
-label{
+label {
   font-weight: normal;
 }
 .pristine.true, .dirty.true, .invalid.true {
@@ -560,19 +557,35 @@ label{
   background: red;
 }
 .valid.true {
-  background: green; 
+  background: green;
 }
-#color{
-  color:#E6E6E6; 
+<<<<<<< HEAD
+
+#color {
+  color: #E6E6E6;
 }
-#conf{
+
+=======
+#color {
+  color: #E6E6E6;
+}
+>>>>>>> FETCH_HEAD
+#conf {
   margin-top: 60px;
   margin-bottom: 80px;
 }
-#cambiar{
+<<<<<<< HEAD
+
+#cambiar {
   margin: 0;
-} 
-#footerConfiguracion button{
+}
+
+=======
+#cambiar {
+  margin: 0;
+}
+>>>>>>> FETCH_HEAD
+#footerConfiguracion button {
   margin-top: 20px;
 }
 /*************************************************** SECCIONES ***************************************************/
@@ -632,14 +645,18 @@ label{
   background-color: #793982;
   border-color: #793982;
   width: 70px;
+  margin-top: 20px;
 }
 #in {
   margin-top: 3em;
 }
-/*#seccionBtn{
-  margin-bottom: 12em;
-}*/
-
+#seccionBtn:focus {
+  outline: none;
+}
+#seccionBtn:hover, #in:hover {
+  background-color: #00b8ab;
+  border-color: #00b8ab;
+}
 #in:hover {
   background-color: #00b8ab;
   border-color: #00b8ab;
@@ -649,14 +666,6 @@ label{
   color: #ffffff;
   text-decoration: none;
 }
-
-/*PROBANDO GIT*/
-/*PROBANDO GIT*/
-/*PROBANDO GIT*/
-/*PROBANDO GIT*/
-
-
-
 /*************************************************** INFO USUARIO ***************************************************/
 
 .popover-title {
@@ -708,6 +717,18 @@ figcaption > a {
   margin: 1px 0 1px 0;
   color: #000000;
 }
+/*************************************************** CAMBIAR CONTRASENA ***************************************************/
+#cambiarcontra{
+  margin-top: 14em;
+}
+.cambiarcontrasena{
+  margin: 0 auto;
+  width: 110%;
+}
+.cambiocontra{
+  margin: 10%;
+}
+
 /*************************************************** REDES SOCIALES ***************************************************/
 
 .navigator li {
@@ -747,8 +768,8 @@ figcaption > a {
   background-position: -436px -436px;
   ;
 }
-
 /*HOLA GENTE :)*/
+
 .margen {
   padding: 15px 18px;
   ;
@@ -1073,6 +1094,7 @@ a.purple:hover {
   /* .push must be the same height as .footer */
   clear: both;
 }
+
 #footer p {
   color: #FFFFFF;
   text-align: center;
@@ -1080,19 +1102,24 @@ a.purple:hover {
   letter-spacing: .75px;
   font-weight: lighter;
   padding-top: 10px;
-  padding-bottom: 10px;
 }
+
 @media (max-width: 768px) {
   #footer p {
     padding-top: 3px;
   }
 }
+
 #footer div img {
   width: 83px;
 }
+
 #footer p a {
   color: #FFFFFF;
 }
+
 .bold {
   font-weight: normal;
 }
+
+/*Hola*/
