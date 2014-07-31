@@ -699,6 +699,7 @@ figcaption > a {
 .datos {
   margin-right: 15px;
   text-align: right;
+  margin-top: -95px;
 }
 .carrera, .rol {
   font-size: 12px;
