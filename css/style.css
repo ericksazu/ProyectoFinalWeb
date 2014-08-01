@@ -75,7 +75,7 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3 {
+small.error1, .error2, .error3, .error4 {
   position: absolute;
 }
 small.error1 {
@@ -88,6 +88,9 @@ small.error2 {
 }
 small.error3 {
   top: 9.5em;
+}
+small.error4{
+  top: 8.5em;
 }
 .button-login:hover {
   background-color: #00b8ab;
@@ -709,6 +712,7 @@ figcaption > a {
 /*************************************************** CAMBIAR CONTRASENA ***************************************************/
 #cambiarcontra{
   margin-top: 14em;
+  color: #000000,
 }
 .cambiarcontrasena{
   margin: 0 auto;
@@ -717,10 +721,9 @@ figcaption > a {
 .cambiocontra{
   margin: 10%;
 }
-.cambiocontrasena{
+.cambiocontrasena, input, p{
   color: #000000;
 }
-
 /*************************************************** REDES SOCIALES ***************************************************/
 
 .navigator li {
@@ -1114,4 +1117,3 @@ a.purple:hover {
   font-weight: normal;
 }
 
-/*Hola*/

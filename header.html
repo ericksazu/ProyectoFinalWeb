@@ -12,7 +12,6 @@
           <img id="navbar-img" src="img/logo-blanco.png">
         </a>
       </div>
-
       <div class="collapse navbar-collapse navheader" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-menu">
           <li><a href="#/documentos">Documentos</a>
@@ -41,47 +40,48 @@
         </ul>
         <div class="modal fade" id="cambiarcontrasena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm" id="cambiarcontra">
-            <div class="modal-content cambiarcontrasena">
-              <form class="cambiocontra form-signin" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController">
+            <div class="modal-content cambiarcontrasena" data-ng-app="cambiocon">
+              <form class="cambiocontra form-signin" role="form" pb-autologin="true" autocomplete="on" name="myForm" ng-submit="signupForm2()" ng-controller="signupController">
+
                 <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
                 <input type="password" class="form-control input-login" placeholder="Contraseña actual" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 ng-class="{error: signup_form.contrasena.$dirty && signup_form.contrasena.$invalid}" ensure-unique="contrasena" required />
-                <div class="error-container" ng-show="signup_form.contrasena.$dirty && signup_form.contrasena.$invalid">
-                  <small class="error4" ng-show="signup_form.contrasena.$error.required">Por favor ingrese una contraseña actual</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
-                </div>
+
                 <p class="cambiocontrasena">Por favor ingrese su contraseña nueva:</p>
-                <input type="password" class="form-control input-login" placeholder="Contraseña nueva" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 ng-class="{error: signup_form.contrasena.$dirty && signup_form.contrasena.$invalid}" ensure-unique="contrasena" required />
-                <div class="error-container" ng-show="signup_form.contrasena.$dirty && signup_form.contrasena.$invalid">
-                  <small class="error4" ng-show="signup_form.contrasena.$error.required">Por favor ingrese una contraseña nueva</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
-                </div>
+                <input ng-model="user.password" class="form-control input-login" placeholder="Contraseña nueva" type="password" ng-minlength=3 ng-maxlength=10 name="password" data-ng-class="{'ng-invalid':myForm.confirmPassword.$error.match}" />
+
                 <p class="cambiocontrasena">Por favor repita su contraseña nueva:</p>
-                <input type="password" class="form-control input-login" placeholder="Repita contraseña" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 ng-class="{error: signup_form.contrasena.$dirty && signup_form.contrasena.$invalid}" ensure-unique="contrasena" required />
-                <div class="error-container" ng-show="signup_form.contrasena.$dirty && signup_form.contrasena.$invalid">
-                  <small class="error4" ng-show="signup_form.contrasena.$error.required">La contraseña debe ser exacta a la nueva</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
-                  <small class="error4" ng-show="signup_form.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
+                <input ng-model="user.passwordConfirm" class="form-control input-login" placeholder="Contraseña nueva" ng-minlength=3 ng-maxlength=10 type="password" data-match="user.password" name="confirmPassword" />
+
+                <div data-ng-show="myForm.confirmPassword.$error.match">Las contraseñas no son iguales!</div>
+
+                <div class="error-container" ng-show="myForm.contrasena.$dirty && myForm.contrasena.$invalid">
+                  <small class="error4" ng-show="myForm.contrasena.$error.required">Por favor ingrese su contraseña actual</small>
+                  <small class="error4" ng-show="myForm.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
+                  <small class="error4" ng-show="myForm.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
                 </div>
-                <input type="submit" class="btn btn-success btn-sm" value="Cambiar contraseña" pb-role="submit">
+
+                <input type="submit" class="btn btn-success btn-sx" value="Cambiar contraseña" pb-role="submit" />
+
+                <div id="errorcontrasena">
+                  <div class="alert alert-danger" role="alert">
+                    <label>Favor ingrese correctamente sus contraseñas</label>
+                  </div>
+                </div>
+                <div id="success">
+                  <div class="alert alert-success" role="alert">
+                    <label>Su contraseña fue actualizada</label>
+                  </div>
+                </div>
               </form>
             </div>
-            <div id="errorcambiocontrasena">
-              <div class="alert alert-danger" role="alert">
-                <label>Favor ingrese correctamente sus contraseñas</label>
-              </div>
-            </div>
-            <div id="success cambio">
-              <div class="alert alert-success" role="alert">
-                <label>Su contraseña fue actualizada</label>
-              </div>
-            </div>
+            <script type="text/Javascript" src="js/Controllers/cambiocontrasena.js"></script>
           </div>
         </div>
       </div>
-      <!-- /.navbar-collapse -->
+      <!-- div-modal fade -->
     </div>
-    <!-- /.container-fluid -->
-  </nav>
+    <!-- div-collapse -->
+</div>
+<!-- div-container -->
+</nav>
 </div>
