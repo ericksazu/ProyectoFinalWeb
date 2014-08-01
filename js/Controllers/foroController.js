@@ -15,42 +15,6 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
 });
 
-angular.module('module').controller('DatepickerDemoCtrl', function ($scope) {
-  $scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
-
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
-  // Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
-  $scope.toggleMin = function() {
-    $scope.minDate = $scope.minDate ? null : new Date();
-  };
-  $scope.toggleMin();
-
-  $scope.open = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    $scope.opened = true;
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
-  };
-
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
-});
-
 
 angular.module('module').controller('AgregarTema', function ($scope) {
 	$scope.message = '';
@@ -110,13 +74,17 @@ angular.module('module').controller('EditarTema', function($scope) {
 	}
 
 	$scope.deseleccionarAsistente = function (topicIndex, index) {
-		//$scope.topicCurrentIndex = index;
+		for (var i = 0; i < $scope.topics[topicIndex].estudiantes.length; i++) {
+			$scope.topics[topicIndex].estudiantes[i].asistente = false;
+			console.log(i);
+		};
+
 		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
 	}
 
-	$scope.asignarIndex = function(index) {
+	/*$scope.asignarIndex = function(index) {
 		$scope.topicCurrentIndex = index;
-	}
+	}*/
 
 	$scope.eliminarEstudiante = function (index) {
 		console.log($scope.topics[index].estudiantes);
@@ -140,6 +108,11 @@ angular.module('module').controller('EditarTema', function($scope) {
 			$scope.topics.splice(index,1);
 			$('.modal-backdrop').remove();
 		}
+
+		$scope.topics[index].fechaInicio = $scope.fechaInicio;
+		$scope.topics[index].fechaCierre = $scope.fechaCierre;
+
+		/*console.log(temas);*/
 	}
 
 	$scope.salirModal = function (index) {
