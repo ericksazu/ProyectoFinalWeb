@@ -61,6 +61,8 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	$scope.mensaje = 'Hace 1 minuto';
 	$scope.estudiantes = [];
 	$scope.show = false;
+	$scope.fechaInicio = '';
+	$scope.fechaCierre = '';
 
 	$scope.nuevoTema = function () {
 		temas.unshift({
@@ -71,13 +73,17 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 			vistas: $scope.vistas,
 			mensaje: $scope.mensaje,
 			estudiantes: $scope.estudiantes,
-			show: $scope.show
+			show: $scope.show,
+			fechaInicio: $scope.fechaInicio,
+			fechaCierre: $scope.fechaCierre
 		});
 		/*console.log(temas);*/
 		$scope.message = '';
 		$scope.titulo = '';
 		$scope.contenido = '';
 		$scope.estudiantes = [];
+		$scope.fechaInicio = '';
+		$scope.fechaCierre = '';
 	}
 });
 
@@ -258,7 +264,9 @@ var temas = [
 	vistas: 15,
 	mensaje: 'Hace 5 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 14,
@@ -267,7 +275,9 @@ var temas = [
 	vistas: 6,
 	mensaje: 'Hace 3 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 32,
@@ -276,7 +286,9 @@ var temas = [
 	vistas: 2,
 	mensaje: 'Hace 15 minutos',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 5,
@@ -285,7 +297,9 @@ var temas = [
 	vistas: 14,
 	mensaje: 'Hace 7 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 45,
@@ -294,7 +308,9 @@ var temas = [
 	vistas: 8,
 	mensaje: 'Hace 4 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 }
 ];
 
