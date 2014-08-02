@@ -127,7 +127,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			$scope.myForm.submitted = true;
 		}
 		else {
-			$(".error").css({'color':'red'});
+			$(".error").css({'color':'#828282'});
 			$scope.myForm.submitted = false;
 			
 		}

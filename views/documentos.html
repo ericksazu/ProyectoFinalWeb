@@ -38,20 +38,23 @@
             <option style="display:none" value="">seleccione un curso</option>
           </select>
           
-         <span class="error" ng-show="!myForm.submitted && myForm.tema.$error.required">
+         
+          <input type="text" class="form-control distancia-modal-doc" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
+          <span class="error estilo-error" ng-show="!myForm.submitted && myForm.tema.$error.required">
           Digite un tema</span>
-          <input type="text" class="form-control distancia_input_modal" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
           
-            <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
+         
+            <input type="text" class="form-control distancia-modal-doc" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
+               <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
           Digite un título</span>
-            <input type="text" class="form-control distancia_input_modal" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
             
-            <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
+           
+            <input type="text" class="form-control distancia-modal-doc" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion" required>
+             <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
           Digite una descripción</span>
-            <input type="text" class="form-control distancia_input_modal" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion" required>
             
 
-            <input type="file" id="files"/>
+            <input type="file" id="files" class="distancia-modal-doc" />
 
             <output id="list"></output>
           </div>
