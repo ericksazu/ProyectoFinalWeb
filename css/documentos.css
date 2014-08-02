@@ -592,3 +592,11 @@ float: left;
 		margin-left: 40px;
 	}
 }
+
+/*nuevos*/
+.custom-error-doc{
+	margin-bottom: 5px !important;
+}
+.red{
+	color: red;
+}

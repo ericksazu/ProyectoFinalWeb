@@ -12,7 +12,7 @@
           </div>
           <span type="button" id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
           <div class="btn">
-            <button type="button" class="btn btn-default boton btn-margin" ng-show="visible" data-toggle="modal" data-target="#myModal">Agregar</button>
+            <button type="button" class="btn btn-default boton btn-margin" ng-show="visible" data-toggle="modal" data-target="#myModal" ng-click="abrirCrearDocumento()">Agregar</button>
           </div>
 
         </form>
@@ -24,26 +24,43 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-header-padding">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
-      </div>
-      <div class="modal-body">
-        <select id="select-documentos" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera">
-          <option>Carrera</option>
-        </select>
-        <select id="select-documentos"><option>Curso</option></select>
-        <input type="text" class="form-control distancia_input_modal" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
-        <input type="text" class="form-control distancia_input_modal" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
-        <input type="text" class="form-control distancia_input_modal" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion">
-        <input type="file" id="files"/>
-        <output id="list"></output>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-default" ng-click="guardarDocumento()">Guardar documento</button>
-      </div>
+    <form role="form" name="myForm" novalidate>
+      <div class="modal-content" role="form">
+        <div class="modal-header modal-header-padding">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
+        </div>
+        <div class="modal-body form-section">
+          <select id="select-documentos" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera_seleccionada" ng-change="cambia()">
+            <option style="display:none" value="">seleccione una carrera</option>
+          </select>
+          <select id="select-documentos" class="select-cursos" ng-options="curso.code as curso.name for curso in cursos" ng-model="curso_seleccionado" ng-change="cambia()">
+            <option style="display:none" value="">seleccione un curso</option>
+          </select>
+          
+         <span class="error" ng-show="!myForm.submitted && myForm.tema.$error.required">
+          Digite un tema</span>
+          <input type="text" class="form-control distancia_input_modal" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
+          
+            <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
+          Digite un título</span>
+            <input type="text" class="form-control distancia_input_modal" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
+            
+            <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
+          Digite una descripción</span>
+            <input type="text" class="form-control distancia_input_modal" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion" required>
+            
+
+            <input type="file" id="files"/>
+
+            <output id="list"></output>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-default" ng-click="guardarDocumento()">Guardar documento</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -53,23 +70,23 @@
 <div class="container">
 
   <div class="row">
-   
+
     <div class="col-md-7">
       <div class="row">
-      
-      <div><h4 class="subtitulo-doc">Documentos por calificar</h4></div>
-      <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="calificar in documentosCalificar">
-        <div class="stars-comment puntuar-box" >
-          <h5 class="sub-puntuar">{{calificar.titulo}}</h5>
-          <div ng-init="rating = star.rating + 1"></div>
-          <div class="star-rating rating-estrellas rating-documentos" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-          <button ng-click="guardarPuntuacion()" ng-disabled="isDisabled" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
+        <div id="message1" class="alert alert-success">Se agregó un nuevo documento</div>
+        <div><h4 class="subtitulo-doc">Documentos por calificar</h4></div>
+        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="calificar in documentosCalificar">
+          <div class="stars-comment puntuar-box" >
+            <h5 class="sub-puntuar">{{calificar.titulo}}</h5>
+            <div ng-init="rating = star.rating + 1"></div>
+            <div class="star-rating rating-estrellas rating-documentos" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+            <button ng-click="guardarPuntuacion()" ng-disabled="isDisabled" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
+          </div>
         </div>
-      </div>
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-            <div class="clearfix documentos-disponibles"><h4 class="subtitulo-doc">Documentos disponibles</h4></div>
+              <div class="clearfix documentos-disponibles"><h4 class="subtitulo-doc">Documentos disponibles</h4></div>
               <div class="row borde-doc" ng-repeat="documento in documentos | filter:query">
                 <div class="col-md-5">
                   <h2 class="titulo">{{documento.titulo}}</h2>
