@@ -39,8 +39,8 @@
           </li>
         </ul>
         <div class="modal fade" id="cambiarcontrasena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm" id="cambiarcontra">
-            <div class="modal-content cambiarcontrasena" data-ng-app="cambiocon">
+          <div class="modal-dialog modal-sm row" id="cambiarcontra">
+            <div class="modal-content col-centered cambiarcontrasena" data-ng-app="cambiocon">
               <form class="cambiocontra form-signin" role="form" pb-autologin="true" autocomplete="on" name="cambiocontrasena" novalidate ng-submit="cambiocontrasena()" ng-controller="signupController">
 
                 <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
@@ -65,8 +65,7 @@
                 <input type="submit" class="btn btn-success btn-sx" value="Cambiar contraseña" pb-role="submit" />
               </form>
             </div>
-          </div>
-          <div id="errorcontrasena2">
+            <div id="errorcontrasena2">
             <div class="alert alert-danger" role="alert">
               <label>Favor ingrese correctamente sus contraseñas</label>
             </div>
@@ -75,6 +74,7 @@
             <div class="alert alert-success" role="alert">
               <label>Su contraseña fue actualizada</label>
             </div>
+          </div>
           </div>
         </div>
       </div>

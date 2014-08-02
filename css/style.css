@@ -725,14 +725,14 @@ figcaption > a {
 .cambiocontrasena, input, p{
   color: #000000;
 }
-
+#errorcontrasena2, #success2{
+  width: 110%
+}
 #errorcontrasena2{
-  margin-top: -42em;
-  width: 60%;
+  margin-top: -38em;
 }
  #success2{
   margin-top: -5.5em;
-  width: 60%;
  }
 /*************************************************** REDES SOCIALES ***************************************************/
 
