@@ -151,6 +151,35 @@ angular.module('module').controller('ComentarForo', function ($scope) {
 			puntaje: null
 		});
 		$scope.message = '';
+		$('#myModalForoComment').modal('hide');
+
+		$('#alertComentarioForo').css('display','block');
+		setTimeout(function() {
+			$('#alertComentarioForo').css('display','none');
+		}, 3000);
+
+	}
+
+});
+
+angular.module('module').controller('AgregarDenuncia', function ($scope) {
+	$scope.denuncia = '';
+
+	$scope.agregarDenuncia = function () {
+		denuncias.push({
+			tema: 'Programación Web Dinámica',
+			denuncia: $scope.denuncia
+		});
+
+		$scope.denuncia = '';
+		$('#myModalForoDenuncia').modal('hide');
+
+		$('#alertDenunciaForo').css('display','block');
+		setTimeout(function() {
+			$('#alertDenunciaForo').css('display','none');
+		}, 3000);
+
+		console.log(denuncias);
 	}
 
 });
@@ -312,27 +341,19 @@ var comentarios = [
 ];
 
 var denuncias = [
-{
-	contenido: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: '¿Alguien sabe como hacer una matriz?',
-	info: 'Escrito hace 4 horas',
-	puntaje: null
-},
-{
-	carrera: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: 'Pregúntele al profesor Beita',
-	info: 'Escrito hace 2 horas',
-	puntaje: null
-},
-{
-	carrera: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: 'Yo no tengo idea de como se hace...',
-	info: 'Escrito hace 1 hora',
-	puntaje: null
-}
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+
+	},
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+	},
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+	}
 ];
 
 var trendingTopics = [
