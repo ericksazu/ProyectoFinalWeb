@@ -1,0 +1,55 @@
+<div class="container" id="conf">
+  <div class="jumbotron">
+    <ul class="nav nav-tabs" role="tablist">
+      <li ><a href="#/configuracion">Agregar Usuario</a></li>
+      <li ><a href="#/editar">Usuarios</a></li>
+      <li><a href="#">Blog</a></li>
+      <li class="active"><a href="#/foroconfiguracion">Foro</a></li>
+    </ul>
+    <div class="row">
+    <div class="col-md-6">
+    
+    <h3>Informacion Visible para el usuario</h3>
+    <form name="myForm"  class="form-horizontal col-md-12" role="form"ng-controller="ExampleController">
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Nombre</label>
+        <div class ="col-lg-6">
+        <input  name="firstName" type="text" ng-model="form.firstname"class ="form-control"required/>
+    </div>
+    <input type="checkbox" ng-model="Nombre">
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Correo</label>
+        <div class ="col-lg-6">
+        <input  name="firstName" type="email" ng-model="form.email"class ="form-control"required/>
+    </div>
+    <input type="checkbox" ng-model="Correo">
+    </div>
+   <div class="form-group">
+        <label class="col-lg-2 control-label">Carrera</label>
+        <div class ="col-lg-6">
+        <input  name="carrera" type="text" ng-model="form.carrera"class ="form-control"required/>
+    </div>
+    <input type="checkbox" ng-model="Carrera">
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Avatar</label>
+        <div class ="col-lg-6">
+        <input  name="Avatar" type="text" ng-model="form.avatar"class ="form-control"required/>
+    </div>
+    <input type="checkbox" ng-model="Avatar">
+    </div>
+
+    
+   <!--  Nombre: <input type="checkbox" ng-model="Nombre"
+                 ng-true-value="'YES'" ng-false-value="'NO'"> --> <br/>
+  <tt>Nombre = {{Nombre}}</tt><br/>
+  <tt>Carrera = {{Carrera}}</tt><br/>
+  <tt>Avatar = {{Avatar}}</tt><br/>
+  <tt>Correo = {{Correo}}</tt><br/>
+  <!-- <tt>Nombre = {{Nombre}}</tt><br/ -->
+ </form>
+</div>
+</div>
+</div>
+</div>

@@ -1111,3 +1111,9 @@ a.purple:hover {
 }
 
 /*Hola*/
+/************configuracionforo*/
+input[type=checkbox]{
+  margin: 10px 0 0;
+  width: 16px;
+  height: 16px;
+}

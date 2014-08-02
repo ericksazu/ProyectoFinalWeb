@@ -29,6 +29,9 @@
 		}).when("/editar",{
 			controller: "editarController",
 			templateUrl: "views/editar.html"
+		}).when("/foroconfiguracion",{
+			controller: "ExampleController",
+			templateUrl: "views/foroconfiguracion.html"
 		});
 	}
 
