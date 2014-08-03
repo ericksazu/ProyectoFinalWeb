@@ -25,6 +25,8 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	$scope.mensaje = 'Hace 1 minuto';
 	$scope.estudiantes = [];
 	$scope.show = false;
+	$scope.fechaInicio = '';
+	$scope.fechaCierre = '';
 
 	$scope.nuevoTema = function () {
 		temas.unshift({
@@ -35,13 +37,17 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 			vistas: $scope.vistas,
 			mensaje: $scope.mensaje,
 			estudiantes: $scope.estudiantes,
-			show: $scope.show
+			show: $scope.show,
+			fechaInicio: $scope.fechaInicio,
+			fechaCierre: $scope.fechaCierre
 		});
 		/*console.log(temas);*/
 		$scope.message = '';
 		$scope.titulo = '';
 		$scope.contenido = '';
 		$scope.estudiantes = [];
+		$scope.fechaInicio = '';
+		$scope.fechaCierre = '';
 	}
 });
 
@@ -68,13 +74,17 @@ angular.module('module').controller('EditarTema', function($scope) {
 	}
 
 	$scope.deseleccionarAsistente = function (topicIndex, index) {
-		//$scope.topicCurrentIndex = index;
+		for (var i = 0; i < $scope.topics[topicIndex].estudiantes.length; i++) {
+			$scope.topics[topicIndex].estudiantes[i].asistente = false;
+			console.log(i);
+		};
+
 		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
 	}
 
-	$scope.asignarIndex = function(index) {
+	/*$scope.asignarIndex = function(index) {
 		$scope.topicCurrentIndex = index;
-	}
+	}*/
 
 	$scope.eliminarEstudiante = function (index) {
 		console.log($scope.topics[index].estudiantes);
@@ -98,6 +108,11 @@ angular.module('module').controller('EditarTema', function($scope) {
 			$scope.topics.splice(index,1);
 			$('.modal-backdrop').remove();
 		}
+
+		$scope.topics[index].fechaInicio = $scope.fechaInicio;
+		$scope.topics[index].fechaCierre = $scope.fechaCierre;
+
+		/*console.log(temas);*/
 	}
 
 	$scope.salirModal = function (index) {
@@ -136,6 +151,35 @@ angular.module('module').controller('ComentarForo', function ($scope) {
 			puntaje: null
 		});
 		$scope.message = '';
+		$('#myModalForoComment').modal('hide');
+
+		$('#alertComentarioForo').css('display','block');
+		setTimeout(function() {
+			$('#alertComentarioForo').css('display','none');
+		}, 3000);
+
+	}
+
+});
+
+angular.module('module').controller('AgregarDenuncia', function ($scope) {
+	$scope.denuncia = '';
+
+	$scope.agregarDenuncia = function () {
+		denuncias.push({
+			tema: 'Programación Web Dinámica',
+			denuncia: $scope.denuncia
+		});
+
+		$scope.denuncia = '';
+		$('#myModalForoDenuncia').modal('hide');
+
+		$('#alertDenunciaForo').css('display','block');
+		setTimeout(function() {
+			$('#alertDenunciaForo').css('display','none');
+		}, 3000);
+
+		console.log(denuncias);
 	}
 
 });
@@ -222,7 +266,9 @@ var temas = [
 	vistas: 15,
 	mensaje: 'Hace 5 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 14,
@@ -231,7 +277,9 @@ var temas = [
 	vistas: 6,
 	mensaje: 'Hace 3 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 32,
@@ -240,7 +288,9 @@ var temas = [
 	vistas: 2,
 	mensaje: 'Hace 15 minutos',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 5,
@@ -249,7 +299,9 @@ var temas = [
 	vistas: 14,
 	mensaje: 'Hace 7 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 },
 {
 	respuestas: 45,
@@ -258,7 +310,9 @@ var temas = [
 	vistas: 8,
 	mensaje: 'Hace 4 horas',
 	estudiantes : [],
-	show: true
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
 }
 ];
 
@@ -287,27 +341,19 @@ var comentarios = [
 ];
 
 var denuncias = [
-{
-	contenido: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: '¿Alguien sabe como hacer una matriz?',
-	info: 'Escrito hace 4 horas',
-	puntaje: null
-},
-{
-	carrera: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: 'Pregúntele al profesor Beita',
-	info: 'Escrito hace 2 horas',
-	puntaje: null
-},
-{
-	carrera: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: 'Yo no tengo idea de como se hace...',
-	info: 'Escrito hace 1 hora',
-	puntaje: null
-}
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+
+	},
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+	},
+	{
+		tema: 'Programación Web Dinámica',
+		denuncia: 'Diseño Web'
+	}
 ];
 
 var trendingTopics = [

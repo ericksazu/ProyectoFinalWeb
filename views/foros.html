@@ -67,7 +67,7 @@
                       <div class="form-group">
                         <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                         <div class="col-sm-10">
-                          <input type="name" class="form-control" id="inputTemaForo" ng-model="tema.titulo" placeholder="Tema">
+                          <input type="name" class="form-control" id="inputTemaForo" ng-model="tema.titulo" placeholder="Tema" required>
                         </div>
                       </div>
                       <div class="form-group">
@@ -92,8 +92,20 @@
 
                       </div>
                       <div class="form-group">
+                        <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" id="inputFechaInicio" ng-model="fechaInicio" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputNombreForo" class="col-md-6 control-label">Fecha cierre</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" id="inputFechaCierre" ng-model="fechaCierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <div class="divBtnAgregar">
-                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" ng-click="editTema($index)" type"submit" ng-disabled="formEditarTema.$invalid">Agregar</button>
+                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" ng-click="editTema($index)" type"submit" ng-disabled="formEditarTema.$invalid">Agregar datos</button>
                         </div>
                       </div>
                     </form>
@@ -116,7 +128,7 @@
                             <input class="chk" type="checkbox" name="delete" ng-checked="estudiante.eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado($parent.$index,$index)">
                           </td>
                           <td>
-                            <input class="chk" type="radio" name="asistente" ng-checked="estudiante.asistente" ng-click="deseleccionarAsistente($parent.$index,$index)">
+                            <input class="chk" type="radio" ng-checked="estudiante.asistente" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarAsistente($parent.$index,$index)" required>
                           </td>
                         </tr>
 
@@ -127,7 +139,7 @@
                       </tbody>
                     </table>
                     <div class="divBtnAceptar">
-                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Aceptar</button>
+                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Eliminar estudiantes</button>
                     </div>
                   </div>
                 </div><!-- /.modal-content -->

@@ -364,7 +364,6 @@
 
 .forototal .buttons-comment {
   display: block;
-  width:150px;
 }
 
 .forototal .buttons-comment .pink {
@@ -378,6 +377,15 @@
 
 .forototal .glyphicon-star {
   display: inline !important;
+}
+
+.last-edit-p{
+  margin-bottom: 25px;
+}
+
+div#alertComentarioForo,
+div#alertDenunciaForo {
+  display: none;
 }
 
 

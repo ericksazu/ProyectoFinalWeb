@@ -4,6 +4,14 @@
           <div class="row">
             <!-- Foro container left -->
             <div class="foro-container col-md-7">
+              <div id="alertComentarioForo" class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>¡Excelente!</strong> Su comentario se ha agregado satisfactoriamente.
+              </div>
+              <div id="alertDenunciaForo" class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>¡Gracias!</strong> Su denuncia se ha enviado satisfactoriamente y será revisada por un encargado.
+              </div>
               <div class="foro-container-header clearfix">
                 <h3>Programación Web Dinámica</h3>
                 <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment">Comentar tema</button>
@@ -29,7 +37,6 @@
                           </div>
                           <div class="buttons-comment">
                             <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoDenuncia">Denunciar</button>
-                            <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoComment">Comentar</button>
                           </div>
                         </div>
                       </td>
@@ -63,36 +70,41 @@
       <div class="modal fade" ng-class="'myModalForoComment'+$index" id="myModalForoComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ComentarForo">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header clearfix">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
               <h4 class="modal-title">Ingrese un comentario</h4>
             </div>
-            <div class="modal-body clearfix">
-              <textarea class="form-control" rows="10" placeholder="Ingrese un comentario" ng-model="message"></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-purple" data-dismiss="modal" ng-click="agregarComentario()">Aceptar</button>
-              <button type="button" class="btn btn-default btn-closeModalPopover">Cancelar</button>
-            </div>
+            <form class="form-horizontal" role="form" name="formAgregarComentario">
+              <div class="modal-body clearfix">
+                <textarea type="text" class="form-control" rows="10" placeholder="Ingrese un comentario" ng-model="message" ng-minlength="10" required></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-purple" ng-click="agregarComentario()" data-dismiss="modal" ng-disabled="formAgregarComentario.$invalid">Aceptar</button>
+                <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
 
       <!-- Modal Denuncia -->
-      <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="AgregarDenuncia">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header clearfix">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
               <h4 class="modal-title">Ingrese su denuncia</h4>
             </div>
-            <div class="modal-body clearfix">
-              <textarea class="form-control" rows="10" placeholder="Ingrese su denuncia"></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-purple" data-dismiss="modal">Aceptar</button>
-              <button type="button" class="btn btn-default btn-closeModalPopover">Cancelar</button>
-            </div>
+            <form class="form-horizontal" role="form" name="formAgregarDenuncia">
+              <div class="modal-body clearfix">
+                <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="denuncia" ng-minlength="10" required></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-purple" ng-click="agregarDenuncia()" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
+                <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
           </div><!-- /.modal-content -->
 
         </div><!-- /.modal-dialog -->
