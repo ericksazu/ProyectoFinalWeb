@@ -121,17 +121,22 @@ a:focus {
 .close {
   margin: 0;
 }
+#errorcontrasena2, #success2 {
+  width: 110%;
+  margin-top: -38em;
+  float: left;
+}
 #errorcontrasena, #success {
   margin-top: 1em;
   position: absolute;
   width: 96%;
   z-index: 1100;
 }
-#errorcontrasena > div, #success > div {
+#errorcontrasena > div, #success > div, #success2 > div, #errorcontrasena2 > div {
   width: 100%;
   opacity: 0;
 }
-#errorcontrasena > .visible, #success > .visible {
+#errorcontrasena > .visible, #success > .visible, #errorcontrasena2 > .visible, #success2 > .visible {
   display: block;
   opacity: 1;
   -webkit-transition: opacity 1s;
@@ -725,15 +730,6 @@ figcaption > a {
 .cambiocontrasena, input, p{
   color: #000000;
 }
-#errorcontrasena2, #success2{
-  width: 110%
-}
-#errorcontrasena2{
-  margin-top: -38em;
-}
- #success2{
-  margin-top: -5.5em;
- }
 /*************************************************** REDES SOCIALES ***************************************************/
 
 .navigator li {

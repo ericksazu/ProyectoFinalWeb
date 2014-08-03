@@ -1,6 +1,7 @@
 angular.module('module').controller('signupController',
   function($scope, $location, $http, $rootScope) {
     $scope.submitted = false;
+
     $scope.signupForm = function() {
 
       if ($scope.signup_form.$valid) {
@@ -66,19 +67,35 @@ angular.module('module').controller('signupController',
         }, 3000);
       }
     }
+
     $scope.cambiarcontrasena = function() {
-      if ($scope.cambiarcontrasena_form.$valid) {
-        $('#modal-content').modal('hide');
+
+      if ($scope.cambiocontrasena.$valid) {
+
+        setTimeout(function() {
+          $('#cambiarcontrasena').modal('hide');
+        }, 3000);
+
         $('#success2 > div').addClass('visible');
         setTimeout(function() {
           $('#success2 > div').removeClass('visible');
         }, 3000);
+
       } else {
-        $scope.cambiarcontrasena_form.submitted = true;
+
+        $scope.cambiarcontrasena.submitted = true;
         $('#errorcontrasena2 > div').addClass('visible');
         setTimeout(function() {
           $('#errorcontrasena2 > div').removeClass('visible');
-        }, 3000)
-      };
+        }, 3000);
+
+      }
     }
+
+  /*$scope.funcionesperar = function() {
+
+      window.setTimeout(function() {
+        $('#cambiarcontrasena').modal('hide');
+      }, 3000);
+    };*/
   });
