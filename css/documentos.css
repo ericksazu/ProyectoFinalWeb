@@ -576,11 +576,12 @@ float: left;
 @media (max-width: 480px) {
 
 	.inputForoHeader-margin{
- 	width: 200px !important;
+ 	width: 100%;
  }
 }
 
 @media (max-width: 440px) {
+
 
 	.inputForoHeader-margin{
  	margin-left: 5px;

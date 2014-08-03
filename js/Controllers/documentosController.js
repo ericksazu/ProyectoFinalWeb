@@ -4,6 +4,8 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.documentosCalificar = [];
 	$scope.carreras = [];
 	$scope.cursos = [];
+	$scope.documentosPendientes = false;
+
 	var timeoutHandle = window.setTimeout(function(){
 		$("#message1").addClass('hide');
 	});
@@ -16,6 +18,12 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;
+		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
+			
+			if ($scope.documentosCalificar[i].habilitado == true) {
+				$scope.documentosPendientes = true;
+			}
+		}
 	});
 
 	$http.get('data/carreras.json').success(function (data) {
@@ -104,9 +112,19 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		}
 	};
 
-	$scope.guardarPuntuacion = function(){
-		$scope.isDisabled = true;
-    	
+	$scope.guardarPuntuacion = function(index){
+		
+		$scope.documentosCalificar[index].habilitado = false;
+		$scope.documentosPendientes = false;
+		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
+			
+			if ($scope.documentosCalificar[i].habilitado == true) {
+				$scope.documentosPendientes = true;
+			}
+		}
+
+		console.log($scope.documentosPendientes);
+
 	}
 
 	$scope.guardarDocumento = function(){

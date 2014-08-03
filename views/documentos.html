@@ -83,13 +83,13 @@
     <div class="col-md-7">
       <div class="row">
         <div id="message1" class="alert alert-success">Se agregó un nuevo documento</div>
-        <div><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
-        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="calificar in documentosCalificar">
-          <div class="stars-comment puntuar-box" >
+        <div ng-show="documentosPendientes"><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
+        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="calificar in documentosCalificar" ng-show="calificar.habilitado">
+          <div class="stars-comment puntuar-box">
             <h5 class="sub-puntuar">{{calificar.titulo}}</h5>
             <div ng-init="rating = star.rating + 1"></div>
             <div class="star-rating rating-estrellas rating-documentos" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-            <button ng-click="guardarPuntuacion()" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
+            <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
           </div>
         </div>
         <div class="col-md-12">

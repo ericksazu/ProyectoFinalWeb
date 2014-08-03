@@ -1,14 +1,17 @@
 [
 {
     "titulo": "Técnicas de comunicación",
-    "votos": 0
+    "votos": 0,
+    "habilitado":true
 },
 {
    "titulo": "HTML y CSS para principiantes",
-    "votos": 0
+    "votos": 0,
+    "habilitado": true
 },
 {
     "titulo": "ASP.net",
-    "votos": 0
+    "votos": 0,
+    "habilitado":true
 }
 ]
