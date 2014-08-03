@@ -123,7 +123,6 @@
       }
     };
   });
->>>>>>> origin/Prueba
 
   app.controller('indexController', ['$scope',
     function($scope) {
