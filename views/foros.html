@@ -8,7 +8,7 @@
           <h3>Temas en el foro</h3>
           <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
         </div>
-        <div ng-class="'myPopover'+$index" ng-repeat="tema in topics">
+        <div ng-class="'myPopover'+$index" ng-repeat="tema in topics | startFrom:currentPage*pageSize | limitTo:pageSize">
           <table class="tema-foro table table-bordered">
             <tbody>
               <tr ng-show="topics[$index].show">
@@ -141,25 +141,19 @@
       </div> <!-- Foro container left -->
       <trending-topic></trending-topic> <!-- Trending topic -->
     </div> <!-- row -->
+    <div class="container">
+      <div class="row row-centered">
+        <div class="pagination col-md-7">
+          <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next</button>
+        </div>
+      </div>
+    </div>
   </div> <!-- container -->
 </div>
 
 
-<div class="container">
-  <div class="row row-centered">
-    <div class="pagination col-md-7">
-      <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 <script src="js/popover.js"></script>
 <script src="js/modal-foro.js"></script>

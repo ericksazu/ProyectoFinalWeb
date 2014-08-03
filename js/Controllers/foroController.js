@@ -1,7 +1,18 @@
 /************************************************************* CONTROLADORES *****************************************************************/
 
 angular.module('module').controller('foroController', function($scope, $http, $rootScope) {
+
+	$scope.currentPage = 0;
+	$scope.pageSize = 5;
+
+
+
 	$scope.topics = temas;
+
+	$scope.numberOfPages=function(){
+		return Math.ceil($scope.topics.length/$scope.pageSize);
+	}
+
 	$scope.comments = comentarios;
 	$scope.users = usuarios;
 	$scope.trendings = trendingTopics;
@@ -393,19 +404,19 @@ var comentarios = [
 ];
 
 var denuncias = [
-	{
-		tema: 'Programación Web Dinámica',
-		denuncia: 'Diseño Web'
+{
+	tema: 'Programación Web Dinámica',
+	denuncia: 'Diseño Web'
 
-	},
-	{
-		tema: 'Programación Web Dinámica',
-		denuncia: 'Diseño Web'
-	},
-	{
-		tema: 'Programación Web Dinámica',
-		denuncia: 'Diseño Web'
-	}
+},
+{
+	tema: 'Programación Web Dinámica',
+	denuncia: 'Diseño Web'
+},
+{
+	tema: 'Programación Web Dinámica',
+	denuncia: 'Diseño Web'
+}
 ];
 
 var trendingTopics = [
