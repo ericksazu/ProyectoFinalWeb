@@ -4,10 +4,9 @@
 
       <div class="datosPerfil" ng-repeat="usuario in datos">
         <a href="#" class="enlace">
-          <img src="{{usuario.img}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
+          <img src="{{usuarioLogueado.img}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
         </a>
-        <p class="name text-center enlace">{{usuario.nombre}}</p> 
-        <p class="data text-center enlace">Datos Personales</p>
+        <p class="name text-center enlace">{{usuarioLogueado.nombre}}</p> 
       </div>
 
       <div>

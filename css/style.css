@@ -10,9 +10,6 @@ html, body {
 }
 /*************************************************** LOGIN ***************************************************/
 
-html, body {
-  height: 100%;
-}
 .altura {
   height: 100vh;
   /*  text-align: center;*/
@@ -75,8 +72,9 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3, .error4 {
+small.error1, .error2, .error3, .error4,.error5{
   position: absolute;
+  color: #828282;
 }
 small.error1 {
   top: 26em;
@@ -90,7 +88,10 @@ small.error3 {
   top: 9.5em;
 }
 small.error4{
-  top: 8.5em;
+  top: 9.5em;
+}
+small.error5{
+  top: 27.5em;
 }
 .button-login:hover {
   background-color: #00b8ab;
@@ -724,6 +725,15 @@ figcaption > a {
 .cambiocontrasena, input, p{
   color: #000000;
 }
+#errorcontrasena2, #success2{
+  width: 110%
+}
+#errorcontrasena2{
+  margin-top: -38em;
+}
+ #success2{
+  margin-top: -5.5em;
+ }
 /*************************************************** REDES SOCIALES ***************************************************/
 
 .navigator li {
@@ -1117,3 +1127,9 @@ a.purple:hover {
   font-weight: normal;
 }
 
+/************configuracionforo*/
+input[type=checkbox]{
+  margin: 10px 0 0;
+  width: 16px;
+  height: 16px;
+}
