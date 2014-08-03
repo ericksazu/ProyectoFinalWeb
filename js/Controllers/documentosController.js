@@ -6,6 +6,13 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.cursos = [];
 	$scope.documentosPendientes = false;
 
+	$scope.currentPage = 0;
+	$scope.pageSize = 5;
+
+	$scope.numberOfPages=function(){
+		return Math.ceil($scope.documentos.length/$scope.pageSize);
+	}
+
 	var timeoutHandle = window.setTimeout(function(){
 		$("#message1").addClass('hide');
 	});

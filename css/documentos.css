@@ -469,7 +469,7 @@ float: left;
 
 @media (max-width: 990px) {
   .foroHeader-doc{
-  	width: 60%;
+  	width: 100%;
   	height: 160px !important;
   }
 
