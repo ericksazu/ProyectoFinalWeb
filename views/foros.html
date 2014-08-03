@@ -39,7 +39,7 @@
                         </div>
                         <div class="divBtnEliminarTemaForo">
                           <button type='button' class='btn btn-success btn-purple btn-eliminar-tema' ng-click='eliminar($index)'>Aceptar</button>
-                          <button type='button' class='btn btn-default btn-closeModalPopover'>Cancelar</button>
+                          <button type='button' data-dismiss="modal" class='btn btn-default btn-closeModalPopover'>Cancelar</button>
                         </div>
 
                       </div>
@@ -63,44 +63,35 @@
                 </div>
                 <div class="modal-body clearfix">
                   <div class="modal-izq col-md-5">
-                    <form class="form-horizontal" role="form" name="formEditarTema">
-                      <div class="form-group">
+
+                    <form class="form-horizontal" role="form" name="formEditarTema" novalidate>
+                      <div class="form-group form-group-edit-foro">
                         <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                         <div class="col-sm-10">
-                          <input type="name" class="form-control" id="inputTemaForo" ng-model="tema.titulo" placeholder="Tema" required>
+                          <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="tema.titulo" placeholder="Tema" required>
+                          <span class="errorForo" ng-show="formEditarTema.titulo.$error.required">Ingrese un dato correcto</span>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
                         <div class="col-sm-10">
-                          <input type="name" class="form-control" id="inputNombreForo" placeholder="Estudiante" ng-model="nombreEstudiante" required>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputPassword3" class="col-md-6 control-label">Modificar Carrera</label>
-                        <div class="col-sm-10">
-                          <select class="form-control">
-                            <option>Desarrollo y diseño Web</option>
-                            <option>Desarrollo de Software</option>
-                            <option>Integración de Tecnologías</option>
-                            <option>Telemática</option>
-                            <option>Ciberseguridad</option>
-                            <option>Tecnología de Bases de Datos</option>
-                            <option>Inglés</option>
-                          </select>
+                          <input name="estudiante" type="email" class="form-control" id="inputNombreForo" placeholder="Estudiante" ng-model="nombreEstudiante" required>
+                          <span class="errorForo" ng-show="formEditarTema.estudiante.$error.required || formEditarTema.estudiante.$error.email">Ingrese un email válido</span>
                         </div>
 
                       </div>
-                      <div class="form-group">
+                      <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
                         <div class="col-sm-10">
-                          <input type="date" class="form-control" id="inputFechaInicio" ng-model="fechaInicio" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                          <input name="fechaInicio" type="date" class="form-control" id="inputFechaInicio" ng-model="fechaInicio" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                          <span class="errorForo" ng-show="formEditarTema.fechaInicio.$error.required">Ingrese una fecha válida</span>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group last-edit">
                         <label for="inputNombreForo" class="col-md-6 control-label">Fecha cierre</label>
                         <div class="col-sm-10">
-                          <input type="date" class="form-control" id="inputFechaCierre" ng-model="fechaCierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                          <input name="fechaCierre" type="date" class="form-control" id="inputFechaCierre" ng-model="fechaCierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                          <span class="errorForo" ng-show="formEditarTema.fechaCierre.$error.required">Ingrese una fecha válida</span>
                         </div>
                       </div>
                       <div class="form-group">
@@ -109,6 +100,7 @@
                         </div>
                       </div>
                     </form>
+
                   </div>
                   <div class="modal-der col-md-7">
                     <table id="{{'tableIntegrantesForo'+$index}}" class="table tableIntegrantesForo">
@@ -121,7 +113,6 @@
                       </thead>
                       <tbody>
 
-
                         <tr ng-repeat="estudiante in topics[$index].estudiantes">
                           <td>{{estudiante.estudiante}}</a></td>
                           <td>
@@ -131,10 +122,6 @@
                             <input class="chk" type="radio" ng-checked="estudiante.asistente" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarAsistente($parent.$index,$index)" required>
                           </td>
                         </tr>
-
-
-
-
 
                       </tbody>
                     </table>
@@ -158,13 +145,21 @@
 </div>
 
 
-
-
-
-
-
-
-<pagination-module></pagination-module> <!-- Pagination Module -->
+<div class="container">
+  <div class="row row-centered">
+    <div class="pagination col-md-7">
+      <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <script src="js/popover.js"></script>
 <script src="js/modal-foro.js"></script>

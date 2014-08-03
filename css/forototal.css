@@ -388,4 +388,19 @@ div#alertDenunciaForo {
   display: none;
 }
 
+div.form-group-edit-foro{
+  height: 86px;
+  margin-bottom: 0;
+}
+
+div.last-edit{
+  height: 95px;
+  margin-bottom: 10px,
+}
+
+span.errorForo{
+  color: #828282;
+  font-size: 12px;
+}
+
 

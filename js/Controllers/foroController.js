@@ -13,6 +13,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	}
 
 	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
+
 });
 
 
@@ -51,7 +52,7 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	}
 });
 
-angular.module('module').controller('EditarTema', function($scope) {
+angular.module('module').controller('EditarTema', function ($scope) {
 	$scope.topics = temas;
 	$scope.nombreEstudiante = null;
 
@@ -185,8 +186,6 @@ angular.module('module').controller('AgregarDenuncia', function ($scope) {
 });
 
 
-
-
 /********************************************* DIRECTIVAS *******************************************************/
 
 angular.module('module').directive('sectionHeader', function () {
@@ -244,8 +243,6 @@ angular.module('module').directive('starRating', function() {
 });
 
 
-
-
 /***************************************************** VARIABLES OBJETOS ***************************************************************/
 
 var usuarios =
@@ -298,6 +295,61 @@ var temas = [
 	contenido: 'Este es un tema para la clase de Ingles 2 del primer cuatrimestre 2014',
 	vistas: 14,
 	mensaje: 'Hace 7 horas',
+	estudiantes : [],
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
+},
+{
+	respuestas: 45,
+	titulo: 'Bases de datos',
+	contenido: 'Este es un tema para la clase de bases de datos del primer cuatrimestre 2014',
+	vistas: 8,
+	mensaje: 'Hace 4 horas',
+	estudiantes : [],
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
+},
+{
+	respuestas: 45,
+	titulo: 'Bases de datos',
+	contenido: 'Este es un tema para la clase de bases de datos del primer cuatrimestre 2014',
+	vistas: 8,
+	mensaje: 'Hace 4 horas',
+	estudiantes : [],
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
+},
+{
+	respuestas: 45,
+	titulo: 'Bases de datos',
+	contenido: 'Este es un tema para la clase de bases de datos del primer cuatrimestre 2014',
+	vistas: 8,
+	mensaje: 'Hace 4 horas',
+	estudiantes : [],
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
+},
+{
+	respuestas: 45,
+	titulo: 'Bases de datos',
+	contenido: 'Este es un tema para la clase de bases de datos del primer cuatrimestre 2014',
+	vistas: 8,
+	mensaje: 'Hace 4 horas',
+	estudiantes : [],
+	show: true,
+	fechaInicio: '',
+	fechaCierre: ''
+},
+{
+	respuestas: 45,
+	titulo: 'Bases de datos',
+	contenido: 'Este es un tema para la clase de bases de datos del primer cuatrimestre 2014',
+	vistas: 8,
+	mensaje: 'Hace 4 horas',
 	estudiantes : [],
 	show: true,
 	fechaInicio: '',
