@@ -469,7 +469,7 @@ float: left;
 
 @media (max-width: 990px) {
   .foroHeader-doc{
-  	width: 100%;
+  	width: 60%;
   	height: 160px !important;
   }
 
@@ -507,7 +507,7 @@ float: left;
  }
 
  .btn-margin{
- 	margin-left: 30px;
+ 	margin-left: auto !important;
  }
 
  .trending-content-margin p{
@@ -551,11 +551,14 @@ float: left;
 
 
  .inputForoHeader-margin{
- 	width: 225px !important;
+ 	width: 250px !important;
+ 	margin-left: auto;
+ 	margin-right: auto;
  }
 
  .btn-margin{
- 	margin-left: 15px;
+ 	margin-left: auto;
+ 	margin-right: auto;
  }
 
 
@@ -567,6 +570,9 @@ float: left;
 	height: 130px;
 }
 
+.foroHeader-doc{
+  	width: 100% !important;
+}
 .btn-margin{
  	margin-left: 35px;
  }
@@ -584,7 +590,8 @@ float: left;
 
 
 	.inputForoHeader-margin{
- 	margin-left: 5px;
+ 	margin-left: auto;
+ 	width: 70%;
  	}
 
  	.trending-topic-height{
