@@ -8,6 +8,8 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		$("#message1").addClass('hide');
 	});
 
+	$(".errorArchivo").addClass('hide');
+
 	$http.get('data/documentos.json').success(function (data) {
 		$scope.documentos = data;
 	});
@@ -84,10 +86,22 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			fecha : null,
 			autor : '',
 			votos : 0,
-			peso : ''
+			peso : '',
+			archivo : ''
 		};
 
 
+	};
+
+	$scope.ocultarError = function(){
+		if (document.myForm.archivo.value == '')
+		{
+			$(".errorArchivo").removeClass('visible');
+			$(".errorArchivo").addClass('hide');
+		}else{
+			$(".errorArchivo").removeClass('hide');
+			$(".errorArchivo").addClass('visible');
+		}
 	};
 
 	$scope.guardarDocumento = function(){
@@ -95,11 +109,19 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		var descripcion = $scope.documento.descripcion,
 		titulo = $scope.documento.titulo,
 		tema = $scope.documento.tema,
+		archivoSubido = document.myForm.archivo.value,
 		documentoNuevo = new Object(),
 		fechaDocumento = new Date();
 
-		if ($scope.myForm.$valid) {
-			
+		if (document.myForm.archivo.value == '')
+		{
+			$(".errorArchivo").removeClass('hide');
+			$(".errorArchivo").addClass('visible');
+		}
+
+
+
+		if ($scope.myForm.$valid && document.myForm.archivo.value != '') {
 			$scope.myForm.submitted = true;
 			documentoNuevo.titulo = titulo;
 			documentoNuevo.tema = tema;
@@ -108,6 +130,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			documentoNuevo.autor = $rootScope.usuarioLogueado.nombre;
 			documentoNuevo.votos = 0;
 			documentoNuevo.peso = '50KB';
+			documentoNuevo.archivo = archivoSubido;
 
 			$scope.documentos.push(documentoNuevo);
 			$('#myModal').modal('hide');
@@ -128,6 +151,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		}
 		else {
 			$(".error").css({'color':'#828282'});
+			$(".errorArchivo").css({'color':'#828282'});
 			$scope.myForm.submitted = false;
 			
 		}
