@@ -104,6 +104,11 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		}
 	};
 
+	$scope.guardarPuntuacion = function(){
+		$scope.isDisabled = true;
+    	
+	}
+
 	$scope.guardarDocumento = function(){
 
 		var descripcion = $scope.documento.descripcion,
