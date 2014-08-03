@@ -428,7 +428,9 @@ float: left;
 .subtitulo-doc{
 	margin-top: 10px;
 	margin-bottom: -15px;
+	font-weight: normal;
 }
+
 
 .sub-puntuar{
 	color: #712d7b;
