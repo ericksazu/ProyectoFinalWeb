@@ -93,6 +93,9 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.abrirCrearDocumento = function() {
 
 		$scope.myForm.submitted = true;
+		$(".errorArchivo").removeClass('visible');
+		$(".errorArchivo").addClass('hide');
+		document.myForm.archivo.value = "";
 
 		$scope.documento = {
 			titulo : '',
