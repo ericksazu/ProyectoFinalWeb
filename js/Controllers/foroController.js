@@ -8,12 +8,17 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 
 	$scope.topics = temas;
+	$scope.comments = comentarios;
 
-	$scope.numberOfPages=function(){
+	$scope.numberOfPagesTemas = function(){
 		return Math.ceil($scope.topics.length/$scope.pageSize);
 	}
 
-	$scope.comments = comentarios;
+	$scope.numberOfPagesTema = function(){
+		return Math.ceil($scope.comments.length/$scope.pageSize);
+	}
+
+
 	$scope.users = usuarios;
 	$scope.trendings = trendingTopics;
 	$scope.titulo = 'editar';
