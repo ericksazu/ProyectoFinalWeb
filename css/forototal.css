@@ -61,7 +61,19 @@
     margin-top: 8px;
     margin-bottom: 0;
   }
+
+  .navbar-form .inputForoHeader {
+    width: 340px;
+    margin: 0 auto;
+  }
 }
+
+@media (max-width: 768px){
+  .navbar-form-foro {
+    margin: 0;
+  }
+}
+
 /* line 58, ../sass/style.scss */
 .forototal .navbar-form .inputForoHeader {
   width: 340px;

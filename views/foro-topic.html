@@ -1,74 +1,94 @@
-<section-header></section-header>
-      <div id="foro-content"  ng-controller="foroController as foro" class="forototal">
-        <div class="container">
+<div id="foroHeader">
+  <div class="container">
+    <div class="row row-centered">
+      <div class="foroHeader col-md-6 col-centered">
+        <div class="divImg clearfix">
           <div class="row">
-            <!-- Foro container left -->
-            <div class="foro-container col-md-7">
-              <div id="alertComentarioForo" class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <strong>¡Excelente!</strong> Su comentario se ha agregado satisfactoriamente.
-              </div>
-              <div id="alertDenunciaForo" class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <strong>¡Gracias!</strong> Su denuncia se ha enviado satisfactoriamente y será revisada por un encargado.
-              </div>
-              <div class="foro-container-header clearfix">
-                <h3>Programación Web Dinámica</h3>
-                <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment">Comentar tema</button>
-              </div>
-              <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
-                <table class="tema-foro table table-bordered">
-                  <tbody>
-                    <tr>
-                      <td class="col-md-1 text-center">
-                        <img src="img/photo.jpg" class="img-foro img-responsive img-circle" alt="Responsive image">
-                        <span class="gray">{{comentario.carrera}}</span></br>
-                      </td>
-                      <td class="comment-content col-md-5">
-                        <div>
-                          <h4>{{comentario.titulo}}</h4>
-                          <p class="p-comment">{{comentario.contenido}}</p>
-                        </div>
-                        <div class="clearfix" ng-controller="RatingCtrl">
-                          <div class="stars-comment clearfix" ng-show="!isDisabled" >
-                            <div ng-init="rating = star.rating + 1"></div>
-                            <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-                            <button ng-click="guardarPuntuacion()" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default btn-xs">Puntuar</button>
-                          </div>
-                          <div class="buttons-comment">
-                            <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoDenuncia">Denunciar</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="col-md-1 text-center">
-                        <span>{{comentario.info}}</span>
-                        <div>
-                          <span class="glyphicon glyphicon-star yellow"></span>
-                          <span class="glyphicon glyphicon-star yellow"></span>
-                          <span class="glyphicon glyphicon-star yellow"></span>
-                          <span class="glyphicon glyphicon-star yellow"></span>
-                          <span class="glyphicon glyphicon-star"></span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> <!-- Foro container left -->
-            <trending-topic></trending-topic> <!-- Trending topic -->
+          <div class="col-md-5 col-md-offset-5">
+              <div class="imgForoHeader"><h1>Foro</h1></div>
+            </div>
           </div>
         </div>
-        <div class="container">
-          <div class="row row-centered">
-            <div class="pagination col-md-7">
-              <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
-              {{currentPage+1}}/{{numberOfPagesTema()}}
-              <button class="btn btn-default btn-sm" ng-disabled="currentPage >= comments.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
-              </div>
-            </div>
+        <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control inputForoHeader" placeholder="Buscar">
           </div>
-        </div> <!-- container -->
+          <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
+        </form>
       </div>
+    </div>
+  </div>
+</div>
+<div id="foro-content"  ng-controller="foroController as foro" class="forototal">
+  <div class="container">
+    <div class="row">
+      <!-- Foro container left -->
+      <div class="foro-container col-md-7">
+        <div id="alertComentarioForo" class="alert alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <strong>¡Excelente!</strong> Su comentario se ha agregado satisfactoriamente.
+        </div>
+        <div id="alertDenunciaForo" class="alert alert-success" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <strong>¡Gracias!</strong> Su denuncia se ha enviado satisfactoriamente y será revisada por un encargado.
+        </div>
+        <div class="foro-container-header clearfix">
+          <h3>Programación Web Dinámica</h3>
+          <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment">Comentar tema</button>
+        </div>
+        <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+          <table class="tema-foro table table-bordered">
+            <tbody>
+              <tr>
+                <td class="col-md-1 text-center">
+                  <img src="img/photo.jpg" class="img-foro img-responsive img-circle" alt="Responsive image">
+                  <span class="gray">{{comentario.carrera}}</span></br>
+                </td>
+                <td class="comment-content col-md-5">
+                  <div>
+                    <h4>{{comentario.titulo}}</h4>
+                    <p class="p-comment">{{comentario.contenido}}</p>
+                  </div>
+                  <div class="clearfix" ng-controller="RatingCtrl">
+                    <div class="stars-comment clearfix" ng-show="!isDisabled" >
+                      <div ng-init="rating = star.rating + 1"></div>
+                      <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                      <button ng-click="guardarPuntuacion()" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default btn-xs">Puntuar</button>
+                    </div>
+                    <div class="buttons-comment">
+                      <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoDenuncia">Denunciar</button>
+                    </div>
+                  </div>
+                </td>
+                <td class="col-md-1 text-center">
+                  <span>{{comentario.info}}</span>
+                  <div>
+                    <span class="glyphicon glyphicon-star yellow"></span>
+                    <span class="glyphicon glyphicon-star yellow"></span>
+                    <span class="glyphicon glyphicon-star yellow"></span>
+                    <span class="glyphicon glyphicon-star yellow"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> <!-- Foro container left -->
+      <trending-topic></trending-topic> <!-- Trending topic -->
+    </div>
+  </div>
+  <div class="container">
+    <div class="row row-centered">
+      <div class="pagination col-md-7">
+        <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
+        {{currentPage+1}}/{{numberOfPagesTema()}}
+        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= comments.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- container -->
+</div>
 
 
 
@@ -76,50 +96,50 @@
 
 
 
-      <!-- Modal Comentario -->
-      <div class="modal fade" ng-class="'myModalForoComment'+$index" id="myModalForoComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ComentarForo">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header clearfix">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-              <h4 class="modal-title">Ingrese un comentario</h4>
-            </div>
-            <form class="form-horizontal" role="form" name="formAgregarComentario">
-              <div class="modal-body clearfix">
-                <textarea type="text" class="form-control" rows="10" placeholder="Ingrese un comentario" ng-model="message" ng-minlength="10" required></textarea>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-purple" ng-click="agregarComentario()" data-dismiss="modal" ng-disabled="formAgregarComentario.$invalid">Aceptar</button>
-                <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
-              </div>
-            </form>
+<!-- Modal Comentario -->
+<div class="modal fade" ng-class="'myModalForoComment'+$index" id="myModalForoComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ComentarForo">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title">Ingrese un comentario</h4>
+      </div>
+      <form class="form-horizontal" role="form" name="formAgregarComentario">
+        <div class="modal-body clearfix">
+          <textarea type="text" class="form-control" rows="10" placeholder="Ingrese un comentario" ng-model="message" ng-minlength="10" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-purple" ng-click="agregarComentario()" data-dismiss="modal" ng-disabled="formAgregarComentario.$invalid">Aceptar</button>
+          <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
 
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-      <!-- Modal Denuncia -->
-      <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="AgregarDenuncia">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header clearfix">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-              <h4 class="modal-title">Ingrese su denuncia</h4>
-            </div>
-            <form class="form-horizontal" role="form" name="formAgregarDenuncia">
-              <div class="modal-body clearfix">
-                <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="denuncia" ng-minlength="10" required></textarea>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-purple" ng-click="agregarDenuncia()" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
-                <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
-              </div>
-            </form>
-          </div><!-- /.modal-content -->
+<!-- Modal Denuncia -->
+<div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="AgregarDenuncia">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title">Ingrese su denuncia</h4>
+      </div>
+      <form class="form-horizontal" role="form" name="formAgregarDenuncia">
+        <div class="modal-body clearfix">
+          <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="denuncia" ng-minlength="10" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-purple" ng-click="agregarDenuncia()" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
+          <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
 
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-      <script src="js/popover.js"></script>
-      <script src="js/modal-foro.js"></script>
+<script src="js/popover.js"></script>
+<script src="js/modal-foro.js"></script>
 
