@@ -88,7 +88,7 @@ angular.module('module').controller('EditarTema', function ($scope) {
 	$scope.deseleccionarAsistente = function (topicIndex, index) {
 		for (var i = 0; i < $scope.topics[topicIndex].estudiantes.length; i++) {
 			$scope.topics[topicIndex].estudiantes[i].asistente = false;
-			console.log(i);
+			/*console.log(i);*/
 		};
 
 		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
@@ -124,7 +124,7 @@ angular.module('module').controller('EditarTema', function ($scope) {
 		$scope.topics[index].fechaInicio = $scope.fechaInicio;
 		$scope.topics[index].fechaCierre = $scope.fechaCierre;
 
-		/*console.log(temas);*/
+		console.log(temas);
 	}
 
 	$scope.salirModal = function (index) {
@@ -148,7 +148,6 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
     	$scope.isDisabled = true;
     	return false;
     }
-
   });
 
 angular.module('module').controller('ComentarForo', function ($scope) {
