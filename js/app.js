@@ -1,4 +1,3 @@
-
 (function() {
 
   var confApp = function($routeProvider) {
@@ -28,8 +27,8 @@
       controller: "foroController",
       templateUrl: "views/foro-topic.html"
     }).when("/editar", {
-      controller: "editarController",
-      templateUrl: "views/editar.html"
+      controller: "",
+      templateUrl: "views/Editar.html"
     });
   }
 

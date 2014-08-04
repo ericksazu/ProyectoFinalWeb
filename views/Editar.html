@@ -1,66 +1,57 @@
- <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" id="cambiar">
+    <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Editar Usuario</h4>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal col-md-12" role="form" name="saveTemplateData" ng-controller="FormCtrl" ng-submit="submitForm()">
-         <label class="control-label">Nombre</label>
-         <input type="text" value="Erick" class="form-control">
-         <label>Apellido</label>
-         <input type="text" value="Sanchez" class="form-control">
-         <label>Email</label>
-         <input type="email" value="Erick@ucenfotec.ac.cr" class="form-control">
-         <label>Nivel</label>
-         <select class="form-control">
-           <option style="display:none" value="">Técnico</option>
-           <option value="Técnico">Técnico</option>
-           <option value="Diplomado">Diplomado</option>
-           <option value="Bachillerato">Bachillerato</option>
-           <option value="Maestria">Maestria</option>
-         </select>
-         
-         <label>Rol</label>
-         <select class="form-control">
-           <option style="display:none" value="">Estudiante</option>
-           <option value="Rector">Rector</option>
-           <option value="Director de Carrera">Director de Carrera</option>
-           <option value="Profesor">Profesor</option>
-           <option value="Estudiante">Estudiante</option>
-         </select>
-         <label>Carerra</label>
-         <select class="form-control">
-           <option style="display:none" value="">Diseño Web</option>
-           <option value="Diseño Web">Diseño Web</option>
-           <option value="Desarrollo de Sofware">Desarrollo de Sofware</option>
-           <option value="Integración de Tecnologías">Integración de Tecnologías</option>
-           <option value="Ciberseguridad">Ciberseguridad</option>
-           <option value="Télematica">Télematica</option>
-           <option value="Tecnología de Base de Datos">Tecnología de Base de Datos</option>
-           <option value="Inglés">Inglés</option>
-         </select>
-         <label>Cursos</label>
-         <select class="form-control">
-           <option style="display:none" value="">seleccione el curso</option>
-           <option value="Diseño Web">Diseño Web</option>
-           <option value="Fundamentos de Programación">Fundamentos de Programación</option>
-           <option value="Inglés">Inglés</option>
-         </select>
+        <form>
+          <label>Nombre</label>
+          <input type ="text" value="Erick Snachez Zuñiga" class="form-control"id="nombre">
+          <label>Correo</label>
+          <input type ="email" value="erick@ucenfotec.ac.cr" class="form-control">
+           <label>Rol</label>
+           <select class="form-control">
+            <option>Estudiante</option>
+            <option>Profesor</option>
+            <option>Director de Carrera</option>
+            <option>Rector</option>
+          </select>
+          <label>Nivel</label>
+           <select class="form-control">
+            <option>Técnico</option>
+            <option>Diplomado</option>
+            <option>Bachiller</option>
+            <option>Maestria</option>
+          </select>
+          <label>Carreras</label>
+           <select class="form-control">
+            <option>Diseño Web</option>
+            <option>CiberSeguridad</option>
+            <option>Desarrollo de Sofware</option>
+            <option>Inglés</option>
+          </select>
+          <label>Cursos</label>
+           <select class="form-control">
+            <option>Programación</option>
+            <option>Inglés</option>
+            <option>Tecnologias Avanzadas</option>
+            <option>Dase de Datos</option>
+          </select>
+          
+
+
         </form>
       </div>
-      <div class="modal-footer" id="footerConfiguracion">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-default" id="cambios">Guardar</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="save"class="btn btn-primary"  data-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
-</div> <!-- modal -->
+</div>
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,135 +61,92 @@
                     <h4 class="modal-title" id="myModalLabel">Eliminar Usuario</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Esta Seguro que desea eliminar a este usuario.</p>
+                    <p>Esta Seguro que desea eliminar a este usuario</p>
                     <p class="debug-url"></p>
                 </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="eliminar"class="btn btn-success">Aceptar</button>
+                    <button type="button"class="btn btn-success"  id="eliminar" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
-
 <div class="container" id="conf">
   <div class="jumbotron">
     <ul class="nav nav-tabs" role="tablist">
-      <li ><a href="#">Agregar Usuario</a></li>
-      <li class="active"><a href="#">Usuarios</a></li>
-      
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Foro</a></li>
+      <li><a href="#/configuracion">Agregar Usuario</a></li>
+      <li class="active" ><a href="#/editar">Usuarios</a></li>
     </ul>
-    <br>
-
-
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr id="Parent">
+    <div class="row">
+      <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
             <th>Nombre</th>
-            <th>Email</th>
-            <th>Nivel</th>
+            <th>Correo</th>
             <th>Rol</th>
-            <th>Carreras</th>
+            <th>Nivel</th>
+            <th>Carrera</th>
             <th>Cursos</th>
             <th></th>
             <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class ="Primer">
-            <td>Erick Sanchez</td>
-            <td>Erick@ucenfotec.ac.cr</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="Primer">
+            <td>Erick Sanchez Zuñiga</td>
+            <td>erick@ucenfotec.ac.cr</td>
+            <td>Estudiante</td>
             <td>Técnico</td>
+            <td>Diseño Web</td>
+            <td>Inglés,Proyecto1,Diseño Visual 1</td>
+            <td><button class="btn btn-success" id="editar"data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil" ></span></button></td>
+            
+            <td><button type="button" class="btn btn-danger"data-toggle="modal" data-target="#confirm-delete"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+        </tr>
+        <tr>
+            <td>Erick Sanchez Zuñiga</td>
+            <td>erick@ucenfotec.ac.cr</td>
             <td>Estudiante</td>
-            <td>DiseñoWeb</td>
-            <td>Diseño Visual 1
-              <br>Diseño Web
-              <br>Fundamentos de Programacion
-              <br>Ingles</td>
-            <td><a data-toggle="modal" data-target="#myModal">Editar</a>
-            </td>
-            <td><a data-toggle="modal" data-target="#confirm-delete">Eliminar</a></td>
-          </tr>
-          <tr>
-
-            <td>Manuel Zuñiga</td>
-            <td>Manuel@ucenfotec.ac.cr</td>
-            <td>Diplomado</td>
-            <td>Estudiante</td>
-            <td>Desarrollo Sofware</td>
-            <td>Programación orientada a objetos
-              <br>Estructuras discretas
-              <br>Procesos empresariales</td>
-            <td><a href="">Editar</a>
-            </td>
-            <td><a href="">Eliminar</a>
-            </td>
-
-          </tr>
-          <tr>
-
-            <td>Carlos Óbregon</td>
-            <td>Carlos@ucenfotec.ac.cr</td>
-            <td>Bachillerato</td>
-            <td>Estudiante</td>
-            <td>Ingles</td>
-            <td>TOEIC Preparation Workshop
-              <br>Human Factor
-              <br>Cross-cultural diversity</td>
-            <td><a href="">Editar</a>
-            </td>
-            <td><a href="">Eliminar</a>
-            </td>
-          </tr>
-          <tr>
-
-            <td>Alvaro Cordero</td>
-            <td>acordero@ucenfotec.ac.cr</td>
-
             <td>Técnico</td>
-            <td>Profesor</td>
-            <td>Diseño Web
-              <br>Dessarrollo Sofware</td>
-            <td>Proyecto Web 1
-              <br>Proyecto Sofware1</td>
-            <td><a href="">Editar</a>
-            </td>
-            <td><a href="">Eliminar</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Cinthya Gutierrez</td>
-            <td>Cinthya@ucenfotec.ca.cr</td>
-            <td>Bachillerato</td>
+            <td>Diseño Web</td>
+            <td>Inglés,Proyecto1,Diseño Visual 1</td>
+            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
+            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+        </tr>
+        <tr>
+           <td>Erick Sanchez Zuñiga</td>
+            <td>erick@ucenfotec.ac.cr</td>
             <td>Estudiante</td>
-            <td>Ciberseguridad</td>
-            <td>Principios de criptografía
-              <br>
-            </td>
-            <td><a href="">Editar</a>
-            </td>
-            <td><a href="">Eliminar</a>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-
-  </div>
+            <td>Técnico</td>
+            <td>Diseño Web</td>
+            <td>Inglés,Proyecto1,Diseño Visual 1</td>
+            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
+            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>>
+        </tr>
+        <tr>
+           <td>Erick Sanchez Zuñiga</td>
+            <td>erick@ucenfotec.ac.cr</td>
+            <td>Estudiante</td>
+            <td>Técnico</td>
+            <td>Diseño Web</td>
+            <td>Inglés,Proyecto1,Diseño Visual 1</td>
+            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
+            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+        </tr>
+        <tr>
+           <td>Erick Sanchez Zuñiga</td>
+            <td>erick@ucenfotec.ac.cr</td>
+            <td>Estudiante</td>
+            <td>Técnico</td>
+            <td>Diseño Web</td>
+            <td>Inglés,Proyecto1,Diseño Visual 1</td>
+            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
+            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
+        </tr>
+    </tbody>
+</table>
 </div>
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.modal.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- <script src="js/angular.min.js"></script> -->
-
-<!-- <script src="js/app.js"></script>
-<script src="js/cursos.js"></script> -->
-</body>
-
-</html>
+</div>
+</div>
+<script type="text/javascript" src="js/editar.js"></script>
