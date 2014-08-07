@@ -799,6 +799,36 @@ figcaption > a {
 #ingresar {
   margin-bottom: 50px;
 }
+
+/*dhasgdhgashfdgdhjasgfhjdsghjfgjhsdagfjhgasdjhfgdsfhgdashjfghjadsgjfhgdasjhfgjhasdghjfagsdhjfgjhdsagf*/
+
+.col-responsive{
+  margin-bottom: 110px;
+}
+.width-texto p {
+margin: 0;
+float: left;
+color: #A6A48C;
+width: 417px;
+}
+.margen-comment{
+  margin-top: 10px;
+}
+.commment-appears{
+  border-top: 1px solid #e5e5e5;
+  padding: 20px;
+  margin-top: 15px;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .width-texto p {
+    width: 100%;
+  }
+
+  .navigator-resposivo li:nth-child(2) {
+    margin-right: 80px;
+  }
+}
 /*************************************************** FORO HEADER ***************************************************/
 
 div.foroHeader {
