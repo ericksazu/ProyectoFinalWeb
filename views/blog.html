@@ -55,7 +55,7 @@
         <div>
           <!-- Button trigger modal -->
           <button class="btn btn-default btn-publicacion col-md-offset-4" data-toggle="modal" data-target="#modalNuevaPublicacion">Nueva publicación</button>
-          
+
           <!-- Modal Nueva Publicación -->
           <div class="modal fade" id="modalNuevaPublicacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -69,14 +69,14 @@
                 </div>
                 <div class="modal-body">
                   <div class="body">
-                    <label for="tittle">Tema
+                    <label for="tittle" style="width:70%">Tema
                       <input type="text" id="idPublished" placeholder="Tema" class="form-control" ng-model="tituloPublicacion">
                     </label>
                     <textarea name="Publicacion" id="textPublished" cols="50" class="form-control" rows="10" placeholder="Ingrese su publicación" ng-model="contenidoPublicacion"></textarea>
                   </div>
                 </div>
                 <div class="modal-footer margen-modal-footer">
-                  <input type="submit" class="btn btn-default" ng-click="nuevaPublicacion()" value="Publicar" data-dismiss="modal">
+                  <input type="submit" class="btn btn-default" ng-click="nuevaPublicacion()" value="Publicar">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
               </div>
@@ -84,89 +84,16 @@
           </div>
         </div>
 
-        <!-- Modal Comentario -->
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header margen-modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">&times;</span>
-                  <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Comentario</h4>
-              </div>
-              <div class="modal-body">
-                <div class="body">
-                  <label for="tittle">Tema
-                   <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese Su Comentario"></textarea>
-                 </label>
-               </div>
-             </div>
-             <div class="modal-footer margen-modal-footer">
-              <button type="button" class="btn">Aceptar</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Modal Editar Publicación -->
-      <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header margen-modal-header">
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">Editar publicación</h4>
-            </div>
-            <div class="modal-body">
-              <div class="body">
-                <label for="tittle">Tema
-                  <input type="text" id="title" placeholder="Tema" class="form-control">
-                </label>
-                <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario"></textarea>
-              </div>
-            </div>
-            <div class="modal-footer margen-modal-footer">
-              <button type="button" class="btn">Aceptar</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    <!-- Modal para ver publicación completa -->
-    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header margen-modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-              <span class="sr-only">Close</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="body">
-              <p>Hola Mundo...!</p>
-            </div>
-            <div class="commment-appears">
-             <p class="center">Comentario</p>
-           </div>
-         </div>
-         <div class="modal-footer margen-modal-footer">
-          <input type="text" id="" placeholder="Comentar" class="form-control">
-          <button type="button" class="btn btn-default margen-comment">Comentar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
 
   <!-- PUBLISHED -->
-  <div ng-repeat="usuario in publicaciones | limitTo: 3">
+  <div ng-repeat="usuario in publicaciones | limitTo: 5">
     <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
-      <div class="nav" data-toggle="modal" data-target="#myModal4" style="cursor:pointer">
+      <div class="nav" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
         <h4>{{usuario.title}}</h4>
         <div class="ordenar-links margen-info">
           <span class="links-blog">{{usuarioLogueado.nombre}} /</span>
@@ -178,11 +105,11 @@
         <div class="ordenar-links distancia-links-blog margen-nav">
           <ul class="navigator navigator-resposivo">
             <li>
-              <a class="links-blog links-blog-color" data-toggle="modal" data-target="#myModal2" style="cursor:pointer">Comentario</a>
+              <a class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalComentar'+$index}}" style="cursor:pointer">Comentario</a>
             </li>
             <li>
               <!-- Button trigger modal editar publicación -->
-              <a class="links-blog links-blog-color" data-toggle="modal" data-target="#myModal1" style="cursor:pointer">Editar publicación</a>
+              <a class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
             </li>
             <li>
               <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a>
@@ -197,8 +124,95 @@
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Modal Editar Publicación -->
+    <div class="modal fade" ng-class="'myModalEditarPublicacion'+$index" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header margen-modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Editar publicación</h4>
+          </div>
+          <div class="modal-body">
+            <div class="body">
+              <label for="tittle" style="width:70%">Tema
+                <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.title">
+              </label>
+              <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.published"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer margen-modal-footer">
+            <button type="button" class="btn" data-dismiss="modal" ng-click="guardarTema($index)">Aceptar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para ver publicación completa -->
+    <div class="modal fade" ng-class="'myModalPublicacionCompleta'+$index" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header margen-modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">{{usuario.title}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="body">
+              <p>{{usuario.published}}</p>
+            </div>
+            <div class="commment-appears">
+              <p class="center">Comentarios</p>
+              <ul>
+                <li ng-repeat="comentario in publicaciones[$index].comments">{{comentario.comment}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer margen-modal-footer">
+            <form name="formComentario">
+              <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" required>
+              <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Comentario -->
+    <div class="modal fade" id="myModal2" ng-class="'myModalComentar'+$index" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header margen-modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Comentario</h4>
+          </div>
+          <form name="formModalComentario">
+            <div class="modal-body">
+              <div class="body">
+                <label for="tittle">{{usuario.title}}</label>
+                <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="$parent.agregarComentario" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer margen-modal-footer">
+              <button type="button" class="btn" data-dismiss="modal" ng-disabled="formModalComentario.$invalid" ng-click="nuevoComentario($index)">Aceptar</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 </div>
 
