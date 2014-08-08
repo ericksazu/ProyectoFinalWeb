@@ -5,8 +5,6 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
 
-
-
 	$scope.topics = temas;
 	$scope.comments = comentarios;
 
