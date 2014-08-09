@@ -863,10 +863,20 @@ width: 417px;
   div.trending-blog{
     width: 100%;
   }
+
+  button.btn-publicacion{
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 .navigator-resposivo{
   margin: 0;
+}
+
+div.margen-new:hover{
+  color: #712d7b;
+  font-weight: bold;
 }
 /*************************************************** FORO HEADER ***************************************************/
 
