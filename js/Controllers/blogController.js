@@ -4,6 +4,8 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.publicaciones = [];
   $scope.documentos = [];
   $scope.date = new Date();
+  $scope.currentPage = 0;
+  $scope.pageSize = 3;
 
 
   $http.get('data/usuario.json').success(function(data) {
@@ -19,7 +21,9 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $scope.documentos = data;
   });
 
-
+  $scope.numberOfPagesTemas = function(){
+    return Math.ceil($scope.publicaciones.length/$scope.pageSize);
+  }
 
   $scope.nuevaPublicacion = function() {
     $scope.getpublishedtitle = $scope.tituloPublicacion;
@@ -33,8 +37,8 @@ angular.module('module').controller('blogController', function($scope, $http) {
       alert('Digite todos los espacios');
     }
 
-    $scope.getpublishedtitle = '';
-    $scope.getpublishedmessage = '';
+    $scope.tituloPublicacion = '';
+    $scope.contenidoPublicacion = '';
   };
 
   $scope.nuevoComentario = function(index) {

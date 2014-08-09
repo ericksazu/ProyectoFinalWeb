@@ -800,7 +800,7 @@ figcaption > a {
   margin-bottom: 50px;
 }
 
-/*dhasgdhgashfdgdhjasgfhjdsghjfgjhsdagfjhgasdjhfgdsfhgdashjfghjadsgjfhgdasjhfgjhasdghjfagsdhjfgjhdsagf*/
+/*dhasgdhgashfdgdhjasgfhjdsghjfgjhsdagfjhgasdjhf  BLOG  gdsfhgdashjfghjadsgjfhgdasjhfgjhasdghjfagsdhjfgjhdsagf*/
 
 .col-responsive{
   margin-bottom: 110px;
@@ -828,6 +828,45 @@ width: 417px;
   .navigator-resposivo li:nth-child(2) {
     margin-right: 80px;
   }
+
+  div.distancia-blog-header {
+    margin: 0;
+  }
+
+  div#foroHeader div.blogHeader{
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+    height: 100%;
+  }
+
+  div#foroHeader form.navbar-form-blog{
+    margin: 0 auto;
+  }
+
+  ul.navigator-resposivo{
+    padding-left: 0;
+  }
+
+  ul.navigator-resposivo > li.no-margin-right{
+    margin-right: 15px;
+  }
+
+  .distancia-publicacion-blog {
+    margin-left: 0!important;
+  }
+
+  div.pagination-blog{
+    margin: 0 auto;
+    display: block;
+  }
+
+  div.trending-blog{
+    width: 100%;
+  }
+}
+
+.navigator-resposivo{
+  margin: 0;
 }
 /*************************************************** FORO HEADER ***************************************************/
 
