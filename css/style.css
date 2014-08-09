@@ -810,6 +810,7 @@ margin: 0;
 float: left;
 color: #A6A48C;
 width: 417px;
+word-wrap: break-word;
 }
 .margen-comment{
   margin-top: 10px;

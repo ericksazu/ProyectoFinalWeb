@@ -159,12 +159,12 @@
                 </div>
                 <div class="modal-body">
                   <div class="body">
-                    <p>{{usuario.published}}</p>
+                    <p style="word-wrap: break-word;">{{usuario.published}}</p>
                   </div>
                   <div class="commment-appears">
                     <p class="center">Comentarios</p>
                     <ul>
-                      <li ng-repeat="comentario in publicaciones[$index].comments">{{comentario.comment}}</li>
+                      <li style="word-wrap: break-word;" ng-repeat="comentario in publicaciones[$index].comments">{{comentario.comment}}</li>
                     </ul>
                   </div>
                 </div>
