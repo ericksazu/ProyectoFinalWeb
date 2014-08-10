@@ -18,7 +18,7 @@ while ($item = mysqli_fetch_array($resultado)) {
 
 }
 
-echo json_encode($lista, JSON_UNESCAPED_SLASHES);
 
+echo json_encode($lista);
 
 ?>

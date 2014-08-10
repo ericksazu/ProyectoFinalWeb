@@ -1,12 +1,10 @@
 <?php
 
-	function ObtenerEntradasBlog(conexion){
+	function ObtenerEntradasBlog($conexion){
 
 		$query = "select * from Blog";
 
-		mysql_select_db(__DATABASE__, $conexion) or die('error'.mysql_error());
-
-		return mysql_query($query, $conexion);
+		return BDQuery($query, $conexion);
 	}
 
 ?>

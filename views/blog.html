@@ -45,7 +45,7 @@
             <strong class="date">{{usuario.fecha | date:'dd/MM/yy'}}</strong>
           </div>
         </div>
-        <div class="col-md-9">{{usuario.title}}</div>
+        <div class="col-md-9">{{usuario.tema}}</div>
       </div>
     </div>
 
@@ -88,14 +88,14 @@
         <div ng-repeat="usuario in publicaciones | startFrom:currentPage*pageSize | limitTo:pageSize">
           <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
             <div class="nav" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
-              <h4>{{usuario.title}}</h4>
+              <h4>{{usuario.tema}}</h4>
               <div class="ordenar-links margen-info">
                 <span class="links-blog">{{usuarioLogueado.nombre}} /</span>
                 <span class="links-blog">{{usuario.fecha | date:'dd/MM/yy'}}</span>
               </div>
             </div>
             <div class="contenido-blog clearfix">
-              <p>{{usuario.published | limitTo:200}}...</p>
+              <p>{{usuario.descripcionPublicacion | limitTo:200}}...</p>
               <div class="ordenar-links distancia-links-blog margen-nav">
                 <ul class="navigator navigator-resposivo">
                   <li>

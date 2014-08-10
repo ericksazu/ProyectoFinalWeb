@@ -12,7 +12,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $scope.datos = data;
   });
 
-  $http.get('data/published.json').success(function(data) {
+  $http.get('phpConexion/blog.php').success(function(data) {
     $scope.publicaciones = data;
     /*console.log($scope.publicaciones[0].comments[0]);*/
   });
