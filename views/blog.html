@@ -1,3 +1,4 @@
+<div id="loading"></div>
 <div class="container" ng-controller="blogController">
   <div class="row">
 
@@ -133,9 +134,9 @@
                 <div class="modal-body">
                   <div class="body">
                     <label for="tittle" style="width:70%">Tema
-                      <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.title">
+                      <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.tema">
                     </label>
-                    <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.published"></textarea>
+                    <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.descripcionPublicacion"></textarea>
                   </div>
                 </div>
                 <div class="modal-footer margen-modal-footer">
@@ -155,11 +156,11 @@
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                   </button>
-                  <h4 class="modal-title" id="myModalLabel">{{usuario.title}}</h4>
+                  <h4 class="modal-title" id="myModalLabel">{{usuario.tema}}</h4>
                 </div>
                 <div class="modal-body">
                   <div class="body">
-                    <p style="word-wrap: break-word;">{{usuario.published}}</p>
+                    <p style="word-wrap: break-word;">{{usuario.descripcionPublicacion}}</p>
                   </div>
                   <div class="commment-appears">
                     <p class="center">Comentarios</p>

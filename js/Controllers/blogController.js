@@ -7,6 +7,9 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.currentPage = 0;
   $scope.pageSize = 3;
 
+  $('#loading').show();
+  $('.pagination').hide();
+  $('.btn-publicacion').hide();
 
   $http.get('data/usuario.json').success(function(data) {
     $scope.datos = data;
@@ -14,7 +17,9 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $http.get('phpConexion/blog.php').success(function(data) {
     $scope.publicaciones = data;
-    /*console.log($scope.publicaciones[0].comments[0]);*/
+    $('#loading').hide();
+    $('.btn-publicacion').delay(500).show(0);
+    $('.pagination').delay(3000).show(0);
   });
 
   $http.get('data/documentos.json').success(function(data) {
