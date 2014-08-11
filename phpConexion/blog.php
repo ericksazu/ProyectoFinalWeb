@@ -1,12 +1,12 @@
 <?php
 
 include_once "conexion.php";
-include_once "funciones/forosFunciones.php";
+include_once "funciones/blogFunciones.php";
 
 
 
 
-$resultado = ObtenerForos($conexion);
+$resultado = ObtenerEntradasBlog($conexion);
 
 
 
