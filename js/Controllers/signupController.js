@@ -6,8 +6,22 @@ angular.module('module').controller('signupController',
 
       if ($scope.signup_form.$valid) {
 
+<<<<<<< HEAD
         var posicion = -1, test = "";
         $http.get('./phpConexion/usuarios.php').success(function(data) {
+=======
+        var posicion = -1;
+        $http({
+          method: 'POST',
+          url: './phpConexion/usuarios.php',
+          dataType: 'json',
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: "email=" + $scope.signup.email + "&pass=" + $scope.signup.contrasena
+        }).success(function(data) {
+
+>>>>>>> FETCH_HEAD
           for (var i = 0; i < data.length; i++) {
             if (data[i].email == $scope.signup.email && data[i].contrasena == $scope.signup.contrasena) {
 
