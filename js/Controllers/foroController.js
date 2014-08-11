@@ -2,6 +2,12 @@
 
 angular.module('module').controller('foroController', function($scope, $http, $rootScope) {
 
+	
+	$http.get('phpConexion/foros.php').success(function(data) {
+    $scope.topics = data;
+    console.log($scope.topics);
+  	});
+
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
 
@@ -66,7 +72,13 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	}
 });
 
-angular.module('module').controller('EditarTema', function ($scope) {
+angular.module('module').controller('EditarTema', function ($scope, $http) {
+
+	$http.get('phpConexion/foros.php').success(function(data) {
+    $scope.topics = data;
+    /*console.log($scope.publicaciones[0].comments[0]);*/
+  	});
+
 	$scope.topics = temas;
 	$scope.nombreEstudiante = null;
 
