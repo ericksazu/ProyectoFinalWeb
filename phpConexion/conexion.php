@@ -7,8 +7,4 @@ $usuario = "root";
 $password = "root";
 
 $conexion = mysql_pconnect($host, $usuario, $password) or die(mysql_error());
-
-
-
-
 ?>
