@@ -7,7 +7,16 @@ angular.module('module').controller('signupController',
       if ($scope.signup_form.$valid) {
 
         var posicion = -1;
-        $http.get('data/usuario.json').success(function(data) {
+        $http({
+          method: 'POST',
+          url: './phpConexion/usuarios.php',
+          dataType: 'json',
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: "email=" + $scope.signup.email + "&pass=" + $scope.signup.contrasena
+        }).success(function(data) {
+
           for (var i = 0; i < data.length; i++) {
             if (data[i].email == $scope.signup.email) {
 
@@ -92,7 +101,7 @@ angular.module('module').controller('signupController',
       }
     }
 
-  /*$scope.funcionesperar = function() {
+    /*$scope.funcionesperar = function() {
 
       window.setTimeout(function() {
         $('#cambiarcontrasena').modal('hide');
