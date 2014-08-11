@@ -4,31 +4,22 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.publicaciones = [];
   $scope.documentos = [];
   $scope.date = new Date();
-  $scope.currentPage = 0;
-  $scope.pageSize = 3;
 
-  $('#loading').show();
-  $('.pagination').hide();
-  $('.btn-publicacion').hide();
 
   $http.get('data/usuario.json').success(function(data) {
     $scope.datos = data;
   });
 
-  $http.get('phpConexion/blog.php').success(function(data) {
+  $http.get('data/published.json').success(function(data) {
     $scope.publicaciones = data;
-    $('#loading').hide();
-    $('.btn-publicacion').delay(500).show(0);
-    $('.pagination').delay(3000).show(0);
+    /*console.log($scope.publicaciones[0].comments[0]);*/
   });
 
   $http.get('data/documentos.json').success(function(data) {
     $scope.documentos = data;
   });
 
-  $scope.numberOfPagesTemas = function(){
-    return Math.ceil($scope.publicaciones.length/$scope.pageSize);
-  }
+
 
   $scope.nuevaPublicacion = function() {
     $scope.getpublishedtitle = $scope.tituloPublicacion;
@@ -42,8 +33,8 @@ angular.module('module').controller('blogController', function($scope, $http) {
       alert('Digite todos los espacios');
     }
 
-    $scope.tituloPublicacion = '';
-    $scope.contenidoPublicacion = '';
+    $scope.getpublishedtitle = '';
+    $scope.getpublishedmessage = '';
   };
 
   $scope.nuevoComentario = function(index) {

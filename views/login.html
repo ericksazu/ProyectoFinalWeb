@@ -14,7 +14,7 @@
       <figure class="logo">
         <img class="img-responsive" src="img/logo-color.png" alt="Logo de LoginNet" />
       </figure>
-      <form class="login form-signin size" id="form-login"  role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController" >
+      <form class="login form-signin size" id="form-login" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm()" ng-controller="signupController">
         <div class="form-group">
           <input type="email" class="form-control input-login" placeholder="acordero@ucenfotec.ac.cr" name="email" ng-model="signup.email" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email.$dirty && signup_form.email.$invalid}" required />
           <div class="error-container" ng-show="signup_form.email.$dirty && signup_form.email.$invalid">
