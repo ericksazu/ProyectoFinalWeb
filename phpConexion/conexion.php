@@ -15,6 +15,4 @@ define('__DATABASE__', "proyectofinalweb");
 $conexion = mysqli_connect($host, $usuario, $password, __DATABASE__) or die(mysqli_error());
 
 
-
-
 ?>

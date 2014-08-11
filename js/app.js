@@ -38,19 +38,19 @@
 
     $rootScope.roles = [{
       'page': 'secciones',
-      'roles': ['profesor', 'estudiante', 'asistente', 'administrador']
+      'roles': ['13', '12', '14']
     }, {
       'page': 'blog',
-      'roles': ['profesor', 'estudiante']
+      'roles': ['13', '12']
     }, {
       'page': 'documentos',
-      'roles': ['estudiante', 'profesor']
+      'roles': ['12', '13']
     }, {
       'page': 'foro',
-      'roles': ['estudiante', 'profesor']
+      'roles': ['12', '13']
     }, {
       'page': 'configuracion',
-      'roles': ['administrador']
+      'roles': ['14']
     }];
 
 
@@ -73,8 +73,8 @@
           }
           if (posicion > -1) {
 
-            console.log($rootScope.usuarioLogueado.rol, $rootScope.roles[posicion].roles);
-            if ($rootScope.roles[posicion].roles.indexOf($rootScope.usuarioLogueado.rol) == -1) {
+            console.log($rootScope.usuarioLogueado.rol, $rootScope.rol[posicion].rol);
+            if ($rootScope.rol[posicion].rol.indexOf($rootScope.usuarioLogueado.rol) == -1) {
               $location.url('/');
             }
           }

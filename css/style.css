@@ -546,6 +546,9 @@ h4 {
 .distancia-treding {
   margin-top: -70px;
 }
+.fotica{
+  background-size: 50px 50px
+}
 /*************************************************** CONFIGURACION ***************************************************/
 
 .nav-tabs>li a {
@@ -689,8 +692,8 @@ label {
   left: -4px;
 }
 #circle {
-  width: 70px;
-  height: 70px;
+  width: 71px;
+  height: 74px;
   background: #793982;
   -moz-border-radius: 70px;
   -webkit-border-radius: 70px;
@@ -710,6 +713,7 @@ figcaption > a {
 }
 .nombre {
   color: #793982;
+  margin-top: 7px;
 }
 .glyphicon-star {
   color: #ffe02d;

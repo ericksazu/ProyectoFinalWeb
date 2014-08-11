@@ -5,7 +5,6 @@ include_once "funciones/forosFunciones.php";
 
 
 
-
 $resultado = ObtenerForos($conexion);
 
 

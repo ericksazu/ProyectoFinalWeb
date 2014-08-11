@@ -6,25 +6,39 @@ angular.module('module').controller('signupController',
 
       if ($scope.signup_form.$valid) {
 
-        var posicion = -1;
-        $http.get('data/usuario.json').success(function(data) {
+        var posicion = -1, test = "";
+        $http.get('./phpConexion/usuarios.php').success(function(data) {
           for (var i = 0; i < data.length; i++) {
-            if (data[i].email == $scope.signup.email) {
+            if (data[i].email == $scope.signup.email && data[i].contrasena == $scope.signup.contrasena) {
 
               posicion = i;
             }
           }
+
           if (posicion > -1) {
+
+            switch(data[posicion].idRol) {
+                case "12":
+                    test = 'Estudiante'
+                    break;
+                case "13":
+                    test = 'Profesor'
+                    break;
+                case "14":
+                    test = 'Administrador'
+                    break;
+            }
+
             $rootScope.usuarioLogueado = {
               "nombre": data[posicion].nombre,
+              "primerApellido": data[posicion].primerApellido,
               "contrasena": data[posicion].contrasena,
               "email": data[posicion].email,
-              "img": data[posicion].img,
-              "rol": data[posicion].rol,
-              "thumbnail": data[posicion].thumbnail
+              "foto": data[posicion].foto,
+              "idRol": test,
 
             };
-            if ($rootScope.usuarioLogueado.rol == "administrador") {
+            if ($rootScope.usuarioLogueado.idRol == "administrador") {
               $location.url('/configuracion');
             } else {
               $location.url('/secciones');
@@ -92,7 +106,7 @@ angular.module('module').controller('signupController',
       }
     }
 
-  /*$scope.funcionesperar = function() {
+    /*$scope.funcionesperar = function() {
 
       window.setTimeout(function() {
         $('#cambiarcontrasena').modal('hide');
