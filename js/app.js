@@ -73,8 +73,7 @@
           }
           if (posicion > -1) {
 
-            console.log($rootScope.usuarioLogueado.rol, $rootScope.rol[posicion].rol);
-            if ($rootScope.rol[posicion].rol.indexOf($rootScope.usuarioLogueado.rol) == -1) {
+            if ($rootScope.rol[posicion].idRol.indexOf($rootScope.usuarioLogueado.idRol) == -1) {
               $location.url('/');
             }
           }
