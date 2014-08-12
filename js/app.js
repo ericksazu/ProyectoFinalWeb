@@ -55,7 +55,10 @@
 
 
 
+
+
     $rootScope.$on('$routeChangeStart', function(event) {
+
       var $rScope = this;
       if ($location.$$path == "/") {
         $rootScope.showheader = 1;
@@ -65,6 +68,8 @@
         if ($rootScope.usuarioLogueado == null) {
           $location.url('/');
         } else {
+
+          console.log($rootScope.usuarioLogueado.idRol);
           var posicion = -1;
           for (var i = 0; i < $rootScope.roles.length; i++) {
             if ('/' + $rootScope.roles[i].page == $location.$$path) {
@@ -72,8 +77,8 @@
             }
           }
           if (posicion > -1) {
-
-            if ($rootScope.rol[posicion].idRol.indexOf($rootScope.usuarioLogueado.idRol) == -1) {
+console.log($rootScope.roles,$rootScope.usuarioLogueado.idRol, posicion);
+            if ($rootScope.roles[posicion].roles.indexOf($rootScope.usuarioLogueado.idRol) == -1) {
               $location.url('/');
             }
           }

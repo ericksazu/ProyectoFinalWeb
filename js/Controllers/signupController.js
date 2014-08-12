@@ -29,13 +29,15 @@ angular.module('module').controller('signupController',
                     break;
             }
 
+            
+
             $rootScope.usuarioLogueado = {
               "nombre": data[posicion].nombre,
               "primerApellido": data[posicion].primerApellido,
               "contrasena": data[posicion].contrasena,
               "email": data[posicion].email,
               "foto": data[posicion].foto,
-              "idRol": test,
+              "idRol": data[posicion].idRol,
 
             };
             if ($rootScope.usuarioLogueado.idRol == "administrador") {
