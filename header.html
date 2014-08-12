@@ -35,7 +35,7 @@
               <img src="{{usuarioLogueado.foto}}" class="img-responsive img-circle fotica" alt="Foto de usuario" width="35px">
             </a>
           </li>
-          <li><a href="#">Salir</a>
+          <li><a class="salir" href="./">Salir</a>
           </li>
         </ul>
         <div class="modal fade" id="cambiarcontrasena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -85,3 +85,8 @@
     <!-- div-container -->
   </nav>
 </div>
+<script>
+$(".salir").on('click', function(){
+  $('body').load();  
+}); 
+</script>
