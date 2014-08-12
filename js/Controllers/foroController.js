@@ -55,11 +55,8 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	
 
-<<<<<<< HEAD
-	$scope.visible = $rootScope.usuarioLogueado.rol == 13;
-=======
+
 	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
->>>>>>> FETCH_HEAD
 
 });
 
