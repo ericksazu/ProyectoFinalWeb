@@ -37,7 +37,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		$scope.carreras = data;
 	});
 
-	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
+	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
 	
 	
 
