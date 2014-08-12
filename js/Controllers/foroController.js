@@ -10,9 +10,9 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.abrirComentarios = function($index){
 
 		$http({
-			url: 'phpConexion/temasForos.php',
+			url: 'phpConexion/temasForo.php',
 			method: 'GET',
-			params: {idForo: $scope.resultado[index].idForo}
+			params: {idForo: $scope.topics[$index].idForo}
 		}).success(function(data){
 			console.log(data);
 		});
