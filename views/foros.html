@@ -29,12 +29,12 @@
           <h3>Temas en el foro</h3>
           <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
         </div>
-        <div ng-class="'myPopover'+$index" ng-repeat="tema in topics| startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div ng-class="'myPopover'+$index" ng-repeat="tema in topics | startFrom:currentPage*pageSize | limitTo:pageSize">
           <table class="tema-foro table table-bordered">
             <tbody>
               <tr ng-show="topics[$index].show">
                 <td class="col-md-1 text-center">
-                  <h3>1</h3>
+                  <h3>{{tema.respuestas}}</h3>
                   <span>Respuestas</span>
                 </td>
                 <td class="col-md-3">
@@ -46,7 +46,7 @@
                   <span>Vistas</span>
                 </td>
                 <td class="col-md-2">
-                  <span class="last-message">Último mensaje:</br>tema</span>
+                  <span class="last-message">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
 
                   <a ng-show="visible" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
                   <div class="modal fade bs-example-modal-sm{{$index}}" id="myModalEliminarTema" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -89,7 +89,7 @@
                       <div class="form-group form-group-edit-foro">
                         <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                         <div class="col-sm-10">
-                          <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="tema.tema" placeholder="Tema" required>
+                          <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="tema.titulo" placeholder="Tema" required>
                           <span class="errorForo" ng-show="formEditarTema.titulo.$error.required">Ingrese un dato correcto</span>
                         </div>
                       </div>
