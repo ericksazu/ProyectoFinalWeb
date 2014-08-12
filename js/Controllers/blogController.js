@@ -15,7 +15,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $scope.datos = data;
   });
 
-  $http.get('phpConexion/blog.php').success(function(data) {
+  $http.get('phpConexion/blog/obtener_blogs.php').success(function(data) {
     $scope.publicaciones = data;
     $('#loading').hide();
     $('.btn-publicacion').delay(500).show(0);
@@ -30,17 +30,29 @@ angular.module('module').controller('blogController', function($scope, $http) {
     return Math.ceil($scope.publicaciones.length/$scope.pageSize);
   }
 
-  $scope.nuevaPublicacion = function() {
-    $scope.getpublishedtitle = $scope.tituloPublicacion;
-    $scope.getpublishedmessage = $scope.contenidoPublicacion;
 
-    if($scope.getpublishedtitle != null) {
+  $scope.nuevaPublicacion = function() {
+
+    $http.post('phpConexion/blog/agregar_blogs.php', {'descripcionPublicacion': $scope.contenidoPublicacion, 'tema': $scope.tituloPublicacion}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.algo = data;
+    }).error(function(data, status) {
+        console.log("inserted bad");
+    });
+
+    $('#modalNuevaPublicacion').modal('hide');
+
+
+    /*$scope.getpublishedtitle = $scope.tituloPublicacion;
+    $scope.getpublishedmessage = $scope.contenidoPublicacion;*/
+
+    /*if($scope.getpublishedtitle != null) {
       $scope.publicaciones.unshift({"title":$scope.getpublishedtitle, "fecha":$scope.date ,"published":$scope.getpublishedmessage, "comments":[]});
       $('#modalNuevaPublicacion').modal('hide');
 
     }else{
       alert('Digite todos los espacios');
-    }
+    }*/
 
     $scope.tituloPublicacion = '';
     $scope.contenidoPublicacion = '';
