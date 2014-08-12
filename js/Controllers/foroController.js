@@ -55,7 +55,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	
 
-	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
+	$scope.visible = $rootScope.usuarioLogueado.rol == 13;
 
 });
 

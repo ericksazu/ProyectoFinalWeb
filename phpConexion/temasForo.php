@@ -4,7 +4,7 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 
-die('id_tema: '.$_GET['@idForo']);
+
 
 $resultado = ObtenerTemas($conexion, "@idForo");
 
