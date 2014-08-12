@@ -2,11 +2,26 @@
 
 angular.module('module').controller('foroController', function($scope, $http, $rootScope) {
 
+
+	$scope.topics = [];
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
-    $scope.topics = data;
-    console.log($scope.topics);
-  	});
+		$scope.topics = data;
+		console.log($scope.topics);
+
+		$scope.numberOfPagesTemas = function(){
+			return Math.ceil($scope.topics.length/$scope.pageSize);
+		}
+
+		$scope.numberOfPagesTema = function(){
+			return Math.ceil($scope.comments.length/$scope.pageSize);
+		}
+
+		$scope.eliminar = function(index){
+			$scope.topics.splice(index,1);
+			$('.modal-backdrop').remove();
+		}
+	});
 
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
@@ -14,23 +29,14 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	//$scope.topics = temas;
 	$scope.comments = comentarios;
 
-	$scope.numberOfPagesTemas = function(){
-		return Math.ceil($scope.topics.length/$scope.pageSize);
-	}
-
-	$scope.numberOfPagesTema = function(){
-		return Math.ceil($scope.comments.length/$scope.pageSize);
-	}
+	
 
 
 	$scope.users = usuarios;
 	$scope.trendings = trendingTopics;
 	$scope.titulo = 'editar';
 
-	$scope.eliminar = function(index){
-		$scope.topics.splice(index,1);
-		$('.modal-backdrop').remove();
-	}
+	
 
 	$scope.visible = $rootScope.usuarioLogueado.rol == "profesor";
 
@@ -75,9 +81,9 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 angular.module('module').controller('EditarTema', function ($scope, $http) {
 
 	$http.get('phpConexion/foros.php').success(function(data) {
-    $scope.topics = data;
-    /*console.log($scope.publicaciones[0].comments[0]);*/
-  	});
+		$scope.topics = data;
+		/*console.log($scope.publicaciones[0].comments[0]);*/
+	});
 
 	$scope.topics = temas;
 	$scope.nombreEstudiante = null;
@@ -156,14 +162,14 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
 
     /*$scope.rateFunction = function (rating) {
       alert('Rating selected is ' + rating);
-    };*/
+  };*/
 
-    $scope.guardarPuntuacion = function () {
-    	/*comentarios[0].puntaje = $scope.rating;*/
-    	$scope.isDisabled = true;
-    	return false;
-    }
-  });
+  $scope.guardarPuntuacion = function () {
+  	/*comentarios[0].puntaje = $scope.rating;*/
+  	$scope.isDisabled = true;
+  	return false;
+  }
+});
 
 angular.module('module').controller('ComentarForo', function ($scope) {
 	$scope.message = '';
