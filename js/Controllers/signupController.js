@@ -19,13 +19,13 @@ angular.module('module').controller('signupController',
 
             switch(data[posicion].idRol) {
                 case "12":
-                    test = 'Estudiante'
+                    test = 'estudiante'
                     break;
                 case "13":
-                    test = 'Profesor'
+                    test = 'profesor'
                     break;
                 case "14":
-                    test = 'Administrador'
+                    test = 'administrador'
                     break;
             }
 
@@ -105,11 +105,4 @@ angular.module('module').controller('signupController',
 
       }
     }
-
-    /*$scope.funcionesperar = function() {
-
-      window.setTimeout(function() {
-        $('#cambiarcontrasena').modal('hide');
-      }, 3000);
-    };*/
   });
