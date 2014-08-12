@@ -26,7 +26,7 @@
       <!-- Foro container left -->
       <div class="foro-container col-md-7" ng-controller="AgregarTema">
         <div class="foro-container-header clearfix">
-          <h3>Temas en el foro</h3>
+          <h3 >Temas en el foro</h3>
           <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
         </div>
         <div ng-class="'myPopover'+$index" ng-repeat="tema in topics | startFrom:currentPage*pageSize | limitTo:pageSize">
@@ -38,7 +38,7 @@
                   <span>Respuestas</span>
                 </td>
                 <td class="col-md-3">
-                  <a href="#/foro-topic"><h4>{{tema.tema}}</h4></a>
+                  <a href="" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a>
                   <span>{{tema.descripcion}}</span>
                 </td>
                 <td class="col-md-1 text-center">

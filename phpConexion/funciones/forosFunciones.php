@@ -27,4 +27,17 @@ function InsertarForo($datos, $conexion) {
 
 	return BDQuery($query, $conexion);
 }
+
+function ObtenerTemas($conexion){
+	$query = "call sp_ObtenerTemasForo();";
+	return BDQuery($query, $conexion);
+}
+
+
+/*function AgregarTemas($conexion, @idForo){
+	$query = "call sp_agregarTemaForo(@idForo);";
+	return BDQuery($query, $conexion);
+}*/
+
+
 ?>

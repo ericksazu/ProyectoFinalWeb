@@ -34,7 +34,10 @@
         </div>
         <div class="foro-container-header clearfix">
           <h3>Programación Web Dinámica</h3>
+
           <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment">Comentar tema</button>
+          <br>
+          <h5>Comentarios</h5>
         </div>
         <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
           <table class="tema-foro table table-bordered">

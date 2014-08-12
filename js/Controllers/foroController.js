@@ -4,6 +4,23 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 
 	$scope.topics = [];
+
+	var idForo = 0;
+
+	$scope.abrirComentarios = function($index){
+
+		$http({
+			url: 'phpConexion/temasForos.php',
+			method: 'GET',
+			params: {idForo: $scope.resultado[index].idForo}
+		}).success(function(data){
+			console.log(data);
+		});
+		
+	}
+
+
+
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
 		$scope.topics = data;
