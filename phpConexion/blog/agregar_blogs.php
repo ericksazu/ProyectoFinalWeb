@@ -11,13 +11,10 @@
 	$descripcionPublicacion = $data->descripcionPublicacion;
 	//var_dump($descripcionPublicacion);
 	$tema = $data->tema;
+	$fecha = $data->fecha;
 
-	/*$sql = 'INSERT INTO Blog '.
-       '(descripcionPublicacion,tema) '.
-       'VALUES ( "guest", "XYZ")';*/
-	//$qry = ("INSERT INTO Blog (descripcionPublicacion,tema) VALUES ($descripcionPublicacion, $tema)");
-	$qry = 'INSERT INTO Blog (descripcionPublicacion,tema) values ("' . $descripcionPublicacion . '","' . $tema .'")';
-  //$qry_res = mysqli_query($qry);
+
+	$qry = 'INSERT INTO Blog (descripcionPublicacion,fecha,tema) values ("' . $descripcionPublicacion . '","' . $fecha .'","' . $tema .'")';
 
   /*$query = "insert into Blog (
 				tema,
@@ -32,6 +29,8 @@
 
 	$qry_res = mysqli_query($conexion,$qry);
 	var_dump($qry_res);
+
+	mysqli_close($conexion);
 
 
 

@@ -13,4 +13,6 @@
 
 	echo json_encode($lista);
 
+	mysqli_close($conexion);
+
 ?>
