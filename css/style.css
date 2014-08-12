@@ -228,7 +228,7 @@ a:focus {
 }
 .navbar-right > li > a#profilePic {
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 5px;
 }
 .badge {
   color: #712d7b;
