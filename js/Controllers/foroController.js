@@ -129,6 +129,8 @@ angular.module('module').controller('EditarTema', function ($scope, $http) {
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+
 		
 
 		$scope.topics[index].estudiantes.push({
@@ -211,16 +213,27 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
   }
 });
 
-angular.module('module').controller('ComentarForo', function ($scope) {
+angular.module('module').controller('ComentarForo', function ($scope,$http) {
 	$scope.message = '';
+	$scope.comentario =[];
 
-	$scope.agregarComentario = function () {
+	$scope.agregarComentario = function ($http) {
+		console.log($scope.usuarioLogueado);
+
+		// $http.get('phpConexion/obtenerDatos.php', {'id': $scope.usuarioLogueado.idUsuario}).success(function(data, status) {
+		// 	console.log($scope.usuarioLogueado.idUsuario);
+		// 	$scope.comentario = data;
+		// }).error(function(data, status) {
+		// 	console.log("inserted bad");
+		// });
+
 		comentarios.push({
 			carrera: 'Diseño Web',
 			titulo: 'Programación Web Dinámica',
 			contenido: $scope.message,
 			info: 'Escrito hace 1 minuto',
-			puntaje: null
+			puntaje: null,
+			foto: $scope.usuarioLogueado.foto
 		});
 		$scope.message = '';
 		$('#myModalForoComment').modal('hide');

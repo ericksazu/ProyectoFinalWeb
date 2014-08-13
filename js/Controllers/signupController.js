@@ -17,7 +17,9 @@ angular.module('module').controller('signupController',
 
                     if (posicion > -1) {
 
+
                         $rootScope.usuarioLogueado = {
+                            "id": data[posicion].idUsuario,
                             "nombre": data[posicion].nombre,
                             "primerApellido": data[posicion].primerApellido,
                             "contrasena": data[posicion].contrasena,
