@@ -4,6 +4,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 
 	$scope.topics = [];
+	$scope.correoUsuario = $scope.usuarioLogueado.email;
 
 	var idForo = 0;
 
@@ -55,11 +56,9 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	
 
-<<<<<<< HEAD
+
 	$scope.visible = $rootScope.usuarioLogueado.rol == 13;
-=======
 	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
->>>>>>> FETCH_HEAD
 
 });
 
@@ -77,6 +76,7 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	$scope.fechaCierre = '';
 
 	$scope.nuevoTema = function () {
+
 		temas.unshift({
 			message: $scope.message,
 			respuestas: $scope.respuestas,
@@ -106,11 +106,30 @@ angular.module('module').controller('EditarTema', function ($scope, $http) {
 		/*console.log($scope.publicaciones[0].comments[0]);*/
 	});
 
+
+
 	$scope.topics = temas;
 	$scope.nombreEstudiante = null;
 
 	$scope.editTema = function (index) {
 		$scope.topicCurrentIndex = index;
+
+		// $http({
+		// 	url: 'phpConexion/agregarForo.php',
+		// 	method: 'POST',
+		// 	params: {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}
+		// }).success(function(data){
+		// 	console.log(data);
+		// 	console.log('exito');
+		// });
+
+		$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+		
 
 		$scope.topics[index].estudiantes.push({
 			estudiante : $scope.nombreEstudiante,

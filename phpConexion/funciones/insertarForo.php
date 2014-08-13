@@ -5,8 +5,7 @@ include_once "funciones/forosFunciones.php";
 
 
 
-
-$resultado = ObtenerTemas($conexion, $_GET['idForo']);
+$resultado = InsertarForo($conexion);
 
 
 
@@ -22,5 +21,3 @@ while ($item = mysqli_fetch_array($resultado)) {
 
 echo json_encode($lista);
 
-
-?>
