@@ -8,13 +8,15 @@
 	$descripcionPublicacion = $data->descripcionPublicacion;
 	$tema = $data->tema;
 	$fecha = $data->fecha;
+	$autor = $data->autor;
 
+	$resultado = CrearNuevoBlog($conexion,$descripcionPublicacion,$fecha,$autor,$tema);
 
-	$qry = 'INSERT INTO Blog (descripcionPublicacion,fecha,tema) values ("' . $descripcionPublicacion . '","' . $fecha .'","' . $tema .'")';
+	/*$qry = 'INSERT INTO Blog (descripcionPublicacion,fecha,tema) values ("' . $descripcionPublicacion . '","' . $fecha .'","' . $tema .'")';
 
 	Print "Your information has been successfully added to the database.";
 
-	$qry_res = mysqli_query($conexion,$qry);
+	$qry_res = mysqli_query($conexion,$qry);*/
 
 	//var_dump($qry_res);
 
