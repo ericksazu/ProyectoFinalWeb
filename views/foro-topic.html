@@ -45,12 +45,12 @@
               <tr>
                 <td class="col-md-1 text-center">
                   <img src="{{comentario.foto}}" class="img-foro img-responsive img-circle" alt="Responsive image">
-                  <span class="gray">{{comentario.carrera}}</span></br>
+                  <span class="gray">{{comentario.nombre}}</span></br>
                 </td>
                 <td class="comment-content col-md-5">
                   <div>
                     <h4>{{comentario.titulo}}</h4>
-                    <p class="p-comment">{{comentario.contenido}}</p>
+                    <p class="p-comment">{{comentario.descripcion}}</p>
                   </div>
                   <div class="clearfix" ng-controller="RatingCtrl">
                     <div class="stars-comment clearfix" ng-show="!isDisabled" >

@@ -38,17 +38,23 @@ function ObtenerTemas($conexion, $idForo){
 
 function AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre){
 	$query = 'CAll agregarTema("'.$tema.'","'.$descripcion.'","'. $fecha_creacion.'","'. $fecha_cierre.'", 1)';
-	echo $query;
+	
 	return BDQuery($query, $conexion);
 }
 
 
 function obtenerDatos($conexion, $id){
 	
-	$query = 'CALL obtenerDatos($id)';
+	$query = "CALL obtenerDatos($id)";
 	return BDQuery($query, $conexion);
 }
 
+
+function obtenerComentarios($conexion, $id){
+	$query = "CALL obtenerComentarioForo($id)";
+
+	return BDQuery($query, $conexion);
+}
 
 
 

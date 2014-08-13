@@ -62,9 +62,19 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 });
 
-angular.module('module').controller('ForoTopicController', function($scope, $routeParams) {
-	$scope.comments = comentarios;
+angular.module('module').controller('ForoTopicController', function($scope, $routeParams,$http) {
+	$scope.comments = [];
+
 	console.log($routeParams);
+
+	$http.post('phpConexion/obtenerComentarios.php', 
+		{'idForo': $routeParams.idForo}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.comments = data;
+    }).error(function(data, status) {
+        console.log("inserted wrong");
+    });
+
 
 });
 
