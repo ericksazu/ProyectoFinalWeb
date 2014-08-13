@@ -9,11 +9,16 @@ var formData = {
         rol:"default",
         carrera:" default",
 };
+
+$http.get('data/usuarioinfo.json').success(function(data) {
+    $scope.datos = data;
+});
       
 $scope.save = function() {
         formData = $scope.form;
         //console.log (formData);
 }
+
 $scope.submitForm = function() {
     //console.log("posting data....");
     alert('Usuario Creado');

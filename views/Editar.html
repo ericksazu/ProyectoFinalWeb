@@ -12,6 +12,8 @@
           <input type ="text" value="Erick Snachez Zuñiga" class="form-control"id="nombre">
           <label>Correo</label>
           <input type ="email" value="erick@ucenfotec.ac.cr" class="form-control">
+          <label>Correo</label>
+          <input type ="text" value="12345" class="form-control">
            <label>Rol</label>
            <select class="form-control">
             <option>Estudiante</option>
@@ -72,11 +74,12 @@
             </div>
         </div>
     </div>
-<div class="container" id="conf">
+
+
+<div class="container" id="conf" ng-controller="FormCtrl">
   <div class="jumbotron">
     <ul class="nav nav-tabs" role="tablist">
-      <li><a href="#/configuracion">Agregar Usuario</a>
-      </li>
+      <li><a href="#/configuracion">Agregar Usuario</a></li>
       <li class="active" ><a href="#/editar">Usuarios</a></li>
     </ul>
     <div class="row">
@@ -86,6 +89,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th>Rol</th>
+            <th>Contrase&ntilde;a</th>
             <th>Nivel</th>
             <th>Carrera</th>
             <th>Cursos</th>
@@ -94,10 +98,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr id="Primer">
+      <div ng-repeat="personalInfo in datos">
+        <tr id="{{personalIfo.idusuario}}">
             <td>Erick Sanchez Zuñiga</td>
             <td>erick@ucenfotec.ac.cr</td>
             <td>Estudiante</td>
+            <td>12345</td>
             <td>Técnico</td>
             <td>Diseño Web</td>
             <td>Inglés,Proyecto1,Diseño Visual 1</td>
@@ -105,46 +111,7 @@
             
             <td><button type="button" class="btn btn-danger"data-toggle="modal" data-target="#confirm-delete"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
         </tr>
-        <tr>
-            <td>Carlos Óbregon Rodriguez</td>
-            <td>carlos@ucenfotec.ac.cr</td>
-            <td>Profesor</td>
-            <td>Diplomado</td>
-            <td>Desarrollo Sofware</td>
-            <td>Inglés,Proyecto1,Diseño Visual 1</td>
-            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
-            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
-        </tr>
-        <tr>
-           <td>Melissa Rosales Mora</td>
-            <td>melissa@ucenfotec.ac.cr</td>
-            <td>Director de Carrera</td>
-            <td>Maestria</td>
-            <td>Diseño Web</td>
-            <td>Inglés,Proyecto1,Diseño Visual 1</td>
-            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
-            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>>
-        </tr>
-        <tr>
-           <td>Manuel Zuñiga Murillo</td>
-            <td>manuel@ucenfotec.ac.cr</td>
-            <td>Rector</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
-            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
-        </tr>
-        <tr>
-           <td>Cinthya Gutierrez Monge</td>
-            <td>cinthya@ucenfotec.ac.cr</td>
-            <td>Estudiante</td>
-            <td>Técnico</td>
-            <td>Diseño Web</td>
-            <td>Inglés,Proyecto1,Diseño Visual 1</td>
-            <td><button type="button" class="btn btn-success" id="editar"><span class="glyphicon glyphicon-pencil"></button></td>
-            <td><button type="button" class="btn btn-danger" id="eliminar"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
-        </tr>
+      </div>  
     </tbody>
 </table>
 </div>
