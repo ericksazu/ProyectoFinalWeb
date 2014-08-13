@@ -2,6 +2,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $scope.datos = [];
   $scope.publicaciones = [];
+  $scope.publicacionesUsuario = [];
   $scope.documentos = [];
   $scope.date = new Date();
   $scope.currentPage = 0;
@@ -18,6 +19,13 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $http.get('phpConexion/blog/obtener_blogs.php').success(function(data) {
     $scope.publicaciones = data;
+
+    for (var i = 0; i < $scope.publicaciones.length; i++) {
+      if($scope.publicaciones[i].autor == $scope.correo){
+        $scope.publicacionesUsuario.push($scope.publicaciones[i]);
+      }
+    };
+
     $('#loading').hide();
     $('.btn-publicacion').delay(500).show(0);
     $('.pagination').delay(3000).show(0);
@@ -28,7 +36,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
   });
 
   $scope.numberOfPagesTemas = function(){
-    return Math.ceil($scope.publicaciones.length/$scope.pageSize);
+    return Math.ceil($scope.publicacionesUsuario.length/$scope.pageSize);
   }
 
 
@@ -62,7 +70,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.nuevoComentario = function(index) {
 
     $scope.descripcionComentario = $scope.agregarComentario;
-    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+    $scope.idEntradaBlog = $scope.publicacionesUsuario[index].idBlog;
 
     $http.post('phpConexion/blog/agregar_comentarios.php', {'descripcion': $scope.descripcionComentario, 'Blog_idBlog': $scope.idEntradaBlog}).success(function(data, status) {
       console.log("inserted good");
@@ -83,9 +91,9 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $scope.guardarTema = function(index) {
 
-    $scope.nuevoContenido = $scope.publicaciones[index].descripcionPublicacion;
-    $scope.nuevoTema = $scope.publicaciones[index].tema;
-    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+    $scope.nuevoContenido = $scope.publicacionesUsuario[index].descripcionPublicacion;
+    $scope.nuevoTema = $scope.publicacionesUsuario[index].tema;
+    $scope.idEntradaBlog = $scope.publicacionesUsuario[index].idBlog;
 
     $http.post('phpConexion/blog/editar_blogs.php', {'descripcionPublicacion': $scope.nuevoContenido, 'tema': $scope.nuevoTema, 'idBlog': $scope.idEntradaBlog}).success(function(data, status) {
       console.log("inserted good");
@@ -104,7 +112,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $scope.obtenerComentarios = function(index) {
 
-    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+    $scope.idEntradaBlog = $scope.publicacionesUsuario[index].idBlog;
 
     $http.post('phpConexion/blog/obtener_comentarios.php', {'Blog_idBlog': $scope.idEntradaBlog}).success(function(data, status) {
       console.log("inserted good");

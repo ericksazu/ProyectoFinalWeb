@@ -40,7 +40,7 @@
 
     <!-- Posts por fecha columna izquierda -->
     <div class="col-md-3 col-responsive">
-      <div class="row margen-new" ng-repeat="usuario in publicaciones" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
+      <div class="row margen-new" ng-repeat="usuario in publicacionesUsuario" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
         <div class="col-md-3">
           <div class="noticias">
             <strong class="date">{{usuario.fecha | date:'dd/MM/yy'}}</strong>
@@ -86,7 +86,7 @@
         </div>
 
         <!-- PUBLISHED -->
-        <div ng-repeat="usuario in publicaciones | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div ng-repeat="usuario in publicacionesUsuario | startFrom:currentPage*pageSize | limitTo:pageSize">
           <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
             <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
               <h4>{{usuario.tema}}</h4>
