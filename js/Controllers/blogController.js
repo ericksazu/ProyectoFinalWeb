@@ -23,6 +23,11 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $('.pagination').delay(3000).show(0);
   });
 
+  /*$http.get('phpConexion/blog/obtener_comentarios.php').success(function(data) {
+    $scope.comentarios = data;
+
+  });*/
+
   $http.get('data/documentos.json').success(function(data) {
     $scope.documentos = data;
   });
@@ -38,7 +43,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
       console.log("inserted good");
       $scope.algo = data;
     }).error(function(data, status) {
-        console.log("inserted bad");
+        console.log("inserted wrong");
     });
 
     $('#modalNuevaPublicacion').modal('hide');
@@ -60,22 +65,45 @@ angular.module('module').controller('blogController', function($scope, $http) {
   };
 
   $scope.nuevoComentario = function(index) {
-    $scope.getpublishedcomment = $scope.agregarComentario;
+
+    $scope.descripcionComentario = $scope.agregarComentario;
+    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+
+    $http.post('phpConexion/blog/agregar_comentarios.php', {'descripcion': $scope.descripcionComentario, 'Blog_idBlog': $scope.idEntradaBlog}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.algo = data;
+    }).error(function(data, status) {
+        console.log("inserted wrong");
+    });
+
+    /*$scope.getpublishedcomment = $scope.agregarComentario;
     console.log($scope.getpublishedcomment);
 
-    $scope.publicaciones[index].comments.push({"comment":$scope.getpublishedcomment});
+    $scope.publicaciones[index].comments.push({"comment":$scope.getpublishedcomment});*/
 
-    $scope.getpublishedcomment = '';
-    $scope.agregarComentario = '';
+    $scope.descripcionComentario = '';
+    $scope.idEntradaBlog = '';
 
   };
 
   $scope.guardarTema = function(index) {
-    $scope.getpublishedtitle = $scope.publicaciones[index].title;
+
+    $scope.nuevoContenido = $scope.publicaciones[index].descripcionPublicacion;
+    $scope.nuevoTema = $scope.publicaciones[index].tema;
+    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+
+    $http.post('phpConexion/blog/editar_blogs.php', {'descripcionPublicacion': $scope.nuevoContenido, 'tema': $scope.nuevoTema, 'idBlog': $scope.idEntradaBlog}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.algo = data;
+    }).error(function(data, status) {
+        console.log("inserted wrong");
+    });
+
+    /*$scope.getpublishedtitle = $scope.publicaciones[index].title;
     $scope.getpublishedmessage = $scope.publicaciones[index].published;
 
     $scope.publicaciones[index].title = $scope.getpublishedtitle;
-    $scope.publicaciones[index].published = $scope.getpublishedmessage;
+    $scope.publicaciones[index].published = $scope.getpublishedmessage;*/
 
   };
 
