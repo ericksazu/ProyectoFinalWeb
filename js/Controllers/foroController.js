@@ -45,7 +45,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.pageSize = 5;
 
 	//$scope.topics = temas;
-	$scope.comments = comentarios;
+	
 
 	
 
@@ -59,6 +59,12 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 
 	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
+
+});
+
+angular.module('module').controller('ForoTopicController', function($scope, $routeParams) {
+	$scope.comments = comentarios;
+	console.log($routeParams);
 
 });
 
@@ -123,27 +129,27 @@ angular.module('module').controller('EditarTema', function ($scope, $http) {
 		// 	console.log('exito');
 		// });
 
-		$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.algo = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
+$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
+	console.log("inserted good");
+	$scope.algo = data;
+}).error(function(data, status) {
+	console.log("inserted bad");
+});
 
 
-		
 
-		$scope.topics[index].estudiantes.push({
-			estudiante : $scope.nombreEstudiante,
-			eliminado: false,
-			asistente: false
-		});
 
-		$scope.nombreEstudiante = null;
+$scope.topics[index].estudiantes.push({
+	estudiante : $scope.nombreEstudiante,
+	eliminado: false,
+	asistente: false
+});
 
-	}
+$scope.nombreEstudiante = null;
 
-	$scope.deseleccionarEliminado = function (topicIndex, index) {
+}
+
+$scope.deseleccionarEliminado = function (topicIndex, index) {
 		//$scope.topicCurrentIndex = index;
 		$scope.topics[topicIndex].estudiantes[index].eliminado = !$scope.topics[topicIndex].estudiantes[index].eliminado;
 	}
@@ -227,23 +233,23 @@ angular.module('module').controller('ComentarForo', function ($scope,$http) {
 		// 	console.log("inserted bad");
 		// });
 
-		comentarios.push({
-			carrera: 'Diseño Web',
-			titulo: 'Programación Web Dinámica',
-			contenido: $scope.message,
-			info: 'Escrito hace 1 minuto',
-			puntaje: null,
-			foto: $scope.usuarioLogueado.foto
-		});
-		$scope.message = '';
-		$('#myModalForoComment').modal('hide');
+comentarios.push({
+	carrera: 'Diseño Web',
+	titulo: 'Programación Web Dinámica',
+	contenido: $scope.message,
+	info: 'Escrito hace 1 minuto',
+	puntaje: null,
+	foto: $scope.usuarioLogueado.foto
+});
+$scope.message = '';
+$('#myModalForoComment').modal('hide');
 
-		$('#alertComentarioForo').css('display','block');
-		setTimeout(function() {
-			$('#alertComentarioForo').css('display','none');
-		}, 3000);
+$('#alertComentarioForo').css('display','block');
+setTimeout(function() {
+	$('#alertComentarioForo').css('display','none');
+}, 3000);
 
-	}
+}
 
 });
 
