@@ -23,11 +23,6 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $('.pagination').delay(3000).show(0);
   });
 
-  /*$http.get('phpConexion/blog/obtener_comentarios.php').success(function(data) {
-    $scope.comentarios = data;
-
-  });*/
-
   $http.get('data/documentos.json').success(function(data) {
     $scope.documentos = data;
   });
@@ -105,6 +100,18 @@ angular.module('module').controller('blogController', function($scope, $http) {
     $scope.publicaciones[index].title = $scope.getpublishedtitle;
     $scope.publicaciones[index].published = $scope.getpublishedmessage;*/
 
+  };
+
+  $scope.obtenerComentarios = function(index) {
+
+    $scope.idEntradaBlog = $scope.publicaciones[index].idBlog;
+
+    $http.post('phpConexion/blog/obtener_comentarios.php', {'Blog_idBlog': $scope.idEntradaBlog}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.comentarios = data;
+    }).error(function(data, status) {
+        console.log("inserted wrong");
+    });
   };
 
 

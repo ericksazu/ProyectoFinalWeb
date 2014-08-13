@@ -88,7 +88,7 @@
         <!-- PUBLISHED -->
         <div ng-repeat="usuario in publicaciones | startFrom:currentPage*pageSize | limitTo:pageSize">
           <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
-            <div class="nav" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
+            <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
               <h4>{{usuario.tema}}</h4>
               <div class="ordenar-links margen-info">
                 <span class="links-blog">{{usuarioLogueado.nombre}} /</span>
@@ -165,7 +165,7 @@
                   <div class="commment-appears">
                     <p class="center">Comentarios</p>
                     <ul>
-                      <li style="word-wrap: break-word;" ng-repeat="comentario in publicaciones[$index].comments">{{comentario.comment}}</li>
+                      <li style="word-wrap: break-word;" ng-repeat="comentario in comentarios">{{comentario.descripcion}}</li>
                     </ul>
                   </div>
                 </div>

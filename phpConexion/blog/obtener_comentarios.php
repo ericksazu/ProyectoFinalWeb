@@ -3,8 +3,11 @@
 	include_once "../conexion.php";
 	include_once "../funciones/blogFunciones.php";
 
-	$resultado = ObtenerComentariosBlog($conexion);
-	var_dump($resultado);
+	$data = json_decode(file_get_contents("php://input"));
+
+	$idBlog = $data->Blog_idBlog;
+
+	$resultado = ObtenerComentariosBlog($conexion,$idBlog);
 
 	$lista = Array();
 
@@ -15,5 +18,6 @@
 	echo json_encode($lista);
 
 	mysqli_close($conexion);
+
 
 ?>
