@@ -1,0 +1,10 @@
+<?php
+
+	function ObtenerEntradasBlog($conexion){
+		$query = "call sp_ObtenerBlogs()";
+		return BDQuery($query, $conexion);
+	}
+
+
+
+?>

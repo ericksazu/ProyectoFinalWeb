@@ -1,8 +1,18 @@
 <?php
 
-include_once "conexion.php";
+error_reporting(-1);
+ini_set('display_errors', 'On');
 
-// include_once "funciones/usuariosFunciones.php";
+
+
+$host = "23.229.208.198";
+$usuario = "proyectofinal";
+$password = "Cenfotec2014";
+
+define('__DATABASE__', "proyectofinalweb");
+
+
+$conexion = mysqli_connect($host, $usuario, $password, __DATABASE__) or die(mysqli_error());
 
 
 $resultado = mysqli_query($conexion, "SELECT * FROM Usuario");
@@ -13,9 +23,6 @@ while($objeto = mysqli_fetch_object($resultado)) {
     $listaUsuarios[] = $objeto;
 }
 
-// echo '<pre>';
-// print_r($listaUsuarios);
-// echo '</pre>';
 
 
 # JSON-encode the response
@@ -27,7 +34,6 @@ echo $json_response;
 
 
 mysqli_close($conexion);
-
 
 
 ?>

@@ -6,6 +6,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.date = new Date();
   $scope.currentPage = 0;
   $scope.pageSize = 3;
+  $scope.correo = $scope.usuarioLogueado.email;
 
   $('#loading').show();
   $('.pagination').hide();
@@ -33,7 +34,7 @@ angular.module('module').controller('blogController', function($scope, $http) {
 
   $scope.nuevaPublicacion = function() {
 
-    $http.post('phpConexion/blog/agregar_blogs.php', {'descripcionPublicacion': $scope.contenidoPublicacion, 'tema': $scope.tituloPublicacion, 'fecha': $scope.date}).success(function(data, status) {
+    $http.post('phpConexion/blog/agregar_blogs.php', {'descripcionPublicacion': $scope.contenidoPublicacion, 'tema': $scope.tituloPublicacion, 'fecha': $scope.date, 'autor': $scope.correo}).success(function(data, status) {
       console.log("inserted good");
       $scope.algo = data;
     }).error(function(data, status) {
