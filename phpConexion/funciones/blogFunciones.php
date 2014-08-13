@@ -20,8 +20,8 @@
 		return BDQuery($query, $conexion);
 	}
 
-	function ObtenerComentariosBlog($conexion){
-		$query = 'CALL sp_ObtenerComentariosBlog()';
+	function ObtenerComentariosBlog($conexion,$blog_id){
+		$query = 'CALL sp_ObtenerComentariosBlog("'.$blog_id.'")';
 		return BDQuery($query, $conexion);
 	}
 
