@@ -1,4 +1,4 @@
-angular.module('module').controller('blogController', function($scope, $http) {
+angular.module('module').controller('blogController', function($scope, $http, $route) {
 
   $scope.datos = [];
   $scope.publicaciones = [];
@@ -8,6 +8,8 @@ angular.module('module').controller('blogController', function($scope, $http) {
   $scope.currentPage = 0;
   $scope.pageSize = 3;
   $scope.correo = $scope.usuarioLogueado.email;
+
+
 
   $('#loading').show();
   $('.pagination').hide();
@@ -50,6 +52,9 @@ angular.module('module').controller('blogController', function($scope, $http) {
     });
 
     $('#modalNuevaPublicacion').modal('hide');
+    $('.modal-backdrop').remove();
+
+    $route.reload();
 
 
     /*$scope.getpublishedtitle = $scope.tituloPublicacion;
