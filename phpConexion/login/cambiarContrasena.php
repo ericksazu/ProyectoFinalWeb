@@ -7,7 +7,7 @@
 
 	$contrasenaNueva = $data->contrasena;
 	$email = $data->email;
-
+//nombre de la funcion en 
 	$resultado = cambiarContrasena($conexion,$contrasenaNueva,$email);
 
 	mysqli_close($conexion);

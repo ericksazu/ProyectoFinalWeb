@@ -26,7 +26,6 @@ angular.module('module').controller('signupController',
                             "email": data[posicion].email,
                             "foto": data[posicion].foto,
                             "idRol": data[posicion].idRol,
-                            "nombreCarrera": data[posicion].nombreCarrera,
 
                         };
                         if ($rootScope.usuarioLogueado.idRol == "14") {

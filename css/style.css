@@ -711,12 +711,14 @@ figcaption > a {
   color: #000000;
   font-size: 12px;
 }
-.nombre {
+.nombre, .nombre2, .nombre3  {
   color: #793982;
 }
 .nombre2 {
-  color: #793982;
-  margin-top: 7px;
+  margin-top: -2px;
+}
+.nombre3 {
+  font-size: 16px;
 }
 .glyphicon-star {
   color: #ffe02d;
@@ -729,8 +731,8 @@ figcaption > a {
   margin-top: -95px;
 }
 .carrera, .rol {
-  font-size: 12px;
-  margin: 1px 0 1px 0;
+  font-size: 15px;
+  margin: 15px 0 15px 0;
   color: #000000;
 }
 /*************************************************** CAMBIAR CONTRASENA ***************************************************/
