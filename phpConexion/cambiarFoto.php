@@ -15,7 +15,7 @@ define('__DATABASE__', "proyectofinalweb");
 $conexion = mysqli_connect($host, $usuario, $password, __DATABASE__) or die(mysqli_error());
 
 
-<?php
+
 if ($_FILES["file"]["error"] > 0) {
   echo "Error: " . $_FILES["file"]["error"] . "<br>";
 } else {
@@ -24,7 +24,7 @@ if ($_FILES["file"]["error"] > 0) {
   echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
   echo "Stored in: " . $_FILES["file"]["tmp_name"];
 }
-?>
+
 
 
 mysqli_close($conexion);

@@ -7,7 +7,7 @@ angular.module('module').controller('signupController',
             if ($scope.signup_form.$valid) {
 
                 var posicion = -1;
-                $http.get('./phpConexion/usuarios.php').success(function(data) {
+                $http.get('phpConexion/login/usuarios.php').success(function(data) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].email == $scope.signup.email && data[i].contrasena == $scope.signup.contrasena) {
 
@@ -95,5 +95,16 @@ angular.module('module').controller('signupController',
                 }, 3000);
 
             }
+
+            $http.post('phpConexion/login/cambiarContrasena.php', {
+                'contrasena': $scope.user.passwordConfirm,
+                'email': $scope.usuarioLogueado.email
+        
+            }).success(function(data, status) {
+                console.log("inserted good");
+                $scope.algo = data;
+            }).error(function(data, status) {
+                console.log("inserted wrong");
+            });
         }
     });
