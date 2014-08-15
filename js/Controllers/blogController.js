@@ -1,14 +1,19 @@
-angular.module('module').controller('blogController', function($scope, $http, $route) {
+angular.module('module').controller('blogController', function($scope, $http, $route, $rootScope) {
 
   $scope.datos = [];
   $scope.publicaciones = [];
   $scope.publicacionesUsuario = [];
+  $scope.usuariosBlog = [];
   $scope.documentos = [];
   $scope.date = new Date();
   $scope.currentPage = 0;
   $scope.pageSize = 3;
-  $scope.correo = $scope.usuarioLogueado.email;
 
+  $scope.mostrarUsuarioPorCorreo = $scope.usuarioLogueado.email;
+  $scope.correo = $scope.usuarioLogueado.email;
+  $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
+  $scope.usuarioActual = $scope.usuarioLogueado.nombre;
+  $scope.usuarioActualFoto = $scope.usuarioLogueado.foto;
 
 
   $('#loading').show();
@@ -17,6 +22,16 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $http.get('data/usuario.json').success(function(data) {
     $scope.datos = data;
+  });
+
+  $http.get('phpConexion/login/usuarios.php').success(function(data) {
+    $scope.usuarios = data;
+
+    for (var i = 0; i < $scope.usuarios.length; i++) {
+      if($scope.usuarios[i].nivelUniversitario == 'Estudiante'){
+        $scope.usuariosBlog.push($scope.usuarios[i].email);
+      }
+    };
   });
 
   $http.get('phpConexion/blog/obtener_blogs.php').success(function(data) {
@@ -39,6 +54,37 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.numberOfPagesTemas = function(){
     return Math.ceil($scope.publicacionesUsuario.length/$scope.pageSize);
+  }
+
+  $scope.compartirRedes = function(){
+    $('.prettySocial').prettySocial();
+  }
+
+  $scope.buscarNombres = function(){
+    $('#tags').autocomplete({
+      source: $scope.usuariosBlog
+    });
+  }
+
+  $scope.mostrarBlogs = function(){
+    $scope.mostrarUsuarioPorCorreo = $('#tags').val();
+    $scope.correo = $('#tags').val();
+    $scope.publicacionesUsuario = [];
+    $('#tags').val('');
+
+    for (var i = 0; i < $scope.publicaciones.length; i++) {
+      if($scope.publicaciones[i].autor == $scope.mostrarUsuarioPorCorreo){
+        $scope.publicacionesUsuario.push($scope.publicaciones[i]);
+      }
+    };
+
+    for (var i = 0; i < $scope.usuarios.length; i++) {
+      if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
+        $scope.usuarioActualFoto = $scope.usuarios[i].foto;
+        $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
+        return $scope.usuarioActual = $scope.usuarios[i].nombre;
+      }
+    };
   }
 
 

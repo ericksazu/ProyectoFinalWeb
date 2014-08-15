@@ -6,9 +6,9 @@
     <div class="col-md-3 well borde-perfil">
       <div class="datosPerfil">
         <a class="enlace">
-          <img src="{{usuarioLogueado.foto}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
+          <img src="{{usuarioActualFoto}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
         </a>
-        <p class="name text-center enlace">{{usuarioLogueado.nombre}}</p>
+        <p class="name text-center enlace">{{usuarioActual}}</p>
       </div>
       <div>
       </div>
@@ -25,10 +25,10 @@
               </div>
             </div>
             <form class="navbar-form navbar-left centered navbar-form-blog" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control inputForoHeader center-block" placeholder="Buscar">
+              <div class="form-group ui-widget">
+                <input id="tags" type="text" ng-click="buscarNombres()" class="form-control inputForoHeader center-block" placeholder="Buscar">
               </div>
-              <span type="button" id="searchGlyph" class="glyphicon glyphicon-search"></span>
+              <span type="button" id="searchGlyph" class="glyphicon glyphicon-search" ng-click="mostrarBlogs()"></span>
             </form>
           </div>
         </div>
@@ -55,7 +55,7 @@
       <div class="distancia-publicacion-blog">
         <div>
           <!-- Button trigger modal -->
-          <button class="btn btn-default btn-publicacion col-md-offset-4" data-toggle="modal" data-target="#modalNuevaPublicacion">Nueva publicación</button>
+          <button ng-show="visibleBlog" class="btn btn-default btn-publicacion col-md-offset-4" data-toggle="modal" data-target="#modalNuevaPublicacion">Nueva publicación</button>
 
           <!-- Modal Nueva Publicación -->
           <div class="modal fade" id="modalNuevaPublicacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,7 +91,7 @@
             <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
               <h4>{{usuario.tema}}</h4>
               <div class="ordenar-links margen-info">
-                <span class="links-blog">{{usuarioLogueado.nombre}} /</span>
+                <span class="links-blog">{{usuarioActual}} /</span>
                 <span class="links-blog">{{usuario.fecha | date:'dd/MM/yy'}}</span>
               </div>
             </div>
@@ -104,16 +104,19 @@
                   </li>
                   <li class="no-margin-right">
                     <!-- Button trigger modal editar publicación -->
-                    <a class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
+                    <a ng-show="visibleBlog" class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
                   </li>
                   <li>
-                    <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a>
+                    <a ng-click="compartirRedes()" id="facebook" href="" data-type="facebook" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
+                    <!-- <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a> -->
                   </li>
                   <li>
-                    <a href="https://plus.google.com/" class="ir sprite" id="googleplus">Google+</a>
+                    <a ng-click="compartirRedes()" id="googleplus" href="" data-type="googleplus" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
+                    <!-- <a href="https://plus.google.com/" class="ir sprite" id="googleplus">Google+</a> -->
                   </li>
                   <li>
-                    <a href="https://twitter.com/" class="ir sprite" id="twitter">Twitter</a>
+                    <a ng-click="compartirRedes()" id="twitter" href="" data-type="twitter" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
+                    <!-- <a href="https://twitter.com/" class="ir sprite" id="twitter">Twitter</a> -->
                   </li>
                 </ul>
               </div>
