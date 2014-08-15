@@ -1,6 +1,6 @@
 /************************************************************* CONTROLADORES *****************************************************************/
 
-angular.module('module').controller('foroController', function($scope, $http, $rootScope) {
+angular.module('module').controller('foroController', function($scope, $http, $rootScope, $route) {
 
 
 	$scope.topics = [];
@@ -19,8 +19,6 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		});
 		
 	}
-
-
 
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
@@ -60,23 +58,62 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
 
+
+
+
 });
 
-angular.module('module').controller('ForoTopicController', function($scope, $routeParams,$http) {
+angular.module('module').controller('ForoTopicController', function($scope, $routeParams,$http, $rootScope) {
 	$scope.comments = [];
+
+	$scope.idForo = $routeParams.idForo;
+
+
+	$scope.currentPage = 0;
+	$scope.pageSize = 5;
+
+	$scope.numberComments = function() {
+		return Math.ceil($scope.comments.length/$scope.pageSize);
+	};
 
 	console.log($routeParams);
 
 	$http.post('phpConexion/obtenerComentarios.php', 
 		{'idForo': $routeParams.idForo}).success(function(data, status) {
-      console.log("inserted good");
-      $scope.comments = data;
-    }).error(function(data, status) {
-        console.log("inserted wrong");
-    });
+			console.log("inserted good");
+			$scope.comments = data;
+		}).error(function(data, status) {
+			console.log("inserted wrong");
+		});
+
+		$scope.agregarComentario = function () {
+
+			$http.post('phpConexion/agregarComentarioForo.php', 
+				{'id': $scope.idForo, 'descripcion': $scope.comentario, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
+					console.log("comentario agregado bd");
+					$http.post('phpConexion/obtenerComentarios.php', 
+						{'idForo': $routeParams.idForo}).success(function(data, status) {
+							console.log("inserted good");
+							$scope.comments = data;
+						}).error(function(data, status) {
+							console.log("inserted wrong");
+						});
+					}).error(function(data, status) {
+						console.log("no se agrego nada");
+					});
 
 
-});
+					$('#myModalForoComment').modal('hide');
+
+					$('#alertComentarioForo').css('display','block');
+					setTimeout(function() {
+						$('#alertComentarioForo').css('display','none');
+					}, 3000);
+
+				}
+
+
+			});
 
 
 angular.module('module').controller('AgregarTema', function ($scope) {
@@ -115,7 +152,7 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	}
 });
 
-angular.module('module').controller('EditarTema', function ($scope, $http) {
+angular.module('module').controller('EditarTema', function ($scope, $http, $route) {
 
 	$http.get('phpConexion/foros.php').success(function(data) {
 		$scope.topics = data;
@@ -129,35 +166,31 @@ angular.module('module').controller('EditarTema', function ($scope, $http) {
 
 	$scope.editTema = function (index) {
 		$scope.topicCurrentIndex = index;
+		
 
-		// $http({
-		// 	url: 'phpConexion/agregarForo.php',
-		// 	method: 'POST',
-		// 	params: {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}
-		// }).success(function(data){
-		// 	console.log(data);
-		// 	console.log('exito');
-		// });
+		$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+	//$('.modal-backdrop').remove();
+	//$route.reload();
 
-$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
-	console.log("inserted good");
-	$scope.algo = data;
-}).error(function(data, status) {
-	console.log("inserted bad");
-});
+};
 
+$scope.cerrarForo = function(){
+	var estado = 1;
+	console.log('id del foro' + $scope.idForo);
+	console.log(estado);
+	$http.post('phpConexion/cerrarForo.php', {'estado': estado, 'idForo2': $scope.idForo}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.algo = data;
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
 
-
-
-$scope.topics[index].estudiantes.push({
-	estudiante : $scope.nombreEstudiante,
-	eliminado: false,
-	asistente: false
-});
-
-$scope.nombreEstudiante = null;
-
-}
+};
 
 $scope.deseleccionarEliminado = function (topicIndex, index) {
 		//$scope.topicCurrentIndex = index;
@@ -229,37 +262,12 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
   }
 });
 
-angular.module('module').controller('ComentarForo', function ($scope,$http) {
+angular.module('module').controller('ComentarForo', function ($scope,$http, $routeParams, $rootScope) {
 	$scope.message = '';
 	$scope.comentario =[];
+	console.log($rootScope.usuarioLogueado.idUsuario);
 
-	$scope.agregarComentario = function ($http) {
-		console.log($scope.usuarioLogueado);
-
-		// $http.get('phpConexion/obtenerDatos.php', {'id': $scope.usuarioLogueado.idUsuario}).success(function(data, status) {
-		// 	console.log($scope.usuarioLogueado.idUsuario);
-		// 	$scope.comentario = data;
-		// }).error(function(data, status) {
-		// 	console.log("inserted bad");
-		// });
-
-comentarios.push({
-	carrera: 'Diseño Web',
-	titulo: 'Programación Web Dinámica',
-	contenido: $scope.message,
-	info: 'Escrito hace 1 minuto',
-	puntaje: null,
-	foto: $scope.usuarioLogueado.foto
-});
-$scope.message = '';
-$('#myModalForoComment').modal('hide');
-
-$('#alertComentarioForo').css('display','block');
-setTimeout(function() {
-	$('#alertComentarioForo').css('display','none');
-}, 3000);
-
-}
+	
 
 });
 

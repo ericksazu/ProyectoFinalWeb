@@ -21,3 +21,4 @@ while ($item = mysqli_fetch_array($resultado)) {
 
 echo json_encode($lista);
 
+?>

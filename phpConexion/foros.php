@@ -4,7 +4,6 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 
-//die('usuario: '.$_GET['user_id']);
 
 
 $resultado = ObtenerForos($conexion);
