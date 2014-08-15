@@ -40,7 +40,7 @@
 
     <!-- Posts por fecha columna izquierda -->
     <div class="col-md-3 col-responsive">
-      <div class="row margen-new" ng-repeat="usuario in publicacionesUsuario" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
+      <div class="row margen-new" ng-repeat="usuario in publicacionesUsuario" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" ng-click="obtenerComentarios($index)" style="cursor:pointer">
         <div class="col-md-3">
           <div class="noticias">
             <strong class="date">{{usuario.fecha | date:'dd/MM/yy'}}</strong>
