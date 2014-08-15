@@ -6,7 +6,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.topics = [];
 	$scope.correoUsuario = $scope.usuarioLogueado.email;
 
-	var idForo = 0;
+	
 
 	$scope.abrirComentarios = function($index){
 
@@ -19,6 +19,9 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		});
 		
 	}
+
+
+
 
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
@@ -34,8 +37,17 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		}
 
 		$scope.eliminar = function(index){
+			//alert(index);
+			var id = $scope.topics[index].idForo;
+			console.log(id);
+
+			$http.post('phpConexion/eliminarForo.php', {'idForo2': $scope.idForo}).success(function(data, status) {
+				console.log("inserted good");
+				$scope.algo = data;
+			}).error(function(data, status) {
+				console.log("inserted bad");
+			});
 			$scope.topics.splice(index,1);
-			$('.modal-backdrop').remove();
 		}
 	});
 
@@ -43,8 +55,22 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.pageSize = 5;
 
 	//$scope.topics = temas;
-	
 
+
+
+	
+	$scope.cerrarForo = function($idForo){
+		var estado = 1;
+		console.log($index);
+		console.log(estado);
+		$http.post('phpConexion/cerrarForo.php', {'estado': estado, 'idForo2': $scope.idForo}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+
+	};
 	
 
 
@@ -179,18 +205,6 @@ angular.module('module').controller('EditarTema', function ($scope, $http, $rout
 
 };
 
-$scope.cerrarForo = function(){
-	var estado = 1;
-	console.log('id del foro' + $scope.idForo);
-	console.log(estado);
-	$http.post('phpConexion/cerrarForo.php', {'estado': estado, 'idForo2': $scope.idForo}).success(function(data, status) {
-		console.log("inserted good");
-		$scope.algo = data;
-	}).error(function(data, status) {
-		console.log("inserted bad");
-	});
-
-};
 
 $scope.deseleccionarEliminado = function (topicIndex, index) {
 		//$scope.topicCurrentIndex = index;
