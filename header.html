@@ -32,7 +32,7 @@
           </li>
           <li>
             <a href="javascript:void(0);" id="profilePic" data-container="body" data-toggle="popover" data-placement="bottom">
-              <img src="{{usuarioLogueado.foto}}" class="img-responsive img-circle fotica" alt="Foto de usuario" width="35px">
+              <img src="phpConexion/login/{{usuarioLogueado.foto}}" class="img-responsive img-circle fotica" alt="Foto de usuario" width="35px" height="35px">
             </a>
           </li>
           <li><a class="salir" href="#">Salir</a>
@@ -75,18 +75,49 @@
                 <label>Su contraseña fue actualizada</label>
               </div>
             </div>
-          </div>
-          <!-- div-modal dialog -->
-        </div>
-        <!-- div-modal fade -->
-      </div>
-      <!-- div-collapse -->
-    </div>
-    <!-- div-container -->
-  </nav>
+          </div><!-- div-modal dialog -->
+        </div><!-- div-modal fade -->
+
+        <!-- <div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm row">
+            <div class="modal-content col-centered cambiarfoto" data-ng-app="cambiocon">
+              <form class="cambiarfoto form-signin" role="form" id="esperar" action="phpConexion/login/cambiarFoto.php" enctype="multipart/form-data" method="post">
+                <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
+                <input type="file" id="suID" name="foto" class="suClas" />
+                <input type="hidden" id="suID" name="idUsuario" value="{{usuarioLogueado.id}}" />
+                <input type="submit" name="submit" class="btn btn-success btn-sx" />
+              </form>
+            </div>
+          </div> -->
+
+        <div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm row">
+            <div class="modal-content cambiarfoto">
+              <form class="cambiarfoto form-signin" role="form" action="phpConexion/login/cambiarFoto.php" method="post" enctype="multipart/form-data" >
+                <div class="modal-header margen-modal-header">
+                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">Escoja su nueva foto</h4>
+                </div>
+                <div class="modal-body">
+<!--                   <input type="file" name="foto" /><p>Cambiar foto</p>
+ -->                  <input type="file" name="foto" class="filestyle" data-buttonText="Cambiar foto">
+                  <input type="hidden" name="idUsuario" value="{{usuarioLogueado.id}}" />
+                </div>
+                <div class="modal-footer">
+                  <input type="submit" name="submit" class="btn btn-success" value="Guardar los cambios"></input>
+                </div>
+              </form>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+      </div><!-- div-cambiarfoto -->
+    </div><!-- div-collapse -->
+</div><!-- div-container -->
+</nav>
 </div>
 <script>
-$(".salir").on('click', function(){
-  $('body').load();  
-}); 
+$(".salir").on('click', function() {
+  $('body').load();
+});
 </script>

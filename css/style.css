@@ -1,7 +1,6 @@
 html, body {
   height: 100%;
 }
-
 #loading {
   position: absolute;
   top: -250px;
@@ -10,7 +9,6 @@ html, body {
   height: 100%;
   background: url('../img/ajax-loader.gif') no-repeat center center;
 }
-
 #wrapper {
   min-height: 100%;
   position: relative;
@@ -83,7 +81,7 @@ html, body {
   border-color: #793982;
   margin: 2em 0 2em 0
 }
-small.error1, .error2, .error3, .error4,.error5{
+small.error1, .error2, .error3, .error4, .error5 {
   position: absolute;
   color: #828282;
 }
@@ -98,10 +96,10 @@ small.error2 {
 small.error3 {
   top: 9.5em;
 }
-small.error4{
+small.error4 {
   top: 9.5em;
 }
-small.error5{
+small.error5 {
   top: 27.5em;
 }
 .button-login:hover {
@@ -236,7 +234,7 @@ a:focus {
 }
 .popover {
   width: 275px;
-  height: 175px;
+  height: 182px;
 }
 /* Small devices (tablets, 768px and up) */
 
@@ -546,7 +544,7 @@ h4 {
 .distancia-treding {
   margin-top: -70px;
 }
-.fotica{
+.fotica {
   background-size: 50px 50px
 }
 /*************************************************** CONFIGURACION ***************************************************/
@@ -582,20 +580,16 @@ label {
 .valid.true {
   background: green;
 }
-
 #color {
   color: #E6E6E6;
 }
-
 #conf {
   margin-top: 60px;
   margin-bottom: 80px;
 }
-
 #cambiar {
   margin: 0;
 }
-
 #footerConfiguracion button {
   margin-top: 20px;
 }
@@ -701,21 +695,22 @@ label {
   margin: 6px 15px;
 }
 #fotoperfil {
-  width: 64px;
+  width: 65px;
+  height: 68px;
   margin: 0.250em;
 }
-figcaption {
-  width: 115%;
-}
-figcaption > a {
+.actu {
   color: #000000;
   font-size: 12px;
+  width: 110%;
+  position: relative;
+  z-index: 1;
 }
-.nombre, .nombre2, .nombre3  {
+.nombre, .nombre2, .nombre3 {
   color: #793982;
 }
 .nombre2 {
-  margin-top: -2px;
+  margin-top: 4px;
 }
 .nombre3 {
   font-size: 16px;
@@ -736,18 +731,19 @@ figcaption > a {
   color: #000000;
 }
 /*************************************************** CAMBIAR CONTRASENA ***************************************************/
-#cambiarcontra{
+
+#cambiarcontra {
   margin-top: 14em;
   color: #000000,
 }
-.cambiarcontrasena{
+.cambiarcontrasena {
   margin: 0 auto;
   width: 110%;
 }
-.cambiocontra{
+.cambiocontra {
   margin: 10%;
 }
-.cambiocontrasena, input, p{
+.cambiocontrasena, input, p {
   color: #000000;
 }
 /*************************************************** REDES SOCIALES ***************************************************/
@@ -819,23 +815,22 @@ figcaption > a {
 #ingresar {
   margin-bottom: 50px;
 }
-
 /*dhasgdhgashfdgdhjasgfhjdsghjfgjhsdagfjhgasdjhf  BLOG  gdsfhgdashjfghjadsgjfhgdasjhfgjhasdghjfagsdhjfgjhdsagf*/
 
-.col-responsive{
+.col-responsive {
   margin-bottom: 110px;
 }
 .width-texto p {
-margin: 0;
-float: left;
-color: #bbbbbb;
-width: 417px;
-word-wrap: break-word;
+  margin: 0;
+  float: left;
+  color: #bbbbbb;
+  width: 417px;
+  word-wrap: break-word;
 }
-.margen-comment{
+.margen-comment {
   margin-top: 10px;
 }
-.commment-appears{
+.commment-appears {
   border-top: 1px solid #e5e5e5;
   padding: 20px;
   margin-top: 15px;
@@ -845,57 +840,45 @@ word-wrap: break-word;
   .width-texto p {
     width: 100%;
   }
-
   .navigator-resposivo li:nth-child(2) {
     margin-right: 80px;
   }
-
   div.distancia-blog-header {
     margin: 0;
   }
-
-  div#foroHeader div.blogHeader{
+  div#foroHeader div.blogHeader {
     background-color: #f2f2f2;
     margin-bottom: 20px;
     height: 100%;
   }
-
-  div#foroHeader form.navbar-form-blog{
+  div#foroHeader form.navbar-form-blog {
     margin: 0 auto;
   }
-
-  ul.navigator-resposivo{
+  ul.navigator-resposivo {
     padding-left: 0;
   }
-
-  ul.navigator-resposivo > li.no-margin-right{
+  ul.navigator-resposivo > li.no-margin-right {
     margin-right: 15px;
   }
-
   .distancia-publicacion-blog {
     margin-left: 0!important;
   }
-
-  div.pagination-blog{
+  div.pagination-blog {
     margin: 0 auto;
     display: block;
   }
-
-  div.trending-blog{
+  div.trending-blog {
     width: 100%;
   }
-
-  button.btn-publicacion{
+  button.btn-publicacion {
     margin: 0 auto;
     display: block;
   }
 }
-
-.navigator-resposivo{
+.navigator-resposivo {
   margin: 0;
 }
-
-div.margen-new:hover{
+div.margen-new:hover {
   color: #712d7b;
   font-weight: bold;
 }
@@ -1195,7 +1178,6 @@ a.purple:hover {
   /* .push must be the same height as .footer */
   clear: both;
 }
-
 #footer p {
   color: #FFFFFF;
   text-align: center;
@@ -1204,27 +1186,23 @@ a.purple:hover {
   font-weight: lighter;
   padding-top: 10px;
 }
-
 @media (max-width: 768px) {
   #footer p {
     padding-top: 3px;
   }
 }
-
 #footer div img {
   width: 83px;
 }
-
 #footer p a {
   color: #FFFFFF;
 }
-
 .bold {
   font-weight: normal;
 }
-
 /************configuracionforo*/
-input[type=checkbox]{
+
+input[type=checkbox] {
   /*margin: 10px 0 0;*/
   width: 16px;
   height: 16px;
