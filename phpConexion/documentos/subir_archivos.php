@@ -25,7 +25,7 @@ $data = $data['idUsuario'];
 $data= $data['Usuario_idUsuario'];*/
     
     $qry = 'INSERT INTO Documento(autor,fecha,archivo,descripcion,tema,titulo,promedioCalificacion,	Usuario_idUsuario,Curso_idCurso,pesoDocumento) 
-	values ("Melissa",CURDATE(),"pdf","'. $descripcion . '","' . $tema .'","' . $titulo .'",9,3,1,"$dato_peso")';
+	values ("Melissa",CURDATE(),"pdf","'. $descripcion . '","' . $tema .'","' . $titulo .'",9,3,1,50)';
 
 	Print "Your information has been successfully added to the database.";
 

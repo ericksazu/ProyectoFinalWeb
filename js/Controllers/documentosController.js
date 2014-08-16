@@ -20,7 +20,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	$http.get('phpConexion/documentos/subir_archivos.php').success(function (data) {
+	$http.get('data/documentos.json').success(function (data) {
 		$scope.documentos = data;
 	});
 
@@ -146,6 +146,11 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		archivoSubido = document.myForm.archivo.value,
 		documentoNuevo = new Object(),
 		fechaDocumento = new Date();
+		documentoNuevo.peso = '50KB';
+
+		$http.post('phpConexion/documentos/subir_archivos.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
+		$scope.documentos = data;
+	});
 
 		if (document.myForm.archivo.value == '')
 		{
