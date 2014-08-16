@@ -885,6 +885,38 @@ div.margen-new:hover {
   color: #712d7b;
   font-weight: bold;
 }
+
+div.divUltimosBlogs{
+  text-align: center;
+}
+
+h1.tituloUltimosBlogs{
+  margin: 0 auto;
+  padding: 0;
+  float: none;
+}
+
+h4.tituloUltimoBlogAdentro{
+  width: 100%;
+  line-height: 1em;
+  margin-bottom: 5px;
+}
+
+div.panel-heading{
+  padding-bottom: 5px;
+}
+
+label.lblFecha{
+  float: right;
+}
+
+.panel-group .panel {
+  margin-bottom: 20px;
+}
+
+label.lblDescripcionBlogs{
+  margin-bottom: 35px;
+}
 /*************************************************** FORO HEADER ***************************************************/
 
 div.foroHeader {

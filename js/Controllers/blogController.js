@@ -11,6 +11,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.mostrarUsuarioPorCorreo = $scope.usuarioLogueado.email;
   $scope.correo = $scope.usuarioLogueado.email;
+  $scope.visible = $rootScope.usuarioLogueado.idRol == 12;
   $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
   $scope.usuarioActual = $scope.usuarioLogueado.nombre;
   $scope.usuarioActualFoto = $scope.usuarioLogueado.foto;
@@ -71,6 +72,27 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $scope.correo = $('#tags').val();
     $scope.publicacionesUsuario = [];
     $('#tags').val('');
+
+    for (var i = 0; i < $scope.publicaciones.length; i++) {
+      if($scope.publicaciones[i].autor == $scope.mostrarUsuarioPorCorreo){
+        $scope.publicacionesUsuario.push($scope.publicaciones[i]);
+      }
+    };
+
+    for (var i = 0; i < $scope.usuarios.length; i++) {
+      if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
+        $scope.usuarioActualFoto = $scope.usuarios[i].foto;
+        $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
+        return $scope.usuarioActual = $scope.usuarios[i].nombre;
+      }
+    };
+  }
+
+  $scope.mostrarBlogsEstudiantes = function(index){
+    $scope.visible = true;
+    $scope.mostrarUsuarioPorCorreo = $scope.publicaciones[index].autor;
+    $scope.correo = $scope.publicaciones[index].autor;
+    $scope.publicacionesUsuario = [];
 
     for (var i = 0; i < $scope.publicaciones.length; i++) {
       if($scope.publicaciones[i].autor == $scope.mostrarUsuarioPorCorreo){

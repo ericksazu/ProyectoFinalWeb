@@ -39,8 +39,23 @@
   <div class="row">
 
     <!-- Posts por fecha columna izquierda -->
-    <div class="col-md-3 col-responsive">
+    <div ng-show="visible" class="col-md-3 col-responsive">
       <div class="row margen-new" ng-repeat="usuario in publicacionesUsuario" data-toggle="modal" data-target=".{{'myModalPublicacionCompleta'+$index}}" ng-click="obtenerComentarios($index)" style="cursor:pointer">
+        <div class="col-md-3">
+          <div class="noticias">
+            <strong class="date">{{usuario.fecha | date:'dd/MM/yy'}}</strong>
+          </div>
+        </div>
+        <div class="col-md-9">{{usuario.tema}}</div>
+      </div>
+    </div>
+
+    <!-- Posts por fecha columna izquierda los que no sean estudiantes-->
+    <div ng-show="!visible" class="col-md-3 col-responsive">
+      <div style="text-align:center; margin-bottom:30px;">
+        <strong class="date">Entradas recientes:</strong>
+      </div>
+      <div class="row margen-new" ng-click="mostrarBlogsEstudiantes($index)" ng-repeat="usuario in publicaciones | limitTo: 10" data-toggle="modal" style="cursor:pointer">
         <div class="col-md-3">
           <div class="noticias">
             <strong class="date">{{usuario.fecha | date:'dd/MM/yy'}}</strong>
@@ -86,7 +101,7 @@
         </div>
 
         <!-- PUBLISHED -->
-        <div ng-repeat="usuario in publicacionesUsuario | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div ng-show="visible" ng-repeat="usuario in publicacionesUsuario | startFrom:currentPage*pageSize | limitTo:pageSize">
           <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
             <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
               <h4>{{usuario.tema}}</h4>
@@ -209,9 +224,35 @@
             </div>
           </div>
         </div> <!-- PUBLISHED -->
+        <div ng-show="!visible">
+          <div class="divUltimosBlogs">
+            <h1 class="tituloUltimosBlogs">Entradas recientes</h1>
+            <label class="lblDescripcionBlogs">A continuación se muestran las últimas 10 entradas en los blogs</label>
+          </div>
+          <div class="panel-group" id="accordion">
+            <div ng-repeat="blog in publicaciones | limitTo: 10" class="panel panel-default">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title tituloUltimoBlogAdentro">
+                  <a data-toggle="collapse" data-target=".{{'mostrarCollapse'+$index}}" data-parent="#accordion" href="">
+                    {{blog.tema}}
+                  </a>
+                </h4>
+                <label class="date">Autor: </label>
+                <a class="links-blog links-blog-color" ng-click="mostrarBlogsEstudiantes($index)" style="cursor:pointer">{{blog.autor}}</a>
+                <label class="date lblFecha">Fecha: {{blog.fecha | date:'dd/MM/yy'}}</label>
+              </div>
+              <div ng-class="'mostrarCollapse'+$index" class="panel-collapse collapse">
+                <div class="panel-body">
+                  {{blog.descripcionPublicacion}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Pagination -->
-        <div class="container">
+        <div ng-show="visible" class="container">
           <div class="row row-centered">
             <div class="pagination pagination-blog col-md-5">
               <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
