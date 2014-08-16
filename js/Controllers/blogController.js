@@ -68,6 +68,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   }
 
   $scope.mostrarBlogs = function(){
+    $scope.visible = true;
     $scope.mostrarUsuarioPorCorreo = $('#tags').val();
     $scope.correo = $('#tags').val();
     $scope.publicacionesUsuario = [];
