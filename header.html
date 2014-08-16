@@ -77,19 +77,6 @@
             </div>
           </div><!-- div-modal dialog -->
         </div><!-- div-modal fade -->
-
-        <!-- <div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm row">
-            <div class="modal-content col-centered cambiarfoto" data-ng-app="cambiocon">
-              <form class="cambiarfoto form-signin" role="form" id="esperar" action="phpConexion/login/cambiarFoto.php" enctype="multipart/form-data" method="post">
-                <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
-                <input type="file" id="suID" name="foto" class="suClas" />
-                <input type="hidden" id="suID" name="idUsuario" value="{{usuarioLogueado.id}}" />
-                <input type="submit" name="submit" class="btn btn-success btn-sx" />
-              </form>
-            </div>
-          </div> -->
-
         <div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm row">
             <div class="modal-content cambiarfoto">
@@ -99,25 +86,18 @@
                   <h4 class="modal-title">Escoja su nueva foto</h4>
                 </div>
                 <div class="modal-body">
-<!--                   <input type="file" name="foto" /><p>Cambiar foto</p>
- -->                  <input type="file" name="foto" class="filestyle" data-buttonText="Cambiar foto">
+                 <input type="file" name="foto" class="filestyle" data-buttonText="Cambiar foto">
                   <input type="hidden" name="idUsuario" value="{{usuarioLogueado.id}}" />
                 </div>
                 <div class="modal-footer">
                   <input type="submit" name="submit" class="btn btn-success" value="Guardar los cambios"></input>
                 </div>
-              </form>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-      </div><!-- div-cambiarfoto -->
-    </div><!-- div-collapse -->
-</div><!-- div-container -->
-</nav>
+                </form>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </div><!-- div-cambiarfoto -->
+      </div><!-- div-collapse -->
+    </div><!-- div-container -->
+  </nav>
 </div>
-<script>
-$(".salir").on('click', function() {
-  $('body').load();
-});
-</script>
