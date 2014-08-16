@@ -19,7 +19,8 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$(".errorArchivo").addClass('hide');
 
-	$http.get('data/documentos.json').success(function (data) {
+    /*aqui llamo subir archivos*/
+	$http.get('phpConexion/documentos/subir_archivos.php').success(function (data) {
 		$scope.documentos = data;
 	});
 
