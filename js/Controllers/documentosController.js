@@ -20,9 +20,9 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	$http.get('data/documentos.json').success(function (data) {
+	/*$http.get('data/documentos.json').success(function (data) {
 		$scope.documentos = data;
-	});
+	});*/
 
 	$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;

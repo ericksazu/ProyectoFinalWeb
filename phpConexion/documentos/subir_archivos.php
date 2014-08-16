@@ -2,11 +2,7 @@
 
 	include_once "../conexion.php";
 
-
-
-
-
-	$data = json_decode(file_get_contents("php://input"));
+    $data = json_decode(file_get_contents("php://input"));
 
 	$tema = $data->tema;
 	$titulo = $data->titulo;
