@@ -9,7 +9,7 @@ $id = $_POST['idUsuario'];
               
       $file_name = $_FILES["foto"]["name"];
       $tmp_name = $_FILES["foto"]["tmp_name"];
-      $folder = "upload_files";
+      $folder = "fotos_subidas";
       $destination =  $folder."/".$file_name;
       $file_info = pathinfo( $file_name) ;
       $extension =  $file_info['extension'] ;
@@ -24,37 +24,33 @@ $id = $_POST['idUsuario'];
                     {
                         if( move_uploaded_file( $tmp_name , $destination ) )
                         {
-                            echo "file uploaded !!!!";
-                            // mysqli_query($conexion,"UPDATE Usuario SET foto='$destination' WHERE idUsuario=3");
+                            echo "La foto se subio con exito!";
                             header("Location: ../../#/secciones");
                                 
                         }   // close move_uploaded_file( $tmp_name , $destination )
                         else
                         {
-                            echo "file not moved !!!";
+                            echo "La foto no se pudo mover!";
                         }
                     } // close mkdir( $folder )
                     else
                     {
-                        echo " folder not created!!!!";
+                        echo " El folder no fue creado!";
                                 }       
                 }// close !is_dir ( $folder ) 
                 else if( move_uploaded_file( $tmp_name , $destination ) )
                   {
-                    // echo "file uploadededededed !!!!";
-                    // mysqli_query($conexion,"UPDATE Usuario SET foto='$destination' WHERE idUsuario=3");
                     header("Location: ../../#/secciones");
-                                
                   }
             }
             else  // close $extension == "jpg" || $extension == "gif" || $extension == "jpeg" || $extension == "png"
               {
-                echo "only upload jpg , gif , jpeg , png";
+                echo "Solo se cargarn archivos jpg , gif , jpeg , png";
               }
           } // close $_FILES["upload"]["size"] /1024 < 1024
         else
         {
-          echo "file can't be uploaded file size to big";
+          echo "La foto no se puede cargar es muy pesada";
         }
 }//close isset ($_POST["submit"]
 
