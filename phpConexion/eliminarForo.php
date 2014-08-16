@@ -4,12 +4,11 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 $data = json_decode(file_get_contents("php://input"));
-$idForo2 = $data->idForo2;
-$estado = $data->estado;
+$id = $data->id;
 
 
 
-$resultado = cerrarForo($conexion, $idForo2, $estado);
+$resultado = eliminarForo($conexion, $id);
 
 
 mysqli_close($conexion);

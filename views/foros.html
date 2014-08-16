@@ -38,7 +38,7 @@
                   <span>Respuestas</span>
                 </td>
                 <td class="col-md-3">
-                  <a href="#/foro-topic/{{tema.idForo}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a>
+                  <a href="#/foro-topic/{{tema.idForo}}/{{tema.estado}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a><span class="hidden" id="foroCerrado">Foro cerrado</span>
                   <span>{{tema.descripcion}}</span>
                 </td>
                 <td class="col-md-1 text-center">
@@ -127,7 +127,7 @@
                           <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" ng-click="editTema($index)" type"submit" ng-disabled="formEditarTema.$invalid">Agregar datos</button>
                         </div>
                            <div class="divBtnCerrar">
-                          <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo()">Cerrar foro</button>
+                          <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
                         </div>
                       </div>
                     </form>

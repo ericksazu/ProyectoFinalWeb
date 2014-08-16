@@ -41,34 +41,41 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 			var id = $scope.topics[index].idForo;
 			console.log(id);
 
-			$http.post('phpConexion/eliminarForo.php', {'idForo2': $scope.idForo}).success(function(data, status) {
+			$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
 				console.log("inserted good");
 				$scope.algo = data;
 			}).error(function(data, status) {
 				console.log("inserted bad");
 			});
-			$scope.topics.splice(index,1);
+			
+
 		}
 	});
 
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
-
+	
 	//$scope.topics = temas;
 
 
 
 	
-	$scope.cerrarForo = function($idForo){
+	$scope.cerrarForo = function(index){
 		var estado = 1;
-		console.log($index);
+		console.log(index);
+		var id = $scope.topics[index].idForo;
+		console.log(id);
 		console.log(estado);
-		$http.post('phpConexion/cerrarForo.php', {'estado': estado, 'idForo2': $scope.idForo}).success(function(data, status) {
+		
+		$http.post('phpConexion/cerrarForo.php', {'idForo2': id, 'estado': estado}).success(function(data, status) {
 			console.log("inserted good");
 			$scope.algo = data;
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+		$("#foroCerrado").removeClass('hidden');
+		$("#foroCerrado").addClass('visible');
 
 	};
 	
@@ -93,6 +100,14 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 	$scope.comments = [];
 
 	$scope.idForo = $routeParams.idForo;
+
+	$scope.estado = $routeParams.estado;
+
+
+	if($scope.estado == 1){
+		$("#btnComentar").addClass('hidden');	
+	}
+	
 
 
 	$scope.currentPage = 0;

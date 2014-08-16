@@ -23,7 +23,7 @@
         }).when("/foro", {
             controller: "foroController",
             templateUrl: "views/foros.html"
-        }).when("/foro-topic/:idForo", {
+        }).when("/foro-topic/:idForo/:estado", {
             controller: "ForoTopicController",
             templateUrl: "views/foro-topic.html"
         }).when("/editar", {

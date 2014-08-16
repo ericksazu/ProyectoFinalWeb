@@ -58,13 +58,20 @@ function obtenerComentarios($conexion, $id){
 
 function agregarComentarios($conexion, $id, $descripcion, $idUsuario){
 	$query = "CALL agregarComentarioForo('$descripcion', $idUsuario, $id)";
-echo $query;
+
 	return BDQuery($query, $conexion);
 }
 
-function cerrarForo($conexion, $estado, $idForo2){
+function cerrarForo($conexion, $idForo2, $estado){
 
-	$query = "CALL cerrarForo($estado, $idForo2)";
+	$query = "CALL cerrarForo($idForo2, $estado)";
+
+	return BDQuery($query, $conexion);
+}
+
+function eliminarForo($conexion,$id){
+	$query = "CALL eliminarForo($id)";
+	
 	return BDQuery($query, $conexion);
 }
 
