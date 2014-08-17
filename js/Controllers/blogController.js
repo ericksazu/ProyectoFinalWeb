@@ -21,9 +21,9 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   $('.pagination').hide();
   $('.btn-publicacion').hide();
 
-  $http.get('data/usuario.json').success(function(data) {
+  /*$http.get('data/usuario.json').success(function(data) {
     $scope.datos = data;
-  });
+  });*/
 
   $http.get('phpConexion/login/usuarios.php').success(function(data) {
     $scope.usuarios = data;
@@ -69,24 +69,101 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.mostrarBlogs = function(){
     $scope.visible = true;
-    $scope.mostrarUsuarioPorCorreo = $('#tags').val();
     $scope.correo = $('#tags').val();
-    $scope.publicacionesUsuario = [];
-    $('#tags').val('');
+    $scope.mostrarUsuarioPorCorreo = $('#tags').val();
 
-    for (var i = 0; i < $scope.publicaciones.length; i++) {
-      if($scope.publicaciones[i].autor == $scope.mostrarUsuarioPorCorreo){
-        $scope.publicacionesUsuario.push($scope.publicaciones[i]);
+    if($scope.correo === ''){
+      if($rootScope.usuarioLogueado.idRol != 12 && $scope.visible && $scope.usuarioActual == $scope.usuarioLogueado.nombre){
+        //alert('esta vacio');
+        $('#alertVacio').removeClass('hidden');
+          setTimeout(function() {
+            $('#alertVacio').addClass('hidden');
+        }, 3000);
+        $scope.visible = !$scope.visible;
+        $('#tags').val('');
+        return;
       }
-    };
+      if($rootScope.usuarioLogueado.idRol != 12 && $scope.visible && $scope.usuarioActual != $scope.usuarioLogueado.nombre){
+        //alert('esta vacio');
+        $('#alertVacio').removeClass('hidden');
+          setTimeout(function() {
+            $('#alertVacio').addClass('hidden');
+        }, 3000);
+        $('#tags').val('');
+        return;
+      }else{
+        //alert('esta vacio');
+        $('#alertVacio').removeClass('hidden');
+          setTimeout(function() {
+            $('#alertVacio').addClass('hidden');
+        }, 3000);
+        $('#tags').val('');
+        return;
+      }
+      if($rootScope.usuarioLogueado.idRol == 12){
+        //alert('esta vacio');
+       $('#alertVacio').removeClass('hidden');
+          setTimeout(function() {
+            $('#alertVacio').addClass('hidden');
+        }, 3000);
+        $('#tags').val('');
+        return;
+      }
 
-    for (var i = 0; i < $scope.usuarios.length; i++) {
-      if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
-        $scope.usuarioActualFoto = $scope.usuarios[i].foto;
-        $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
-        return $scope.usuarioActual = $scope.usuarios[i].nombre;
+    }else{
+      if($scope.correo != ''){
+        for (var i = 0; i < $scope.publicaciones.length; i++) {
+          if($scope.publicaciones[i].autor == $scope.correo){
+            //alert('el usuario existe');
+            $('#tags').val('');
+            $scope.publicacionesUsuario = [];
+            for (var i = 0; i < $scope.publicaciones.length; i++) {
+              if($scope.publicaciones[i].autor == $scope.mostrarUsuarioPorCorreo){
+                $scope.publicacionesUsuario.push($scope.publicaciones[i]);
+              }
+            };
+
+            for (var i = 0; i < $scope.usuarios.length; i++) {
+              if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
+                $scope.usuarioActualFoto = $scope.usuarios[i].foto;
+                $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
+                return $scope.usuarioActual = $scope.usuarios[i].nombre;
+              }
+            };
+          }
+        };
       }
-    };
+      if($scope.correo != ''){
+        if($rootScope.usuarioLogueado.idRol != 12 && $scope.usuarioActual == $scope.usuarioLogueado.nombre){
+          //alert('el usuario no existe');
+          $('#alertNoUsuario').removeClass('hidden');
+          setTimeout(function() {
+              $('#alertNoUsuario').addClass('hidden');
+          }, 3000);
+          $scope.visible = !$scope.visible;
+          $('#tags').val('');
+          return;
+        }
+        if($rootScope.usuarioLogueado.idRol != 12 && $scope.usuarioActual != $scope.usuarioLogueado.nombre){
+          //alert('el usuario no existe');
+          $('#alertNoUsuario').removeClass('hidden');
+          setTimeout(function() {
+              $('#alertNoUsuario').addClass('hidden');
+          }, 3000);
+          $('#tags').val('');
+          return;
+        }
+        if($rootScope.usuarioLogueado.idRol == 12){
+          //alert('el usuario no existe');
+          $('#alertNoUsuario').removeClass('hidden');
+          setTimeout(function() {
+              $('#alertNoUsuario').addClass('hidden');
+          }, 3000);
+          $('#tags').val('');
+          return;
+        }
+      }
+    }
   }
 
   $scope.mostrarBlogsEstudiantes = function(index){

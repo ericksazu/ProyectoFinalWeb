@@ -6,7 +6,7 @@
     <div class="col-md-3 well borde-perfil">
       <div class="datosPerfil">
         <a class="enlace">
-          <img src="{{usuarioActualFoto}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
+          <img src="phpConexion/login/{{usuarioActualFoto}}" alt="Avatar" class="img-circle center-block borde-img-perfil" width="140" height="140">
         </a>
         <p class="name text-center enlace">{{usuarioActual}}</p>
       </div>
@@ -26,7 +26,7 @@
             </div>
             <form class="navbar-form navbar-left centered navbar-form-blog" role="search">
               <div class="form-group ui-widget">
-                <input id="tags" type="text" ng-click="buscarNombres()" class="form-control inputForoHeader center-block" placeholder="Búsqueda por correo de Cenfotec">
+                <input id="tags" type="email" ng-click="buscarNombres()" class="form-control inputForoHeader center-block" placeholder="Búsqueda por correo de Cenfotec" required>
               </div>
               <span type="button" id="searchGlyph" class="glyphicon glyphicon-search" ng-click="mostrarBlogs()"></span>
             </form>
@@ -35,6 +35,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="row">
 
@@ -68,6 +69,14 @@
     <!-- Nueva publicación -->
     <div class="col-md-5 col-responsive">
       <div class="distancia-publicacion-blog">
+
+        <div id="alertNoUsuario" class="alert alert-danger hidden" role="alert">
+          <strong>¡Usuario no encontrado!</strong> Revise que el correo sea correcto.
+        </div>
+        <div id="alertVacio" class="alert alert-warning hidden" role="alert">
+          <strong>¡Ningún dato ingresado!</strong> Ingrese un correo para buscar.
+        </div>
+
         <div>
           <!-- Button trigger modal -->
           <button ng-show="visibleBlog" class="btn btn-default btn-publicacion col-md-offset-4" data-toggle="modal" data-target="#modalNuevaPublicacion">Nueva publicación</button>
@@ -227,7 +236,7 @@
         <div ng-show="!visible">
           <div class="divUltimosBlogs">
             <h1 class="tituloUltimosBlogs">Entradas recientes</h1>
-            <label class="lblDescripcionBlogs">A continuación se muestran las últimas 10 entradas en los blogs</label>
+            <label class="lblDescripcionBlogs">A continuación se muestran las entradas recientes en los blogs</label>
           </div>
           <div class="panel-group" id="accordion">
             <div ng-repeat="blog in publicaciones | limitTo: 10" class="panel panel-default">
