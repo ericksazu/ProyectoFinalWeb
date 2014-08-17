@@ -56,5 +56,6 @@ $id = $_POST['idUsuario'];
 
 mysqli_query($conexion,"UPDATE Usuario SET foto='$destination' WHERE idUsuario='$id'");
 
+mysqli_close($conexion);
 
 ?>
