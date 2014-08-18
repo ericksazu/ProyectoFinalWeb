@@ -38,7 +38,7 @@
                   <span>Respuestas</span>
                 </td>
                 <td class="col-md-3">
-                  <a href="#/foro-topic/{{tema.idForo}}/{{tema.estado}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a><span class="hidden" id="foroCerrado">Foro cerrado</span>
+                  <a href="#/foro-topic/{{tema.idForo}}/{{tema.estado}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a><span ng-show="tema.estado==1" id="foroCerrado">Foro cerrado</span>
                   <span>{{tema.descripcion}}</span>
                 </td>
                 <td class="col-md-1 text-center">

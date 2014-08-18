@@ -26,7 +26,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
 		$scope.topics = data;
-		console.log($scope.topics);
+		console.log($scope.topics.estado);
 
 		$scope.numberOfPagesTemas = function(){
 			return Math.ceil($scope.topics.length/$scope.pageSize);
@@ -58,6 +58,8 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	//$scope.topics = temas;
 
 
+
+	
 
 	
 	$scope.cerrarForo = function(index){
