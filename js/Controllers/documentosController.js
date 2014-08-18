@@ -20,10 +20,9 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	/*$http.post('phpConexion/documentos/mostrar.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
-		$scope.documentos = data;
-	});*/
-
+	$http.get('data/documentos.json').success(function(data) {
+    $scope.documentos = data;
+});
 	$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;
 		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
