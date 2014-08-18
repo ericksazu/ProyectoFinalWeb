@@ -20,7 +20,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	/*$http.get('data/documentos.json').success(function (data) {
+	/*$http.post('phpConexion/documentos/mostrar.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
 		$scope.documentos = data;
 	});*/
 
@@ -147,6 +147,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		documentoNuevo = new Object(),
 		fechaDocumento = new Date();
 		documentoNuevo.peso = '50KB';
+		
 
 		$http.post('phpConexion/documentos/subir_archivos.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
 		$scope.documentos = data;
@@ -171,6 +172,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			documentoNuevo.peso = '50KB';
 			documentoNuevo.archivo = archivoSubido;
 
+   
 			$scope.documentos.push(documentoNuevo);
 			$('#myModal').modal('hide');
 
@@ -195,8 +197,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			
 		}
 		return;
-		
-
+	
 		
 
 
@@ -207,7 +208,6 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	};
 
 	$scope.ver = 1;
-
 
 
 });
