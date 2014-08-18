@@ -75,4 +75,16 @@ function eliminarForo($conexion,$id){
 	return BDQuery($query, $conexion);
 }
 
+function editarInfoForo($conexion,$id){
+	$query = "CALL editarInfoForo($id)";
+	
+	return BDQuery($query, $conexion);
+}
+
+function obtenerTemaForo($conexion,$id){
+	$query = "CALL obtenerTemaForo($id)";
+	
+	return BDQuery($query, $conexion);
+}
+
 ?>

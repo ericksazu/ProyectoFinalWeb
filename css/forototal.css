@@ -167,6 +167,7 @@
   border-width: 2px;
   border-color: #712d7b;
   margin: 0 auto;
+  max-height: 60px;
 }
 /* line 153, ../sass/style.scss */
 .forototal .tema-foro > tbody > tr > td.comment-content {

@@ -58,7 +58,15 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	//$scope.topics = temas;
 
 
-
+	$scope.editarForo = function(index){
+		var id = $scope.topics[index].idForo;
+		$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.informacion = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+	}	
 	
 
 	
@@ -100,6 +108,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 angular.module('module').controller('ForoTopicController', function($scope, $routeParams,$http, $rootScope) {
 	$scope.comments = [];
+	$scope.usuarios =[];
 
 	$scope.idForo = $routeParams.idForo;
 
@@ -110,6 +119,16 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 		$("#btnComentar").addClass('hidden');	
 	}
 	
+	 $http.get('phpConexion/login/usuarios.php').success(function(data) {
+    $scope.usuarios = data;
+	 });
+
+	 $http.post('phpConexion/obtenerTemaForo.php', {'id': $scope.idForo}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.foro = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
 
 
 	$scope.currentPage = 0;
