@@ -11,7 +11,7 @@
         </div>
         <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
           <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar">
+            <input type="text" class="form-control inputForoHeader" placeholder="Buscar" id="tags" ng-click="buscarNombres()">
           </div>
           <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
         </form>
@@ -85,7 +85,7 @@
                 <div class="modal-body clearfix">
                   <div class="modal-izq col-md-5">
 
-                    <form class="form-horizontal" role="form" name="formEditarTema" novalidate>
+                    <form class="form-horizontal" role="form" id="formModalEditar" name="formEditarTema" novalidate>
                       <div class="form-group form-group-edit-foro">
                         <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                         <div class="col-sm-10">
@@ -103,7 +103,7 @@
                       <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
                         <div class="col-sm-10">
-                          <input name="estudiante" type="email" class="form-control" id="inputNombreForo" placeholder="Estudiante" ng-model="email" required>
+                          <input name="estudiante" type="email" class="form-control" id="tags"  placeholder="Estudiante" ng-model="email" ng-click="buscarNombresModal($index)" required>
                           <span class="errorForo" ng-show="formEditarTema.estudiante.$error.required || formEditarTema.estudiante.$error.email">Ingrese un email válido</span>
                         </div>
 

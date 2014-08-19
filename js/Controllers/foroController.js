@@ -20,6 +20,23 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		
 	}
 
+	$http.get('phpConexion/login/usuarios.php').success(function(data) {
+		$scope.usuarios = data;
+		$scope.usuariosForo = [];
+
+		for (var i = 0; i < $scope.usuarios.length; i++) {
+			if($scope.usuarios[i].nivelUniversitario == 'Estudiante'){
+				$scope.usuariosForo.push($scope.usuarios[i].email);
+			}
+		};
+	});
+
+	$scope.buscarNombres = function(){
+		console.log('entra al buscador');
+		$('#tags').autocomplete({
+			source: $scope.usuariosForo
+		});
+	}
 
 
 
@@ -109,6 +126,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 angular.module('module').controller('ForoTopicController', function($scope, $routeParams,$http, $rootScope) {
 	$scope.comments = [];
 	$scope.usuarios =[];
+	$scope.usuario = [];
 
 	$scope.idForo = $routeParams.idForo;
 
@@ -119,16 +137,16 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 		$("#btnComentar").addClass('hidden');	
 	}
 	
-	 $http.get('phpConexion/login/usuarios.php').success(function(data) {
-    $scope.usuarios = data;
-	 });
+	$http.get('phpConexion/login/usuarios.php').success(function(data) {
+		$scope.usuarios = data;
+	});
 
-	 $http.post('phpConexion/obtenerTemaForo.php', {'id': $scope.idForo}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.foro = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
+	$http.post('phpConexion/obtenerTemaForo.php', {'id': $scope.idForo}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.foro = data;
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
 
 
 	$scope.currentPage = 0;
@@ -178,7 +196,7 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 			});
 
 
-angular.module('module').controller('AgregarTema', function ($scope) {
+angular.module('module').controller('AgregarTema', function ($http, $scope) {
 	$scope.message = '';
 	$scope.respuestas = 0;
 	$scope.titulo = '';
@@ -190,28 +208,16 @@ angular.module('module').controller('AgregarTema', function ($scope) {
 	$scope.fechaInicio = '';
 	$scope.fechaCierre = '';
 
-	$scope.nuevoTema = function () {
-
-		temas.unshift({
-			message: $scope.message,
-			respuestas: $scope.respuestas,
-			titulo: $scope.titulo,
-			contenido: 'Este es un tema para la clase de ' + $scope.titulo + ' del primer cuatrimestre 2014',
-			vistas: $scope.vistas,
-			mensaje: $scope.mensaje,
-			estudiantes: $scope.estudiantes,
-			show: $scope.show,
-			fechaInicio: $scope.fechaInicio,
-			fechaCierre: $scope.fechaCierre
+	
+	$scope.buscarNombresModal = function(index){
+		console.log('entra al buscador');
+		$('#tags2').autocomplete({
+			source: $scope.usuariosForo
 		});
-		/*console.log(temas);*/
-		$scope.message = '';
-		$scope.titulo = '';
-		$scope.contenido = '';
-		$scope.estudiantes = [];
-		$scope.fechaInicio = '';
-		$scope.fechaCierre = '';
+		//$('#tags2').autocomplete('option','appendTo','#prueba');
 	}
+	
+
 });
 
 angular.module('module').controller('EditarTema', function ($scope, $http, $route) {
