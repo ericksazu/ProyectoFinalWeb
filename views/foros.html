@@ -85,26 +85,26 @@
                 <div class="modal-body clearfix">
                   <div class="modal-izq col-md-5">
 
-                    <form class="form-horizontal" role="form" id="formModalEditar" name="formEditarTema" novalidate>
+                    <form class="form-horizontal" role="form" id="formModalEditar" ng-submit="editTema($index)" name="editForm" novalidate>
                       <div class="form-group form-group-edit-foro">
                         <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                         <div class="col-sm-10">
                           <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="informacion.tema" placeholder="Tema" required>
-                          <span class="errorForo" ng-show="formEditarTema.titulo.$error.required">Ingrese un dato correcto</span>
+                          <span class="errorForo" ng-show="editForm.titulo.$error.required">Ingrese un dato correcto</span>
                         </div>
                       </div>
                        <div class="form-group form-group-edit-foro">
                         <label for="inputDescripcionForo" class="col-md-6 control-label">Descripción</label>
                         <div class="col-sm-10">
                           <input name="descripcion" type="name" class="form-control" id="inputDescripcionForo" ng-model="informacion.descripcion" placeholder="Descripción" required>
-                          <span class="errorForo" ng-show="formEditarTema.titulo.$error.required">Ingrese una descripción</span>
+                          <span class="errorForo" ng-show="editForm.descripcion.$error.required">Ingrese una descripción</span>
                         </div>
                       </div>
                       <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
                         <div class="col-sm-10">
-                          <input name="estudiante" type="email" class="form-control" id="tags"  placeholder="Estudiante" ng-model="email" ng-click="buscarNombresModal($index)" required>
-                          <span class="errorForo" ng-show="formEditarTema.estudiante.$error.required || formEditarTema.estudiante.$error.email">Ingrese un email válido</span>
+                          <input name="email" type="email" class="form-control" id="tags2"  placeholder="Email" ng-model="email" ng-click="buscarNombresModal($index)" required>
+                          <span class="errorForo" ng-show="editForm.email.$error.required || editForm.email.$error.email">Ingrese un email válido</span>
                         </div>
 
                       </div>
@@ -112,19 +112,20 @@
                         <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
                         <div class="col-sm-10">
                           <input name="fechaInicio" type="date" class="form-control" id="inputFechaInicio" ng-model="informacion.fecha_creacion" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
-                          <span class="errorForo" ng-show="formEditarTema.fechaInicio.$error.required">Ingrese una fecha válida</span>
+                          <span class="errorForo" ng-show="editForm.fechaInicio.$error.required">Ingrese una fecha válida</span>
                         </div>
                       </div>
+                      {{editfForm}}
                       <div class="form-group last-edit">
                         <label for="inputNombreForo" class="col-md-6 control-label">Fecha cierre</label>
                         <div class="col-sm-10">
-                          <input name="fechaCierre" type="date" class="form-control" id="inputFechaCierre" ng-model="informacion.fecha_cierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
-                          <span class="errorForo" ng-show="formEditarTema.fechaCierre.$error.required">Ingrese una fecha válida</span>
+                          <input name="fecha_cierre" type="date" class="form-control" id="inputFechaCierre" ng-model="informacion.fecha_cierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                          <span class="errorForo" ng-show="editForm.fecha_cierre.$error.required">Ingrese una fecha válida</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="divBtnAgregar">
-                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" ng-click="editTema($index)" type"submit" ng-disabled="formEditarTema.$invalid">Agregar datos</button>
+                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Agregar datos</button>
                         </div>
                            <div class="divBtnCerrar">
                           <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>

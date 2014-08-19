@@ -5,6 +5,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	$scope.topics = [];
 	$scope.correoUsuario = $scope.usuarioLogueado.email;
+	$scope.informacion = {};
 
 	
 
@@ -76,47 +77,72 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 
 	$scope.editarForo = function(index){
-		var id = $scope.topics[index].idForo;
-		$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.informacion = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
-	}	
-	
-
-	
-	$scope.cerrarForo = function(index){
-		var estado = 1;
-		console.log(index);
-		var id = $scope.topics[index].idForo;
-		console.log(id);
-		console.log(estado);
-		
-		$http.post('phpConexion/cerrarForo.php', {'idForo2': id, 'estado': estado}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.algo = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
-
-		$("#foroCerrado").removeClass('hidden');
-		$("#foroCerrado").addClass('visible');
-
-	};
-	
-
-
-	$scope.users = usuarios;
-	$scope.trendings = trendingTopics;
-	$scope.titulo = 'editar';
-
-	
+		$scope.buscarNombresModal = function(index){
+			console.log('entra al buscador');
+			$('#tags2').autocomplete({
+				source: $scope.usuariosForo
+			});
+		//$('#tags2').autocomplete('option','appendTo','#prueba');
+		};
+	var id = $scope.topics[index].idForo;
+	$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.informacion = data;
+		console.log($scope.informacion);
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
+}	
 
 
 
-	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
+$scope.cerrarForo = function(index){
+	var estado = 1;
+	console.log(index);
+	var id = $scope.topics[index].idForo;
+	console.log(id);
+	console.log(estado);
+
+	$http.post('phpConexion/cerrarForo.php', {'idForo2': id, 'estado': estado}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.algo = data;
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
+
+	$("#foroCerrado").removeClass('hidden');
+	$("#foroCerrado").addClass('visible');
+
+};
+
+$scope.nombreEstudiante = null;
+
+$scope.editTema = function (index) {
+	$scope.topicCurrentIndex = index;
+
+	console.log('entra a editar', $scope.informacion);
+	$http.post('phpConexion/agregarForo.php', {'tema': $scope.informacion.tema,'descripcion': $scope.informacion.descripcion, 'fecha_creacion': $scope.informacion.fecha_creacion, 'fecha_cierre': $scope.informacion.fecha_cierre}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.algo = data;
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
+
+
+
+};
+
+
+
+$scope.users = usuarios;
+$scope.trendings = trendingTopics;
+$scope.titulo = 'editar';
+
+
+
+
+
+$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
 
 
 
@@ -230,33 +256,10 @@ angular.module('module').controller('EditarTema', function ($scope, $http, $rout
 
 
 	$scope.topics = temas;
-	$scope.nombreEstudiante = null;
-
-	$scope.editTema = function (index) {
-		$scope.topicCurrentIndex = index;
-		
-
-		$http.post('phpConexion/agregarForo.php', {'tema': $scope.tema,'descripcion': $scope.descripcion, 'fecha_creacion': $scope.fecha_creacion, 'fecha_cierre': $scope.fecha_cierre}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.algo = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
-
-		/*$http.post('phpConexion/agregarEstudianteForo.php', {'idForo':,'email': $scope.email}).success(function(data, status) {
-			console.log("inserted good");
-			$scope.algo = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});*/
-
-	//$('.modal-backdrop').remove();
-	//$route.reload();
-
-};
+	
 
 
-$scope.deseleccionarEliminado = function (topicIndex, index) {
+	$scope.deseleccionarEliminado = function (topicIndex, index) {
 		//$scope.topicCurrentIndex = index;
 		$scope.topics[topicIndex].estudiantes[index].eliminado = !$scope.topics[topicIndex].estudiantes[index].eliminado;
 	}

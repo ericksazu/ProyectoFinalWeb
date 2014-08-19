@@ -1242,10 +1242,6 @@ input[type=checkbox] {
 }
 /****** tabla***/
 
-.ui-autocomplete {
-  position: absolute;
-  top: 0;
-  left: 0;
-  cursor: default;
-  z-index: 1100;
+.ui-autocomplete, .ui-front, .ui-menu, .ui-widget, .ui-widget-content{
+  z-index: 11000000000 !important;
 }
