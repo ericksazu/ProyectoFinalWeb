@@ -236,6 +236,14 @@ angular.module('module').controller('EditarTema', function ($scope, $http, $rout
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+		/*$http.post('phpConexion/agregarEstudianteForo.php', {'idForo':,'email': $scope.email}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});*/
+
 	//$('.modal-backdrop').remove();
 	//$route.reload();
 

@@ -87,4 +87,9 @@ function obtenerTemaForo($conexion,$id){
 	return BDQuery($query, $conexion);
 }
 
+function agregarEstudianteForo($conexion,$idForo, $email){
+	$query = "CALL agregarEstudianteForo($idForo, $email)";
+	
+	return BDQuery($query, $conexion);
+}
 ?>

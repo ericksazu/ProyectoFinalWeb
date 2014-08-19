@@ -46,7 +46,7 @@
                   <span>Vistas</span>
                 </td>
                 <td class="col-md-2">
-                  <span class="last-message">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
+                  <span class="last-message last-message-style">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
 
                   <a ng-show="visible" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
                   <div class="modal fade bs-example-modal-sm{{$index}}" id="myModalEliminarTema" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -103,7 +103,7 @@
                       <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
                         <div class="col-sm-10">
-                          <input name="estudiante" type="email" class="form-control" id="inputNombreForo" placeholder="Estudiante" ng-model="nombreEstudiante" required>
+                          <input name="estudiante" type="email" class="form-control" id="inputNombreForo" placeholder="Estudiante" ng-model="email" required>
                           <span class="errorForo" ng-show="formEditarTema.estudiante.$error.required || formEditarTema.estudiante.$error.email">Ingrese un email válido</span>
                         </div>
 
