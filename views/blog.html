@@ -1,5 +1,5 @@
  <div id="loading"></div>
-<div class="container" ng-controller="blogController">
+<div class="container" ng-controller="blogController" style="overflow-x: hidden;">
   <div class="row">
 
     <!--HEADER-->
@@ -110,129 +110,132 @@
         </div>
 
         <!-- PUBLISHED -->
-        <div ng-show="visible" ng-repeat="usuario in publicacionesUsuario | startFrom:currentPage*pageSize | limitTo:pageSize">
-          <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
-            <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
-              <h4>{{usuario.tema}}</h4>
-              <div class="ordenar-links margen-info">
-                <span class="links-blog">{{usuarioActual}} /</span>
-                <span class="links-blog">{{usuario.fecha | date:'dd/MM/yy'}}</span>
+        <div style="height: 710px; overflow-y: scroll;">
+          <div ng-show="visible" ng-repeat="usuario in publicacionesUsuario"> <!-- | startFrom:currentPage*pageSize | limitTo:pageSize" -->
+            <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
+              <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
+                <h4>{{usuario.tema}}</h4>
+                <div class="ordenar-links margen-info">
+                  <span class="links-blog">{{usuarioActual}} /</span>
+                  <span class="links-blog">{{usuario.fecha | date:'dd/MM/yy'}}</span>
+                </div>
+              </div>
+              <div class="contenido-blog clearfix">
+                <p>{{usuario.descripcionPublicacion | limitTo:200}}...</p>
+                <div class="ordenar-links distancia-links-blog margen-nav">
+                  <ul class="navigator navigator-resposivo">
+                    <li>
+                      <a class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalComentar'+$index}}" style="cursor:pointer">Comentario</a>
+                    </li>
+                    <li class="no-margin-right">
+                      <!-- Button trigger modal editar publicación -->
+                      <a ng-show="visibleBlog" class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
+                    </li>
+                    <li>
+                      <a ng-click="compartirRedes()" id="facebook" href="" data-type="facebook" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <!-- <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a> -->
+                    </li>
+                    <li>
+                      <a ng-click="compartirRedes()" id="googleplus" href="" data-type="googleplus" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <!-- <a href="https://plus.google.com/" class="ir sprite" id="googleplus">Google+</a> -->
+                    </li>
+                    <li>
+                      <a ng-click="compartirRedes()" id="twitter" href="" data-type="twitter" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <!-- <a href="https://twitter.com/" class="ir sprite" id="twitter">Twitter</a> -->
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="contenido-blog clearfix">
-              <p>{{usuario.descripcionPublicacion | limitTo:200}}...</p>
-              <div class="ordenar-links distancia-links-blog margen-nav">
-                <ul class="navigator navigator-resposivo">
-                  <li>
-                    <a class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalComentar'+$index}}" style="cursor:pointer">Comentario</a>
-                  </li>
-                  <li class="no-margin-right">
-                    <!-- Button trigger modal editar publicación -->
-                    <a ng-show="visibleBlog" class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
-                  </li>
-                  <li>
-                    <a ng-click="compartirRedes()" id="facebook" href="" data-type="facebook" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
-                    <!-- <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a> -->
-                  </li>
-                  <li>
-                    <a ng-click="compartirRedes()" id="googleplus" href="" data-type="googleplus" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
-                    <!-- <a href="https://plus.google.com/" class="ir sprite" id="googleplus">Google+</a> -->
-                  </li>
-                  <li>
-                    <a ng-click="compartirRedes()" id="twitter" href="" data-type="twitter" data-url="http://sonnyt.com/prettySocial" data-description="{{usuario.descripcionPublicacion}}" data-via="sonnyt" class="prettySocial ir sprite"></a>
-                    <!-- <a href="https://twitter.com/" class="ir sprite" id="twitter">Twitter</a> -->
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
-          <!-- Modal Editar Publicación -->
-          <div class="modal fade" ng-class="'myModalEditarPublicacion'+$index" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header margen-modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Editar publicación</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="body">
-                    <label for="tittle" style="width:70%">Tema
-                      <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.tema">
-                    </label>
-                    <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.descripcionPublicacion"></textarea>
+            <!-- Modal Editar Publicación -->
+            <div class="modal fade" ng-class="'myModalEditarPublicacion'+$index" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header margen-modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Editar publicación</h4>
                   </div>
-                </div>
-                <div class="modal-footer margen-modal-footer">
-                  <button type="button" class="btn" data-dismiss="modal" ng-click="guardarTema($index)">Aceptar</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <div class="modal-body">
+                    <div class="body">
+                      <label for="tittle" style="width:70%">Tema
+                        <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.tema">
+                      </label>
+                      <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.descripcionPublicacion"></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer margen-modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal" ng-click="guardarTema($index)">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Modal para ver publicación completa -->
-          <div class="modal fade" ng-class="'myModalPublicacionCompleta'+$index" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header margen-modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">{{usuario.tema}}</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="body">
-                    <p style="word-wrap: break-word;">{{usuario.descripcionPublicacion}}</p>
+            <!-- Modal para ver publicación completa -->
+            <div class="modal fade" ng-class="'myModalPublicacionCompleta'+$index" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header margen-modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{usuario.tema}}</h4>
                   </div>
-                  <div class="commment-appears">
-                    <p class="center">Comentarios</p>
-                    <ul>
-                      <li style="word-wrap: break-word;" ng-repeat="comentario in comentarios">{{comentario.descripcion}}</li>
-                    </ul>
+                  <div class="modal-body">
+                    <div class="body">
+                      <p style="word-wrap: break-word;">{{usuario.descripcionPublicacion}}</p>
+                    </div>
+                    <div class="commment-appears">
+                      <p class="center">Comentarios</p>
+                      <ul>
+                        <li style="word-wrap: break-word;" ng-repeat="comentario in comentarios">{{comentario.descripcion}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="modal-footer margen-modal-footer">
+                    <form name="formComentario">
+                      <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" required>
+                      <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
+                    </form>
                   </div>
                 </div>
-                <div class="modal-footer margen-modal-footer">
-                  <form name="formComentario">
-                    <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" required>
-                    <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
+              </div>
+            </div>
+
+            <!-- Modal Comentario -->
+            <div class="modal fade" id="myModal2" ng-class="'myModalComentar'+$index" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header margen-modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Comentario</h4>
+                  </div>
+                  <form name="formModalComentario">
+                    <div class="modal-body">
+                      <div class="body">
+                        <label for="tittle">{{usuario.title}}</label>
+                        <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="$parent.agregarComentario" required></textarea>
+                      </div>
+                    </div>
+                    <div class="modal-footer margen-modal-footer">
+                      <button type="button" class="btn" data-dismiss="modal" ng-disabled="formModalComentario.$invalid" ng-click="nuevoComentario($index)">Aceptar</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- PUBLISHED -->
+        </div>
 
-          <!-- Modal Comentario -->
-          <div class="modal fade" id="myModal2" ng-class="'myModalComentar'+$index" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header margen-modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Comentario</h4>
-                </div>
-                <form name="formModalComentario">
-                  <div class="modal-body">
-                    <div class="body">
-                      <label for="tittle">{{usuario.title}}</label>
-                      <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="$parent.agregarComentario" required></textarea>
-                    </div>
-                  </div>
-                  <div class="modal-footer margen-modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal" ng-disabled="formModalComentario.$invalid" ng-click="nuevoComentario($index)">Aceptar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div> <!-- PUBLISHED -->
         <div ng-show="!visible">
           <div class="divUltimosBlogs">
             <h1 class="tituloUltimosBlogs">Entradas recientes</h1>
@@ -261,15 +264,15 @@
 
 
         <!-- Pagination -->
-        <div ng-show="visible" class="container">
+        <!-- <div ng-show="visible" class="container">
           <div class="row row-centered">
             <div class="pagination pagination-blog col-md-5">
               <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
             {{currentPage+1}}/{{numberOfPagesTemas()}}
-            <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+            <button class="btn btn-default btn-sm" ng-disabled="currentPage >= publicacionesUsuario.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
             </div>
           </div>
-        </div> <!-- Pagination -->
+        </div> --> <!-- Pagination -->
 
       </div>
     </div>

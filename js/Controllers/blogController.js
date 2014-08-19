@@ -230,12 +230,16 @@ angular.module('module').controller('blogController', function($scope, $http, $r
         console.log("inserted wrong");
     });
 
+    
+    $scope.obtenerComentarios(index);
+
     /*$scope.getpublishedcomment = $scope.agregarComentario;
     console.log($scope.getpublishedcomment);
 
     $scope.publicaciones[index].comments.push({"comment":$scope.getpublishedcomment});*/
 
     $scope.descripcionComentario = '';
+    $scope.agregarComentario = '';
     $scope.idEntradaBlog = '';
 
   };
