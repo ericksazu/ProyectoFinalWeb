@@ -96,7 +96,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="clearfix documentos-disponibles"><h3 class="subtitulo-doc">Documentos disponibles</h3></div>
-              <div class="row borde-doc" ng-repeat="documento in documentos | startFrom:currentPage*pageSize | filter:query  | limitTo:pageSize">
+              <div class="row borde-doc" ng-repeat="documento in documentosTotales | startFrom:currentPage*pageSize | filter:query  | limitTo:pageSize">
                 <div class="col-md-5">
                   <h2 class="titulo">{{documento.titulo}}</h2>
                 </div>
@@ -107,10 +107,10 @@
                   <a href="" ng-class="marca(4, documento.votos)"></a>
                   <a href="" ng-class="marca(5, documento.votos)"></a>
 
-                  <!-- <span>{{documento.autor}} /</span> -->
+                  <span>{{documento.autor}} /</span>
                   <span>{{documento.tema}} /</span>
-                  <!-- <span>{{documento.peso}}</span>
- -->                </div>
+                  <span>{{documento.pesoDocumento}}</span>
+                </div>
                 <div class="col-md-12 texto-doc">
 
                   <p>{{documento.descripcion}}</p>
@@ -144,7 +144,7 @@
         <h3>Documentos más votados</h3>
         <img src="img/estrella-doc.png" class="estrella-doc2">
       </div>
-      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentos | orderBy:'-votos' | limitTo:5">
+      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentosTotales | orderBy:'-votos' | limitTo:5">
         <div class="trending-content-header">
           <div class="trending-number col-md-2 trending-number-izquierda">
             <h3>{{$index+1}}</h3>

@@ -5,6 +5,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.carreras = [];
 	$scope.cursos = [];
 	$scope.documentosPendientes = false;
+	$scope.documentosNuevos = [];
 
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
@@ -20,9 +21,15 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	$http.get('data/documentos.json').success(function(data) {
+	/*$http.get('data/documentos.json').success(function(data) {
     $scope.documentos = data;
-});
+});*/
+    $http.get('phpConexion/documentos/mostrar.php').success(function (data) {
+		$scope.documentosTotales = data;
+	      console.log(data);
+
+    });
+	
 	$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;
 		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
@@ -150,7 +157,13 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 		$http.post('phpConexion/documentos/subir_archivos.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
 		$scope.documentos = data;
-	});
+	   });
+
+		$http.get('phpConexion/documentos/mostrar.php').success(function (data) {
+		$scope.documentosTotales = data;
+	      console.log(data);
+
+    });
 
 		if (document.myForm.archivo.value == '')
 		{
