@@ -93,7 +93,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$scope.visualizarDoc = function(index,event){
 
-		window.open($scope.documentos[index].documento)
+		window.open($scope.documentosTotales[index].documento)
 		event.preventDefault();
 	};
 
