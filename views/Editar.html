@@ -97,21 +97,20 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-      <div ng-repeat="personalInfo in datos">
-        <tr id="{{personalIfo.idusuario}}">
+    <tbody ng-repeat="personalInfo in datos">
+        <tr id="{{personalInfo.idusuario}}">
             <td>Erick Sanchez Zuñiga</td>
-            <td>erick@ucenfotec.ac.cr</td>
-            <td>Estudiante</td>
-            <td>12345</td>
-            <td>Técnico</td>
-            <td>Diseño Web</td>
-            <td>Inglés,Proyecto1,Diseño Visual 1</td>
-            <td><button class="btn btn-success" id="editar"data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil" ></span></button></td>
+            <td>{{personalInfo.correo}}</td>
+            <td>{{personalInfo.rol}}</td>
+            <td>{{personalInfo.contrasena}}</td>
+            <td>{{personalInfo.nivel}}</td>
+            <td>{{personalInfo.carrera}}</td>
+            <td>{{personalInfo.cursos}}</td>
             
-            <td><button type="button" class="btn btn-danger"data-toggle="modal" data-target="#confirm-delete"> <span class="glyphicon glyphicon-minus-sign"></span></button></td>
-        </tr>
-      </div>  
+            <td><button class="btn btn-success" id="editar"data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-pencil" ng-click="submitModificar()"></span></button></td>
+            
+            <td><button type="button" class="btn btn-danger"data-toggle="modal" data-target="#confirm-delete"> <span class="glyphicon glyphicon-minus-sign" ng-click="submitEliminar()"></span></button></td>
+        </tr> 
     </tbody>
 </table>
 </div>
