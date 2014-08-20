@@ -10,4 +10,9 @@ function cambiarContrasena($conexion, $contrasenaUsuario, $correoUsuario){
 		return BDQuery($query, $conexion);
 	}	
 
+function obtener1Usuario($conexion, $usuarioID){
+		$query = 'CALL sp_obtener1Usuario("'.$usuarioID.'")';
+		return BDQuery($query, $conexion);
+	}	
+
 ?>

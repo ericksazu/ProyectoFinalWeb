@@ -33,8 +33,7 @@
     }
 
     var app = angular.module('module', ['ngRoute', 'mgcrea.ngStrap', 'ui.bootstrap']).config(confApp);
-
-    app.run(function($rootScope, $location) {
+    app.run(function($rootScope, $location, $http) {
 
         $rootScope.roles = [{
             'page': 'secciones',
@@ -53,22 +52,30 @@
             'roles': ['14']
         }];
 
-
-
-
-
         $rootScope.$on('$routeChangeStart', function(event) {
-
+            // Retrieve the object from storage
+            var usuario = JSON.parse(localStorage.getItem('usuario'));
+            $rootScope.usuarioLogueado = usuario ? usuario : null;
+            // call php
+            if ($rootScope.usuarioLogueado) {
+                $http.get('phpConexion/login/obtener1Usuario.php', {
+                    params: {
+                        userId: $rootScope.usuarioLogueado.id
+                    }
+                }).success(function(data) {
+                    // console.log(data);
+                    $rootScope.usuarioLogueado = data;
+                });
+            }
+            // console.log($rootScope.usuarioLogueado);
             var $rScope = this;
             if ($location.$$path == "/") {
                 $rootScope.showheader = 1;
             } else {
-
                 $rootScope.showheader = 0;
                 if ($rootScope.usuarioLogueado == null) {
                     $location.url('/');
                 } else {
-
                     var posicion = -1;
                     for (var i = 0; i < $rootScope.roles.length; i++) {
                         if ('/' + $rootScope.roles[i].page == $location.$$path) {
@@ -81,11 +88,9 @@
                         }
                     }
                 }
-
             }
-
         });
-        $rootScope.usuarioLogueado = null;
+        // $rootScope.usuarioLogueado = null;
 
 
     });
@@ -130,18 +135,5 @@
 
         }
     ]);
-
-
-
-
-
-
-
-
-
-
-
-})
-
-
+  })
 ();

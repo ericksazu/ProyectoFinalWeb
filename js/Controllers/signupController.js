@@ -1,11 +1,8 @@
 angular.module('module').controller('signupController',
     function($scope, $location, $http, $rootScope) {
         $scope.submitted = false;
-
         $scope.signupForm = function() {
-
             if ($scope.signup_form.$valid) {
-
                 var posicion = -1;
                 $http.get('phpConexion/login/usuarios.php').success(function(data) {
                     for (var i = 0; i < data.length; i++) {
@@ -14,10 +11,7 @@ angular.module('module').controller('signupController',
                             posicion = i;
                         }
                     }
-
                     if (posicion > -1) {
-
-
                         $rootScope.usuarioLogueado = {
                             "id": data[posicion].idUsuario,
                             "nombre": data[posicion].nombre,
@@ -26,8 +20,8 @@ angular.module('module').controller('signupController',
                             "email": data[posicion].email,
                             "foto": data[posicion].foto,
                             "idRol": data[posicion].idRol,
-
                         };
+                        localStorage.setItem('usuario', JSON.stringify($rootScope.usuarioLogueado));
                         if ($rootScope.usuarioLogueado.idRol == "14") {
                             $location.url('/configuracion');
                         } else {
@@ -42,8 +36,6 @@ angular.module('module').controller('signupController',
 
                     }
                 });
-
-
             } else {
                 $scope.signup_form.submitted = true;
                 $('#errorcontrasena > div').addClass('visible');
@@ -51,10 +43,8 @@ angular.module('module').controller('signupController',
                     $('#errorcontrasena > div').removeClass('visible');
                 }, 3000);
             }
-
         }
         $scope.signupForm2 = function() {
-
             if ($scope.signup_form.$valid) {
                 // Submit as normal
                 $('#form-modal').modal('hide');
@@ -62,7 +52,6 @@ angular.module('module').controller('signupController',
                 setTimeout(function() {
                     $('#success > div').removeClass('visible');
                 }, 3000);
-
             } else {
                 $scope.signup_form.submitted = true;
                 $('#errorcontrasena > div').addClass('visible');
@@ -71,39 +60,33 @@ angular.module('module').controller('signupController',
                 }, 3000);
             }
         }
-
         $scope.cambiarcontrasena = function() {
-
             if ($scope.cambiocontrasena.$valid) {
-
                 setTimeout(function() {
                     $('#cambiarcontrasena').modal('hide');
                 }, 3000);
-
                 $('#success2 > div').addClass('visible');
                 setTimeout(function() {
                     $('#success2 > div').removeClass('visible');
                 }, 3000);
-
             } else {
-
                 $scope.cambiarcontrasena.submitted = true;
                 $('#errorcontrasena2 > div').addClass('visible');
                 setTimeout(function() {
                     $('#errorcontrasena2 > div').removeClass('visible');
                 }, 3000);
-
             }
-
             $http.post('phpConexion/login/cambiarContrasena.php', {
                 'contrasena': $scope.user.passwordConfirm,
                 'email': $scope.usuarioLogueado.email
-        
             }).success(function(data, status) {
                 console.log("inserted good");
                 $scope.algo = data;
             }).error(function(data, status) {
                 console.log("inserted wrong");
             });
+        }
+        $scope.salir = function() {
+            localStorage.setItem('usuario', null)
         }
     });

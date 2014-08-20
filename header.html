@@ -32,10 +32,10 @@
           </li>
           <li>
             <a href="javascript:void(0);" id="profilePic" data-container="body" data-toggle="popover" data-placement="bottom">
-              <img src="phpConexion/login/{{usuarioLogueado.foto}}" class="img-responsive img-circle fotica" alt="Foto de usuario" width="35px" height="35px">
+              <img ng-src="phpConexion/login/{{usuarioLogueado.foto}}" class="img-responsive img-circle fotica" alt="Foto de usuario" width="35px" height="35px">
             </a>
           </li>
-          <li><a class="salir" href="#">Salir</a>
+          <li><a class="salir" ng-click="salir()" href="#">Salir</a>
           </li>
         </ul>
         <div class="modal fade" id="cambiarcontrasena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
