@@ -38,8 +38,13 @@ function ObtenerTemas($conexion, $idForo){
 
 function AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre){
 	$query = 'CAll agregarTema("'.$tema.'","'.$descripcion.'","'. $fecha_creacion.'","'. $fecha_cierre.'", 1)';
-	
 	return BDQuery($query, $conexion);
+
+	
+}
+
+function ObtenerIdForo($conexion) {
+	return BDQuery("CALL obtenerIdForo()", $conexion);
 }
 
 

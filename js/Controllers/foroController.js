@@ -6,6 +6,12 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.topics = [];
 	$scope.correoUsuario = $scope.usuarioLogueado.email;
 	$scope.informacion = {};
+	$scope.estudiantes = [];
+	$scope.emailEstudiante = "hhh";
+
+	$scope.nuevoTema = function() {
+		$scope.informacion = {};
+	};
 
 	
 
@@ -35,7 +41,10 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.buscarNombres = function(){
 		console.log('entra al buscador');
 		$('#tags').autocomplete({
-			source: $scope.usuariosForo
+			source: $scope.usuariosForo,
+			select: function( event, ui ) {
+				$scope.emailEstudiante = ui.value;
+			}
 		});
 	}
 
@@ -44,35 +53,53 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	
 	$http.get('phpConexion/foros.php').success(function(data) {
 		$scope.topics = data;
-		console.log($scope.topics.estado);
-
-		$scope.numberOfPagesTemas = function(){
-			return Math.ceil($scope.topics.length/$scope.pageSize);
-		}
-
-		$scope.numberOfPagesTema = function(){
-			return Math.ceil($scope.comments.length/$scope.pageSize);
-		}
-
-		$scope.eliminar = function(index){
-			//alert(index);
-			var id = $scope.topics[index].idForo;
-			console.log(id);
-
-			$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
-				console.log("inserted good");
-				$scope.algo = data;
-			}).error(function(data, status) {
-				console.log("inserted bad");
-			});
-			
-
-		}
 	});
+
+	$scope.numberOfPagesTemas = function(){
+		return Math.ceil($scope.topics.length/$scope.pageSize);
+	}
+
+	$scope.numberOfPagesTema = function(){
+		return Math.ceil($scope.comments.length/$scope.pageSize);
+	}
+
+	$scope.eliminar = function(index){
+		//alert(index);
+		var id = $scope.topics[index].idForo;
+		console.log(id);
+
+		$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+		
+		$route.reload();
+		$('#modalEliminar').modal('hide');
+		$('.modal-backdrop').remove();
+
+	}
+
+
+	$scope.agregarEstudiante = function(index){
+		console.log('entra a agregar estudiante');
+		var id = $scope.informacion.idForo;
+		console.log('campo',$scope.emailEstudiante);
+
+		var email = $scope.emailEstudiante;
+
+		$http.post('phpConexion/agregarEstudianteForo.php', {'idForo': id,'emailEstudiante': email}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.estudiantes = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+	};
 
 	$scope.currentPage = 0;
 	$scope.pageSize = 5;
-	
+
 	//$scope.topics = temas;
 
 
@@ -80,10 +107,17 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		$scope.buscarNombresModal = function(index){
 			console.log('entra al buscador');
 			$('#tags2').autocomplete({
-				source: $scope.usuariosForo
+				source: $scope.usuariosForo,
+				select: function( event, ui ) {
+					 $scope.$apply(function(){
+					 	//console.log(ui.item.vale);
+					 	$scope.emailEstudiante = ui.item.value;
+					 });
+				}
 			});
 		//$('#tags2').autocomplete('option','appendTo','#prueba');
-		};
+	};
+	
 	var id = $scope.topics[index].idForo;
 	$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
 		console.log("inserted good");
@@ -92,6 +126,8 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	}).error(function(data, status) {
 		console.log("inserted bad");
 	});
+
+	
 }	
 
 
@@ -118,17 +154,33 @@ $scope.cerrarForo = function(index){
 $scope.nombreEstudiante = null;
 
 $scope.editTema = function (index) {
-	$scope.topicCurrentIndex = index;
 
 	console.log('entra a editar', $scope.informacion);
-	$http.post('phpConexion/agregarForo.php', {'tema': $scope.informacion.tema,'descripcion': $scope.informacion.descripcion, 'fecha_creacion': $scope.informacion.fecha_creacion, 'fecha_cierre': $scope.informacion.fecha_cierre}).success(function(data, status) {
-		console.log("inserted good");
-		$scope.algo = data;
+	$http.post('phpConexion/agregarForo.php', $scope.informacion).success(function(data, status) {
+		console.log("inserted good", data);
+
+		$http.post('phpConexion/editarInfoForo.php', {id: data }).success(function(data, status) {
+			console.log("inserted good");
+			$scope.informacion = data;
+			console.log($scope.informacion);
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+		
+		$http.get('phpConexion/foros.php').success(function(data) {
+			$scope.topics = data;
+			console.log('refresca items');
+		});
 	}).error(function(data, status) {
 		console.log("inserted bad");
 	});
 
 
+	//$('#myModalEditarTema').modal('hide');
+
+	//$route.reload();
+
+	
 
 };
 

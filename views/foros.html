@@ -4,7 +4,7 @@
       <div class="foroHeader col-md-6 col-centered">
         <div class="divImg clearfix">
           <div class="row">
-          <div class="col-md-5 col-md-offset-5">
+            <div class="col-md-5 col-md-offset-5">
               <div class="imgForoHeader"><h1>Foro</h1></div>
             </div>
           </div>
@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <!-- Foro container left -->
-      <div class="foro-container col-md-7" ng-controller="AgregarTema">
+      <div class="foro-container col-md-7">
         <div class="foro-container-header clearfix">
           <h3 >Temas en el foro</h3>
           <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
@@ -68,13 +68,16 @@
                     <!-- ************************ -->
 
                   </div>
-                  <a ng-show="visible" href="#" class="edit" data-toggle="modal" ng-click="editarForo($index)" ng-href=".{{'myModal'+$index}}">editar</a>
+                  <a ng-show="visible" class="edit" data-toggle="modal" ng-click="editarForo($index)" data-target="#myModalEditarTema">editar</a>
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <!-- Modal Crear Editar -->
+
+          </div>
+        </div>
+         <!-- Modal Crear Editar -->
           <div class="modal fade" ng-class="'myModal'+$index" id="myModalEditarTema" data-container="body" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -93,21 +96,14 @@
                           <span class="errorForo" ng-show="editForm.titulo.$error.required">Ingrese un dato correcto</span>
                         </div>
                       </div>
-                       <div class="form-group form-group-edit-foro">
+                      <div class="form-group form-group-edit-foro">
                         <label for="inputDescripcionForo" class="col-md-6 control-label">Descripción</label>
                         <div class="col-sm-10">
                           <input name="descripcion" type="name" class="form-control" id="inputDescripcionForo" ng-model="informacion.descripcion" placeholder="Descripción" required>
                           <span class="errorForo" ng-show="editForm.descripcion.$error.required">Ingrese una descripción</span>
                         </div>
                       </div>
-                      <div class="form-group form-group-edit-foro">
-                        <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
-                        <div class="col-sm-10">
-                          <input name="email" type="email" class="form-control" id="tags2"  placeholder="Email" ng-model="email" ng-click="buscarNombresModal($index)" required>
-                          <span class="errorForo" ng-show="editForm.email.$error.required || editForm.email.$error.email">Ingrese un email válido</span>
-                        </div>
-
-                      </div>
+                      
                       <div class="form-group form-group-edit-foro">
                         <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
                         <div class="col-sm-10">
@@ -123,11 +119,12 @@
                           <span class="errorForo" ng-show="editForm.fecha_cierre.$error.required">Ingrese una fecha válida</span>
                         </div>
                       </div>
+                      <input type="hidden" name="idForo" ng-model="informacion.idForo">
                       <div class="form-group">
                         <div class="divBtnAgregar">
-                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Agregar datos</button>
+                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Guardar datos</button>
                         </div>
-                           <div class="divBtnCerrar">
+                        <div class="divBtnCerrar">
                           <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
                         </div>
                       </div>
@@ -135,6 +132,17 @@
 
                   </div>
                   <div class="modal-der col-md-7">
+                    <div class="form-group form-group-edit-foro">
+                      <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
+                      <div class="col-sm-10">
+                        <input name="emailEstudiante" type="email" class="form-control" id="tags2" placeholder="Email" ng-model="emailEstudiante" ng-click="buscarNombresModal($index)" required>
+                        <span class="errorForo" ng-show="emailEstudiante.$error.required || emailEstudiante.$error.email">Ingrese un email válido</span>
+                      </div>
+                      <div class="col-sm-12 divBtnCerrar">
+                        <br>
+                        <button id="btnAgregarEstudiante" class="btn btn-default btnAgregarEstudiante" type"submit" ng-disabled="informacion.idForo == null" ng-click="agregarEstudiante($index)">Agregar</button><br><br>
+                      </div>
+                    </div>
                     <table id="{{'tableIntegrantesForo'+$index}}" class="table tableIntegrantesForo">
                       <thead>
                         <tr>
@@ -157,6 +165,7 @@
 
                       </tbody>
                     </table>
+
                     <div class="divBtnAceptar">
                       <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Eliminar estudiantes</button>
                     </div>
@@ -168,8 +177,6 @@
                 </div>
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-          </div>
-        </div>
       </div> <!-- Foro container left -->
       <trending-topic></trending-topic> <!-- Trending topic -->
     </div> <!-- row -->
@@ -177,8 +184,8 @@
       <div class="row row-centered">
         <div class="pagination col-md-7">
           <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
-        {{currentPage+1}}/{{numberOfPagesTemas()}}
-        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+          {{currentPage+1}}/{{numberOfPagesTemas()}}
+          <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
         </div>
       </div>
     </div>
