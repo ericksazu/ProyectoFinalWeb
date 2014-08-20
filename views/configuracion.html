@@ -28,7 +28,7 @@
           </div>
 
           <div class="form-group">
-            <label  class="col-lg-2 control-label">Segundo  Apellido</label>
+            <label  class="col-lg-2 control-label">Segundo Apellido</label>
             <div class="col-lg-10">
               <input type="text" class="form-control" name="lastName" ng-model="form.lastsecondName" required/>
               <span class="error" ng-show="saveTemplateData.lastsecondName.$error.required"></span>
@@ -40,7 +40,7 @@
             <div class="col-lg-10">
               <input type="email" class="form-control" name="email"  ng-model="form.email" required/>
               <span class="error1" ng-show="saveTemplateData.email.$error.required"></span>
-              <span class="error" ng-show="saveTemplateData.email.$error.email">invalid email</span>
+              <span class="error" ng-show="saveTemplateData.email.$error.email">Correo inválido</span>
             </div>        
           </div>
 
@@ -53,7 +53,7 @@
           </div>
 
           <div class="form-group">
-            <label class="col-lg-2 control-label">Foro Informacion</label>
+            <label class="col-lg-2 control-label">Foro Información</label>
             <div class="col-lg-10">
               <select ng-model="form.foroInformacion" class="form-control" id="Foro-Disable" required>
                 <option value="0">Nombre</option>
@@ -65,13 +65,13 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h3>Datos Academicos</h3>
+          <h3>Datos Académicos</h3>
 
           <div class="form-group"  ng-controller="MyNivel">
             <label class="col-lg-2 control-label">Nivel</label>
             <div class="col-lg-10">
               <select ng-options="nivel.code as nivel.name for nivel in niveles" ng-model="form.nivel" class="form-control" required>
-                <option style="display:none" value="">seleccione el Nivel</option>
+                <option style="display:none" value="">Seleccione el Nivel</option>
               </select>
             </div>
           </div>
@@ -80,7 +80,7 @@
             <label class="col-lg-2 control-label">Rol</label>
             <div class="col-lg-10">
               <select ng-options="rol.code as rol.name for rol in roles" ng-model="form.rol" class="form-control" required>
-                <option style="display:none" value="">seleccione el Rol </option>
+                <option style="display:none" value="">Seleccione el Rol </option>
               </select>
             </div>
           </div>
@@ -89,7 +89,7 @@
             <label class="col-lg-2 control-label">Carrera</label>
             <div class="col-lg-10">
               <select ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="form.carrera" class="form-control" ng-change="optionChanged()" required>
-                <option style="display:none" value="">seleccione la carrera</option>
+                <option style="display:none" value="">Seleccione la carrera</option>
               </select>
             </div>
           </div>
@@ -102,7 +102,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selecione elementos:<span>
             <div ng-repeat="curso in cursos | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -116,7 +116,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos1 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -130,7 +130,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos2 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -144,7 +144,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos3 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -158,7 +158,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos4 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -172,7 +172,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos5 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
@@ -186,7 +186,7 @@
                 {{curso.name}}
               </div>
             </div>
-            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <span style="color:black;" class="selected-item">Selected elementos:<span>
             <div ng-repeat="curso in cursos6 | filter:{checked:true}" class="selected-item">
               {{curso.name}}
             </div>
