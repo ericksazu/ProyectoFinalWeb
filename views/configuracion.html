@@ -9,201 +9,191 @@
 
       <form class="form-horizontal col-md-12" role="form" name="saveTemplateData" ng-controller="FormCtrl">
         <div class="col-md-6">
-
           <h3>Datos Usuario</h3>
+
           <div class="form-group">
             <label class="col-lg-2 control-label">Nombre</label>
-            
             <div class="col-lg-10">
-
               <input  name="firstName" type="text" ng-model="form.firstname"class ="form-control" required/>
-
               <span class="error1" ng-show="saveTemplateData.firstName.$error.required"</span>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Primer Apellido</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="lastName" ng-model="form.lastfirstName" required/>
+              <span class="error" ng-show="saveTemplateData.lastfirstName.$error.required"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label  class="col-lg-2 control-label">Segundo  Apellido</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="lastName" ng-model="form.lastsecondName" required/>
+              <span class="error" ng-show="saveTemplateData.lastsecondName.$error.required"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="col-lg-2 control-label">Correo</label>
+            <div class="col-lg-10">
+              <input type="email" class="form-control" name="email"  ng-model="form.email" required/>
+              <span class="error1" ng-show="saveTemplateData.email.$error.required"></span>
+              <span class="error" ng-show="saveTemplateData.email.$error.email">invalid email</span>
+            </div>        
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Contrase&ntilde;a</label>
+            <div class="col-lg-10">
+              <input  name="contrasena" type="text" ng-model="form.contrasena"class ="form-control" required/>
+              <span class="error1" ng-show="saveTemplateData.contrasena.$error.required"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Foro Informacion</label>
+            <div class="col-lg-10">
+              <select ng-model="form.foroInformacion" class="form-control" id="Foro-Disable" required>
+                <option value="0">Nombre</option>
+                <option value="1">Apellido</option>
+                <option value="2">Correo</option>
+                <option value="3">Carrera</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>Datos Academicos</h3>
+
+          <div class="form-group"  ng-controller="MyNivel">
+            <label class="col-lg-2 control-label">Nivel</label>
+            <div class="col-lg-10">
+              <select ng-options="nivel.code as nivel.name for nivel in niveles" ng-model="form.nivel" class="form-control" required>
+                <option style="display:none" value="">seleccione el Nivel</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" ng-controller="MyRol">
+            <label class="col-lg-2 control-label">Rol</label>
+            <div class="col-lg-10">
+              <select ng-options="rol.code as rol.name for rol in roles" ng-model="form.rol" class="form-control" required>
+                <option style="display:none" value="">seleccione el Rol </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" ng-controller="Mycarrera">
+            <label class="col-lg-2 control-label">Carrera</label>
+            <div class="col-lg-10">
+              <select ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="form.carrera" class="form-control" ng-change="optionChanged()" required>
+                <option style="display:none" value="">seleccione la carrera</option>
+              </select>
+            </div>
+          </div>
+
+          <div class = "form-group" ng-controller = "Mycurso" id="Web">
+            <div ng-repeat ="curso in cursos | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso.name}}" type="checkbox" value="{{curso.name}}" ng-checked = "curso.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso.name}}"ng-model="form.curso"></label>
+                {{curso.name}}
               </div>
             </div>
-            <div class="form-group">
-              <label  class="col-lg-2 control-label">Primer Apellido</label>
-              <div class="col-lg-10">
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
+            </div>
+          </div> 
 
-                <input type="text" class="form-control" name="lastName" ng-model="form.lastfirstName" required/>
-                <span class="error" ng-show="saveTemplateData.lastfirstName.$error.required"></span>
+          <div class = "form-group" ng-controller = "Mycurso1" id="sofware">
+            <div ng-repeat ="curso in cursos1 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso1.name}}" type="checkbox" value="{{curso1.name}}" ng-checked = "curso1.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso1.name}}"ng-model="form.curso1"></label>
+                {{curso.name}}
               </div>
             </div>
-            <div class="form-group">
-              <label  class="col-lg-2 control-label">Segundo  Apellido</label>
-              <div class="col-lg-10">
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos1 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
+            </div>
+          </div>
 
-                <input type="text" class="form-control" name="lastName" ng-model="form.lastsecondName" required/>
-                <span class="error" ng-show="saveTemplateData.lastsecondName.$error.required"></span>
+          <div class = "form-group" ng-controller = "Mycurso2" id="Tecnologias">
+            <div ng-repeat ="curso in cursos2 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso2.name}}" type="checkbox" value="{{curso1.name}}" ng-checked = "curso2.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso2.name}}"ng-model="form.curso2"></label>
+                {{curso.name}}
               </div>
             </div>
-
-            <div class="form-group">
-              <label for="email" class="col-lg-2 control-label">Correo</label>
-              <div class="col-lg-10">
-                <input type="email" class="form-control" name="email"  ng-model="form.email" required/>
-                <span class="error1" ng-show="saveTemplateData.email.$error.required"></span>
-                <span class="error" ng-show="saveTemplateData.email.$error.email">invalid email</span>
-              </div>        
-
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos2 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-lg-2 control-label">Contrase&ntilde;a</label>
-
-              <div class="col-lg-10">
-
-                <input  name="contrasena" type="text" ng-model="form.contrasena"class ="form-control" required/>
-
-                <span class="error1" ng-show="saveTemplateData.contrasena.$error.required"></span>
-
+          <div class = "form-group" ng-controller = "Mycurso3" id="Telematica">
+            <div ng-repeat ="curso in cursos3 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso3.name}}" type="checkbox" value="{{curso3.name}}" ng-checked = "curso3.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso3.name}}"ng-model="form.curso3"></label>
+                {{curso.name}}
               </div>
             </div>
-            
-            <div class="form-group">
-              <label class="col-lg-2 control-label">Foro Informacion</label>
-              <div class="col-lg-10">
-                <select ng-model="form.foroInformacion" class="form-control" id="Foro-Disable" required>
-                  <option value="0">Nombre</option>
-                  <option value="1">Apellido</option>
-                  <option value="2">Correo</option>
-                  <option value="3">Carrera</option>
-                </select>
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos3 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
+            </div>
+          </div>
+
+          <div class = "form-group" ng-controller = "Mycurso4" id="Ciberseguridad">
+            <div ng-repeat ="curso in cursos4 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso4.name}}" type="checkbox" value="{{curso4.name}}" ng-checked = "curso4.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso4.name}}"ng-model="form.curso4"></label>
+                {{curso.name}}
               </div>
             </div>
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos4 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
+            </div>
+          </div>
 
-          <div class="col-md-6">
-            <h3>Datos Academicos</h3>
-            <div class="form-group"  ng-controller="MyNivel">
-              <label class="col-lg-2 control-label">Nivel</label>
-              <div class="col-lg-10">
-                <select ng-options="nivel.code as nivel.name for nivel in niveles" ng-model="form.nivel" class="form-control" required>
-                  <option style="display:none" value="">seleccione el Nivel</option>
-                </select>
+          <div class = "form-group" ng-controller = "Mycurso5" id="Datos">
+            <div ng-repeat ="curso in cursos5 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso5.name}}" type="checkbox" value="{{curso5.name}}" ng-checked = "curso5.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso5.name}}"ng-model="form.curso5"></label>
+                {{curso.name}}
               </div>
             </div>
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos5 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
+            </div>
+          </div>
 
-            <div class="form-group" ng-controller="MyRol">
-              <label class="col-lg-2 control-label">Rol</label>
-              <div class="col-lg-10">
-                <select ng-options="rol.code as rol.name for rol in roles" ng-model="form.rol" class="form-control" required>
-                  <option style="display:none" value="">seleccione el Rol </option>
-                </select>
+          <div class = "form-group" ng-controller = "Mycurso6" id="ingles">
+            <div ng-repeat ="curso in cursos6 | filter">
+              <div class="action-checkbox">
+                <input id= "{{curso6.name}}" type="checkbox" value="{{curso6.name}}" ng-checked = "curso6.checked" ng-click ="toggleSelection($index)"/>
+                <label for="{{curso6.name}}"ng-model="form.curso6"></label>
+                {{curso.name}}
               </div>
             </div>
-    
-            <div class="form-group" ng-controller="Mycarrera">
-              <label class="col-lg-2 control-label">Carrera</label>
-              <div class="col-lg-10">
-                <select ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="form.carrera" class="form-control" ng-change="optionChanged()" required>
-                  <option style="display:none" value="">seleccione la carrera</option>
-                </select>
-              </div>
+            <span style="color:black;" class="selected-item">Selected Items:<span>
+            <div ng-repeat="curso in cursos6 | filter:{checked:true}" class="selected-item">
+              {{curso.name}}
             </div>
-            <div class = "form-group" ng-controller = "Mycurso" id="Web">
-              <div ng-repeat ="curso in cursos | filter">
-                <div class="action-checkbox">
-                  <input id= "{{curso.name}}" type="checkbox" value="{{curso.name}}" ng-checked = "curso.checked" ng-click ="toggleSelection($index)"/>
-                  <label for="{{curso.name}}"ng-model="form.curso"></label>
-                  {{curso.name}}
-                </div>
-              </div>
-              <span style="color:black;" class="selected-item">Selected Items:<span>
-                <div ng-repeat="curso in cursos | filter:{checked:true}" class="selected-item">
-                  {{curso.name}}
-                </div>
-              </div> 
-              <div class = "form-group" ng-controller = "Mycurso1" id="sofware">
-                <div ng-repeat ="curso in cursos1 | filter">
-                  <div class="action-checkbox">
-                    <input id= "{{curso1.name}}" type="checkbox" value="{{curso1.name}}" ng-checked = "curso1.checked" ng-click ="toggleSelection($index)"/>
-                    <label for="{{curso1.name}}"ng-model="form.curso1"></label>
-                    {{curso.name}}
-                  </div>
-                </div>
-                <span style="color:black;" class="selected-item">Selected Items:<span>
-                  <div ng-repeat="curso in cursos1 | filter:{checked:true}" class="selected-item">
-                    {{curso.name}}
-                  </div>
-                </div>
-
-                <div class = "form-group" ng-controller = "Mycurso2" id="Tecnologias">
-                  <div ng-repeat ="curso in cursos2 | filter">
-                    <div class="action-checkbox">
-                      <input id= "{{curso2.name}}" type="checkbox" value="{{curso1.name}}" ng-checked = "curso2.checked" ng-click ="toggleSelection($index)"/>
-                      <label for="{{curso2.name}}"ng-model="form.curso2"></label>
-                      {{curso.name}}
-                    </div>
-                  </div>
-                  <span style="color:black;" class="selected-item">Selected Items:<span>
-                    <div ng-repeat="curso in cursos2 | filter:{checked:true}" class="selected-item">
-                      {{curso.name}}
-                    </div>
-                  </div>
-
-                  <div class = "form-group" ng-controller = "Mycurso3" id="Telematica">
-                    <div ng-repeat ="curso in cursos3 | filter">
-                      <div class="action-checkbox">
-                        <input id= "{{curso3.name}}" type="checkbox" value="{{curso3.name}}" ng-checked = "curso3.checked" ng-click ="toggleSelection($index)"/>
-                        <label for="{{curso3.name}}"ng-model="form.curso3"></label>
-                        {{curso.name}}
-                      </div>
-                    </div>
-                    <span style="color:black;" class="selected-item">Selected Items:<span>
-                      <div ng-repeat="curso in cursos3 | filter:{checked:true}" class="selected-item">
-                        {{curso.name}}
-                      </div>
-                    </div>
-
-                    <div class = "form-group" ng-controller = "Mycurso4" id="Ciberseguridad">
-                      <div ng-repeat ="curso in cursos4 | filter">
-                        <div class="action-checkbox">
-                          <input id= "{{curso4.name}}" type="checkbox" value="{{curso4.name}}" ng-checked = "curso4.checked" ng-click ="toggleSelection($index)"/>
-                          <label for="{{curso4.name}}"ng-model="form.curso4"></label>
-                          {{curso.name}}
-                        </div>
-                      </div>
-                      <span style="color:black;" class="selected-item">Selected Items:<span>
-                        <div ng-repeat="curso in cursos4 | filter:{checked:true}" class="selected-item">
-                          {{curso.name}}
-                        </div>
-                      </div>
-
-                      <div class = "form-group" ng-controller = "Mycurso5" id="Datos">
-                        <div ng-repeat ="curso in cursos5 | filter">
-                          <div class="action-checkbox">
-                            <input id= "{{curso5.name}}" type="checkbox" value="{{curso5.name}}" ng-checked = "curso5.checked" ng-click ="toggleSelection($index)"/>
-                            <label for="{{curso5.name}}"ng-model="form.curso5"></label>
-                            {{curso.name}}
-                          </div>
-                        </div>
-                        <span style="color:black;" class="selected-item">Selected Items:<span>
-
-                          <div ng-repeat="curso in cursos5 | filter:{checked:true}" class="selected-item">
-                            {{curso.name}}
-                          </div>
-                        </div>
-
-                        <div class = "form-group" ng-controller = "Mycurso6" id="ingles">
-                          <div ng-repeat ="curso in cursos6 | filter">
-                            <div class="action-checkbox">
-                              <input id= "{{curso6.name}}" type="checkbox" value="{{curso6.name}}" ng-checked = "curso6.checked" ng-click ="toggleSelection($index)"/>
-                              <label for="{{curso6.name}}"ng-model="form.curso6"></label>
-                              {{curso.name}}
-                            </div>
-                          </div>
-                          <span style="color:black;" class="selected-item">Selected Items:<span>
-                            <div ng-repeat="curso in cursos6 | filter:{checked:true}" class="selected-item">
-                              {{curso.name}}
-                            </div>
-                          </div>
-
-                          <button type="submit" class="btn btn-default pull-right" ng-click="submitIngresar(form)"id="agregar">Guardar</button>
-                        </form>
-
-
-                      </div>
-                    </div>
-                  </div>
-                </span>
+          </div>
+          <button type="submit" class="btn btn-default pull-right" ng-click="submitIngresar(form)"id="agregar">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
