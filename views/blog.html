@@ -110,7 +110,7 @@
         </div>
 
         <!-- PUBLISHED -->
-        <div style="height: 710px; overflow-y: scroll;">
+        <div ng-show="visible" style="height: 710px; overflow-y: scroll;">
           <div ng-show="visible" ng-repeat="usuario in publicacionesUsuario"> <!-- | startFrom:currentPage*pageSize | limitTo:pageSize" -->
             <div class="table-bordered clearfix width-texto margen" id="{{usuario.id}}">
               <div class="nav" data-toggle="modal" ng-click="obtenerComentarios($index)" data-target=".{{'myModalPublicacionCompleta'+$index}}" style="cursor:pointer">
