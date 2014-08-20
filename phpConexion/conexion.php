@@ -7,7 +7,7 @@ include_once "funciones.php";
 
 $host = "23.229.208.198";
 $usuario = "proyectofinal";
-$password = "Cenfotec2014";
+$password = "Loginnet2014";
 
 define('__DATABASE__', "proyectofinalweb");
 
