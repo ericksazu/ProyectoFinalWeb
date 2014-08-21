@@ -37,7 +37,7 @@ angular.module('module').controller('infousuarioController', function($scope, $r
     });
 
     $(".salir").on('click', function() {
-        location.reload(true);
+        location.reload(false);
 
     });
 
