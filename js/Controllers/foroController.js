@@ -93,16 +93,20 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		$http.post('phpConexion/agregarEstudianteForo.php', {'idForo': id,'emailEstudiante': email}).success(function(data, status) {
 			console.log("inserted good");
 			$scope.estudiantes = data;
-		}).error(function(data, status) {
-			console.log("inserted bad");
-		});
 
-		$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
+			$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
 			console.log("inserted good", data);
 			$scope.listaEstudiantes = data;
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+
+		
 	};
 
 	$scope.currentPage = 0;
