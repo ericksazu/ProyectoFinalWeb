@@ -11,8 +11,7 @@
         </a>
         <p class="name text-center enlace">{{usuarioActual}}</p>
       </div>
-      <div>
-      </div>
+      <button type="button" class="btn-purple btn btn-xs" ng-click="recargarBlog()">Volver a blog</button>
     </div>
 
     <!-- Buscador -->
@@ -245,7 +244,7 @@
           </div> <!-- PUBLISHED -->
         </div>
 
-        <div ng-show="!visible">
+        <div ng-show="!visible" style="height: 710px; overflow-y: scroll;">
           <div class="divUltimosBlogs">
             <h1 class="tituloUltimosBlogs">Entradas recientes</h1>
             <label class="lblDescripcionBlogs">A continuación se muestran las entradas recientes en los blogs</label>

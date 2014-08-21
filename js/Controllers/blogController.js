@@ -170,6 +170,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.mostrarBlogsEstudiantes = function(index){
     $scope.visible = true;
+    $scope.cambioBlog = false;
     $scope.mostrarUsuarioPorCorreo = $scope.publicaciones[index].autor;
     $scope.correo = $scope.publicaciones[index].autor;
     $scope.publicacionesUsuario = [];
@@ -270,6 +271,10 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   $scope.noEditar = function(index) {
     $scope.publicacionesUsuario[index].tema = $scope.publicacionesUsuario[index][4];
     $scope.publicacionesUsuario[index].descripcionPublicacion = $scope.publicacionesUsuario[index][1];
+  };
+
+  $scope.recargarBlog = function() {
+    $route.reload();
   };
 
   $scope.borrarCampos = function(index) {
