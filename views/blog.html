@@ -286,7 +286,7 @@
       <h3>Documentos más votados</h3>
       <img src="img/estrella-doc.png" class="estrella-doc2">
     </div>
-    <div class="trending-topic table-bordered clearfix" ng-repeat="documento in documentos | orderBy:'-votos' | limitTo: 5">
+    <div class="trending-topic table-bordered clearfix" ng-repeat="documento in documentosTotales | orderBy:'-votos' | limitTo: 5">
       <div class="trending-content-header">
         <div class="trending-number col-md-2">
           <h3>{{$index+1}}</h3>
@@ -295,8 +295,8 @@
           <a href="#" class="purple">{{documento.titulo}}</a>
           </br>
           <span>{{documento.autor}} /</span>
-          <span>{{documento.fecha}} /</span>
-          <span>{{documento.peso}}</span>
+          <span>{{documento.tema}} /</span>
+          <span>{{documento.fecha}}</span>
         </div>
         <div class="trending-stars">
           <a href="#" ng-class="marca(1, documento.votos)"></a>
@@ -310,7 +310,7 @@
         <p>{{documento.descripcion}}</p>
       </div>
       <div class="trending-footer">
-        <a href="#" class="gray" ng-click="visualizarDoc($index)">Ver documento</a>
+        <a href="" class="links-doc" ng-click="visualizarDoc($index,event)" type="button">Visualizar</a>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.documentosNuevos = [];
 
 	$scope.currentPage = 0;
-	$scope.pageSize = 5;
+	$scope.pageSize = 3;
 
 	$scope.numberOfPages=function(){
 		return Math.ceil($scope.documentos.length/$scope.pageSize);
@@ -21,9 +21,9 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$(".errorArchivo").addClass('hide');
 
     /*aqui llamo subir archivos*/
-	/*$http.get('data/documentos.json').success(function(data) {
-    $scope.documentos = data;
-});*/
+	
+	
+
     $http.get('phpConexion/documentos/mostrar.php').success(function (data) {
 		$scope.documentosTotales = data;
 	      console.log(data);
@@ -54,7 +54,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 
 	$scope.buscar= function(){
-		alert($scope.documentos[0].titulo);
+		alert($scope.documentosTotales[0].titulo || $scope.documentosTotales[0].tema);
 	};
 
 	$scope.marca = function(index, votos) {
@@ -90,10 +90,11 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		}
 
 	};
-
-	$scope.visualizarDoc = function(index,event){
-
-		window.open($scope.documentosTotales[index].documento)
+   	$scope.visualizarDoc = function(index,event){
+        $http.get('data/documentos.json').success(function(data) {
+        $scope.documentosmostrar = data;
+});
+		window.open($scope.documentosmostrar[index].documento)
 		event.preventDefault();
 	};
 
@@ -148,28 +149,30 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 		var descripcion = $scope.documento.descripcion,
 		titulo = $scope.documento.titulo,
-		tema = $scope.documento.tema,
+		tema = $scope.documento.tema;
 		archivoSubido = document.myForm.archivo.value,
-		documentoNuevo = new Object(),
-		fechaDocumento = new Date();
-		documentoNuevo.peso = '50KB';
-		
-
+		documentoNuevo = new Object();
+		/*fechaDocumento = new Date();
+		documentoNuevo.peso = '50KB';*/
 		$http.post('phpConexion/documentos/subir_archivos.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
 		$scope.documentos = data;
 	   });
-
+    
 		$http.get('phpConexion/documentos/mostrar.php').success(function (data) {
 		$scope.documentosTotales = data;
 	      console.log(data);
 
     });
 
+		
+		
+
 		if (document.myForm.archivo.value == '')
 		{
 			$(".errorArchivo").removeClass('hide');
 			$(".errorArchivo").addClass('visible');
 		}
+          
 
 
 
@@ -178,15 +181,16 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			documentoNuevo.titulo = titulo;
 			documentoNuevo.tema = tema;
 			documentoNuevo.descripcion = descripcion;
-			documentoNuevo.fecha = fechaDocumento.getDate() + '/' + fechaDocumento.getMonth() + '/' + fechaDocumento.getFullYear();
+			/*documentoNuevo.fecha = fechaDocumento.getDate() + '/' + fechaDocumento.getMonth() + '/' + fechaDocumento.getFullYear();
 			documentoNuevo.autor = $rootScope.usuarioLogueado.nombre;
 			documentoNuevo.votos = 0;
 			documentoNuevo.peso = '50KB';
-			documentoNuevo.archivo = archivoSubido;
+			documentoNuevo.archivo = archivoSubido;*/
 
    
 			$scope.documentos.push(documentoNuevo);
 			$('#myModal').modal('hide');
+
 
 			window.clearTimeout(timeoutHandle);
 
@@ -199,7 +203,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			$scope.documento.titulo = "";
 			$scope.documento.descripcion ="";
 
-			console.log(documentoNuevo);
+			/*console.log(documentoNuevo);*/
 			$scope.myForm.submitted = true;
 		}
 		else {
@@ -208,14 +212,10 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			$scope.myForm.submitted = false;
 			
 		}
-		return;
-	
 		
 
-
-
-		alert('exito');
-
+		return;
+          alert('exito');
 
 	};
 
