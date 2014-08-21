@@ -86,23 +86,26 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header margen-modal-header">
-                  <button type="button" class="close" data-dismiss="modal">
+                  <button type="button" class="close" data-dismiss="modal" ng-click="borrarCampos($index)">
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                   </button>
                   <h4 class="modal-title" id="myModalLabel">Ingrese una nueva publicación</h4>
                 </div>
-                <div class="modal-body">
-                  <div class="body">
-                    <label for="tittle" style="width:70%">Tema
-                      <input type="text" id="idPublished" placeholder="Tema" class="form-control" ng-model="tituloPublicacion">
-                    </label>
-                    <textarea name="Publicacion" id="textPublished" cols="50" class="form-control" rows="10" placeholder="Ingrese su publicación" ng-model="contenidoPublicacion"></textarea>
+                <form name="formModalNuevaPublicacion">
+                  <div class="modal-body">
+                    <div class="body">
+                      <label for="tittle" style="width:70%">Tema
+                        <input type="text" id="idPublished" placeholder="Tema" class="form-control" ng-model="tituloPublicacion" ng-minlength="5" required>
+                      </label>
+                      <textarea name="Publicacion" id="textPublished" cols="50" class="form-control" rows="10" placeholder="Ingrese su publicación" ng-model="contenidoPublicacion" ng-minlength="5" required></textarea>
+                      <span style="color: #bbbbbb;" ng-show="formModalNuevaPublicacion.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
+                    </div>
                   </div>
-                </div>
+                </form>
                 <div class="modal-footer margen-modal-footer">
-                  <input type="submit" class="btn btn-default" ng-click="nuevaPublicacion()" value="Publicar">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <input type="submit" class="btn" ng-disabled="formModalNuevaPublicacion.$invalid" ng-click="nuevaPublicacion()" value="Publicar">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="borrarCampos($index)">Cancelar</button>
                 </div>
               </div>
             </div>
@@ -153,23 +156,26 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header margen-modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" data-dismiss="modal" ng-click='noEditar($index)'>
                       <span aria-hidden="true">&times;</span>
                       <span class="sr-only">Close</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Editar publicación</h4>
                   </div>
-                  <div class="modal-body">
-                    <div class="body">
-                      <label for="tittle" style="width:70%">Tema
-                        <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.tema">
-                      </label>
-                      <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.descripcionPublicacion"></textarea>
+                  <form name="formModalEditarPublicacion">
+                    <div class="modal-body">
+                      <div class="body">
+                        <label for="tittle" style="width:70%">Tema
+                          <input type="text" id="title" placeholder="Tema" class="form-control" ng-model="usuario.tema" ng-minlength="5" required>
+                        </label>
+                        <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="usuario.descripcionPublicacion" ng-minlength="5" required></textarea>
+                        <span style="color: #bbbbbb;" ng-show="formModalEditarPublicacion.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
+                      </div>
                     </div>
-                  </div>
+                  </form>
                   <div class="modal-footer margen-modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal" ng-click="guardarTema($index)">Aceptar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn" data-dismiss="modal" ng-disabled="formModalEditarPublicacion.$invalid" ng-click="guardarTema($index)">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="noEditar($index)">Cancelar</button>
                   </div>
                 </div>
               </div>
@@ -180,7 +186,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header margen-modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" ng-click="borrarCampos($index)" data-dismiss="modal">
                       <span aria-hidden="true">&times;</span>
                       <span class="sr-only">Close</span>
                     </button>
@@ -199,7 +205,8 @@
                   </div>
                   <div class="modal-footer margen-modal-footer">
                     <form name="formComentario">
-                      <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" required>
+                      <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" ng-minlength="5" required>
+                      <span style="color: #bbbbbb; float: left;" ng-show="formComentario.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
                       <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
                     </form>
                   </div>
@@ -212,7 +219,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header margen-modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="borrarCampos($index)">
                       <span aria-hidden="true">&times;</span>
                       <span class="sr-only">Close</span>
                     </button>
@@ -222,12 +229,13 @@
                     <div class="modal-body">
                       <div class="body">
                         <label for="tittle">{{usuario.title}}</label>
-                        <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="$parent.agregarComentario" required></textarea>
+                        <textarea name="Publicacion" id="idPublicacion" cols="50" class="form-control" rows="10" placeholder="Ingrese su comentario" ng-model="$parent.agregarComentario" ng-minlength="5" required></textarea>
+                        <span style="color: #bbbbbb;" ng-show="formModalComentario.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
                       </div>
                     </div>
                     <div class="modal-footer margen-modal-footer">
                       <button type="button" class="btn" data-dismiss="modal" ng-disabled="formModalComentario.$invalid" ng-click="nuevoComentario($index)">Aceptar</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="borrarCampos($index)">Cancelar</button>
                     </div>
                   </form>
                 </div>

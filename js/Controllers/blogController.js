@@ -230,7 +230,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
         console.log("inserted wrong");
     });
 
-    
+
     $scope.obtenerComentarios(index);
 
     /*$scope.getpublishedcomment = $scope.agregarComentario;
@@ -263,6 +263,17 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $scope.publicaciones[index].title = $scope.getpublishedtitle;
     $scope.publicaciones[index].published = $scope.getpublishedmessage;*/
 
+  };
+
+  $scope.noEditar = function(index) {
+    $scope.publicacionesUsuario[index].tema = $scope.publicacionesUsuario[index][4];
+    $scope.publicacionesUsuario[index].descripcionPublicacion = $scope.publicacionesUsuario[index][1];
+  };
+
+  $scope.borrarCampos = function(index) {
+    $scope.agregarComentario = '';
+    $scope.tituloPublicacion = '';
+    $scope.contenidoPublicacion = '';
   };
 
   $scope.obtenerComentarios = function(index) {
