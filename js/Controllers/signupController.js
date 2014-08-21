@@ -22,6 +22,7 @@ angular.module('module').controller('signupController',
                             "idRol": data[posicion].idRol,
                         };
                         localStorage.setItem('usuario', JSON.stringify($rootScope.usuarioLogueado));
+                        
                         if ($rootScope.usuarioLogueado.idRol == "14") {
                             $location.url('/configuracion');
                         } else {

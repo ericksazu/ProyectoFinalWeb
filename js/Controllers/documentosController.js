@@ -221,5 +221,9 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$scope.ver = 1;
 
+	$(":file").filestyle({
+        buttonText: "Seleccione un documento"
+    });
+
 
 });
