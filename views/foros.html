@@ -154,8 +154,7 @@
                       <tbody>
 
                         <tr ng-repeat="usuario in listaEstudiantes">
-                          <td>{{usuario.nombre}}</td>
-                          <td>{{usuario.primerApellido}}</td>
+                          <td>{{usuario.nombre}} {{usuario.primerApellido}}</td>
                           <td>
                             <input class="chk" type="checkbox" name="delete" ng-checked="estudiante.eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado($parent.$index,$index)">
                           </td>
@@ -167,11 +166,11 @@
                       </tbody>
                     </table>
                     <div class="divBtnAceptar">
-                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Agregar asistente</button>
+                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default dist-boton-agregar" ng-click="eliminarEstudiante($index)">Eliminar estudiantes</button>
                     </div>
                     
                     <div class="divBtnAceptar">
-                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Eliminar estudiantes</button>
+                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Agregar asistente</button>
                     </div>
 
                   </div>
