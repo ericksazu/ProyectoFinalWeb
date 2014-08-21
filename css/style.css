@@ -819,14 +819,14 @@ label {
 }
 /*dhasgdhgashfdgdhjasgfhjdsghjfgjhsdagfjhgasdjhf  BLOG  gdsfhgdashjfghjadsgjfhgdasjhfgjhasdghjfagsdhjfgjhdsagf*/
 
-.btn-purple{
+.btn-purple-blog{
   background-color: #712d7b;
   color: #ffffff;
   display: block;
   margin: 0 auto;
 }
 
-.btn-purple:hover{
+.btn-purple-blog:hover{
   background-color: #b91767;
   color: #ffffff;
 }
