@@ -8,6 +8,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.informacion = {};
 	$scope.estudiantes = [];
 	$scope.emailEstudiante = "hhh";
+	$scope.listaEstudiantes = [];
 
 	$scope.nuevoTema = function() {
 		$scope.informacion = {};
@@ -95,6 +96,13 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+		$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
+			console.log("inserted good", data);
+			$scope.listaEstudiantes = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
 	};
 
 	$scope.currentPage = 0;
@@ -109,12 +117,13 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 			$('#tags2').autocomplete({
 				source: $scope.usuariosForo,
 				select: function( event, ui ) {
-					 $scope.$apply(function(){
+					$scope.$apply(function(){
 					 	//console.log(ui.item.vale);
 					 	$scope.emailEstudiante = ui.item.value;
 					 });
 				}
 			});
+
 		//$('#tags2').autocomplete('option','appendTo','#prueba');
 	};
 	
@@ -122,6 +131,12 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
 		console.log("inserted good");
 		$scope.informacion = data;
+		$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
+			console.log("inserted good", data);
+			$scope.listaEstudiantes = data;
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
 		console.log($scope.informacion);
 	}).error(function(data, status) {
 		console.log("inserted bad");

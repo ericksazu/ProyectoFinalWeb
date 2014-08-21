@@ -153,8 +153,9 @@
                       </thead>
                       <tbody>
 
-                        <tr ng-repeat="estudiante in topics[$index].estudiantes">
-                          <td>{{estudiante.estudiante}}</a></td>
+                        <tr ng-repeat="usuario in listaEstudiantes">
+                          <td>{{usuario.nombre}}</td>
+                          <td>{{usuario.primerApellido}}</td>
                           <td>
                             <input class="chk" type="checkbox" name="delete" ng-checked="estudiante.eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado($parent.$index,$index)">
                           </td>
