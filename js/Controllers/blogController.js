@@ -12,6 +12,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   $scope.mostrarUsuarioPorCorreo = $scope.usuarioLogueado.email;
   $scope.correo = $scope.usuarioLogueado.email;
   $scope.visible = $rootScope.usuarioLogueado.idRol == 12;
+  $scope.cambioBlog = true;
   $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
   $scope.usuarioActual = $scope.usuarioLogueado.nombre;
   $scope.usuarioActualFoto = $scope.usuarioLogueado.foto;
@@ -125,6 +126,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
             for (var i = 0; i < $scope.usuarios.length; i++) {
               if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
+                $scope.cambioBlog = false;
                 $scope.usuarioActualFoto = $scope.usuarios[i].foto;
                 $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
                 return $scope.usuarioActual = $scope.usuarios[i].nombre;
