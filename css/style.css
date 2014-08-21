@@ -240,7 +240,7 @@ a:focus {
 /* Small devices (tablets, 768px and up) */
 
 @media (max-width: 768px) {
-  li {
+  .nav > li {
     text-align: center;
     font-size: 18px;
   }
