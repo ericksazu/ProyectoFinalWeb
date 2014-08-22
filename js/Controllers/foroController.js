@@ -10,6 +10,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.emailEstudiante = "hhh";
 	$scope.listaEstudiantes = [];
 	$scope.estudiantesEliminados = [];
+	$scope.estudianteAsistente = [];
 
 	$scope.nuevoTema = function() {
 		$scope.informacion = {};
@@ -180,6 +181,48 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 		}
 		$scope.estudiantesEliminados = [];
 	};
+
+
+	$scope.seleccionarAsistente = function (idUsuario) {
+		//$scope.topicCurrentIndex = index;
+
+		var indexEliminar = -1;
+
+		for (var i = 0; i < $scope.estudianteAsistente.length; i++) {
+			if (parseInt($scope.estudianteAsistente[i]) == idUsuario) {
+				indexEliminar = i;
+			}
+		}
+		if (indexEliminar>-1) {
+			$scope.estudianteAsistente.splice(indexEliminar, 1);
+		}
+		else {
+			$scope.estudianteAsistente.push(idUsuario);
+		}
+
+		console.log($scope.estudianteAsistente);
+	};
+
+	$scope.asignarAsistente = function() {
+		for (var i = 0; i < $scope.estudianteAsistente.length; i ++) {
+
+			$http.post('phpConexion/agregarAsistente.php', {'idUsuario': $scope.estudianteAsistente[i], 'idForo':$scope.informacion.idForo }).success(function(data, status) {
+				console.log("inserted good");
+				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
+				console.log("inserted good", data);
+				$scope.listaEstudiantes = data;
+			}).error(function(data, status) {
+				console.log("inserted bad");
+			});
+				
+			}).error(function(data, status) {
+				console.log("inserted bad");
+			});
+		}
+
+	};
+
+
 
 
 

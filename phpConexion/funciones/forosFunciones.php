@@ -109,4 +109,10 @@ function eliminarEstudianteForo($conexion,$idUsuario, $idForo){
 	
 	return BDQuery($query, $conexion);
 }
+
+function agregarAsistente($conexion,$idUsuario, $idForo){
+	$query = "CALL agregarAsistente($idUsuario, $idForo)";
+	
+	return BDQuery($query, $conexion);
+}
 ?>
