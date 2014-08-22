@@ -128,6 +128,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	};
 	
 	var id = $scope.topics[index].idForo;
+
 	$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
 		console.log("inserted good");
 		$scope.informacion = data;
@@ -142,6 +143,14 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		console.log("inserted bad");
 	});
 
+
+	$http.post('phpConexion/obtenerAsistente.php', {'idForo': id}).success(function(data, status) {
+		console.log("inserted good");
+		$scope.listaEstudiantes = data;
+		console.log($scope.informacion);
+	}).error(function(data, status) {
+		console.log("inserted bad");
+	});
 }	
 
 

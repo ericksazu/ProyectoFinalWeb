@@ -5,9 +5,9 @@ include_once "funciones/forosFunciones.php";
 
 
 $data = json_decode(file_get_contents("php://input"));
+$idForo = $data->idForo;
 
-
-$resultado = obtenerEstudiantesForo($conexion,$data->asistente);
+$resultado = obtenerAsistente($conexion,$idForo);
 
 $lista = Array();
 
