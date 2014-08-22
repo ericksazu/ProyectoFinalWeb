@@ -37,7 +37,7 @@
       <div class="modal fade bs-example-modal-sm" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content olvido">
-            <form class="login form-signin size" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController">
+            <form class="login form-signin size" role="form" pb-autologin="true" autocomplete="on" name="signup_form" novalidate ng-submit="signupForm2()" ng-controller="signupController" method="post" action="phpConexion/login/olvidocontrasena.php">
               <p>Por favor ingresar su correo electronico</p>
               <input type="email" class="form-control input-login olvidocontrasena" placeholder="acordero@ucenfotec.ac.cr" name="email2" autocomplete="on" ng-model="signup.email2" ng-minlength=3 ng-maxlength=30 ng-class="{error: signup_form.email2.$dirty && signup_form.email2.$invalid}" required />
               <div class="error-container " ng-show="signup_form.email2.$dirty && signup_form.email2.$invalid">
