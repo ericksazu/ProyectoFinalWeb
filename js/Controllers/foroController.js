@@ -101,7 +101,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 			console.log("inserted bad");
 		});
 
-		
+		$scope.emailEstudiante = '';
 	};
 
 	$scope.currentPage = 0;
@@ -141,9 +141,10 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		console.log("inserted bad");
 	});
 
-	
+}	
 
-	$scope.deseleccionarEliminado = function (idUsuario) {
+
+$scope.deseleccionarEliminado = function (idUsuario) {
 		//$scope.topicCurrentIndex = index;
 
 		var indexEliminar = -1;
@@ -166,7 +167,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 			$http.post('phpConexion/eliminarEstudianteForo.php', {'idUsuario': $scope.estudiantesEliminados[i], 'idForo':$scope.informacion.idForo }).success(function(data, status) {
 				console.log("inserted good");
-				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
+				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
 				console.log("inserted good", data);
 				$scope.listaEstudiantes = data;
 			}).error(function(data, status) {
@@ -179,7 +180,6 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		}
 		$scope.estudiantesEliminados = [];
 	};
-}	
 
 
 
@@ -375,38 +375,8 @@ angular.module('module').controller('EditarTema', function ($scope, $http, $rout
 		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
 	}
 
-	/*$scope.asignarIndex = function(index) {
-		$scope.topicCurrentIndex = index;
-	}*/
-
-	$scope.eliminarEstudiante = function (index) {
-		console.log($scope.topics[index].estudiantes);
-		var kill = [];
-
-		for (var i = 0; i < $scope.topics[index].estudiantes.length; i++) {
-			if($scope.topics[index].estudiantes[i].eliminado === true){
-				kill.push(i);
-			}
-		}
-		/*console.log(kill);*/
-		for (var i = kill.length - 1; i >= 0; i--){
-			/*console.log(kill[i], $scope.topics[index].estudiantes[kill[i]], $scope.topics[index].estudiantes);*/
-			$scope.topics[index].estudiantes.splice(kill[i], 1); /*(kill[i] - 1, 1)*/
-		};
-	}
-
-	$scope.mostrarTema = function (index) {
-		$scope.topics[index].show = true;
-		if($scope.topics[index].titulo === ''){
-			$scope.topics.splice(index,1);
-			$('.modal-backdrop').remove();
-		}
-
-		$scope.topics[index].fechaInicio = $scope.fechaInicio;
-		$scope.topics[index].fechaCierre = $scope.fechaCierre;
-
-		console.log(temas);
-	}
+	
+	
 
 	$scope.salirModal = function (index) {
 		if($scope.topics[index].titulo === ''){
@@ -431,14 +401,6 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
   }
 });
 
-angular.module('module').controller('ComentarForo', function ($scope,$http, $routeParams, $rootScope) {
-	$scope.message = '';
-	$scope.comentario =[];
-	console.log($rootScope.usuarioLogueado.idUsuario);
-
-	
-
-});
 
 angular.module('module').controller('AgregarDenuncia', function ($scope) {
 	$scope.denuncia = '';
