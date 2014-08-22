@@ -9,15 +9,14 @@
 		return BDQuery($query, $conexion);
 	}
 
-	/*function eliminarUsuario($conexion,$idUsuario){
-		$query = "CALL sp_EliminarUsuario("'.$idUsuario.'")";
+	function CrearNuevoUsuario($conexion,$insertNombre,$insertPrimerApellido,$insertSegundoApellido,$insertEmail,$insertContrasena,$insertNivelUniversitario,$insertBlogIdBlog,$insertIdRol){
+		$query = 'CALL sp_IngresarNuevoUsuario("'.$insertNombre.'","'. $insertPrimerApellido .'","'.$insertSegundoApellido'","'.$insertEmail.'","'.$insertContrasena.'","'.$insertNivelUniversitario.'","'.$insertBlogIdBlog.'","'.$insertIdRol'")';
 		return BDQuery($query, $conexion);
 	}
 
-	function ingresarUsuario($conexion,  $nombre, $primerApellido, $segundoApellido, $email, $contrasena, $nivel, $rol){
-		$query = "CALL sp_IngresarUsuario("'.$nombre.'","'.$primerApellido.'","'.$segundoApellido.'","'.$email.'","'.$contrasena.'","'.$nivel.'","'.$rol.'")";
+	/*function eliminarUsuario($conexion,$idUsuario){
+		$query = "CALL sp_EliminarUsuario("'.$idUsuario.'")";
 		return BDQuery($query, $conexion);
 	}*/
-
 	
 ?>
