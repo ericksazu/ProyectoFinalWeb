@@ -1,202 +1,203 @@
-<div id="foroHeader">
-  <div class="container">
-    <div class="row row-centered">
-      <div class="foroHeader col-md-6 col-centered">
-        <div class="divImg clearfix">
-          <div class="row">
-            <div class="col-md-5 col-md-offset-5">
-              <div class="imgForoHeader"><h1>Foro</h1></div>
+<div ng-controller="foroController as foro">
+  <div id="foroHeader">
+    <div class="container">
+      <div class="row row-centered">
+        <div class="foroHeader col-md-6 col-centered">
+          <div class="divImg clearfix">
+            <div class="row">
+              <div class="col-md-5 col-md-offset-5">
+                <div class="imgForoHeader"><h1>Foro</h1></div>
+              </div>
             </div>
           </div>
+          <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
+            <div class="form-group">
+            <input type="text" class="form-control inputForoHeader" placeholder="Buscar" id="tags" ng-click="buscarTemas()" ng-model="buscartema">
+            </div>
+            <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
+          </form>
         </div>
-        <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar" id="tags" ng-click="buscarNombres()">
-          </div>
-          <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
-        </form>
       </div>
     </div>
   </div>
-</div>
 
-<div id="foro-content" ng-controller="foroController as foro" class="forototal">
-  <div class="container">
-    <div class="row">
-      <!-- Foro container left -->
-      <div class="foro-container col-md-7">
-        <div class="foro-container-header clearfix">
-          <h3 >Temas en el foro</h3>
-          <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
-        </div>
-        <div ng-class="'myPopover'+$index" ng-repeat="tema in topics | startFrom:currentPage*pageSize | limitTo:pageSize">
-          <table class="tema-foro table table-bordered">
-            <tbody>
-              <tr ng-show="topics[$index].show">
-                <td class="col-md-1 text-center">
-                  <h3>{{tema.respuestas}}</h3>
-                  <span>Respuestas</span>
-                </td>
-                <td class="col-md-3">
-                  <a href="#/foro-topic/{{tema.idForo}}/{{tema.estado}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a><span ng-show="tema.estado==1" id="foroCerrado">Foro cerrado</span>
-                  <span>{{tema.descripcion}}</span>
-                </td>
-                <td class="col-md-1 text-center">
-                  <h3>{{tema.visitas}}</h3>
-                  <span>Vistas</span>
-                </td>
-                <td class="col-md-2">
-                  <span class="last-message last-message-style">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
+  <div id="foro-content" class="forototal">
+    <div class="container">
+      <div class="row">
+        <!-- Foro container left -->
+        <div class="foro-container col-md-7">
+          <div class="foro-container-header clearfix">
+            <h3 >Temas en el foro</h3>
+            <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
+          </div>
+          <div ng-class="'myPopover'+$index" ng-repeat="tema in topics | startFrom:currentPage*pageSize | limitTo:pageSize | filter:buscartema">
+            <table class="tema-foro table table-bordered">
+              <tbody>
+                <tr ng-show="topics[$index].show">
+                  <td class="col-md-1 text-center">
+                    <h3>{{tema.respuestas}}</h3>
+                    <span>Respuestas</span>
+                  </td>
+                  <td class="col-md-3">
+                    <a href="#/foro-topic/{{tema.idForo}}/{{tema.estado}}" ng-click="abrirComentarios($index)" ng-model="tema"><h4>{{tema.tema}}</h4></a><span ng-show="tema.estado==1" id="foroCerrado">Foro cerrado</span>
+                    <span>{{tema.descripcion}}</span>
+                  </td>
+                  <td class="col-md-1 text-center">
+                    <h3>{{tema.visitas}}</h3>
+                    <span>Vistas</span>
+                  </td>
+                  <td class="col-md-2">
+                    <span class="last-message last-message-style">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
 
-                  <a ng-show="visible" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
-                  <div class="modal fade bs-example-modal-sm{{$index}}" id="myModalEliminarTema" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <a ng-show="visible" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
+                    <div class="modal fade bs-example-modal-sm{{$index}}" id="myModalEliminarTema" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
-                    <!-- Modal Confirmar Borrar -->
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header clearfix">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                          <h4 class="modal-title">¿Desea eliminar este tema?</h4>
+                      <!-- Modal Confirmar Borrar -->
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header clearfix">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h4 class="modal-title">¿Desea eliminar este tema?</h4>
+                          </div>
+                          <div class="divBtnEliminarTemaForo">
+                            <button type='button' class='btn btn-success btn-purple btn-eliminar-tema' ng-click='eliminar($index)'>Aceptar</button>
+                            <button type='button' data-dismiss="modal" class='btn btn-default btn-closeModalPopover'>Cancelar</button>
+                          </div>
+
                         </div>
-                        <div class="divBtnEliminarTemaForo">
-                          <button type='button' class='btn btn-success btn-purple btn-eliminar-tema' ng-click='eliminar($index)'>Aceptar</button>
-                          <button type='button' data-dismiss="modal" class='btn btn-default btn-closeModalPopover'>Cancelar</button>
-                        </div>
-
                       </div>
-                    </div>
-                    <!-- ************************ -->
+                      <!-- ************************ -->
 
-                  </div>
-                  <a ng-show="visible" class="edit" data-toggle="modal" ng-click="editarForo($index)" data-target="#myModalEditarTema">editar</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    </div>
+                    <a ng-show="visible" class="edit" data-toggle="modal" ng-click="editarForo($index)" data-target="#myModalEditarTema">editar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
 
           </div>
         </div>
-         <!-- Modal Crear Editar -->
-          <div class="modal fade" ng-class="'myModal'+$index" id="myModalEditarTema" data-container="body" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header clearfix">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <h4 class="modal-title">Ingrese los datos para agregar o editar un tema</h4>
-                </div>
-                <div class="modal-body clearfix">
-                  <div class="modal-izq col-md-5">
+        <!-- Modal Crear Editar -->
+        <div class="modal fade" ng-class="'myModal'+$index" id="myModalEditarTema" data-container="body" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title">Ingrese los datos para agregar o editar un tema</h4>
+              </div>
+              <div class="modal-body clearfix">
+                <div class="modal-izq col-md-5">
 
-                    <form class="form-horizontal" role="form" id="formModalEditar" ng-submit="editTema($index)" name="editForm" novalidate>
-                      <div class="form-group form-group-edit-foro">
-                        <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
-                        <div class="col-sm-10">
-                          <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="informacion.tema" placeholder="Tema" required>
-                          <span class="errorForo" ng-show="editForm.titulo.$error.required">Ingrese un dato correcto</span>
-                        </div>
-                      </div>
-                      <div class="form-group form-group-edit-foro">
-                        <label for="inputDescripcionForo" class="col-md-6 control-label">Descripción</label>
-                        <div class="col-sm-10">
-                          <input name="descripcion" type="name" class="form-control" id="inputDescripcionForo" ng-model="informacion.descripcion" placeholder="Descripción" required>
-                          <span class="errorForo" ng-show="editForm.descripcion.$error.required">Ingrese una descripción</span>
-                        </div>
-                      </div>
-                      
-                      <div class="form-group form-group-edit-foro">
-                        <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
-                        <div class="col-sm-10">
-                          <input name="fechaInicio" type="date" class="form-control" id="inputFechaInicio" ng-model="informacion.fecha_creacion" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
-                          <span class="errorForo" ng-show="editForm.fechaInicio.$error.required">Ingrese una fecha válida</span>
-                        </div>
-                      </div>
-                      {{editfForm}}
-                      <div class="form-group last-edit">
-                        <label for="inputNombreForo" class="col-md-6 control-label">Fecha cierre</label>
-                        <div class="col-sm-10">
-                          <input name="fecha_cierre" type="date" class="form-control" id="inputFechaCierre" ng-model="informacion.fecha_cierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
-                          <span class="errorForo" ng-show="editForm.fecha_cierre.$error.required">Ingrese una fecha válida</span>
-                        </div>
-                      </div>
-                      <input type="hidden" name="idForo" ng-model="informacion.idForo">
-                      <div class="form-group">
-                        <div class="divBtnAgregar">
-                          <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Guardar datos</button>
-                        </div>
-                        <div class="divBtnCerrar">
-                          <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
-                        </div>
-                      </div>
-                    </form>
-
-                  </div>
-                  <div class="modal-der col-md-7">
+                  <form class="form-horizontal" role="form" id="formModalEditar" ng-submit="editTema($index)" name="editForm" novalidate>
                     <div class="form-group form-group-edit-foro">
-                      <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
+                      <label for="inputTemaForo" class="col-md-6 control-label">Nuevo Tema</label>
                       <div class="col-sm-10">
-                        <input name="emailEstudiante" type="email" class="form-control" id="tags2" placeholder="Email" ng-model="emailEstudiante" ng-click="buscarNombresModal($index)" required>
-                        <span class="errorForo" ng-show="emailEstudiante.$error.required || emailEstudiante.$error.email">Ingrese un email válido</span>
-                      </div>
-                      <div class="col-sm-12 divBtnCerrar">
-                        <br>
-                        <button id="btnAgregarEstudiante" class="btn btn-default btnAgregarEstudiante" type"submit" ng-disabled="informacion.idForo == null" ng-click="agregarEstudiante($index)">Agregar</button><br><br>
+                        <input name="titulo" type="name" class="form-control" id="inputTemaForo" ng-model="informacion.tema" placeholder="Tema" required>
+                        <span class="errorForo" ng-show="editForm.titulo.$error.required">Ingrese un dato correcto</span>
                       </div>
                     </div>
-                    <table id="{{'tableIntegrantesForo'+$index}}" class="table tableIntegrantesForo">
-                      <thead>
-                        <tr>
-                          <th>Estudiantes ingresados</th>
-                          <th>Eliminar</th>
-                          <th>Asistente</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        <tr ng-repeat="usuario in listaEstudiantes">
-                          <td>{{usuario.nombre}} {{usuario.primerApellido}}</td>
-                          <td>
-                            <input class="chk" type="checkbox" name="delete" ng-checked="estudiante.eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado($parent.$index,$index)">
-                          </td>
-                          <td>
-                            <input class="chk" type="radio" ng-checked="estudiante.asistente" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarAsistente($parent.$index,$index)" required>
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </table>
-                    <div class="divBtnAceptar">
-                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default dist-boton-agregar" ng-click="eliminarEstudiante($index)">Eliminar estudiantes</button>
-                    </div>
-                    
-                    <div class="divBtnAceptar">
-                      <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Agregar asistente</button>
+                    <div class="form-group form-group-edit-foro">
+                      <label for="inputDescripcionForo" class="col-md-6 control-label">Descripción</label>
+                      <div class="col-sm-10">
+                        <input name="descripcion" type="name" class="form-control" id="inputDescripcionForo" ng-model="informacion.descripcion" placeholder="Descripción" required>
+                        <span class="errorForo" ng-show="editForm.descripcion.$error.required">Ingrese una descripción</span>
+                      </div>
                     </div>
 
-                  </div>
-                </div><!-- /.modal-content -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-purple" data-dismiss="modal" ng-click="mostrarTema($index)">Aceptar</button>
-                  <button type="submit" class="btn btn-default btn-closeModalPopover" data-dismiss="modal" ng-click="salirModal($index)">Cancelar</button>
+                    <div class="form-group form-group-edit-foro">
+                      <label for="inputNombreForo" class="col-md-6 control-label">Fecha inicio</label>
+                      <div class="col-sm-10">
+                        <input name="fechaInicio" type="date" class="form-control" id="inputFechaInicio" ng-model="informacion.fecha_creacion" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                        <span class="errorForo" ng-show="editForm.fechaInicio.$error.required">Ingrese una fecha válida</span>
+                      </div>
+                    </div>
+                    {{editfForm}}
+                    <div class="form-group last-edit">
+                      <label for="inputNombreForo" class="col-md-6 control-label">Fecha cierre</label>
+                      <div class="col-sm-10">
+                        <input name="fecha_cierre" type="date" class="form-control" id="inputFechaCierre" ng-model="informacion.fecha_cierre" placeholder="yyyy-MM-dd" min="2014-01-01" max="2015-12-31" required>
+                        <span class="errorForo" ng-show="editForm.fecha_cierre.$error.required">Ingrese una fecha válida</span>
+                      </div>
+                    </div>
+                    <input type="hidden" name="idForo" ng-model="informacion.idForo">
+                    <div class="form-group">
+                      <div class="divBtnAgregar">
+                        <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Guardar datos</button>
+                      </div>
+                      <div class="divBtnCerrar">
+                        <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
+                      </div>
+                    </div>
+                  </form>
+
                 </div>
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-      </div> <!-- Foro container left -->
-      <trending-topic></trending-topic> <!-- Trending topic -->
-    </div> <!-- row -->
-    <div class="container">
-      <div class="row row-centered">
-        <div class="pagination col-md-7">
-          <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
-          {{currentPage+1}}/{{numberOfPagesTemas()}}
-          <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+                <div class="modal-der col-md-7">
+                  <div class="form-group form-group-edit-foro">
+                    <label for="inputNombreForo" class="col-md-6 control-label">Agregar estudiante</label>
+                    <div class="col-sm-10">
+                      <input name="emailEstudiante" type="email" class="form-control" id="tags2" placeholder="Email" ng-model="emailEstudiante" ng-click="buscarNombresModal($index)" required>
+                      <span class="errorForo" ng-show="emailEstudiante.$error.required || emailEstudiante.$error.email">Ingrese un email válido</span>
+                    </div>
+                    <div class="col-sm-12 divBtnCerrar">
+                      <br>
+                      <button id="btnAgregarEstudiante" class="btn btn-default btnAgregarEstudiante" type"submit" ng-disabled="informacion.idForo == null" ng-click="agregarEstudiante($index)">Agregar</button><br><br>
+                    </div>
+                  </div>
+                  <table id="{{'tableIntegrantesForo'+$index}}" class="table tableIntegrantesForo">
+                    <thead>
+                      <tr>
+                        <th>Estudiantes ingresados</th>
+                        <th>Eliminar</th>
+                        <th>Asistente</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr ng-repeat="usuario in listaEstudiantes">
+                        <td>{{usuario.nombre}} {{usuario.primerApellido}}</td>
+                        <td>
+                          <input class="chk" type="checkbox" name="delete" ng-checked="eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado(usuario.idUsuario)">
+                        </td>
+                        <td>
+                          <input class="chk" type="radio" ng-checked="usuario.asistente" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarAsistente($parent.$index,$index)" required>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  <div class="divBtnAceptar">
+                    <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default dist-boton-agregar" ng-disabled="estudiantesEliminados.length == 0" ng-click="eliminarEstudiantesSeleccionados()">Eliminar estudiantes</button>
+                  </div>
+
+                  <div class="divBtnAceptar">
+                    <button id="btnAceptarListaEstudiantes" type="submit" class="btn btn-default" ng-click="eliminarEstudiante($index)">Agregar asistente</button>
+                  </div>
+
+                </div>
+              </div><!-- /.modal-content -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-purple" data-dismiss="modal" ng-click="mostrarTema($index)">Aceptar</button>
+                <button type="submit" class="btn btn-default btn-closeModalPopover" data-dismiss="modal" ng-click="salirModal($index)">Cancelar</button>
+              </div>
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </div> <!-- Foro container left -->
+        <trending-topic></trending-topic> <!-- Trending topic -->
+      </div> <!-- row -->
+      <div class="container">
+        <div class="row row-centered">
+          <div class="pagination col-md-7">
+            <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
+            {{currentPage+1}}/{{numberOfPagesTemas()}}
+            <button class="btn btn-default btn-sm" ng-disabled="currentPage >= topics.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div> <!-- container -->
-</div>
+    </div> <!-- container -->
+  </div>
 
-
+</div> <!-- foro controller -->
 
 <script src="js/popover.js"></script>
 <script src="js/modal-foro.js"></script>

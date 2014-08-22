@@ -103,4 +103,10 @@ function obtenerEstudiantesForo($conexion,$idForo){
 	
 	return BDQuery($query, $conexion);
 }
+
+function eliminarEstudianteForo($conexion,$idUsuario, $idForo){
+	$query = "CALL eliminarEstudianteForo($idUsuario, $idForo)";
+	
+	return BDQuery($query, $conexion);
+}
 ?>
