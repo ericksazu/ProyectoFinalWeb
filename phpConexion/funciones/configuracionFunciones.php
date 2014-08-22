@@ -9,8 +9,8 @@
 		return BDQuery($query, $conexion);
 	}
 
-	function CrearNuevoUsuario($conexion,$insertNombre,$insertPrimerApellido,$insertSegundoApellido,$insertEmail,$insertContrasena,$insertNivelUniversitario,$insertBlogIdBlog,$insertIdRol){
-		$query = 'CALL sp_IngresarNuevoUsuario("'.$insertNombre.'","'. $insertPrimerApellido .'","'.$insertSegundoApellido'","'.$insertEmail.'","'.$insertContrasena.'","'.$insertNivelUniversitario.'","'.$insertBlogIdBlog.'","'.$insertIdRol'")';
+	function CrearNuevoUsuario($conexion, $insertNombre, $insertPrimerApellido, $insertSegundoApellido, $insertEmail, $insertContrasena, $insertNivelUniversitario, $insertBlogIdBlog, $insertIdRol){
+		$query = 'CALL sp_IngresarNuevoUsuario("'.$insertNombre.'","'.$insertPrimerApellido.'","'.$insertSegundoApellido.'","'.$insertEmail.'","'.$insertContrasena.'","'.$insertNivelUniversitario.'","'.$insertBlogIdBlog.'","'.$insertIdRol.'")';
 		return BDQuery($query, $conexion);
 	}
 

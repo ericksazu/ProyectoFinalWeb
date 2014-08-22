@@ -27,7 +27,35 @@ angular.module('module').controller('FormCtrl', function($scope, $http, $rootSco
     }).error(function(data, status) {
         console.log("inserted wrong");
     });
+  };
 
+  $scope.crearNuevoUsuario = function(index) {
+    $scope.Nombre = $scope.formulario.nombre;
+    $scope.PrimerApellido = $scope.formulario.primerApellido;
+    $scope.SegundoApellido = $scope.formulario.segundoApellido;
+    $scope.Correo = $scope.formulario.email;
+    $scope.Contrasena = $scope.formulario.contrasena;
+    $scope.NivelUniversitario = $scope.formulario.rol;
+    $scope.BlogId = 1;
+
+    if($scope.NivelUniversitario == 'Estudiante'){
+      $scope.IdUsuario = 12;
+    }else{
+      if($scope.NivelUniversitario == 'Profesor'){
+        $scope.IdUsuario = 13;
+      }else{
+        if($scope.NivelUniversitario == 'Administrador'){
+          $scope.IdUsuario = 13;
+        }
+      }
+    }
+
+    $http.post('phpConexion/configuracion/ingresar-usuario.php', {'nombre': $scope.Nombre, 'primerApellido': $scope.PrimerApellido, 'segundoApellido': $scope.SegundoApellido, 'email': $scope.Correo, 'contrasena': $scope.Contrasena, 'nivelUniversitario': $scope.NivelUniversitario, 'Blog_idBlog': $scope.BlogId, 'idRol': $scope.IdUsuario}).success(function(data, status) {
+      console.log("inserted good");
+      $scope.algo = data;
+    }).error(function(data, status) {
+        console.log("inserted wrong");
+    });
   };
 
 

@@ -14,7 +14,7 @@
           <div class="form-group">
             <label class="col-lg-2 control-label">Nombre</label>
             <div class="col-lg-10">
-              <input  name="firstName" type="text" ng-model="form.firstname"class ="form-control" required/>
+              <input  name="firstName" type="text" ng-model="formulario.nombre"class ="form-control" required/>
               <span class="error1" ng-show="saveTemplateData.firstName.$error.required"</span>
             </div>
           </div>
@@ -22,7 +22,7 @@
           <div class="form-group">
             <label  class="col-lg-2 control-label">Primer Apellido</label>
             <div class="col-lg-10">
-              <input type="text" class="form-control" name="lastName" ng-model="form.lastfirstName" required/>
+              <input type="text" class="form-control" name="lastName" ng-model="formulario.primerApellido" required/>
               <span class="error" ng-show="saveTemplateData.lastfirstName.$error.required"></span>
             </div>
           </div>
@@ -30,7 +30,7 @@
           <div class="form-group">
             <label  class="col-lg-2 control-label">Segundo Apellido</label>
             <div class="col-lg-10">
-              <input type="text" class="form-control" name="lastName" ng-model="form.lastsecondName" required/>
+              <input type="text" class="form-control" name="lastName" ng-model="formulario.segundoApellido" required/>
               <span class="error" ng-show="saveTemplateData.lastsecondName.$error.required"></span>
             </div>
           </div>
@@ -38,16 +38,16 @@
           <div class="form-group">
             <label for="email" class="col-lg-2 control-label">Correo</label>
             <div class="col-lg-10">
-              <input type="email" class="form-control" name="email"  ng-model="form.email" required/>
+              <input type="email" class="form-control" name="email"  ng-model="formulario.email" required/>
               <span class="error1" ng-show="saveTemplateData.email.$error.required"></span>
               <span class="error" ng-show="saveTemplateData.email.$error.email">Correo inválido</span>
             </div>        
           </div>
 
           <div class="form-group">
-            <label class="col-lg-2 control-label">Contrase&ntilde;a</label>
+            <label class="col-lg-2 control-label">Contraseña</label>
             <div class="col-lg-10">
-              <input  name="contrasena" type="text" ng-model="form.contrasena"class ="form-control" required/>
+              <input  name="contrasena" type="text" ng-model="formulario.contrasena"class ="form-control" required/>
               <span class="error1" ng-show="saveTemplateData.contrasena.$error.required"></span>
             </div>
           </div>
@@ -55,7 +55,7 @@
           <div class="form-group">
             <label class="col-lg-2 control-label">Foro Información</label>
             <div class="col-lg-10">
-              <select ng-model="form.foroInformacion" class="form-control" id="Foro-Disable" required>
+              <select ng-model="formulario.foroInformacion" class="form-control" id="Foro-Disable" required>
                 <option value="0">Nombre</option>
                 <option value="1">Apellido</option>
                 <option value="2">Correo</option>
@@ -70,7 +70,7 @@
           <div class="form-group"  ng-controller="MyNivel">
             <label class="col-lg-2 control-label">Nivel</label>
             <div class="col-lg-10">
-              <select ng-options="nivel.code as nivel.name for nivel in niveles" ng-model="form.nivel" class="form-control" required>
+              <select ng-options="nivel.code as nivel.name for nivel in niveles" ng-model="formulario.nivel" class="form-control" required>
                 <option style="display:none" value="">Seleccione el Nivel</option>
               </select>
             </div>
@@ -79,7 +79,7 @@
           <div class="form-group" ng-controller="MyRol">
             <label class="col-lg-2 control-label">Rol</label>
             <div class="col-lg-10">
-              <select ng-options="rol.code as rol.name for rol in roles" ng-model="form.rol" class="form-control" required>
+              <select ng-options="rol.code as rol.name for rol in roles" ng-model="formulario.rol" class="form-control" required>
                 <option style="display:none" value="">Seleccione el Rol </option>
               </select>
             </div>
@@ -191,7 +191,7 @@
               {{curso.name}}
             </div>
           </div>
-          <button type="submit" class="btn btn-default pull-right" ng-click="submitIngresar(form)"id="agregar">Guardar</button>
+          <button type="submit" class="btn btn-default pull-right" ng-click="crearNuevoUsuario()"id="agregar">Guardar</button>
         </div>
       </form>
     </div>

@@ -5,15 +5,19 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $nombre = $data->firstname;
-    $primerApellido = $data->lastfirstname
-    $segundoApellido = $data ->lastsecondname;
+    $nombre = $data->nombre;
+    $primerApellido = $data->primerApellido;
+    $segundoApellido = $data ->segundoApellido;
     $email = $data->email;
     $contrasena = $data->contrasena;
-    $nivel = $data->nivel;
-    $rol = $data ->rol;
+    $nivelUniversitario = $data->nivelUniversitario;
+    $Blog_idBlog = $data->Blog_idBlog;
+    $idRol = $data->idRol;
 
-    $resultado = ingresarUsuario($conexion, $nombre, $primerapellido, $segundoApellido, $email, $contrasena, $nivel, $rol)
+
+    
+    
+    $resultado = CrearNuevoUsuario($conexion, $nombre, $primerApellido, $segundoApellido, $email, $contrasena, $nivelUniversitario, $Blog_idBlog, $idRol);
   
 
     mysqli_close($conexion);   
