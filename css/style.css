@@ -1248,6 +1248,7 @@ a.purple:hover {
 @media (max-width: 768px) {
   #footer p {
     padding-top: 3px;
+    margin-bottom: 0;
   }
 }
 #footer div img {
@@ -1270,4 +1271,8 @@ input[type=checkbox] {
 
 .ui-autocomplete, .ui-front, .ui-menu, .ui-widget, .ui-widget-content{
   z-index: 11000000000 !important;
+}
+
+span#foroCerrado {
+  color: #b91767;
 }
