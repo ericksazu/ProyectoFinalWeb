@@ -719,6 +719,15 @@ label {
 .nombre, .nombre2, .nombre3 {
   color: #793982;
 }
+
+.nombre,
+.nombre2,
+.nombre3,
+.actu,
+.edit:hover {
+  cursor: pointer;
+}
+
 .nombre2 {
   margin-top: 4px;
 }
@@ -1275,4 +1284,20 @@ input[type=checkbox] {
 
 span#foroCerrado {
   color: #b91767;
+}
+
+.noMarginTop{
+  margin-top: 0;
+}
+
+div.imagenDocumentos{
+  background: url('../img/icons.png') no-repeat -47px 0;
+}
+
+div.imagenBlog{
+  background: url('../img/icons.png') no-repeat 0px 0;
+}
+
+div.imagenForo{
+  background: url('../img/icons.png') no-repeat -93px 0;
 }

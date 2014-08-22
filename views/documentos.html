@@ -3,10 +3,10 @@
     <div class="row row-centered">
       <div class="foroHeader col-md-6 col-centered foroHeader-doc">
         <div class="divImg clearfix">
-          <div class="imgForoHeader imgForoHeader-margin"><h1>Documentos</h1></div>
-          
+          <div class="imgForoHeader imgForoHeader-margin imagenDocumentos"><h1>Documentos</h1></div>
+
         </div>
-        <form class="navbar-form navbar-left centered" role="search">
+        <form class="navbar-form navbar-left centered noMarginTop" role="search">
           <div class="form-group">
             <input type="text" class="form-control inputForoHeader inputForoHeader-margin" placeholder="Buscar por tema o por título de documento" ng-model="query">
           </div>
@@ -26,43 +26,43 @@
   <div class="modal-dialog">
     <form role="form" name="myForm"enctype="multipart/form-data" method ="POST">
       <div class="modal-content" role="form">
-        <div class="modal-header modal-header-padding">
+        <div class="modal-header modal-header-padding clearfix">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
         </div>
         <div class="modal-body form-section">
-          <select id="select-documentos" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera_seleccionada" ng-change="cambia()" required name="carreras">
+          <select id="select-documentos" class="form-control" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera_seleccionada" ng-change="cambia()" required name="carreras">
             <option style="display:none" value="">seleccione una carrera</option>
           </select>
           <span class="error estilo-error" ng-show="!myForm.submitted && myForm.carreras.$error.required">
           Seleccione una carrera</span>
 
-          <select id="select-documentos" class="select-cursos" ng-options="curso.code as curso.name for curso in cursos" ng-model="curso_seleccionado" ng-change="cambia()" required name="curso">
+          <select id="select-documentos" class="select-cursos form-control" ng-options="curso.code as curso.name for curso in cursos" ng-model="curso_seleccionado" ng-change="cambia()" required name="curso">
             <option style="display:none" value="">seleccione un curso</option>
           </select>
           <span class="error estilo-error" ng-show="!myForm.submitted && myForm.curso.$error.required">
           Seleccione un curso</span>
-          
-         
-          <input type="text" class="form-control distancia-modal-doc" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required> 
+
+
+          <input type="text" class="form-control distancia-modal-doc" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required>
           <span class="error estilo-error" ng-show="!myForm.submitted && myForm.tema.$error.required">
           Digite un tema</span>
-          
-         
-            <input type="text" class="form-control distancia-modal-doc" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required> 
+
+
+            <input type="text" class="form-control distancia-modal-doc" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required>
                <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
           Digite un título</span>
-            
-           
+
+
             <input type="text" class="form-control distancia-modal-doc" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion" required>
              <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
           Digite una descripción</span>
-            
+
 
             <input type="file" id="archivo" class="distancia-modal-doc filestyle" data-buttonText="Seleccione un documento" name="archivo" ng-model="tipoArchivo" accept=".pdf" ng-click="ocultarError()" />
             <span class="errorArchivo">
             Seleccione un documento</span>
-            
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -120,7 +120,7 @@
                    <a href="" class="links-doc" ng-click="visualizarDoc($index,event)" type="button">Visualizar</a>
                    <a href="" ng-click="descargar()" class="links-doc">descargar</a>
 
-                 </p>    
+                 </p>
                </div>
              </div>
 
@@ -186,7 +186,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
 </div>
