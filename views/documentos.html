@@ -83,12 +83,12 @@
     <div class="col-md-7">
       <div class="row">
         <div id="message1" class="alert alert-success">Se agregó un nuevo documento</div>
-        <div ng-show="documentosPendientes"><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
-        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="documento in documentosTotales">
+        <div ng-show ="documentosPendientes"><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
+        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="documento in documentosCalificar">
           <div class="stars-comment puntuar-box">
             <h5 class="sub-puntuar">{{documento.titulo}}</h5>
             <div ng-init="rating = star.rating + 1"></div>
-            <div class="star-rating rating-estrellas rating-documentosTotales" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+            <div class="star-rating rating-estrellas rating-documentosCalificar" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
             <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
           </div>
         </div>
@@ -118,7 +118,8 @@
                 <div class="col-md-12">
                   <p class="ordenar-links">
                    <a href="" class="links-doc" ng-click="visualizarDoc($index,event)" type="button">Visualizar</a>
-                   <a href="{{documento.documento}}" download="{{documento.titulo}}.pdf" class="links-doc">Descargar</a>
+                   <a href="" ng-click="descargar()" class="links-doc">descargar</a>
+
                  </p>    
                </div>
              </div>
@@ -144,7 +145,7 @@
         <h3>Documentos más votados</h3>
         <img src="img/estrella-doc.png" class="estrella-doc2">
       </div>
-      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentosTotales | orderBy:'-votos' | limitTo:5">
+      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentosCalificar | orderBy:'-votos' | limitTo:5">
         <div class="trending-content-header">
           <div class="trending-number col-md-2 trending-number-izquierda">
             <h3>{{$index+1}}</h3>
@@ -157,11 +158,11 @@
 
           </div>
           <div class="trending-stars">
-            <a href="#" ng-class="marca(1, documento.votos)"></a>
-            <a href="#" ng-class="marca(2, documento.votos)"></a>
-            <a href="#" ng-class="marca(3, documento.votos)"></a>
-            <a href="#" ng-class="marca(4, documento.votos)"></a>
-            <a href="#" ng-class="marca(5, documento.votos)"></a>
+            <a href="#" ng-class="marca(1, documentosTotales.votos)"></a>
+            <a href="#" ng-class="marca(2, documentosTotales.votos)"></a>
+            <a href="#" ng-class="marca(3, documentosTotales.votos)"></a>
+            <a href="#" ng-class="marca(4, documentsosTotales.votos)"></a>
+            <a href="#" ng-class="marca(5, documentosTotales.votos)"></a>
           </div>
 
         </div>
@@ -169,7 +170,7 @@
           <p>{{documento.descripcion}}</p>
         </div>
         <div class="trending-footer">
-          <a href="#" class="gray gray-margin" ng-click="visualizarDoc($index)">Ver documento</a>
+          <a href="" class="gray gray-margin links-doc"  ng-click="visualizarDoc($index,event)" type="button">Ver Documento</a>
         </div>
       </div>
     </div> <!-- Foro trending topic -->
@@ -181,7 +182,7 @@
         <div class="pagination col-md-7">
           <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
         {{currentPage+1}}/{{numberOfPages()}}
-        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= documentos.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= documentosTotales.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
         </div>
       </div>
     </div>

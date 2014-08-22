@@ -3,7 +3,7 @@ include_once "../conexion.php";
 include_once "../funciones/documentosFunciones.php";
 
 
-$resultado = ObtenerDocumento($conexion);
+$resultado = CalificarDocumento($conexion);
 
 $lista = Array();
 

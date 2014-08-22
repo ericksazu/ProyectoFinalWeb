@@ -6,12 +6,12 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.cursos = [];
 	$scope.documentosPendientes = false;
 	$scope.documentosNuevos = [];
-
+    $scope.documentosCalificar.habilitado = true;
 	$scope.currentPage = 0;
-	$scope.pageSize = 3;
+	$scope.pageSize = 2;
 
 	$scope.numberOfPages=function(){
-		return Math.ceil($scope.documentos.length/$scope.pageSize);
+		return Math.ceil($scope.documentosTotales.length/$scope.pageSize);
 	}
 
 	var timeoutHandle = window.setTimeout(function(){
@@ -29,8 +29,15 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	      console.log(data);
 
     });
+
+    /*$http.get('phpConexion/documentos/documentosCalificar.php').success(function (data) {
+		$scope.documentosCalificar = data;
+	      console.log(data);
+	   
+
+    });*/
 	
-	$http.get('data/documentosCalificar.json').success(function (data) {
+	/*$http.get('data/documentosCalificar.json').success(function (data) {
 		$scope.documentosCalificar = data;
 		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
 			
@@ -38,7 +45,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 				$scope.documentosPendientes = true;
 			}
 		}
-	});
+	});*/
 
 	$http.get('data/carreras.json').success(function (data) {
 		$scope.carreras = data;
@@ -91,12 +98,24 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	};
    	$scope.visualizarDoc = function(index,event){
+    
+   	
         $http.get('data/documentos.json').success(function(data) {
         $scope.documentosmostrar = data;
-});
+    });
+
 		window.open($scope.documentosmostrar[index].documento)
 		event.preventDefault();
+
+		$http.get('phpConexion/documentos/documentosCalificar.php').success(function (data) {
+		$scope.documentosCalificar = data;
+	      console.log(data);
+	    $scope.documentosPendientes = true;
+
+    });
 	};
+	
+	
 
 	$scope.abrirCrearDocumento = function() {
 
@@ -132,11 +151,11 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$scope.guardarPuntuacion = function(index){
 		
-		$scope.documentosCalificar[index].habilitado = false;
-		$scope.documentosPendientes = false;
+		$scope.documentosCalificar.habilitado = false;
+		/*$scope.documentosPendientes = false;*/
 		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
 			
-			if ($scope.documentosCalificar[i].habilitado == true) {
+			if ($scope.documentosCalificar.habilitado == true) {
 				$scope.documentosPendientes = true;
 			}
 		}
@@ -220,6 +239,10 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	};
 
 	$scope.ver = 1;
+
+	
+
+
 
 
 });
