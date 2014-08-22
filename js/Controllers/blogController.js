@@ -12,6 +12,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   $scope.mostrarUsuarioPorCorreo = $scope.usuarioLogueado.email;
   $scope.correo = $scope.usuarioLogueado.email;
   $scope.visible = $rootScope.usuarioLogueado.idRol == 12;
+  $scope.cambioBlog = true;
   $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
   $scope.usuarioActual = $scope.usuarioLogueado.nombre;
   $scope.usuarioActualFoto = $scope.usuarioLogueado.foto;
@@ -125,6 +126,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
             for (var i = 0; i < $scope.usuarios.length; i++) {
               if($scope.usuarios[i].email == $scope.mostrarUsuarioPorCorreo){
+                $scope.cambioBlog = false;
                 $scope.usuarioActualFoto = $scope.usuarios[i].foto;
                 $scope.visibleBlog = $rootScope.usuarioLogueado.idRol == 12 && $scope.correo == $scope.usuarioLogueado.email;
                 return $scope.usuarioActual = $scope.usuarios[i].nombre;
@@ -168,6 +170,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.mostrarBlogsEstudiantes = function(index){
     $scope.visible = true;
+    $scope.cambioBlog = false;
     $scope.mostrarUsuarioPorCorreo = $scope.publicaciones[index].autor;
     $scope.correo = $scope.publicaciones[index].autor;
     $scope.publicacionesUsuario = [];
@@ -230,7 +233,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
         console.log("inserted wrong");
     });
 
-    
+
     $scope.obtenerComentarios(index);
 
     /*$scope.getpublishedcomment = $scope.agregarComentario;
@@ -263,6 +266,21 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $scope.publicaciones[index].title = $scope.getpublishedtitle;
     $scope.publicaciones[index].published = $scope.getpublishedmessage;*/
 
+  };
+
+  $scope.noEditar = function(index) {
+    $scope.publicacionesUsuario[index].tema = $scope.publicacionesUsuario[index][4];
+    $scope.publicacionesUsuario[index].descripcionPublicacion = $scope.publicacionesUsuario[index][1];
+  };
+
+  $scope.recargarBlog = function() {
+    $route.reload();
+  };
+
+  $scope.borrarCampos = function(index) {
+    $scope.agregarComentario = '';
+    $scope.tituloPublicacion = '';
+    $scope.contenidoPublicacion = '';
   };
 
   $scope.obtenerComentarios = function(index) {

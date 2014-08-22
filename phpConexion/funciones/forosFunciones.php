@@ -93,7 +93,19 @@ function obtenerTemaForo($conexion,$id){
 }
 
 function agregarEstudianteForo($conexion,$idForo, $email){
-	$query = "CALL agregarEstudianteForo($idForo, $email)";
+	$query = "CALL agregarEstudianteForo($idForo, '$email')";
+	echo $query;
+	return BDQuery($query, $conexion);
+}
+
+function obtenerEstudiantesForo($conexion,$idForo){
+	$query = "CALL obtenerEstudiantesForo($idForo)";
+	
+	return BDQuery($query, $conexion);
+}
+
+function eliminarEstudianteForo($conexion,$idUsuario, $idForo){
+	$query = "CALL eliminarEstudianteForo($idUsuario, $idForo)";
 	
 	return BDQuery($query, $conexion);
 }

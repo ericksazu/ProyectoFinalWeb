@@ -240,9 +240,4 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$scope.ver = 1;
 
-	
-
-
-
-
 });
