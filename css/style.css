@@ -239,6 +239,14 @@ a:focus {
 }
 /* Small devices (tablets, 768px and up) */
 
+@media (min-width: 768px){
+  .navbar-form .form-control {
+  width: 400px;
+  }
+}
+
+
+
 @media (max-width: 768px) {
   .nav > li {
     text-align: center;
