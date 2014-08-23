@@ -207,7 +207,7 @@
                     <form name="formComentario">
                       <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" ng-minlength="5" required>
                       <span style="color: #bbbbbb; float: left;" ng-show="formComentario.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
-                      <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
+                      <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)" data-dismiss="modal">Comentar</button>
                     </form>
                   </div>
                 </div>
