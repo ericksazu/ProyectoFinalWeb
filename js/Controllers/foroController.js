@@ -12,6 +12,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.estudiantesEliminados = [];
 	$scope.estudianteAsistente = [];
 	$scope.listaAsistentes = [];
+	$scope.fecha =[];
 
 	$scope.nuevoTema = function() {
 		$scope.informacion = {};
@@ -51,20 +52,20 @@ $http.get('phpConexion/login/usuarios.php').success(function(data) {
 	$scope.usuariosForo = [];
 
 	for (var i = 0; i < $scope.usuarios.length; i++) {
-		if($scope.usuarios[i].nivelUniversitario == 'Estudiante'){
+		
 			$scope.usuariosForo.push($scope.usuarios[i].email);
-		}
+		
 	};
 });
 
 
 
-
-
-
 $http.get('phpConexion/foros.php').success(function(data) {
 	$scope.topics = data;
+	console.log($scope.topics);
 });
+
+
 
 $scope.numberOfPagesTemas = function(){
 	return Math.ceil($scope.topics.length/$scope.pageSize);
@@ -163,11 +164,17 @@ $scope.eliminar = function(id){
 	$http.post('phpConexion/obtenerAsistente.php', {'idForo': id}).success(function(data, status) {
 		
 		$scope.listaAsistentes = data;
-
-
 		
 	}).error(function(data, status) {
 		
+	});
+
+
+	$http.post('phpConexion/obtenerFechaComentario.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
+		console.log("inserted good", data);
+		$scope.fecha = data;
+	}).error(function(data, status) {
+		console.log("inserted bad");
 	});
 }	
 
@@ -366,61 +373,68 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 			console.log("inserted good");
 			$scope.comments = data;
 			console.log($scope.comments.length);
-		}).error(function(data, status) {
-			console.log("inserted wrong");
-	});
+			$http.post('phpConexion/agregarRespuestas.php', 
+				{'idForo': $routeParams.idForo, 'respuestas': $scope.comments.length}).success(function(data, status) {
+					console.log("inserted good");
+					$scope.algo = data;
+				}).error(function(data, status) {
+					console.log("inserted wrong");
+				});
+			}).error(function(data, status) {
+				console.log("inserted wrong");
+			});
 
-		
 
 
-		var respuestas = 0;
-		for(var i=0; i < $scope.comments.length; i++){
-			respuestas = respuestas +1;
-		}
 
-		console.log('cantidad de respuestas' + respuestas);
+			var respuestas = 0;
+			for(var i=0; i < $scope.comments.length; i++){
+				respuestas = respuestas +1;
+			}
 
-		$scope.agregarComentario = function () {
+			console.log('cantidad de respuestas' + respuestas);
 
-			$http.post('phpConexion/agregarComentarioForo.php', 
-				{'id': $scope.idForo, 'descripcion': $scope.comentario, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
-					console.log("comentario agregado bd");
-					$http.post('phpConexion/obtenerComentarios.php', 
-						{'idForo': $routeParams.idForo}).success(function(data, status) {
-							console.log("inserted good");
-							$scope.comments = data;
+			$scope.agregarComentario = function () {
+
+				$http.post('phpConexion/agregarComentarioForo.php', 
+					{'id': $scope.idForo, 'descripcion': $scope.comentario, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
+						console.log("comentario agregado bd");
+						$http.post('phpConexion/obtenerComentarios.php', 
+							{'idForo': $routeParams.idForo}).success(function(data, status) {
+								console.log("inserted good");
+								$scope.comments = data;
+							}).error(function(data, status) {
+								console.log("inserted wrong");
+							});
 						}).error(function(data, status) {
-							console.log("inserted wrong");
+							console.log("no se agrego nada");
 						});
-					}).error(function(data, status) {
-						console.log("no se agrego nada");
-					});
 
 
-					$('#myModalForoComment').modal('hide');
+						$('#myModalForoComment').modal('hide');
 
-					$('#alertComentarioForo').css('display','block');
-					setTimeout(function() {
-						$('#alertComentarioForo').css('display','none');
-					}, 3000);
+						$('#alertComentarioForo').css('display','block');
+						setTimeout(function() {
+							$('#alertComentarioForo').css('display','none');
+						}, 3000);
 
-				};
+					};
 
-				$scope.agregarDenuncia = function(id){
+					$scope.agregarDenuncia = function(id){
 
-					console.log($scope.denuncia);
+						console.log($scope.denuncia);
 
-					$http.post('phpConexion/agregarDenuncia.php', {'descripcion': $scope.denuncia, 'idComentario': id}).success(function(data, status) {
-						console.log("inserted good");
-						$scope.algo = data;
-					}).error(function(data, status) {
-						console.log("inserted bad");
-					});
-				};
+						$http.post('phpConexion/agregarDenuncia.php', {'descripcion': $scope.denuncia, 'idComentario': id}).success(function(data, status) {
+							console.log("inserted good");
+							$scope.algo = data;
+						}).error(function(data, status) {
+							console.log("inserted bad");
+						});
+					};
 
-				$scope.puntuacion = function(){
-					
-				};
+					$scope.puntuacion = function(){
+
+					};
 
 
 }); //cierra forotopic

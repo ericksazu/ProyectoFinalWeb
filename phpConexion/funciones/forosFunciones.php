@@ -145,6 +145,11 @@ function obtenerDenuncias($conexion){
 	return BDQuery($query, $conexion);
 }
 
+function obtenerFechaComentario($conexion, $idForo){
+	$query = "CALL obtenerFechaComentario($idForo)";
+	return BDQuery($query, $conexion);
+}
+
 function agregarDenuncia($conexion,$descripcion, $idComentario){
 	$query = "CALL agregarDenuncia('$descripcion', $idComentario)";
 	
@@ -157,9 +162,9 @@ function agregarPuntuacion($conexion,$estrellas, $idComentario, $idUsuario){
 	return BDQuery($query, $conexion);
 }
 
-function agregarRespuestas($conexion,$respuestas, $idForo){
-	$query = "CALL agregarRespuestas($respuestas, $idForo)";
-	
+function agregarRespuestas($conexion, $idForo,$respuestas){
+	$query = "CALL agregarRespuestas( $idForo,$respuestas)";
+	echo $query;
 	return BDQuery($query, $conexion);
 }
 
