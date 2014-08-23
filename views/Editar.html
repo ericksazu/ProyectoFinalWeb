@@ -32,7 +32,7 @@
             <td>{{usuario.contrasena}}</td>
             <td>{{usuario.nivelUniversitario}}</td>
             <td>{{usuario.carrera}}</td>
-            <td>{{usuario.cursos}}</td> 
+            <td>{{usuario.cursos}}</td>
             <td>
               <button class="btn btn-success" id="editar" data-toggle="modal" data-target=".{{'myModalEditar'+$index}}">
                 <span class="glyphicon glyphicon-pencil" ng-click="submitModificar()"></span>
@@ -102,7 +102,7 @@
             </td>
             <td>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".{{'myModalEliminar'+$index}}">
-                <span class="glyphicon glyphicon-minus-sign" ng-click="submitEliminar()"></span>
+                <span class="glyphicon glyphicon-minus-sign" ng-click="eliminarUsuario($index)"></span>
               </button>
 
 
@@ -131,15 +131,15 @@
 
 
             </td>
-          </tr> 
+          </tr>
 
-          
 
-          
+
+
 
         </tbody>
 
-       
+
       </table>
     </div>
   </div>
