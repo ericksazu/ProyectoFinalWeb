@@ -334,6 +334,7 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 
 	$scope.estado = $routeParams.estado;
 
+	$scope.visible = $rootScope.usuarioLogueado.idRol == 13 || $rootScope.usuarioLogueado.idRol == 16;
 
 	if($scope.estado == 1){
 		$("#btnComentar").addClass('hidden');	
@@ -364,9 +365,20 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 		{'idForo': $routeParams.idForo}).success(function(data, status) {
 			console.log("inserted good");
 			$scope.comments = data;
+			console.log($scope.comments.length);
 		}).error(function(data, status) {
 			console.log("inserted wrong");
-		});
+	});
+
+		
+
+
+		var respuestas = 0;
+		for(var i=0; i < $scope.comments.length; i++){
+			respuestas = respuestas +1;
+		}
+
+		console.log('cantidad de respuestas' + respuestas);
 
 		$scope.agregarComentario = function () {
 

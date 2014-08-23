@@ -157,6 +157,12 @@ function agregarPuntuacion($conexion,$estrellas, $idComentario, $idUsuario){
 	return BDQuery($query, $conexion);
 }
 
+function agregarRespuestas($conexion,$respuestas, $idForo){
+	$query = "CALL agregarRespuestas($respuestas, $idForo)";
+	
+	return BDQuery($query, $conexion);
+}
+
 function editarTema($conexion,$tema, $descripcion, $fecha_creacion, $fecha_cierre, $id) {
 	$query = "CALL actualizarTemaForo('$tema', '$descripcion', '$fecha_creacion', '$fecha_cierre', $id)";
 	
