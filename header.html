@@ -28,7 +28,7 @@
           <span id="searchGlyph" class="glyphicon glyphicon-search" onclick="window.open('http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('textbox').value)); document.getElementById('textbox').value = '';"></span>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#/denuncias" ng-show="usuarioLogueado.idRol == 16">Inbox <span class="badge">42</span></a></li>
+          <li><a href="#/denuncias" ng-show="usuarioLogueado.idRol == 16">Denuncias<span class="badge">42</span></a></li>
           <li><a class="nombre">{{usuarioLogueado.nombre}}</a>
           </li>
           <li>
