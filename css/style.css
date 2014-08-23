@@ -1301,3 +1301,7 @@ div.imagenBlog{
 div.imagenForo{
   background: url('../img/icons.png') no-repeat -93px 0;
 }
+
+div.divBtnCerrar{
+  float: left;
+}
