@@ -142,7 +142,6 @@ function eliminarComentario($conexion,$idComentario){
 
 function obtenerDenuncias($conexion){
 	$query = "CALL obtenerDenuncias()";
-	
 	return BDQuery($query, $conexion);
 }
 ?>

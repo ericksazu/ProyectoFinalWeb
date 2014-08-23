@@ -73,10 +73,10 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		return Math.ceil($scope.comments.length/$scope.pageSize);
 	}
 
-	$scope.eliminar = function(index){
+	$scope.eliminar = function(id){
 		//alert(index);
 	
-		console.log(id);
+		
 
 		$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
 			console.log("inserted good");
@@ -85,9 +85,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 			console.log("inserted bad");
 		});
 		
-		$route.reload();
-		$('#modalEliminar').modal('hide');
-		$('.modal-backdrop').remove();
+		
 
 	}
 
@@ -124,8 +122,8 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	//$scope.topics = temas;
 
 
-	$scope.editarForo = function(index){
-		$scope.buscarNombresModal = function(index){
+	$scope.editarForo = function(id){
+		$scope.buscarNombresModal = function(id){
 			console.log('entra al buscador');
 			$('#tags2').autocomplete({
 				source: $scope.usuariosForo,
@@ -140,7 +138,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 		//$('#tags2').autocomplete('option','appendTo','#prueba');
 	};
 	
-	var id = $scope.topics[index].idForo;
+	
 
 	$http.post('phpConexion/editarInfoForo.php', {'id': id}).success(function(data, status) {
 		console.log("inserted good");
@@ -269,7 +267,7 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 
 	$scope.nombreEstudiante = null;
 
-	$scope.editTema = function (index) {
+	$scope.editTema = function (id) {
 
 		$scope.estudiantesEliminados = [];
 
