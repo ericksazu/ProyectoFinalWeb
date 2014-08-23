@@ -94,6 +94,9 @@ angular.module('module').controller('FormCtrl', function($scope, $http, $rootSco
   };
 
   $scope.eliminarUsuario = function(index) {
+
+
+
     $http.post('phpConexion/configuracion/eliminar-usuario.php', {'nombre': $scope.nuevoNombre, 'primerApellido': $scope.nuevoPrimerApellido, 'segundoApellido': $scope.nuevoSegundoApellido, 'email': $scope.nuevoCorreo, 'contrasena': $scope.nuevaContrasena, 'nivelUniversitario': $scope.nuevoRol, 'idUsuario': $scope.idUsuario}).success(function(data, status) {
       console.log("inserted good");
       $scope.algo = data;
