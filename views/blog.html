@@ -287,42 +287,39 @@
 
     <!--TRENDNG TOPIC-->
     <div class="col-md-4 col-responsive trending-blog">
-  <div class="foro-trending col-md-12 col-md-offset-1 margen-trending">
-    <!-- Foro trending topic -->
-    <div class="trending-header distancia-topic">
-      <img src="img/estrella-doc.png" class="estrella-doc">
-      <h3>Documentos más votados</h3>
-      <img src="img/estrella-doc.png" class="estrella-doc2">
-    </div>
-    <div class="trending-topic table-bordered clearfix" ng-repeat="documento in documentosTotales | orderBy:'-votos' | limitTo: 5">
-      <div class="trending-content-header">
-        <div class="trending-number col-md-2">
-          <h3>{{$index+1}}</h3>
+      <div class="foro-trending col-md-12 col-md-offset-1 margen-trending">
+        <!-- Foro trending topic -->
+        <div class="trending-header distancia-topic">
+          <img src="img/estrella-doc.png" class="estrella-doc">
+          <h3>Documentos más votados</h3>
+          <img src="img/estrella-doc.png" class="estrella-doc2">
         </div>
-        <div class="trending-name">
-          <a href="#" class="purple">{{documento.titulo}}</a>
-          </br>
-          <span>{{documento.autor}} /</span>
-          <span>{{documento.tema}} /</span>
-          <span>{{documento.fecha}}</span>
-        </div>
-        <div class="trending-stars">
-          <a href="#" ng-class="marca(1, documento.votos)"></a>
-          <a href="#" ng-class="marca(2, documento.votos)"></a>
-          <a href="#" ng-class="marca(3, documento.votos)"></a>
-          <a href="#" ng-class="marca(4, documento.votos)"></a>
-          <a href="#" ng-class="marca(5, documento.votos)"></a>
-        </div>
-      </div>
-      <div class="trending-content">
-        <p>{{documento.descripcion}}</p>
-      </div>
-      <div class="trending-footer">
-        <a href="" class="links-doc" ng-click="visualizarDoc($index,event)" type="button">Visualizar</a>
-      </div>
-    </div>
-  </div>
+        <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentos | orderBy:'-votos' | limitTo:5">
+          <div class="trending-content-header">
+            <div class="trending-number col-md-2 trending-number-izquierda">
+              <h3>{{$index+1}}</h3>
+            </div>
+            <div class="trending-name">
+              <a href="#" class="purple">{{documento.titulo}}</a></br>
+              <span>{{documento.autor}} /</span>
+              <span>{{documento.fecha}} /</span>
+              <!-- <span>{{documento.pesoDocumento}}</span> -->
 
+            </div>
+            <div class="trending-stars">
+             <a href="" ng-class="marca(n, documento.promedioCalificacion)" ng-repeat="n in [1,2,3,4,5]"></a>
+            </div>
+
+          </div>
+          <div class="trending-content trending-content-margin">
+            <p>{{documento.descripcion}}</p>
+          </div>
+          <div class="trending-footer">
+            <a href="" class="gray gray-margin links-doc"  ng-click="visualizarDoc($index,event)" type="button">Ver Documento</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
