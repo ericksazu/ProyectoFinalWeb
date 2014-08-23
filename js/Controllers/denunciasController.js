@@ -17,6 +17,12 @@ angular.module('module').controller('denunciasController', function($scope, $htt
 
 		$http.post('phpConexion/eliminarDenuncia.php', {'idDenuncia': id}).success(function(data, status) {
 			console.log("inserted good", data);
+			$http.post('phpConexion/obtenerDenuncias.php').success(function(data, status) {
+				console.log("inserted good", data);
+				$scope.denuncias = data;
+			}).error(function(data, status) {
+				console.log("inserted bad");
+			});
 			$scope.denuncias = data;
 		}).error(function(data, status) {
 			console.log("inserted bad");
