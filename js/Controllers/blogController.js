@@ -50,9 +50,9 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $('.pagination').delay(3000).show(0);
   });
 
-  $http.get('data/documentos.json').success(function(data) {
+  /*$http.get('data/documentos.json').success(function(data) {
     $scope.documentos = data;
-  });
+  });*/
 
   $scope.numberOfPagesTemas = function(){
     return Math.ceil($scope.publicacionesUsuario.length/$scope.pageSize);
@@ -303,7 +303,7 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
   $scope.marca = function(index, votos) {
     if(index <= votos) {
-      return "glyphicon glyphicon-star yellow"
+      return "glyphicon glyphicon-star yellow";
     }else{
       return "glyphicon glyphicon-star stars";
     }
