@@ -14,9 +14,9 @@
 		return BDQuery($query, $conexion);
 	}
 
-	/*function eliminarUsuario($conexion,$idUsuario){
-		$query = "CALL sp_EliminarUsuario("'.$idUsuario.'")";
+	function eliminarUsuario($conexion, $idUsuario){
+		$query = 'CALL sp_EliminarUsuario("'.$idUsuario.'")';
 		return BDQuery($query, $conexion);
-	}*/
-	
+	}
+
 ?>

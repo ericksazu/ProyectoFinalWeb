@@ -102,7 +102,7 @@
             </td>
             <td>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".{{'myModalEliminar'+$index}}">
-                <span class="glyphicon glyphicon-minus-sign" ng-click="eliminarUsuario($index)"></span>
+                <span class="glyphicon glyphicon-minus-sign"></span>
               </button>
 
 
@@ -116,13 +116,12 @@
                       <h4 class="modal-title" id="myModalLabel">Eliminar Usuario</h4>
                     </div>
                     <div class="modal-body">
-                      <p>Esta Seguro que desea eliminar a este usuario</p>
-                      <p class="debug-url"></p>
+                      <p>¿Está seguro que desea eliminar a este usuario?</p>
                     </div>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                      <button type="button"class="btn btn-success"  id="eliminar" data-dismiss="modal">Aceptar</button>
+                      <button type="button"class="btn btn-success" ng-click="eliminarUsuario($index)" id="eliminar" data-dismiss="modal">Aceptar</button>
                     </div>
                   </div>
                 </div>
