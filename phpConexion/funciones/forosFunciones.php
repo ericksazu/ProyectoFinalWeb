@@ -128,7 +128,7 @@ function obtenerAsistente($conexion,$idForo){
 	return BDQuery($query, $conexion);
 }*/
 
-function obtenerDenuncias(){
+function obtenerDenuncias($conexion){
 	$query = "CALL obtenerDenuncias()";
 	
 	return BDQuery($query, $conexion);

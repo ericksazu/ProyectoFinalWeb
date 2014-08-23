@@ -29,6 +29,9 @@
         }).when("/editar", {
             controller: "",
             templateUrl: "views/Editar.html"
+        }).when("/denuncias", {
+            controller: "denunciasController",
+            templateUrl: "views/denuncias.html"
         });
     }
 

@@ -1,0 +1,52 @@
+<div class="distancia-denuncia"></div>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-10 col-centered-denuncias">
+      <div class="row">
+        <div id="message1" class="alert alert-success hidden">Se eliminó el comentario</div>
+        <div><h3 class="subtitulo-doc">Denuncias foro</h3></div>
+        <div class="col-md-12 borde-doc caja-puntuar">
+          <div class="stars-comment puntuar-box">
+          <table id="denuncia" class="table tableIntegrantesForo">
+                    <thead>
+                      <tr>
+                        <th>Comentario</th>
+                        <th>Denuncia</th>
+                        <th>Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr ng-repeat="denuncia in denuncias">
+                        <td>{{denuncia.descripcion}}</td>
+                        <td class="distancia-denuncia">
+                          {{denuncia.1}}
+                        </td>
+                        <td>
+                          {{denuncia.fecha}}
+                        </td>
+                        <td> <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Eliminar</button></td>
+                      </tr>
+                        
+                    </tbody>
+                  </table>
+            
+           
+          </div>
+        </div>
+        
+
+     </div>
+  </div>
+
+  
+  
+
+</div>
+
+
+
+</div>

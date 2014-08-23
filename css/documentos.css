@@ -5,6 +5,12 @@
     overflow: auto;
 }
 
+.col-centered-denuncias{
+    float: none;
+    margin: 0 auto;
+    overflow: auto;
+}
+
 .col-centered-no-margin {
 	margin: 0;
 	background-color: #f2f2f2;
@@ -613,6 +619,11 @@ float: left;
 	font-size: 12px;
 	color: #bbbbbb;
 }
+
+.titulo-denuncia{
+	font-size: 1.2em !important;
+}
+
 
 
 
