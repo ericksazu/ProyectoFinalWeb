@@ -160,7 +160,7 @@
                           <input class="chk" type="checkbox" name="delete" ng-checked="eliminado" ng-true-value="true" ng-false-value="false" ng-click="deseleccionarEliminado(usuario.idUsuario)">
                         </td>
                         <td>
-                          <input class="chk"  type="radio" ng-checked="$scope.informacion.asistente == usuario.asistente" value="" ng-true-value="true" name="asistente" ng-false-value="false" ng-click="seleccionarAsistente(usuario.idUsuario)" required>
+                          <input class="chk"  type="radio" ng-checked="informacion.asistente == usuario.idUsuario" value="" ng-true-value="true" name="asistente" ng-false-value="false" ng-click="seleccionarAsistente(usuario.idUsuario)" required>
                         </td>
                       </tr>
 

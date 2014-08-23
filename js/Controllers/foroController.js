@@ -11,6 +11,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.listaEstudiantes = [];
 	$scope.estudiantesEliminados = [];
 	$scope.estudianteAsistente = [];
+	$scope.listaAsistentes = [];
 
 	$scope.nuevoTema = function() {
 		$scope.informacion = {};
@@ -80,6 +81,9 @@ $scope.eliminar = function(id){
 
 		$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
 			console.log("inserted good");
+			$http.get('phpConexion/foros.php').success(function(data) {
+				$scope.topics = data;
+			});
 			$scope.algo = data;
 		}).error(function(data, status) {
 			console.log("inserted bad");
@@ -102,7 +106,7 @@ $scope.eliminar = function(id){
 			$scope.estudiantes = data;
 
 			$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
-				console.log("inserted good", data);
+				
 				$scope.listaEstudiantes = data;
 			}).error(function(data, status) {
 				console.log("inserted bad");
@@ -144,23 +148,26 @@ $scope.eliminar = function(id){
 		console.log("inserted good");
 		$scope.informacion = data;
 		$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': id}).success(function(data, status) {
-			console.log("inserted good", data);
+			
 			$scope.listaEstudiantes = data;
+
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
-		console.log($scope.informacion);
+		
 	}).error(function(data, status) {
 		console.log("inserted bad");
 	});
 
 
 	$http.post('phpConexion/obtenerAsistente.php', {'idForo': id}).success(function(data, status) {
-		console.log("inserted good");
-		$scope.listaEstudiantes = data;
-		console.log($scope.informacion);
+		
+		$scope.listaAsistentes = data;
+
+
+		
 	}).error(function(data, status) {
-		console.log("inserted bad");
+		
 	});
 }	
 
@@ -189,7 +196,7 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 			$http.post('phpConexion/eliminarEstudianteForo.php', {'idUsuario': $scope.estudiantesEliminados[i], 'idForo':$scope.informacion.idForo }).success(function(data, status) {
 				console.log("inserted good");
 				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
-					console.log("inserted good", data);
+					
 					$scope.listaEstudiantes = data;
 				}).error(function(data, status) {
 					console.log("inserted bad");
@@ -220,7 +227,7 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 			$scope.estudianteAsistente.push(idUsuario);
 		}
 
-		console.log($scope.estudianteAsistente);
+		
 	};
 
 	$scope.asignarAsistente = function() {

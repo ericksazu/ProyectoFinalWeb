@@ -117,7 +117,7 @@ function agregarAsistente($conexion,$idUsuario, $idForo){
 }
 
 function obtenerAsistente($conexion,$idForo){
-	$query = "CALL agregarAsistente($idForo)";
+	$query = "CALL obtenerAsistente($idForo)";
 	
 	return BDQuery($query, $conexion);
 }
