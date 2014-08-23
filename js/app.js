@@ -37,16 +37,16 @@
 
         $rootScope.roles = [{
             'page': 'secciones',
-            'roles': ['13', '12', '14']
+            'roles': ['13', '12', '14','16']
         }, {
             'page': 'blog',
-            'roles': ['13', '12']
+            'roles': ['13', '12','16']
         }, {
             'page': 'documentos',
-            'roles': ['12', '13']
+            'roles': ['12', '13','16']
         }, {
             'page': 'foro',
-            'roles': ['12', '13']
+            'roles': ['12', '13','16']
         }, {
             'page': 'configuracion',
             'roles': ['14']

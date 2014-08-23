@@ -121,4 +121,16 @@ function obtenerAsistente($conexion,$idForo){
 	
 	return BDQuery($query, $conexion);
 }
+
+/*function insertarVisitasForo($conexion,$visitas, $idForo){
+	$query = "CALL insertarVisitasForo($visitas,$idForo)";
+	
+	return BDQuery($query, $conexion);
+}*/
+
+function obtenerDenuncias(){
+	$query = "CALL obtenerDenuncias()";
+	
+	return BDQuery($query, $conexion);
+}
 ?>

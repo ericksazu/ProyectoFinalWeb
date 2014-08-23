@@ -20,6 +20,19 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	$scope.abrirComentarios = function($index){
 
+		/*var visitas =  0 
+		   visitas = visitas+1;
+
+
+
+		$http.post('phpConexion/insertarVisitasForo.php', {'visitas': visitas,'idForo': id}).success(function(data, status) {
+			console.log("inserted good");
+			$scope.algo = data;
+			console.log($scope.informacion);
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});*/
+
 		$http({
 			url: 'phpConexion/temasForo.php',
 			method: 'GET',
@@ -178,11 +191,11 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 			$http.post('phpConexion/eliminarEstudianteForo.php', {'idUsuario': $scope.estudiantesEliminados[i], 'idForo':$scope.informacion.idForo }).success(function(data, status) {
 				console.log("inserted good");
 				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
-				console.log("inserted good", data);
-				$scope.listaEstudiantes = data;
-			}).error(function(data, status) {
-				console.log("inserted bad");
-			});
+					console.log("inserted good", data);
+					$scope.listaEstudiantes = data;
+				}).error(function(data, status) {
+					console.log("inserted bad");
+				});
 				
 			}).error(function(data, status) {
 				console.log("inserted bad");
@@ -218,11 +231,11 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 			$http.post('phpConexion/agregarAsistente.php', {'idUsuario': $scope.estudianteAsistente[i], 'idForo':$scope.informacion.idForo }).success(function(data, status) {
 				console.log("inserted good");
 				$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $scope.informacion.idForo}).success(function(data, status) {
-				console.log("inserted good", data);
-				$scope.listaEstudiantes = data;
-			}).error(function(data, status) {
-				console.log("inserted bad");
-			});
+					console.log("inserted good", data);
+					$scope.listaEstudiantes = data;
+				}).error(function(data, status) {
+					console.log("inserted bad");
+				});
 				
 			}).error(function(data, status) {
 				console.log("inserted bad");
@@ -235,50 +248,50 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 
 
 
-$scope.cerrarForo = function(index){
-	var estado = 1;
-	console.log(index);
-	var id = $scope.topics[index].idForo;
-	console.log(id);
-	console.log(estado);
+	$scope.cerrarForo = function(index){
+		var estado = 1;
+		console.log(index);
+		var id = $scope.topics[index].idForo;
+		console.log(id);
+		console.log(estado);
 
-	$http.post('phpConexion/cerrarForo.php', {'idForo2': id, 'estado': estado}).success(function(data, status) {
-		console.log("inserted good");
-		$scope.algo = data;
-	}).error(function(data, status) {
-		console.log("inserted bad");
-	});
-
-	$("#foroCerrado").removeClass('hidden');
-	$("#foroCerrado").addClass('visible');
-
-};
-
-$scope.nombreEstudiante = null;
-
-$scope.editTema = function (index) {
-
-	$scope.estudiantesEliminados = [];
-
-	console.log('entra a editar', $scope.informacion);
-	$http.post('phpConexion/agregarForo.php', $scope.informacion).success(function(data, status) {
-		console.log("inserted good", data);
-
-		$http.post('phpConexion/editarInfoForo.php', {id: data }).success(function(data, status) {
+		$http.post('phpConexion/cerrarForo.php', {'idForo2': id, 'estado': estado}).success(function(data, status) {
 			console.log("inserted good");
-			$scope.informacion = data;
-			console.log($scope.informacion);
+			$scope.algo = data;
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
-		
-		$http.get('phpConexion/foros.php').success(function(data) {
-			$scope.topics = data;
-			console.log('refresca items');
+
+		$("#foroCerrado").removeClass('hidden');
+		$("#foroCerrado").addClass('visible');
+
+	};
+
+	$scope.nombreEstudiante = null;
+
+	$scope.editTema = function (index) {
+
+		$scope.estudiantesEliminados = [];
+
+		console.log('entra a editar', $scope.informacion);
+		$http.post('phpConexion/agregarForo.php', $scope.informacion).success(function(data, status) {
+			console.log("inserted good", data);
+
+			$http.post('phpConexion/editarInfoForo.php', {id: data }).success(function(data, status) {
+				console.log("inserted good");
+				$scope.informacion = data;
+				console.log($scope.informacion);
+			}).error(function(data, status) {
+				console.log("inserted bad");
+			});
+
+			$http.get('phpConexion/foros.php').success(function(data) {
+				$scope.topics = data;
+				console.log('refresca items');
+			});
+		}).error(function(data, status) {
+			console.log("inserted bad");
 		});
-	}).error(function(data, status) {
-		console.log("inserted bad");
-	});
 
 
 	//$('#myModalEditarTema').modal('hide');
@@ -298,8 +311,9 @@ $scope.titulo = 'editar';
 
 
 
-
+//funcionalidad roles profesor y director
 $scope.visible = $rootScope.usuarioLogueado.idRol == 13;
+$scope.visible = $rootScope.usuarioLogueado.idRol == 16;
 
 
 
