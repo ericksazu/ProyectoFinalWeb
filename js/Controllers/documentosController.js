@@ -4,14 +4,19 @@ angular.module('module').controller('documentosController', function($scope, $ht
 	$scope.documentosCalificar = [];
 	$scope.carreras = [];
 	$scope.cursos = [];
+	$scope.nuevoDocumento = {};
 	$scope.documentosPendientes = false;
 	$scope.documentosNuevos = [];
-    $scope.documentosCalificar.habilitado = true;
+	$scope.documentosCalificar.habilitado = true;
+
+
 	$scope.currentPage = 0;
-	$scope.pageSize = 2;
+	$scope.pageSize = 5;
+
+	
 
 	$scope.numberOfPages=function(){
-		return Math.ceil($scope.documentosTotales.length/$scope.pageSize);
+		return Math.ceil($scope.documentos.length/$scope.pageSize);
 	}
 
 	var timeoutHandle = window.setTimeout(function(){
@@ -20,51 +25,47 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	$(".errorArchivo").addClass('hide');
 
-    /*aqui llamo subir archivos*/
-	
-	
 
-    $http.get('phpConexion/documentos/mostrar.php').success(function (data) {
-		$scope.documentosTotales = data;
-	      console.log(data);
+	//revisa si el archivo puede ser visualizable dependiendo de la extension
+	$scope.visualizable = function(archivo) {
+		console.log(archivo);
 
-    });
+		var extension = archivo.split('.').pop();
 
-    /*$http.get('phpConexion/documentos/documentosCalificar.php').success(function (data) {
-		$scope.documentosCalificar = data;
-	      console.log(data);
-	   
-
-    });*/
-	
-	/*$http.get('data/documentosCalificar.json').success(function (data) {
-		$scope.documentosCalificar = data;
-		for(var i = 0; i < $scope.documentosCalificar.length; i++) {
-			
-			if ($scope.documentosCalificar[i].habilitado == true) {
-				$scope.documentosPendientes = true;
-			}
+		if (extension == 'pdf' || extension == 'jpg'|| extension == 'png' || extension == 'gif') {
+			return true;
 		}
-	});*/
+		else {
+			return false;
+		}
 
-	$http.get('data/carreras.json').success(function (data) {
-		$scope.carreras = data;
-	});
-
-	$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
-	
-	
-
-	$http.get('data/cursos_web.json').success(function (data) {
-		$scope.cursos= data;
-	});
-
-
-	$scope.buscar= function(){
-		alert($scope.documentosTotales[0].titulo || $scope.documentosTotales[0].tema);
 	};
 
-	$scope.marca = function(index, votos) {
+    //obtiene el listado de documentos
+    $http.get('phpConexion/obtenerDocumentos.php').success(function (data) {
+    	$scope.documentos = data;
+    });
+
+    //obtiene la lista de carreras
+    $http.get('phpConexion/ObtenerCarreras.php').success(function (data) {
+    	$scope.carreras = data;
+    });
+
+    //obtiene la lista de cursos por carrera
+    $scope.cambiaCursos = function() {
+    	console.log($scope.carrera_seleccionada);
+    	$http.post('phpConexion/obtenerCursos.php', {idCarrera: $scope.nuevoDocumento.carrera}).success(function (data) {
+    		$scope.cursos = data;
+    	});
+    };
+
+    $scope.visible = $rootScope.usuarioLogueado.idRol == 13;
+
+    $scope.buscar= function(){
+    	alert($scope.documentosTotales[0].titulo || $scope.documentosTotales[0].tema);
+    };
+
+    $scope.marca = function(index, votos) {
 		//console.log(index, votos);
 		if (index <= votos) {
 			return "glyphicon glyphicon-star yellow"
@@ -72,49 +73,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		else {
 			return "glyphicon glyphicon-star stars";
 		}
-	};
-
-	$scope.cambia = function() {
-		console.log($scope.carrera_seleccionada);
-		console.log($scope.curso_seleccionado);
-
-		if($scope.carrera_seleccionada == 'DW'){
-			$http.get('data/cursos_web.json').success(function (data) {
-				$scope.cursos= data;
-			});
-		}
-
-		if($scope.carrera_seleccionada == 'IG'){
-			$http.get('data/cursos_ig.json').success(function (data) {
-				$scope.cursos= data;
-			});
-		}
-
-		if($scope.carrera_seleccionada == 'ING'){
-			$http.get('data/cursos_ing.json').success(function (data) {
-				$scope.cursos= data;
-			});
-		}
-
-	};
-   	$scope.visualizarDoc = function(index,event){
-    
-   	
-        $http.get('data/documentos.json').success(function(data) {
-        $scope.documentosmostrar = data;
-    });
-
-		window.open($scope.documentosmostrar[index].documento)
-		event.preventDefault();
-
-		$http.get('phpConexion/documentos/documentosCalificar.php').success(function (data) {
-		$scope.documentosCalificar = data;
-	      console.log(data);
-	    $scope.documentosPendientes = true;
-
-    });
-	};
-	
+	};	
 	
 
 	$scope.abrirCrearDocumento = function() {
@@ -124,16 +83,7 @@ angular.module('module').controller('documentosController', function($scope, $ht
 		$(".errorArchivo").addClass('hide');
 		document.myForm.archivo.value = "";
 
-		$scope.documento = {
-			titulo : '',
-			tema : '',
-			descripcion : '',
-			fecha : null,
-			autor : '',
-			votos : 0,
-			peso : '',
-			archivo : ''
-		};
+		$scope.nuevoDocumento = {};
 
 
 	};
@@ -164,63 +114,78 @@ angular.module('module').controller('documentosController', function($scope, $ht
 
 	}
 
+	//agrega el archivo a un objeto hasta que se le de guardar
+	$scope.uploadFiles = function(files) {
+		var fd = new FormData();
+	    //Take the first selected file
+	    fd.append("file", files[0]);
+	    $scope.nuevoDocumento.archivo = fd;
+	};
+
 	$scope.guardarDocumento = function(){
 
 		var descripcion = $scope.documento.descripcion,
 		titulo = $scope.documento.titulo,
 		tema = $scope.documento.tema;
 		archivoSubido = document.myForm.archivo.value,
-		documentoNuevo = new Object();
-		/*fechaDocumento = new Date();
-		documentoNuevo.peso = '50KB';*/
-		$http.post('phpConexion/documentos/subir_archivos.php',{'descripcion':$scope.documento.descripcion, 'tema': $scope.documento.tema, 'titulo':$scope.documento.titulo}).success(function (data) {
-		$scope.documentos = data;
-	   });
-    
-		$http.get('phpConexion/documentos/mostrar.php').success(function (data) {
-		$scope.documentosTotales = data;
-	      console.log(data);
-
-    });
-
-		
-		
+		documentoNuevo = new Object();		
 
 		if (document.myForm.archivo.value == '')
 		{
 			$(".errorArchivo").removeClass('hide');
 			$(".errorArchivo").addClass('visible');
 		}
-          
-
 
 
 		if ($scope.myForm.$valid && document.myForm.archivo.value != '') {
 			$scope.myForm.submitted = true;
-			documentoNuevo.titulo = titulo;
-			documentoNuevo.tema = tema;
-			documentoNuevo.descripcion = descripcion;
-			/*documentoNuevo.fecha = fechaDocumento.getDate() + '/' + fechaDocumento.getMonth() + '/' + fechaDocumento.getFullYear();
-			documentoNuevo.autor = $rootScope.usuarioLogueado.nombre;
-			documentoNuevo.votos = 0;
-			documentoNuevo.peso = '50KB';
-			documentoNuevo.archivo = archivoSubido;*/
 
-   
-			$scope.documentos.push(documentoNuevo);
-			$('#myModal').modal('hide');
+			console.log($rootScope.usuarioLogueado);
+
+			$scope.nuevoDocumento.idUsuario = $rootScope.usuarioLogueado.id;
+
+			console.log($scope.files);
+			$http.post('phpConexion/uploadFile.php', $scope.nuevoDocumento.archivo, {
+				withCredentials: true,
+				headers: {'Content-Type': undefined },
+				transformRequest: angular.identity
+			}).success(function(data){
+				$http.post('phpConexion/agregarDocumento.php', {
+					curso: $scope.nuevoDocumento.curso,
+					autor: $rootScope.usuarioLogueado.email,
+					descripcion: $scope.nuevoDocumento.descripcion,
+					idUsuario: $scope.nuevoDocumento.idUsuario,
+					tema: $scope.nuevoDocumento.tema,
+					titulo: $scope.nuevoDocumento.titulo,
+					archivo: data.name,
+					size: data.size/1024
+				}
+				).success(function(){
+
+					$scope.nuevoDocumento = {};
+
+					$("#message1").removeClass('hide');
+					timeoutHandle = window.setTimeout(function(){
+						$("#message1").addClass('hide');
+					}, 2000);
+
+					$('#archivo').val('');
+
+					$('#myModal').modal('hide');
+
+					$http.get('phpConexion/obtenerDocumentos.php').success(function (data) {
+						$scope.documentos = data;
+					});
+
+				}).error(function() {
+
+				});
+			}).error(function(data) {
+				console.log(data);
+			});
 
 
-			window.clearTimeout(timeoutHandle);
 
-			$("#message1").removeClass('hide');
-			timeoutHandle = window.setTimeout(function(){
-				$("#message1").addClass('hide');
-			}, 2000);
-
-			$scope.documento.tema = "";
-			$scope.documento.titulo = "";
-			$scope.documento.descripcion ="";
 
 			/*console.log(documentoNuevo);*/
 			$scope.myForm.submitted = true;
@@ -229,15 +194,22 @@ angular.module('module').controller('documentosController', function($scope, $ht
 			$(".error").css({'color':'#828282'});
 			$(".errorArchivo").css({'color':'#828282'});
 			$scope.myForm.submitted = false;
-			
+
 		}
-		
+
 
 		return;
-          alert('exito');
+		alert('exito');
 
 	};
 
 	$scope.ver = 1;
+
+	$scope.votar = function(idDocument, qty) {
+
+		var idUsuario = $rootScope.usuarioLogueado.id;
+
+
+	};
 
 });

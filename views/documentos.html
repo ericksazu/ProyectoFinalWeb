@@ -1,192 +1,190 @@
-<div id="foroHeader">
-  <div class="container">
-    <div class="row row-centered">
-      <div class="foroHeader col-md-6 col-centered foroHeader-doc">
-        <div class="divImg clearfix">
-          <div class="imgForoHeader imgForoHeader-margin imagenDocumentos"><h1>Documentos</h1></div>
+<div ng-controller="documentosController as documento">
+  <div>
+    <div id="foroHeader">
+      <div class="container">
+        <div class="row row-centered">
+          <div class="foroHeader col-md-6 col-centered foroHeader-doc">
+            <div class="divImg clearfix">
+              <div class="imgForoHeader imgForoHeader-margin imagenDocumentos"><h1>Documentos</h1></div>
 
+            </div>
+            <form class="navbar-form navbar-left centered noMarginTop" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control inputForoHeader inputForoHeader-margin" placeholder="Buscar por tema o por título de documento" ng-model="query">
+              </div>
+              <span type="button" id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
+              <div class="btn">
+                <button type="button" class="btn btn-default boton btn-margin" ng-show="visible" data-toggle="modal" data-target="#myModal" ng-click="abrirCrearDocumento()">Agregar</button>
+              </div>
+
+            </form>
+          </div>
         </div>
-        <form class="navbar-form navbar-left centered noMarginTop" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control inputForoHeader inputForoHeader-margin" placeholder="Buscar por tema o por título de documento" ng-model="query">
-          </div>
-          <span type="button" id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
-          <div class="btn">
-            <button type="button" class="btn btn-default boton btn-margin" ng-show="visible" data-toggle="modal" data-target="#myModal" ng-click="abrirCrearDocumento()">Agregar</button>
-          </div>
-
-        </form>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form role="form" name="myForm"enctype="multipart/form-data" method ="POST">
-      <div class="modal-content" role="form">
-        <div class="modal-header modal-header-padding clearfix">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
-        </div>
-        <div class="modal-body form-section">
-          <select id="select-documentos" class="form-control" ng-options="carrera.code as carrera.name for carrera in carreras" ng-model="carrera_seleccionada" ng-change="cambia()" required name="carreras">
-            <option style="display:none" value="">seleccione una carrera</option>
-          </select>
-          <span class="error estilo-error" ng-show="!myForm.submitted && myForm.carreras.$error.required">
-          Seleccione una carrera</span>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form role="form" name="myForm"enctype="multipart/form-data" method ="POST" novalidate>
+          <div class="modal-content" role="form">
+            <div class="modal-header modal-header-padding clearfix">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Agregar documento</h4>
+            </div>
+            <div class="modal-body form-section">
 
-          <select id="select-documentos" class="select-cursos form-control" ng-options="curso.code as curso.name for curso in cursos" ng-model="curso_seleccionado" ng-change="cambia()" required name="curso">
-            <option style="display:none" value="">seleccione un curso</option>
-          </select>
-          <span class="error estilo-error" ng-show="!myForm.submitted && myForm.curso.$error.required">
-          Seleccione un curso</span>
+              <select id="select-documentos" class="form-control" ng-options="carrera.idCarrera as carrera.nombreCarrera for carrera in carreras" ng-model="nuevoDocumento.carrera" ng-change="cambiaCursos()" required name="carreras">
+                <option style="display:none" value="">seleccione una carrera</option>
+              </select>
+              <span class="error estilo-error" ng-show="!myForm.submitted && myForm.carreras.$error.required">
+                Seleccione una carrera</span>
 
-
-          <input type="text" class="form-control distancia-modal-doc" placeholder="Tema" id="temaNuevoDoc" ng-model="documento.tema" name="tema" required>
-          <span class="error estilo-error" ng-show="!myForm.submitted && myForm.tema.$error.required">
-          Digite un tema</span>
+                <select id="select-documentos" class="select-cursos form-control" ng-options="curso.idCurso as curso.nombre for curso in cursos" ng-model="nuevoDocumento.curso" ng-change="cambia()" required name="curso">
+                  <option style="display:none" value="">seleccione un curso</option>
+                </select>
+                <span class="error estilo-error" ng-show="!myForm.submitted && myForm.curso.$error.required">
+                  Seleccione un curso</span>
 
 
-            <input type="text" class="form-control distancia-modal-doc" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="documento.titulo" name="titulo" required>
-               <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
-          Digite un título</span>
+                  <input type="text" class="form-control distancia-modal-doc" placeholder="Tema" id="temaNuevoDoc" ng-model="nuevoDocumento.tema" name="tema" required>
+                  <span class="error estilo-error" ng-show="!myForm.submitted && myForm.tema.$error.required">
+                    Digite un tema</span>
 
 
-            <input type="text" class="form-control distancia-modal-doc" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="documento.descripcion" name="descripcion" required>
-             <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
-          Digite una descripción</span>
+                    <input type="text" class="form-control distancia-modal-doc" placeholder="Título del documento" id="tituloNuevoDoc" ng-model="nuevoDocumento.titulo" name="titulo" required>
+                    <span class="error" ng-show="!myForm.submitted && myForm.titulo.$error.required">
+                      Digite un título</span>
 
 
-            <input type="file" id="archivo" class="distancia-modal-doc filestyle" data-buttonText="Seleccione un documento" name="archivo" ng-model="tipoArchivo" accept=".pdf" ng-click="ocultarError()" />
-            <span class="errorArchivo">
-            Seleccione un documento</span>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-default" ng-click="guardarDocumento()" name="add">Guardar Documento</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+                      <input type="text" class="form-control distancia-modal-doc" placeholder="Descripción del documento" id="descripcionNuevoDoc" ng-model="nuevoDocumento.descripcion" name="descripcion" required>
+                      <span class="error" ng-show="!myForm.submitted && myForm.descripcion.$error.required">
+                        Digite una descripción</span>
 
 
+                        <input type="file" id="archivo" class="distancia-modal-doc filestyle" data-buttonText="Seleccione un documento" name="archivo" accept=".pdf" onchange="angular.element(this).scope().uploadFiles(this.files)" />
+                        <span class="errorArchivo">
+                          Seleccione un documento</span>
 
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-md-7">
-      <div class="row">
-        <div id="message1" class="alert alert-success">Se agregó un nuevo documento</div>
-        <div ng-show ="documentosPendientes"><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
-        <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="documento in documentosCalificar">
-          <div class="stars-comment puntuar-box">
-            <h5 class="sub-puntuar">{{documento.titulo}}</h5>
-            <div ng-init="rating = star.rating + 1"></div>
-            <div class="star-rating rating-estrellas rating-documentosCalificar" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-            <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="clearfix documentos-disponibles"><h3 class="subtitulo-doc">Documentos disponibles</h3></div>
-              <div class="row borde-doc" ng-repeat="documento in documentosTotales | startFrom:currentPage*pageSize | filter:query  | limitTo: 3">
-                <div class="col-md-5">
-                  <h2 class="titulo">{{documento.titulo}}</h2>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn btn-default" ng-click="guardarDocumento()" name="add">Guardar Documento</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                <div class="col-md-7 col-estrellas col-estrellas-font">
-                  <a href="" ng-class="marca(1, documento.votos)"></a>
-                  <a href="" ng-class="marca(2, documento.votos)"></a>
-                  <a href="" ng-class="marca(3, documento.votos)"></a>
-                  <a href="" ng-class="marca(4, documento.votos)"></a>
-                  <a href="" ng-class="marca(5, documento.votos)"></a>
-                  <br>
-                  <span>{{documento.autor}} /</span>
-                  <span>{{documento.tema}} /</span>
-                  <span>{{documento.fecha}}</span>
+              </div>
+
+
+
+              <div class="container">
+
+                <div class="row">
+
+                  <div class="col-md-7">
+                    <div class="row">
+                      <div id="message1" class="alert alert-success">Se agregó un nuevo documento</div>
+                      <div ng-show ="documentosPendientes"><h3 class="subtitulo-doc">Documentos por calificar</h3></div>
+                      <div class="col-md-12 borde-doc caja-puntuar" ng-repeat="documento in documentosCalificar">
+                        <div class="stars-comment puntuar-box">
+                          <h5 class="sub-puntuar">{{documento.titulo}}</h5>
+                          <div ng-init="rating = star.rating + 1"></div>
+                          <div class="star-rating rating-estrellas rating-documentosCalificar" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                          <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Puntuar</button>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="clearfix documentos-disponibles"><h3 class="subtitulo-doc">Documentos disponibles</h3></div>
+                            <div class="row borde-doc" ng-repeat="documento in documentos | startFrom:currentPage*pageSize | limitTo:pageSize | filter:query">
+                              <div class="col-md-5">
+                                <h2 class="titulo">{{documento.titulo}}</h2>
+                              </div>
+                              <div class="col-md-7 col-estrellas col-estrellas-font">
+                                <a href="" ng-click="votar(n, documento.idDocumento)" ng-class="marca(n, documento.promedioCalificacion)" ng-repeat="n in [1,2,3,4,5]"></a>
+                                <br>
+                                <span>{{documento.autor}} /</span>
+                                <span>{{documento.tema}} /</span>
+                                <span>{{documento.fecha}}</span>
+                              </div>
+                              <div class="col-md-12 texto-doc">
+
+                                <p>{{documento.descripcion}}</p>
+                              </div>
+                              <div class="col-md-12">
+                                <p class="ordenar-links">
+                                 <a href="uploads/{{documento.archivo}}" class="links-doc" target="_blank" type="button" ng-show="visualizable(documento.archivo)">Visualizar</a>
+                                 <a href="uploads/{{documento.archivo}}" download="uploads/{{documento.archivo}}" class="links-doc">descargar ({{documento.pesoDocumento}}Kb)</a>
+
+                               </p>
+                             </div>
+                           </div>
+
+
+
+
+
+                         </div>
+                       </div>
+                     </div>
+
+                   </div>
+                   <div class="row">
+                    <div class="col-lg-12"></div>
+                  </div>
                 </div>
-                <div class="col-md-12 texto-doc">
 
-                  <p>{{documento.descripcion}}</p>
+                <div class="col-md-4">
+                  <div class="foro-trending col-md-12 col-md-offset-3"> <!-- Foro trending topic -->
+                    <div class="trending-header distancia-topic">
+                      <img src="img/estrella-doc.png" class="estrella-doc">
+                      <h3>Documentos más votados</h3>
+                      <img src="img/estrella-doc.png" class="estrella-doc2">
+                    </div>
+                    <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentos | orderBy:'-votos' | limitTo:5">
+                      <div class="trending-content-header">
+                        <div class="trending-number col-md-2 trending-number-izquierda">
+                          <h3>{{$index+1}}</h3>
+                        </div>
+                        <div class="trending-name">
+                          <a href="#" class="purple">{{documento.titulo}}</a></br>
+                          <span>{{documento.autor}} /</span>
+                          <span>{{documento.fecha}} /</span>
+                          <!-- <span>{{documento.pesoDocumento}}</span> -->
+
+                        </div>
+                        <div class="trending-stars">
+                         <a href="" ng-class="marca(n, documento.promedioCalificacion)" ng-repeat="n in [1,2,3,4,5]"></a>
+                        </div>
+
+                      </div>
+                      <div class="trending-content trending-content-margin">
+                        <p>{{documento.descripcion}}</p>
+                      </div>
+                      <div class="trending-footer">
+                        <a href="" class="gray gray-margin links-doc"  ng-click="visualizarDoc($index,event)" type="button">Ver Documento</a>
+                      </div>
+                    </div>
+                  </div> <!-- Foro trending topic -->
                 </div>
-                <div class="col-md-12">
-                  <p class="ordenar-links">
-                   <a href="" class="links-doc" ng-click="visualizarDoc($index,event)" type="button">Visualizar</a>
-                   <a href="" ng-click="descargar()" class="links-doc">descargar</a>
 
-                 </p>
-               </div>
-             </div>
+              </div>
+              <div class="container">
+                <div class="row row-centered">
+                  <div class="pagination col-md-7">
+                    <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
+                    {{currentPage+1}}/{{numberOfPages()}}
+                    <button class="btn btn-default btn-sm" ng-disabled="currentPage >= documentosTotales.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
+                  </div>
+                </div>
+              </div>
 
 
 
-
-
-           </div>
-         </div>
-       </div>
-
-     </div>
-     <div class="row">
-      <div class="col-lg-12"></div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="foro-trending col-md-12 col-md-offset-3"> <!-- Foro trending topic -->
-      <div class="trending-header distancia-topic">
-        <img src="img/estrella-doc.png" class="estrella-doc">
-        <h3>Documentos más votados</h3>
-        <img src="img/estrella-doc.png" class="estrella-doc2">
-      </div>
-      <div class="trending-topic table-bordered clearfix trending-topic-height" ng-repeat="documento in documentosCalificar | orderBy:'-votos' | limitTo:5">
-        <div class="trending-content-header">
-          <div class="trending-number col-md-2 trending-number-izquierda">
-            <h3>{{$index+1}}</h3>
-          </div>
-          <div class="trending-name">
-            <a href="#" class="purple">{{documento.titulo}}</a></br>
-            <span>{{documento.autor}} /</span>
-            <span>{{documento.fecha}} /</span>
-            <!-- <span>{{documento.pesoDocumento}}</span> -->
-
-          </div>
-          <div class="trending-stars">
-            <a href="#" ng-class="marca(1, documentos.votos)"></a>
-            <a href="#" ng-class="marca(2, documentos.votos)"></a>
-            <a href="#" ng-class="marca(3, documentos.votos)"></a>
-            <a href="#" ng-class="marca(4, documentos.votos)"></a>
-            <a href="#" ng-class="marca(5, documentos.votos)"></a>
+            </div>
           </div>
 
         </div>
-        <div class="trending-content trending-content-margin">
-          <p>{{documento.descripcion}}</p>
-        </div>
-        <div class="trending-footer">
-          <a href="" class="gray gray-margin links-doc"  ng-click="visualizarDoc($index,event)" type="button">Ver Documento</a>
-        </div>
-      </div>
-    </div> <!-- Foro trending topic -->
-  </div>
-
-</div>
-<div class="container">
-      <div class="row row-centered">
-        <div class="pagination col-md-7">
-          <button class="btn btn-default btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Anterior</button>
-        {{currentPage+1}}/{{numberOfPages()}}
-        <button class="btn btn-default btn-sm" ng-disabled="currentPage >= documentosTotales.length/pageSize - 1" ng-click="currentPage=currentPage+1">Siguiente</button>
-        </div>
-      </div>
-    </div>
-
-
-
-</div>
