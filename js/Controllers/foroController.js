@@ -246,10 +246,10 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 
 
 
-	$scope.cerrarForo = function(index){
+	$scope.cerrarForo = function(id){
 		var estado = 1;
 		console.log(index);
-		var id = $scope.topics[index].idForo;
+		var id = $scope.topics[id].idForo;
 		console.log(id);
 		console.log(estado);
 
