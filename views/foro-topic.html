@@ -20,6 +20,9 @@
   </div>
 </div>
 <div id="foro-content"  ng-controller="ForoTopicController as foro" class="forototal">
+
+
+
   <!-- Modal Comentario -->
   <div class="modal fade" ng-class="'myModalForoComment'+$index" id="myModalForoComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -61,6 +64,29 @@
           <h5>Comentarios</h5>
         </div>
         <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+
+          <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header clearfix">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                  <h4 class="modal-title">Ingrese su denuncia</h4>
+                </div>
+                <form class="form-horizontal" role="form" name="formAgregarDenuncia">
+                  <div class="modal-body clearfix">
+                  <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="$parent.denuncia" ng-minlength="10" required></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-purple" ng-click="agregarDenuncia(comentario.idComentarioxTema)" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
+                    <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </form>
+              </div><!-- /.modal-content -->
+
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
           <table class="tema-foro table table-bordered">
             <tbody>
               <tr>
@@ -123,26 +149,7 @@
 
 
 <!-- Modal Denuncia -->
-<div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="AgregarDenuncia">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header clearfix">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-        <h4 class="modal-title">Ingrese su denuncia</h4>
-      </div>
-      <form class="form-horizontal" role="form" name="formAgregarDenuncia">
-        <div class="modal-body clearfix">
-          <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="denuncia" ng-minlength="10" required></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-purple" ng-click="agregarDenuncia()" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
-          <button type="button" class="btn btn-default btn-closeModalPopover" data-dismiss="modal">Cancelar</button>
-        </div>
-      </form>
-    </div><!-- /.modal-content -->
 
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <script src="js/popover.js"></script>
 <script src="js/modal-foro.js"></script>

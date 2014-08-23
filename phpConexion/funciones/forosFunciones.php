@@ -146,8 +146,8 @@ function obtenerDenuncias($conexion){
 }
 
 function agregarDenuncia($conexion,$descripcion, $idComentario){
-	$query = "CALL agregarDenuncia($descripcion, $idComentario)";
-	
+	$query = "CALL agregarDenuncia('$descripcion', $idComentario)";
+	echo $query;
 	return BDQuery($query, $conexion);
 }
 ?>

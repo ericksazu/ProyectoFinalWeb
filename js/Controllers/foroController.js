@@ -33,49 +33,49 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 			console.log("inserted bad");
 		});*/
 
-		$http({
-			url: 'phpConexion/temasForo.php',
-			method: 'GET',
-			params: {idForo: $scope.topics[$index].idForo}
-		}).success(function(data){
-			console.log(data);
-		});
-
-
-		
-	}
-
-	$http.get('phpConexion/login/usuarios.php').success(function(data) {
-		$scope.usuarios = data;
-		$scope.usuariosForo = [];
-
-		for (var i = 0; i < $scope.usuarios.length; i++) {
-			if($scope.usuarios[i].nivelUniversitario == 'Estudiante'){
-				$scope.usuariosForo.push($scope.usuarios[i].email);
-			}
-		};
-	});
-
-	
+$http({
+	url: 'phpConexion/temasForo.php',
+	method: 'GET',
+	params: {idForo: $scope.topics[$index].idForo}
+}).success(function(data){
+	console.log(data);
+});
 
 
 
-	
-	$http.get('phpConexion/foros.php').success(function(data) {
-		$scope.topics = data;
-	});
+}
 
-	$scope.numberOfPagesTemas = function(){
-		return Math.ceil($scope.topics.length/$scope.pageSize);
-	}
+$http.get('phpConexion/login/usuarios.php').success(function(data) {
+	$scope.usuarios = data;
+	$scope.usuariosForo = [];
 
-	$scope.numberOfPagesTema = function(){
-		return Math.ceil($scope.comments.length/$scope.pageSize);
-	}
+	for (var i = 0; i < $scope.usuarios.length; i++) {
+		if($scope.usuarios[i].nivelUniversitario == 'Estudiante'){
+			$scope.usuariosForo.push($scope.usuarios[i].email);
+		}
+	};
+});
 
-	$scope.eliminar = function(id){
+
+
+
+
+
+$http.get('phpConexion/foros.php').success(function(data) {
+	$scope.topics = data;
+});
+
+$scope.numberOfPagesTemas = function(){
+	return Math.ceil($scope.topics.length/$scope.pageSize);
+}
+
+$scope.numberOfPagesTema = function(){
+	return Math.ceil($scope.comments.length/$scope.pageSize);
+}
+
+$scope.eliminar = function(id){
 		//alert(index);
-	
+
 		
 
 		$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
@@ -385,70 +385,25 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 						$('#alertComentarioForo').css('display','none');
 					}, 3000);
 
-				}
+				};
+
+				$scope.agregarDenuncia = function(id){
+
+					console.log($scope.denuncia);
+
+					$http.post('phpConexion/agregarDenuncia.php', {'descripcion': $scope.denuncia, 'idComentario': id}).success(function(data, status) {
+						console.log("inserted good");
+						$scope.algo = data;
+					}).error(function(data, status) {
+						console.log("inserted bad");
+					});
+				};
 
 
-			});
-
-
-angular.module('module').controller('AgregarTema', function ($http, $scope) {
-	$scope.message = '';
-	$scope.respuestas = 0;
-	$scope.titulo = '';
-	$scope.contenido = '';
-	$scope.vistas = 0;
-	$scope.mensaje = 'Hace 1 minuto';
-	$scope.estudiantes = [];
-	$scope.show = false;
-	$scope.fechaInicio = '';
-	$scope.fechaCierre = '';
-
-	
-	$scope.buscarNombresModal = function(index){
-		console.log('entra al buscador');
-		$('#tags2').autocomplete({
-			source: $scope.usuariosForo
-		});
-		//$('#tags2').autocomplete('option','appendTo','#prueba');
-	}
-	
-
-});
-
-angular.module('module').controller('EditarTema', function ($scope, $http, $route) {
-
-	$http.get('phpConexion/foros.php').success(function(data) {
-		$scope.topics = data;
-		/*console.log($scope.publicaciones[0].comments[0]);*/
-	});
+}); //cierra forotopic
 
 
 
-	$scope.topics = temas;
-	
-
-
-	
-
-	$scope.deseleccionarAsistente = function (topicIndex, index) {
-		for (var i = 0; i < $scope.topics[topicIndex].estudiantes.length; i++) {
-			$scope.topics[topicIndex].estudiantes[i].asistente = false;
-			/*console.log(i);*/
-		};
-
-		$scope.topics[topicIndex].estudiantes[index].asistente = !$scope.topics[topicIndex].estudiantes[index].asistente;
-	}
-
-	
-	
-
-	$scope.salirModal = function (index) {
-		if($scope.topics[index].titulo === ''){
-			$scope.topics.splice(index,1);
-			$('.modal-backdrop').remove();
-		}
-	}
-});
 
 angular.module('module').controller('RatingCtrl', function ($scope) {
 	$scope.rating = 5;
@@ -465,28 +420,6 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
   }
 });
 
-
-angular.module('module').controller('AgregarDenuncia', function ($scope) {
-	$scope.denuncia = '';
-
-	$scope.agregarDenuncia = function () {
-		denuncias.push({
-			tema: 'Programación Web Dinámica',
-			denuncia: $scope.denuncia
-		});
-
-		$scope.denuncia = '';
-		$('#myModalForoDenuncia').modal('hide');
-
-		$('#alertDenunciaForo').css('display','block');
-		setTimeout(function() {
-			$('#alertDenunciaForo').css('display','none');
-		}, 3000);
-
-		console.log(denuncias);
-	}
-
-});
 
 
 /********************************************* DIRECTIVAS *******************************************************/
