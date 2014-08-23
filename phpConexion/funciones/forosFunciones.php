@@ -144,4 +144,10 @@ function obtenerDenuncias($conexion){
 	$query = "CALL obtenerDenuncias()";
 	return BDQuery($query, $conexion);
 }
+
+function agregarDenuncia($conexion,$descripcion, $idComentario){
+	$query = "CALL agregarDenuncia($descripcion, $idComentario)";
+	
+	return BDQuery($query, $conexion);
+}
 ?>

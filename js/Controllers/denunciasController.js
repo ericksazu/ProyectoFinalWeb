@@ -13,7 +13,7 @@ angular.module('module').controller('denunciasController', function($scope, $htt
 
 	$scope.eliminarDenuncia = function(index){
 
-		var id = $scope.denuncias[index].idDenunciaComentario;
+		var id = $scope.denuncias[index].idDenuncia;
 
 		$http.post('phpConexion/eliminarDenuncia.php', {'idDenuncia': id}).success(function(data, status) {
 			console.log("inserted good", data);
