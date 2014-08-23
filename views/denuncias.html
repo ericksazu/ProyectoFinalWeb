@@ -23,7 +23,7 @@
                     <tbody>
 
                       <tr ng-repeat="denuncia in denuncias">
-                        <td>{{denuncia.descripcion}}</td>
+                        <td>{{denuncia.comentarioDescripcion}}</td>
                         <td class="distancia-denuncia">
                           {{denuncia.1}}
                         </td>
@@ -32,7 +32,7 @@
                         </td>
                         <td> <button ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton" ng-click="eliminarDenuncia($index)">Eliminar</button></td>
                         <td>
-                          <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Eliminar</button></td>
+                          <button ng-click="eliminarComentario($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Eliminar</button></td>
                         </td>
                       </tr>
                         

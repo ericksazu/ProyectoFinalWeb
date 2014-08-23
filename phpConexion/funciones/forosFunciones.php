@@ -128,6 +128,12 @@ function eliminarDenuncia($conexion,$idDenuncia){
 	return BDQuery($query, $conexion);
 }
 
+function eliminarComentario($conexion,$idComentario){
+	$query = "CALL eliminarComentario($idComentario)";
+	
+	return BDQuery($query, $conexion);
+}
+
 /*function insertarVisitasForo($conexion,$visitas, $idForo){
 	$query = "CALL insertarVisitasForo($visitas,$idForo)";
 	
