@@ -17,7 +17,7 @@ $contrasena = $row['contrasena'];
 
 // echo $contrasena; die();
 //send email containing their password to their email address
-mail($olvido, 'Esta es su contrase&#241;a olvidada', "Esta es su contrase&#241;a: ".$contrasena."" , 'From: nocontestar@LoginNet.cr');
+mail($olvido, 'Esta es su contraseña olvidada', "Esta es su contraseña: ".$contrasena."" , 'From: nocontestar@LoginNet.cr');
 
 header('location: ../..#');
 
