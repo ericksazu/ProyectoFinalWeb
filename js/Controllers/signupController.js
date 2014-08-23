@@ -89,4 +89,16 @@ angular.module('module').controller('signupController',
         $scope.salir = function() {
             localStorage.setItem('usuario', null)
         }
+
+        $scope.denuncias = [];
+
+        $scope.Denuncias = function(){
+
+            $http.post('phpConexion/obtenerDenuncias.php').success(function(data, status) {
+                console.log("inserted good", data);
+                $scope.denuncias = data;
+            }).error(function(data, status) {
+                console.log("inserted bad");
+            });
+        }
     });
