@@ -99,11 +99,11 @@
                     <h4>{{comentario.titulo}}</h4>
                     <p class="p-comment">{{comentario.descripcion}}</p>
                   </div>
-                  <div class="clearfix" ng-controller="RatingCtrl">
+                  <div class="clearfix">
                     <div class="stars-comment clearfix" ng-show="!isDisabled" >
                       <div ng-init="rating = star.rating + 1"></div>
-                      <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-                      <button ng-click="guardarPuntuacion()" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default btn-xs">Puntuar</button>
+                      <div class="star-rating" star-rating rating-value="rating" mg-model="estrellas" data-min="0" data-max="5" on-rating-selected="rateFunction(rating)"></div>
+                      <button ng-click="puntuacion($index)" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default btn-xs">Puntuar</button>
                     </div>
                     <div class="buttons-comment">
                       <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoDenuncia">Denunciar</button>

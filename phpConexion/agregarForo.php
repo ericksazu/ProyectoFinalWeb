@@ -19,7 +19,7 @@ if ($id == 0) {
 	$nuevoId = $datos['idForo'];
 }
 else {
-	//sp de editar
+	editarTema($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre, $id);
 } 
 
 

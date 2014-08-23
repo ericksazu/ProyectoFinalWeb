@@ -147,7 +147,19 @@ function obtenerDenuncias($conexion){
 
 function agregarDenuncia($conexion,$descripcion, $idComentario){
 	$query = "CALL agregarDenuncia('$descripcion', $idComentario)";
-	echo $query;
+	
+	return BDQuery($query, $conexion);
+}
+
+function agregarPuntuacion($conexion,$estrellas, $idComentario, $idUsuario){
+	$query = "CALL agregarDenuncia($estrellas, $idComentario, $idUsuario)";
+	
+	return BDQuery($query, $conexion);
+}
+
+function editarTema($conexion,$tema, $descripcion, $fecha_creacion, $fecha_cierre, $id) {
+	$query = "CALL actualizarTemaForo('$tema', '$descripcion', '$fecha_creacion', '$fecha_cierre', $id)";
+	
 	return BDQuery($query, $conexion);
 }
 ?>

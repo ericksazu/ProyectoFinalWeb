@@ -4,11 +4,12 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 $data = json_decode(file_get_contents("php://input"));
-$descripcion = $data->descripcion;
+$estrellas= $data->estrellas;
 $idComentario = $data->idComentario;
+$idUsuario= $data->idUsuario;
 
 
-$resultado = agregarDenuncia($conexion,$descripcion, $idComentario);
+$resultado = agregarDenuncia($conexion,$estrellas, $idComentario, $idUsuario);
 mysqli_close($conexion);
 
 // $lista = Array();

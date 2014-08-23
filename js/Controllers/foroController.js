@@ -399,6 +399,10 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 					});
 				};
 
+				$scope.puntuacion = function(){
+					
+				};
+
 
 }); //cierra forotopic
 
