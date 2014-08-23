@@ -31,8 +31,7 @@ function InsertarDocumento($conexion, $autor, $archivo, $descripcion, $tema, $ti
 }
 
 function AgregarVoto($conexion, $idDocumento, $idUsuario, $cantidad) {
-	$query = "call AgregarVotoDocumento($cantidad, $idUsuario, $idDocumento)";
-	return BDQuery($query, $conexion);
+	$query = "call AgregarVotoDocumento($cantidad, $idUsuario, $idDocumento)"
 }
 
 ?>
