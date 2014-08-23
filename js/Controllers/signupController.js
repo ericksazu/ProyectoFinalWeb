@@ -1,6 +1,23 @@
 angular.module('module').controller('signupController',
     function($scope, $location, $http, $rootScope) {
         $scope.submitted = false;
+
+        $scope.cantidadDenuncias = 0;
+
+            $http.post('phpConexion/obtenerDenuncias.php').success(function(data, status) {
+                console.log("inserted good", data);
+                $scope.denuncias = data;
+                for (var i = 1; i <= $scope.denuncias.length; i++) {
+                    $scope.cantidadDenuncias = i;
+                };
+            }).error(function(data, status) {
+                console.log("inserted bad");
+            });
+
+            console.log($scope.denuncias);
+
+
+
         $scope.signupForm = function() {
             if ($scope.signup_form.$valid) {
                 var posicion = -1;

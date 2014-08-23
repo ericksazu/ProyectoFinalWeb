@@ -10,5 +10,5 @@ angular.module('module').controller('denunciasController', function($scope, $htt
             });
 
             console.log($scope.denuncias);
-        
+
 });
