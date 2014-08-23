@@ -75,7 +75,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 
 	$scope.eliminar = function(index){
 		//alert(index);
-		var id = $scope.topics[index].idForo;
+	
 		console.log(id);
 
 		$http.post('phpConexion/eliminarForo.php', {'id': id}).success(function(data, status) {
@@ -312,8 +312,8 @@ $scope.titulo = 'editar';
 
 
 //funcionalidad roles profesor y director
-$scope.visible = $rootScope.usuarioLogueado.idRol == 13;
-$scope.visible = $rootScope.usuarioLogueado.idRol == 16;
+$scope.visible = $rootScope.usuarioLogueado.idRol == 13 || $rootScope.usuarioLogueado.idRol == 16;
+
 
 
 
