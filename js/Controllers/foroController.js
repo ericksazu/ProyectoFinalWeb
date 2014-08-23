@@ -53,7 +53,7 @@ $http.get('phpConexion/login/usuarios.php').success(function(data) {
 
 	for (var i = 0; i < $scope.usuarios.length; i++) {
 		
-			$scope.usuariosForo.push($scope.usuarios[i].email);
+		$scope.usuariosForo.push($scope.usuarios[i].email);
 		
 	};
 });
@@ -286,6 +286,7 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 		$scope.estudiantesEliminados = [];
 
 		console.log('entra a editar', $scope.informacion);
+		$scope.informacion.email = $rootScope.usuarioLogueado.email;
 		$http.post('phpConexion/agregarForo.php', $scope.informacion).success(function(data, status) {
 			console.log("inserted good", data);
 
@@ -320,11 +321,25 @@ $scope.users = usuarios;
 $scope.trendings = trendingTopics;
 $scope.titulo = 'editar';
 
-
+console.log('rol usuarioooo', $rootScope.usuarioLogueado);
 
 
 //funcionalidad roles profesor y director
 $scope.visible = $rootScope.usuarioLogueado.idRol == 13 || $rootScope.usuarioLogueado.idRol == 16;
+
+$scope.esDueno = function(email) {
+	if ($rootScope.usuarioLogueado.idRol == 16) {
+		return true;
+	}
+	if (email == $rootScope.usuarioLogueado.email) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+
+};
 
 
 
@@ -336,12 +351,25 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 	$scope.comments = [];
 	$scope.usuarios =[];
 	$scope.usuario = [];
+	$scope.estudiantesForo = [];
 
 	$scope.idForo = $routeParams.idForo;
 
 	$scope.estado = $routeParams.estado;
 
 	$scope.visible = $rootScope.usuarioLogueado.idRol == 13 || $rootScope.usuarioLogueado.idRol == 16;
+
+	$scope.puedeComentar = true;
+	
+
+	$scope.cuenta = !$scope.cuenta;
+
+	if ($scope.cuenta) {
+		console.log('cuenta', $scope.cuenta);
+		$http.post('phpConexion/insertarVisitasForo.php', {idForo: $scope.idForo}).success(function(data) {
+
+		});
+	}
 
 	if($scope.estado == 1){
 		$("#btnComentar").addClass('hidden');	
@@ -352,11 +380,32 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 	});
 
 	$http.post('phpConexion/obtenerTemaForo.php', {'id': $scope.idForo}).success(function(data, status) {
-		console.log("inserted good");
+		
 		$scope.foro = data;
+
+		$http.post('phpConexion/obtenerEstudiantesForo.php', {'idForo': $routeParams.idForo}).success(function(data) {
+			if ($rootScope.usuarioLogueado.email == $scope.foro.usuarioCreado) {
+				$scope.puedeComentar = true;
+			}
+			if ($rootScope.usuarioLogueado.idRol == 12 || $rootScope.usuarioLogueado.idRol == 13 ) {
+				$scope.puedeComentar = false;
+				for (var i = 0; i < data.length; i++) {
+					
+					if (data[i].idUsuario == $rootScope.usuarioLogueado.id) {
+						$scope.puedeComentar = true;
+					}
+				}
+			}
+			
+		});
+
 	}).error(function(data, status) {
 		console.log("inserted bad");
 	});
+
+	
+
+
 
 
 	$scope.currentPage = 0;
@@ -435,6 +484,8 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 					$scope.puntuacion = function(){
 
 					};
+
+					
 
 
 }); //cierra forotopic

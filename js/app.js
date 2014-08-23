@@ -23,6 +23,9 @@
         }).when("/foro", {
             controller: "foroController",
             templateUrl: "views/foros.html"
+        }).when("/foro-topic/:idForo/", {
+            controller: "ForoTopicController",
+            templateUrl: "views/foro-topic.html"
         }).when("/foro-topic/:idForo/:estado", {
             controller: "ForoTopicController",
             templateUrl: "views/foro-topic.html"

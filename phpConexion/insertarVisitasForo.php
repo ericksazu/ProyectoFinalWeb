@@ -4,11 +4,11 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 $data = json_decode(file_get_contents("php://input"));
-$visitas = $data->visitas;
+
 $idForo = $data->idForo;
 
 
-$resultado = insertarVisitasForo($conexion,$visitas, $idForo);
+$resultado = aumentaVisitas($conexion, $idForo);
 echo $resultado;
 
 mysqli_close($conexion);

@@ -10,10 +10,11 @@ $tema = $data->tema;
 $descripcion = $data->descripcion;
 $fecha_creacion = $data->fecha_creacion;
 $fecha_cierre = $data->fecha_cierre;
+$email = $data->email;
 
 $nuevoId = 0;
 if ($id == 0) {
-	AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre);
+	AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre, $email);
 	$ultimoId = ObtenerIdForo($conexion);
 	$datos = mysqli_fetch_array($ultimoId);
 	$nuevoId = $datos['idForo'];

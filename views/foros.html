@@ -47,9 +47,8 @@
                     <span>Vistas</span>
                   </td>
                   <td class="col-md-2">
-                    <span class="last-message last-message-style">Último mensaje:</br>{{tema.ultimo_mensaje}}</span>
-
-                    <a ng-show="visible" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
+                    <span class="last-message last-message-style">Último mensaje:</br>{{tema.fecha_ultimo_comentario}}</span>
+                    <a ng-show="visible && esDueno(tema.usuarioCreado)" class="delete popoverForo" data-container=".{{'myPopover'+$index}}" data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-sm{{$index}}">eliminar</a></br>
                     <div class="modal fade bs-example-modal-sm{{$index}}" id="myModalEliminarTema" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 
                       <!-- Modal Confirmar Borrar -->
@@ -69,7 +68,7 @@
                       <!-- ************************ -->
 
                     </div>
-                    <a ng-show="visible" class="edit" data-toggle="modal" ng-click="editarForo(tema.idForo)" data-target="#myModalEditarTema">editar</a>
+                    <a ng-show="visible && esDueno(tema.usuarioCreado)" class="edit" data-toggle="modal" ng-click="editarForo(tema.idForo)" data-target="#myModalEditarTema">editar</a>
                   </td>
                 </tr>
               </tbody>

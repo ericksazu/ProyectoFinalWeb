@@ -36,8 +36,8 @@ function ObtenerTemas($conexion, $idForo){
 }
 
 
-function AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre){
-	$query = 'CAll agregarTema("'.$tema.'","'.$descripcion.'","'. $fecha_creacion.'","'. $fecha_cierre.'", 1)';
+function AgregarTemas($conexion, $tema, $descripcion, $fecha_creacion, $fecha_cierre, $email){
+	$query = 'CAll agregarTema("'.$tema.'","'.$descripcion.'","'. $fecha_creacion.'","'. $fecha_cierre.'", 1, "'.$email.'")';
 	return BDQuery($query, $conexion);
 
 	
@@ -94,7 +94,7 @@ function obtenerTemaForo($conexion,$id){
 
 function agregarEstudianteForo($conexion,$idForo, $email){
 	$query = "CALL agregarEstudianteForo($idForo, '$email')";
-	echo $query;
+	
 	return BDQuery($query, $conexion);
 }
 
@@ -170,6 +170,12 @@ function agregarRespuestas($conexion, $idForo,$respuestas){
 
 function editarTema($conexion,$tema, $descripcion, $fecha_creacion, $fecha_cierre, $id) {
 	$query = "CALL actualizarTemaForo('$tema', '$descripcion', '$fecha_creacion', '$fecha_cierre', $id)";
+	
+	return BDQuery($query, $conexion);
+}
+
+function aumentaVisitas($conexion, $idForo) {
+	$query = "CALL aumentarVisita($idForo)";
 	
 	return BDQuery($query, $conexion);
 }
