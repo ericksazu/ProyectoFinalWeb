@@ -16,6 +16,8 @@
                         <th>Comentario</th>
                         <th>Denuncia</th>
                         <th>Fecha</th>
+                        <th>Eliminar denuncia</th>
+                        <th>Eliminar comentario</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -28,7 +30,10 @@
                         <td>
                           {{denuncia.fecha}}
                         </td>
-                        <td> <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Eliminar</button></td>
+                        <td> <button ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton" ng-click="eliminarDenuncia($index)">Eliminar</button></td>
+                        <td>
+                          <button ng-click="guardarPuntuacion($index)" ng-disabled="isDisabled" ng-model="prueba" type="button" class="btnPuntuar pink btn btn-default rating-boton">Eliminar</button></td>
+                        </td>
                       </tr>
                         
                     </tbody>

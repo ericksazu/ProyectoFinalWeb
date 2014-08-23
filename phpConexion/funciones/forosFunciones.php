@@ -122,6 +122,12 @@ function obtenerAsistente($conexion,$idForo){
 	return BDQuery($query, $conexion);
 }
 
+function eliminarDenuncia($conexion,$idDenuncia){
+	$query = "CALL eliminarDenuncia($idDenuncia)";
+	
+	return BDQuery($query, $conexion);
+}
+
 /*function insertarVisitasForo($conexion,$visitas, $idForo){
 	$query = "CALL insertarVisitasForo($visitas,$idForo)";
 	
