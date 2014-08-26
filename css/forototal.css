@@ -303,6 +303,7 @@
 .forototal .trending-name {
   padding: 5px;
   float: left;
+  width: 250px;
 }
 /* line 296, ../sass/style.scss */
 .forototal .trending-stars {
@@ -427,5 +428,27 @@ span.errorForo{
 
 .dist-boton-agregar{
   margin-left: 15px;
+}
+
+.col-estrellas a.stars {
+  color:#bbb;
+  font-size: 18px;
+}
+
+.col-estrellas a.yellow {
+  color:#ffe754;
+}
+
+.col-estrellas a.stars:hover {
+  color:#ffe754;
+}
+
+.col-estrellas a.stars:hover < col.estrellas a {
+  color:#ffe754;
+
+}
+
+.estrellas-promedio{
+  float: right;
 }
 

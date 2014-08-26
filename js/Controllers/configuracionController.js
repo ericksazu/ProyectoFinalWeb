@@ -1,4 +1,4 @@
-angular.module('module').controller('FormCtrl', function($scope, $http, $rootScope) {
+angular.module('module').controller('FormCtrl', function($scope, $http, $rootScope, $route) {
 
   $scope.listaUsuarios = [];
 
@@ -60,6 +60,8 @@ angular.module('module').controller('FormCtrl', function($scope, $http, $rootSco
     }).error(function(data, status) {
         console.log("inserted wrong");
     });
+
+    $route.reload();
   };
 
 
@@ -94,14 +96,19 @@ angular.module('module').controller('FormCtrl', function($scope, $http, $rootSco
   };
 
   $scope.eliminarUsuario = function(index) {
+    $scope.listaUsuarios = [];
     $scope.IdUsuarioEliminar = $scope.usuarios[index].idUsuario;
 
     $http.post('phpConexion/configuracion/eliminar-usuario.php', {'id': $scope.IdUsuarioEliminar}).success(function(data, status) {
       console.log("inserted good");
       $scope.algo = data;
+
     }).error(function(data, status) {
         console.log("inserted wrong");
     });
+
+    $('.modal-backdrop').remove();
+    $route.reload();
   };
 
   $scope.submitIngresar = function() {

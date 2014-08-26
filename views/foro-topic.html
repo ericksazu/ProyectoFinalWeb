@@ -11,7 +11,7 @@
         </div>
         <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
           <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar">
+            <input type="text" class="form-control inputForoHeader" placeholder="Buscar comentario" ng-model="query">
           </div>
           <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
         </form>
@@ -66,7 +66,7 @@
           <br>
           <h5>Comentarios</h5>
         </div>
-        <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize | filter:query">
 
           <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -104,9 +104,10 @@
                   </div>
                   <div class="clearfix">
                     <div class="stars-comment clearfix" ng-show="!isDisabled" >
-                      <div ng-init="rating = star.rating + 1"></div>
-                      <div class="star-rating" star-rating rating-value="rating" mg-model="estrellas" data-min="0" data-max="5" on-rating-selected="rateFunction(rating)"></div>
-                      <button ng-click="puntuacion($index)" ng-model="isDisabled" type="button" class="btnPuntuar pink btn btn-default btn-xs">Puntuar</button>
+
+                      <div ng-init="rating = star.rating + (comentario.estrellas == null ? 1 : comentario.estrellas)"></div>
+                      <div class="star-rating" star-rating rating-value="rating" mg-model="estrellas" data-min="0" data-max="5" on-rating-selected="rateFunction(rating, comentario.idComentarioxTema, comentario.estrellas)" ></div>
+                      
                     </div>
                     <div class="buttons-comment">
                       <button type="button" class="pink btn btn-default btn-xs" data-toggle="modal" ng-href="#myModalForoDenuncia">Denunciar</button>
@@ -115,20 +116,41 @@
                 </td>
                 <td class="col-md-1 text-center">
                   <span>{{comentario.info}}</span>
-                  <div>
-                    <span class="glyphicon glyphicon-star yellow"></span>
-                    <span class="glyphicon glyphicon-star yellow"></span>
-                    <span class="glyphicon glyphicon-star yellow"></span>
-                    <span class="glyphicon glyphicon-star yellow"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                  </div>
+                  <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
+                  <div class="star-rating" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div> <!-- Foro container left -->
-      <trending-topic></trending-topic> <!-- Trending topic -->
+      <div class="foro-trending col-md-4 col-md-offset-1" ng-controller="foroController"> <!-- Foro trending topic -->
+        <div class="trending-header">
+        <img src="img/estrella-doc.png" class="estrella-doc">
+          <h3>Comentarios más votados</h3>
+          <img src="img/estrella-doc.png" class="estrella-doc2">
+        </div>
+        <div class="trending-topic table-bordered clearfix" ng-repeat="comentario in comments | limitTo: 5 | orderBy:'-comentario.promedioCalificacion'">
+          <div class="trending-content-header">
+            <div class="trending-number col-md-2">
+              <h3>{{$index+1}}</h3>
+              <h3>{{comentario.titulo}}</h3>
+            </div>
+            <div class="trending-name">
+              <a href="" class="purple">{{comentario.descripcion}}</a></br>
+              <span>{{comentario.fecha}}{{comentario.titulo}}</span>
+            </div>
+           <span>{{comentario.info}}</span>
+                  <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
+                  <div class="star-rating estrellas-promedio" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
+
+          </div>
+          <div class="trending-content">
+            <p>{{tema.contenido}}</p>
+          </div>
+         
+        </div>
+      </div> <!-- Foro trending topic -->
     </div>
   </div>
   <div class="container">

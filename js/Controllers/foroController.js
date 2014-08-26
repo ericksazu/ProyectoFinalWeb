@@ -311,6 +311,9 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 
 	//$route.reload();
 
+
+
+
 	
 
 };
@@ -341,6 +344,10 @@ $scope.esDueno = function(email) {
 
 };
 
+
+$scope.rateFunction = function (rating) {
+	alert('Rating selected is ' + rating);
+};
 
 
 
@@ -415,10 +422,10 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 		return Math.ceil($scope.comments.length/$scope.pageSize);
 	};
 
-	console.log($routeParams);
+	
 
 	$http.post('phpConexion/obtenerComentarios.php', 
-		{'idForo': $routeParams.idForo}).success(function(data, status) {
+		{'idForo': $routeParams.idForo, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
 			console.log("inserted good");
 			$scope.comments = data;
 			console.log($scope.comments.length);
@@ -449,7 +456,7 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 					{'id': $scope.idForo, 'descripcion': $scope.comentario, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
 						console.log("comentario agregado bd");
 						$http.post('phpConexion/obtenerComentarios.php', 
-							{'idForo': $routeParams.idForo}).success(function(data, status) {
+							{'idForo': $routeParams.idForo, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
 								console.log("inserted good");
 								$scope.comments = data;
 							}).error(function(data, status) {
@@ -485,7 +492,48 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 
 					};
 
-					
+
+					$scope.marca = function(index, votos) {
+		//console.log(index, votos);
+		if (index <= votos) {
+			return "glyphicon glyphicon-star yellow"
+		}
+		else {
+			return "glyphicon glyphicon-star stars";
+		}
+	}
+
+	$scope.rateFunction = function(rate, idComentario, estrellas) {
+
+if (estrellas != null) {
+	$http.post('phpConexion/obtenerComentarios.php', 
+							{'idForo': $routeParams.idForo, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
+								console.log("inserted good");
+								$scope.comments = data;
+							}).error(function(data, status) {
+								console.log("inserted wrong");
+							});
+							return;
+}
+		
+
+		$http.post('phpConexion/agregarPuntuacion.php', {'estrellas': rate, 'idComentario': idComentario, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
+			$http.post('phpConexion/obtenerComentarios.php', 
+							{'idForo': $routeParams.idForo, 'idUsuario': $rootScope.usuarioLogueado.id}).success(function(data, status) {
+								console.log("inserted good");
+								$scope.comments = data;
+							}).error(function(data, status) {
+								console.log("inserted wrong");
+							});
+			$scope.algo = data;
+
+		}).error(function(data, status) {
+			console.log("inserted bad");
+		});
+
+	}
+
+
 
 
 }); //cierra forotopic
@@ -497,15 +545,13 @@ angular.module('module').controller('RatingCtrl', function ($scope) {
 	$scope.rating = 5;
 	$scope.isDisabled = false;
 
-    /*$scope.rateFunction = function (rating) {
-      alert('Rating selected is ' + rating);
-  };*/
 
-  $scope.guardarPuntuacion = function () {
-  	/*comentarios[0].puntaje = $scope.rating;*/
-  	$scope.isDisabled = true;
-  	return false;
-  }
+
+	$scope.guardarPuntuacion = function () {
+		/*comentarios[0].puntaje = $scope.rating;*/
+		$scope.isDisabled = true;
+		return false;
+	}
 });
 
 
