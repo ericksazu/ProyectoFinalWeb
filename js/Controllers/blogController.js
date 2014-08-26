@@ -22,9 +22,9 @@ angular.module('module').controller('blogController', function($scope, $http, $r
   $('.pagination').hide();
   $('.btn-publicacion').hide();
 
-  /*$http.get('data/usuario.json').success(function(data) {
-    $scope.datos = data;
-  });*/
+  $http.get('phpConexion/obtenerDocumentos.php').success(function (data) {
+    $scope.documentos = data;
+  });
 
   $http.get('phpConexion/login/usuarios.php').success(function(data) {
     $scope.usuarios = data;
@@ -49,10 +49,6 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $('.btn-publicacion').delay(500).show(0);
     $('.pagination').delay(3000).show(0);
   });
-
-  /*$http.get('data/documentos.json').success(function(data) {
-    $scope.documentos = data;
-  });*/
 
   $scope.numberOfPagesTemas = function(){
     return Math.ceil($scope.publicacionesUsuario.length/$scope.pageSize);
