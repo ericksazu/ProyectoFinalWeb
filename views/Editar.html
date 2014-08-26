@@ -13,8 +13,8 @@
             <th>Rol</th>
             <th>Contrase&ntilde;a</th>
             <th>Nivel</th>
-            <th>Carrera</th>
-            <th>Cursos</th>
+            <!-- <th>Carrera</th>
+            <th>Cursos</th> -->
             <th></th>
             <th></th>
           </tr>
@@ -24,10 +24,10 @@
             <td>{{usuario.nombre}} {{usuario.primerApellido}} {{usuario.segundoApellido}}</td>
             <td>{{usuario.email}}</td>
             <td>{{usuario.idRol}}</td>
-            <td>{{usuario.contrasena}}</td>
+            <td type="password">{{usuario.contrasena}}</td>
             <td>{{usuario.nivelUniversitario}}</td>
-            <td>{{usuario.carrera}}</td>
-            <td>{{usuario.cursos}}</td>
+           <!--  <td>{{usuario.carrera}}</td>
+            <td>{{usuario.cursos}}</td> -->
             <td>
               <button class="btn btn-success" id="editar" data-toggle="modal" data-target=".{{'myModalEditar'+$index}}">
                 <span class="glyphicon glyphicon-pencil" ng-click="submitModificar()"></span>
@@ -84,7 +84,7 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="noEditar($index)">Cerrar</button>
                       <button type="button" id="save"class="btn btn-primary" data-dismiss="modal" ng-click="guardarDatosUsuario($index)">Guardar cambios</button>
                     </div>
                   </div>
