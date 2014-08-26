@@ -43,27 +43,34 @@
           <div class="modal-dialog modal-sm row" id="cambiarcontra">
             <div class="modal-content col-centered cambiarcontrasena" data-ng-app="cambiocon">
               <form class="cambiocontra form-signin" role="form" pb-autologin="true" autocomplete="on" name="cambiocontrasena" novalidate ng-submit="cambiarcontrasena()" id="esperar">
-
-                <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
-                <input type="password" class="form-control input-login" placeholder="Contraseña actual" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 required />
-
-                <p class="cambiocontrasena">Por favor ingrese su contraseña nueva:</p>
-                <input ng-model="user.password" class="form-control input-login" placeholder="Contraseña nueva" type="password" ng-minlength=3 ng-maxlength=10 name="password" data-ng-class="{'ng-invalid':cambiocontrasena.confirmPassword.$error.match}" required />
-
-                <p class="cambiocontrasena">Por favor repita su contraseña nueva:</p>
-                <input ng-model="user.passwordConfirm" class="form-control input-login" placeholder="Repita contraseña nueva" type="password" ng-minlength=3 ng-maxlength=10 data-match="user.password" name="confirmPassword" required/>
-
-                <div data-ng-show="cambiocontrasena.confirmPassword.$error.match">
-                  <small class="error5">Las contraseñas no son iguales!</small>
+                <div class="mo">
+                  <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                  </button>
                 </div>
+                <div class="cambiandocontrasena">
+                  <p class="cambiocontrasena">Por favor ingrese su contraseña actual:</p>
+                  <input type="password" class="form-control input-login" placeholder="Contraseña actual" name="contrasena" ng-model="signup.contrasena" ng-minlength=3 ng-maxlength=10 required />
 
-                <div class="error-container" ng-show="cambiocontrasena.contrasena.$dirty && cambiocontrasena.contrasena.$invalid">
-                  <small class="error4" ng-show="cambiocontrasena.contrasena.$error.required">Por favor ingrese su contraseña actual</small>
-                  <small class="error4" ng-show="cambiocontrasena.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
-                  <small class="error4" ng-show="cambiocontrasena.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
+                  <p class="cambiocontrasena">Por favor ingrese su contraseña nueva:</p>
+                  <input ng-model="user.password" class="form-control input-login" placeholder="Contraseña nueva" type="password" ng-minlength=3 ng-maxlength=10 name="password" data-ng-class="{'ng-invalid':cambiocontrasena.confirmPassword.$error.match}" required />
+
+                  <p class="cambiocontrasena">Por favor repita su contraseña nueva:</p>
+                  <input ng-model="user.passwordConfirm" class="form-control input-login" placeholder="Repita contraseña nueva" type="password" ng-minlength=3 ng-maxlength=10 data-match="user.password" name="confirmPassword" required/>
+
+                  <div data-ng-show="cambiocontrasena.confirmPassword.$error.match">
+                    <small class="error5">Las contraseñas no son iguales!</small>
+                  </div>
+
+                  <div class="error-container" ng-show="cambiocontrasena.contrasena.$dirty && cambiocontrasena.contrasena.$invalid">
+                    <small class="error4" ng-show="cambiocontrasena.contrasena.$error.required">Por favor ingrese su contraseña actual</small>
+                    <small class="error4" ng-show="cambiocontrasena.contrasena.$error.minlength">Su contraseña debe tener al menos 3 caracteres</small>
+                    <small class="error4" ng-show="cambiocontrasena.contrasena.$error.maxlength">Su contraseña no puede tener mas de 20 caracteres</small>
+                  </div>
+
+                  <input type="submit" class="btn btn-success btn-sx" value="Cambiar contraseña" pb-role="submit" ng-click="funcionesperar()" />
                 </div>
-
-                <input type="submit" class="btn btn-success btn-sx" value="Cambiar contraseña" pb-role="submit" ng-click="funcionesperar()" />
               </form>
             </div>
             <div id="errorcontrasena2">

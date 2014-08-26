@@ -696,7 +696,7 @@ label {
   left: -4px;
 }
 #circle {
-  width: 71px;
+  width: 69px;
   height: 74px;
   background: #793982;
   -moz-border-radius: 70px;
@@ -750,7 +750,11 @@ label {
   color: #000000;
 }
 /*************************************************** CAMBIAR CONTRASENA ***************************************************/
-
+.mo{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
 #cambiarcontra {
   margin-top: 14em;
   color: #000000,
