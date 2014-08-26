@@ -137,7 +137,7 @@
                         <button id="{{'btnAgregar'+$index}}" class="btn btn-default btnAgregar" type="submit" ng-disabled="editForm.$invalid">Guardar datos</button>
                       </div>
                       <div class="divBtnCerrar">
-                        <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
+                        <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)" ng-disabled="informacion.estado == 1">Cerrar foro</button>
                       </div>
                     </div>
 
@@ -213,7 +213,7 @@
                 <span>{{voto.fecha}}{{voto.titulo}}</span>
               </div>
               <span>{{voto.info}}</span>
-              <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
+              <div ng-init="rating2 = star.rating + (voto.promedioCalificacion == null ? 1 : voto.promedioCalificacion)"></div>
               <div class="star-rating estrellas-promedio" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
 
             </div>

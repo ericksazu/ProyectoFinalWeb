@@ -450,5 +450,10 @@ span.errorForo{
 
 .estrellas-promedio{
   float: right;
+  
+}
+
+.forototal ul.rating{
+  margin-right: 10px;
 }
 
