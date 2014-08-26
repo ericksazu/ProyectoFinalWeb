@@ -12,6 +12,8 @@ $idUsuario = $data->idUsuario;
 $resultado = agregarComentarios($conexion, $id, $descripcion, $idUsuario);
 
 
+
+
 mysqli_close($conexion);
 
 // $lista = Array();

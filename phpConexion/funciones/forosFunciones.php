@@ -55,8 +55,9 @@ function obtenerDatos($conexion, $id){
 }
 
 
-function obtenerComentarios($conexion, $id){
-	$query = "CALL obtenerComentarioForo($id)";
+function obtenerComentarios($conexion, $id, $idUsuario){
+	$query = "CALL obtenerComentarioForo($id, $idUsuario)";
+
 
 	return BDQuery($query, $conexion);
 }
@@ -64,6 +65,12 @@ function obtenerComentarios($conexion, $id){
 function agregarComentarios($conexion, $id, $descripcion, $idUsuario){
 	$query = "CALL agregarComentarioForo('$descripcion', $idUsuario, $id)";
 
+	return BDQuery($query, $conexion);
+}
+
+function actualizarPromedioPuntuacion($conexion, $idComentario){
+	$query = "CALL actualizarPromedioCalificacion($idComentario)";
+echo $query;
 	return BDQuery($query, $conexion);
 }
 
@@ -157,7 +164,7 @@ function agregarDenuncia($conexion,$descripcion, $idComentario){
 }
 
 function agregarPuntuacion($conexion,$estrellas, $idComentario, $idUsuario){
-	$query = "CALL agregarDenuncia($estrellas, $idComentario, $idUsuario)";
+	$query = "CALL agregarPuntuacion($estrellas, $idComentario, $idUsuario)";
 	
 	return BDQuery($query, $conexion);
 }
