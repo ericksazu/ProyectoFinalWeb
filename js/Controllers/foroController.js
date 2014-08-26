@@ -98,9 +98,16 @@ $scope.eliminar = function(id){
 			console.log("inserted bad");
 		});
 		
-		
+		$('#myModalEliminarTema').modal('hide');
 
-	}
+						$('#alerteliminarForo').removeClass('hidden');
+						//$('#alerteliminarForo').addClass('');
+						$('#alerteliminarForo').css('display','block');
+						setTimeout(function() {
+							$('#alerteliminarForo').css('display','none');
+						}, 3000);
+
+	};
 
 
 	$scope.agregarEstudiante = function(index){
@@ -314,11 +321,14 @@ $scope.deseleccionarEliminado = function (idUsuario) {
 			console.log("inserted bad");
 		});
 
+						$('#myModalEditarTema').modal('hide');
 
-	//$('#myModalEditarTema').modal('hide');
-
-	//$route.reload();
-
+						$('#alertAgregarForo').removeClass('hidden');
+						//$('#alerteliminarForo').addClass('');
+						$('#alertAgregarForo').css('display','block');
+						setTimeout(function() {
+							$('#alertAgregarForo').css('display','none');
+						}, 3000);
 
 
 
@@ -545,6 +555,14 @@ if (estrellas != null) {
 		}).error(function(data, status) {
 			console.log("inserted bad");
 		});
+
+
+		$('#alertCalificarComentario').removeClass('hidden');
+						//$('#alerteliminarForo').addClass('');
+						$('#alertCalificarComentario').css('display','block');
+						setTimeout(function() {
+							$('#alertCalificarComentario').css('display','none');
+						}, 3000);
 
 	}
 

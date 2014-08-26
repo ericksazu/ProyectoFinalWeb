@@ -12,7 +12,7 @@
           </div>
           <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
             <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar foro" id="tags" ng-click="buscarTemas()" ng-model="buscartema">
+              <input type="text" class="form-control inputForoHeader" placeholder="Buscar foro" id="tags" ng-click="buscarTemas()" ng-model="buscartema">
             </div>
             <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
           </form>
@@ -26,6 +26,18 @@
       <div class="row">
         <!-- Foro container left -->
         <div class="foro-container col-md-7">
+
+          <div id="alerteliminarForo" class="alert alert-success hidden" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>¡Excelente!</strong> Se ha eliminado el tema satisfactoriamente.
+          </div>
+
+          <div id="alertAgregarForo" class="alert alert-success hidden" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>¡Excelente!</strong> Se ha agregado nueva información satisfactoriamente.
+          </div>
+
+
           <div class="foro-container-header clearfix">
             <h3 >Temas en el foro</h3>
             <button ng-show="visible" type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalEditarTema" ng-click="nuevoTema()">Nuevo tema</button>
@@ -128,6 +140,8 @@
                         <button id="btnCerrar" class="btn btn-default btnAgregar" type"submit" ng-click="cerrarForo($index)">Cerrar foro</button>
                       </div>
                     </div>
+
+
                   </form>
 
                 </div>
@@ -182,33 +196,33 @@
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
         </div> <!-- Foro container left -->
-          <div class="foro-trending col-md-4 col-md-offset-1" ng-controller="foroController"> <!-- Foro trending topic -->
-        <div class="trending-header">
-        <img src="img/estrella-doc.png" class="estrella-doc">
-          <h3>Comentarios más votados</h3>
-          <img src="img/estrella-doc.png" class="estrella-doc2">
-        </div>
-        <div class="trending-topic table-bordered clearfix" ng-repeat=" voto in llenar | limitTo: 5 | orderBy:'-promedioCalificacion'">
-          <div class="trending-content-header">
-            <div class="trending-number col-md-2">
-              <h3>{{$index+1}}</h3>
-              <h3>{{voto.titulo}}</h3>
+        <div class="foro-trending col-md-4 col-md-offset-1" ng-controller="foroController"> <!-- Foro trending topic -->
+          <div class="trending-header">
+            <img src="img/estrella-doc.png" class="estrella-doc">
+            <h3>Comentarios más votados</h3>
+            <img src="img/estrella-doc.png" class="estrella-doc2">
+          </div>
+          <div class="trending-topic table-bordered clearfix" ng-repeat=" voto in llenar | limitTo: 5 | orderBy:'-promedioCalificacion'">
+            <div class="trending-content-header">
+              <div class="trending-number col-md-2">
+                <h3>{{$index+1}}</h3>
+                <h3>{{voto.titulo}}</h3>
+              </div>
+              <div class="trending-name">
+                <a href="" class="purple">{{voto.descripcion}}</a></br>
+                <span>{{voto.fecha}}{{voto.titulo}}</span>
+              </div>
+              <span>{{voto.info}}</span>
+              <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
+              <div class="star-rating estrellas-promedio" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
+
             </div>
-            <div class="trending-name">
-              <a href="" class="purple">{{voto.descripcion}}</a></br>
-              <span>{{voto.fecha}}{{voto.titulo}}</span>
+            <div class="trending-content">
+              <p>{{tema.contenido}}</p>
             </div>
-           <span>{{voto.info}}</span>
-                  <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
-                  <div class="star-rating estrellas-promedio" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
 
           </div>
-          <div class="trending-content">
-            <p>{{tema.contenido}}</p>
-          </div>
-         
-        </div>
-      </div> <!-- Foro trending topic -->
+        </div> <!-- Foro trending topic -->
       </div> <!-- row -->
       <div class="container">
         <div class="row row-centered">
