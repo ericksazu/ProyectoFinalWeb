@@ -135,15 +135,15 @@
                       <a ng-show="visibleBlog" class="links-blog links-blog-color" data-toggle="modal" ng-href=".{{'myModalEditarPublicacion'+$index}}" style="cursor:pointer">Editar publicación</a>
                     </li>
                     <li>
-                      <a ng-click="compartirRedes()" id="facebook" href="" data-type="facebook" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <a ng-click="compartirRedes()" id="facebook" href="" data-type="facebook" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite" ng-show="visibleBlog"></a>
                       <!-- <a href="https://es-es.facebook.com/" class="ir sprite" id="facebook">Facebook</a> -->
                     </li>
                     <li>
-                      <a ng-click="compartirRedes()" id="googleplus" href="" data-type="googleplus" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <a ng-click="compartirRedes()" id="googleplus" href="" data-type="googleplus" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite" ng-show="visibleBlog"></a>
                       <!-- <a href="https://plus.google.com/" class="ir sprite" id="googleplus">Google+</a> -->
                     </li>
                     <li>
-                      <a ng-click="compartirRedes()" id="twitter" href="" data-type="twitter" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite"></a>
+                      <a ng-click="compartirRedes()" id="twitter" href="" data-type="twitter" data-url="<?php echo get_permalink(); ?>" data-description="{{usuario.descripcionPublicacion}}" data-via="{{usuarioActual}}" class="prettySocial ir sprite" ng-show="visibleBlog"></a>
                       <!-- <a href="https://twitter.com/" class="ir sprite" id="twitter">Twitter</a> -->
                     </li>
                   </ul>
@@ -207,7 +207,7 @@
                     <form name="formComentario">
                       <input type="text" id="inputComment" placeholder="Comentar" class="form-control" ng-model="$parent.agregarComentario" ng-minlength="5" required>
                       <span style="color: #bbbbbb; float: left;" ng-show="formComentario.$invalid">Debe ingresar al menos 5 caracteres en cada espacio</span>
-                      <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)" data-dismiss="modal">Comentar</button>
+                      <button type="button" class="btn btn-default margen-comment" ng-disabled="formComentario.$invalid" ng-click="nuevoComentario($index)">Comentar</button>
                     </form>
                   </div>
                 </div>

@@ -9,6 +9,7 @@
 	$Blog_idBlog = $data->Blog_idBlog;
 
 	$resultado = AgregarComentariosBlog($conexion,$descripcion,$Blog_idBlog);
+	echo $resultado;
 
 	mysqli_close($conexion);
 

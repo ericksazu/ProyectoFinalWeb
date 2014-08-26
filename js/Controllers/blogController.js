@@ -225,21 +225,16 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     $http.post('phpConexion/blog/agregar_comentarios.php', {'descripcion': $scope.descripcionComentario, 'Blog_idBlog': $scope.idEntradaBlog}).success(function(data, status) {
       console.log("inserted good");
       $scope.algo = data;
+      $scope.obtenerComentarios(index);
     }).error(function(data, status) {
         console.log("inserted wrong");
     });
 
-
-    $scope.obtenerComentarios(index);
-
-    /*$scope.getpublishedcomment = $scope.agregarComentario;
-    console.log($scope.getpublishedcomment);
-
-    $scope.publicaciones[index].comments.push({"comment":$scope.getpublishedcomment});*/
-
     $scope.descripcionComentario = '';
     $scope.agregarComentario = '';
     $scope.idEntradaBlog = '';
+
+    $('#myModal2').modal('hide');
 
   };
 
