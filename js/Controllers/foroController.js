@@ -511,6 +511,14 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 						}).error(function(data, status) {
 							console.log("inserted bad");
 						});
+
+
+						$('#alertDenunciaComentario').removeClass('hidden');
+						$('#alertDenunciaComentario').css('display','block');
+						setTimeout(function() {
+							$('#alertDenunciaComentario').css('display','none');
+						}, 3000);
+
 					};
 
 					$scope.puntuacion = function(){
