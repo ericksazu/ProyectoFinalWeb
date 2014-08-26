@@ -712,7 +712,7 @@ label {
 .actu {
   color: #000000;
   font-size: 12px;
-  width: 110%;
+  width: 115%;
   position: relative;
   z-index: 1;
 }
@@ -720,11 +720,7 @@ label {
   color: #793982;
 }
 
-.nombre,
-.nombre2,
-.nombre3,
-.actu,
-.edit:hover {
+.nombre, .nombre2, .nombre3, .actu, .edit:hover {
   cursor: pointer;
 }
 
