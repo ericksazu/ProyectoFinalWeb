@@ -201,18 +201,6 @@ angular.module('module').controller('blogController', function($scope, $http, $r
 
     $route.reload();
 
-
-    /*$scope.getpublishedtitle = $scope.tituloPublicacion;
-    $scope.getpublishedmessage = $scope.contenidoPublicacion;*/
-
-    /*if($scope.getpublishedtitle != null) {
-      $scope.publicaciones.unshift({"title":$scope.getpublishedtitle, "fecha":$scope.date ,"published":$scope.getpublishedmessage, "comments":[]});
-      $('#modalNuevaPublicacion').modal('hide');
-
-    }else{
-      alert('Digite todos los espacios');
-    }*/
-
     $scope.tituloPublicacion = '';
     $scope.contenidoPublicacion = '';
   };
@@ -250,12 +238,6 @@ angular.module('module').controller('blogController', function($scope, $http, $r
     }).error(function(data, status) {
         console.log("inserted wrong");
     });
-
-    /*$scope.getpublishedtitle = $scope.publicaciones[index].title;
-    $scope.getpublishedmessage = $scope.publicaciones[index].published;
-
-    $scope.publicaciones[index].title = $scope.getpublishedtitle;
-    $scope.publicaciones[index].published = $scope.getpublishedmessage;*/
 
   };
 
