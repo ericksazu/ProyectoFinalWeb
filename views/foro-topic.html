@@ -58,8 +58,11 @@
         </div>
         <div class="foro-container-header clearfix">
           <h3>{{foro.tema}}</h3>
+          <div style="clear:both;margin-top:10px;">
 
-          <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment" id="btnComentar">Comentar tema</button>
+            <p>{{foro.descripcion}}</p>
+          </div>
+          <button type="button" class="btn btn-default nuevo-tema" data-toggle="modal" ng-href="#myModalForoComment" id="btnComentar" ng-show="puedeComentar">Comentar tema</button>
           <br>
           <h5>Comentarios</h5>
         </div>
@@ -74,7 +77,7 @@
                 </div>
                 <form class="form-horizontal" role="form" name="formAgregarDenuncia">
                   <div class="modal-body clearfix">
-                  <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="$parent.denuncia" ng-minlength="10" required></textarea>
+                    <textarea type="text" class="form-control" rows="10" placeholder="Ingrese su denuncia" ng-model="$parent.denuncia" ng-minlength="10" required></textarea>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-purple" ng-click="agregarDenuncia(comentario.idComentarioxTema)" data-dismiss="modal" ng-disabled="formAgregarDenuncia.$invalid">Aceptar</button>
