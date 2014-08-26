@@ -4,12 +4,12 @@ include_once "conexion.php";
 include_once "funciones/forosFunciones.php";
 
 $data = json_decode(file_get_contents("php://input"));
-$estrellas= $data->estrellas;
-$idComentario = $data->idComentario;
-$idUsuario= $data->idUsuario;
+$respuestas= $data->respuestas;
+$idForo = $data->idForo;
 
 
-//$resultado = agregarRespuestas($conexion,$, $idUsuario);
+
+$resultado = agregarRespuestas($conexion, $idForo,$respuestas);
 mysqli_close($conexion);
 
 // $lista = Array();

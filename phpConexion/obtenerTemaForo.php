@@ -14,7 +14,7 @@ $resultado = obtenerTemaForo($conexion, $id);
 $foro = null;
 
 while ($item = mysqli_fetch_array($resultado)) {
-	//$item['show'] = true;
+	
 	$foro = $item;
 
 }
