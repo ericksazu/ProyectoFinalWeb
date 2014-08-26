@@ -29,6 +29,16 @@ angular.module('module').controller('FormCtrl', function($scope, $http, $rootSco
     });
   };
 
+  $scope.noEditar = function(index) {
+    $scope.listaUsuarios[index].nombre = $scope.listaUsuarios[index][1];
+    $scope.listaUsuarios[index].primerApellido = $scope.listaUsuarios[index][2];
+    $scope.listaUsuarios[index].segundoApellido = $scope.listaUsuarios[index][3];
+    $scope.listaUsuarios[index].email = $scope.listaUsuarios[index][4];
+    $scope.listaUsuarios[index].contrasena = $scope.listaUsuarios[index][5];
+    $scope.listaUsuarios[index].nivelUniversitario = $scope.listaUsuarios[index][6];
+    $scope.listaUsuarios[index].idUsuario = $scope.listaUsuarios[index][12];
+  };
+
   $scope.crearNuevoUsuario = function(index) {
     $scope.Nombre = $scope.formulario.nombre;
     $scope.PrimerApellido = $scope.formulario.primerApellido;
