@@ -13,6 +13,7 @@ angular.module('module').controller('foroController', function($scope, $http, $r
 	$scope.estudianteAsistente = [];
 	$scope.listaAsistentes = [];
 	$scope.fecha =[];
+	$scope.llenar = [];
 
 	$scope.nuevoTema = function() {
 		$scope.informacion = {};
@@ -46,6 +47,13 @@ $http({
 
 
 }
+
+$http.post('phpConexion/llenar.php').success(function(data, status) {
+					console.log("inserted good");
+					$scope.llenar = data;
+				}).error(function(data, status) {
+					console.log("inserted wrong");
+				});
 
 $http.get('phpConexion/login/usuarios.php').success(function(data) {
 	$scope.usuarios = data;
@@ -440,6 +448,13 @@ angular.module('module').controller('ForoTopicController', function($scope, $rou
 				console.log("inserted wrong");
 			});
 
+
+			$http.post('phpConexion/llenar.php').success(function(data, status) {
+					console.log("inserted good");
+					$scope.llenar = data;
+				}).error(function(data, status) {
+					console.log("inserted wrong");
+				});
 
 
 

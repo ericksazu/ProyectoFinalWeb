@@ -186,4 +186,10 @@ function aumentaVisitas($conexion, $idForo) {
 	
 	return BDQuery($query, $conexion);
 }
+
+function llenar($conexion) {
+	$query = "CALL llenar()";
+	
+	return BDQuery($query, $conexion);
+}
 ?>
