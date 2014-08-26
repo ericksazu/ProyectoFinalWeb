@@ -130,7 +130,7 @@
           <h3>Comentarios más votados</h3>
           <img src="img/estrella-doc.png" class="estrella-doc2">
         </div>
-        <div class="trending-topic table-bordered clearfix" ng-repeat="comentario in comments | limitTo: 5 | orderBy:'-comentario.promedioCalificacion'">
+        <div class="trending-topic table-bordered clearfix" ng-repeat="comentario in comments | limitTo: 5 | orderBy:'-promedioCalificacion' ">
           <div class="trending-content-header">
             <div class="trending-number col-md-2">
               <h3>{{$index+1}}</h3>
@@ -141,7 +141,10 @@
               <span>{{comentario.fecha}}{{comentario.titulo}}</span>
             </div>
            <span>{{comentario.info}}</span>
-                  <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)"></div>
+
+                  <div ng-init="rating2 = star.rating + (comentario.promedioCalificacion == null ? 1 : comentario.promedioCalificacion)">
+                  
+                  </div>
                   <div class="star-rating estrellas-promedio" star-rating rating-value="rating2" mg-model="estrellas2" data-min="0" data-max="5"></div>
 
           </div>
