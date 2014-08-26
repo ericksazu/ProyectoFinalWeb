@@ -11,7 +11,7 @@
         </div>
         <form class="navbar-form navbar-left centered navbar-form-foro" role="search">
           <div class="form-group">
-            <input type="text" class="form-control inputForoHeader" placeholder="Buscar">
+            <input type="text" class="form-control inputForoHeader" placeholder="Buscar comentario" ng-model="query">
           </div>
           <span id="searchGlyph" class="glyphicon glyphicon-search visible"></span>
         </form>
@@ -66,7 +66,7 @@
           <br>
           <h5>Comentarios</h5>
         </div>
-        <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <div class="tema-foro" ng-repeat="comentario in comments | startFrom:currentPage*pageSize | limitTo:pageSize | filter:query">
 
           <div class="modal fade" ng-class="'myModalForoDenuncia'+$index" id="myModalForoDenuncia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
